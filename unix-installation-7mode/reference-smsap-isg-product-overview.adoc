@@ -1,0 +1,48 @@
+---
+permalink: unix-installation-7mode/reference-smsap-isg-product-overview.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, automate, complex, manual, time-consuming, associate, backup, recovery, cloning, clone, database, ontap, technology, copies, copy, disk, product, overview 
+summary: SnapManager for SAPは、データベースのバックアップ、リカバリ、クローニングに関連する、複雑で時間のかかる手動プロセスを自動化して簡易化します。SnapManager と ONTAP の SnapMirror テクノロジを使用すると、別のボリュームにバックアップのコピーを作成できます。また、 ONTAP SnapVault テクノロジを使用すると、効率的にバックアップをディスクにアーカイブできます。 
+---
+= 製品の概要
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPは、データベースのバックアップ、リカバリ、クローニングに関連する、複雑で時間のかかる手動プロセスを自動化して簡易化します。SnapManager と ONTAP の SnapMirror テクノロジを使用すると、別のボリュームにバックアップのコピーを作成できます。また、 ONTAP SnapVault テクノロジを使用すると、効率的にバックアップをディスクにアーカイブできます。
+
+SnapManager には、OnCommand Unified ManagerやSAPのBR * Toolsとの統合など、ポリシーベースのデータ管理、定期的なデータベースバックアップのスケジュール設定と作成、データ損失や災害発生時のこれらのバックアップからのデータのリストアに必要なツールが用意されています。
+
+また、SnapManager は、Oracle Real Application Clusters（Oracle RAC）やOracle Recovery Manager（RMAN）などのネイティブOracleテクノロジと統合して、バックアップ情報を保持します。これらのバックアップは、あとでブロックレベルのリストア処理または表領域のポイントインタイムリカバリ処理で使用できます。
+
+
+
+== SnapManager の特長
+
+SnapManager は、UNIXホスト上のデータベースと、バックエンドのSnapshot、SnapRestore 、およびFlexCloneテクノロジとのシームレスな統合を実現します使いやすいユーザインターフェイス（ UI ）と、管理機能用のコマンドラインインターフェイス（ CLI ）が用意されています。
+
+SnapManager では、次のデータベース処理を実行し、データを効率的に管理できます。
+
+* プライマリストレージまたはセカンダリストレージにスペース効率に優れたバックアップを作成する
++
+SnapManager では、データファイルとアーカイブログファイルを個別にバックアップできます。
+
+* バックアップのスケジュール設定
+* ファイルベースまたはボリュームベースのリストア処理を使用した、データベース全体またはデータベースの一部のリストア
+* バックアップからアーカイブログファイルを検出、マウント、および適用してデータベースをリカバリする
+* アーカイブログだけのバックアップを作成する場合に、アーカイブログデスティネーションからアーカイブログファイルを削除する
+* 一意のアーカイブログファイルを含むバックアップのみが保持されるため、アーカイブログバックアップの数を最小限に抑えることができます
+* 処理の詳細を追跡し、レポートを生成します
+* バックアップを有効なブロック形式で検証し、バックアップファイルが破損していないことを確認します
+* データベースプロファイルで実行された操作の履歴を保持します
++
+プロファイルには、 SnapManager で管理するデータベースの情報が含まれています。
+
+* セカンダリストレージシステムおよびターシャリストレージシステムのバックアップを保護する。
+* プライマリストレージまたはセカンダリストレージに、スペース効率に優れたバックアップのクローンを作成する
++
+SnapManager では、データベースのクローンをスプリットできます。
+
+

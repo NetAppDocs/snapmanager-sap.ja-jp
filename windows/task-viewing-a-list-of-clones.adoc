@@ -1,0 +1,36 @@
+---
+permalink: windows/task-viewing-a-list-of-clones.html 
+sidebar: sidebar 
+keywords: view, list, clone, associate, particular, profile 
+summary: 特定のプロファイルに関連付けられているクローンのリストを表示できます。 
+---
+= クローンのリストを表示しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+特定のプロファイルに関連付けられているクローンのリストを表示できます。
+
+プロファイル内のクローンについて、次の情報が表示されます。
+
+* クローンの ID
+* クローン処理のステータス
+* クローンの Oracle SID
+* クローンが配置されているホスト
+* クローンのラベル
+
+
+verbose オプションを指定すると、クローンに対して入力されたコメントも出力に表示されます。
+
+.ステップ
+. プロファイルに関するすべてのクローンのリストを表示するには、次のコマンドを入力します。
++
+「SMSAP clone list -profile profile_name [-quiet |-verbose」です
+
+
+
+* 関連情報 *
+
+xref:reference-the-smosmsapclone-list-command.adoc[SMSAPのclone listコマンドを使用します]

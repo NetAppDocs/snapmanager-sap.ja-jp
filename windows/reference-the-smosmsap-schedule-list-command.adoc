@@ -1,0 +1,35 @@
+---
+permalink: windows/reference-the-smosmsap-schedule-list-command.html 
+sidebar: sidebar 
+keywords: command, list, schedule, operation, associate, profile, smsap 
+summary: このコマンドは、プロファイルに関連付けられているスケジュール済み処理をリスト表示します。 
+---
+= SMSAPのschedule listコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、プロファイルに関連付けられているスケジュール済み処理をリスト表示します。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap schedule list
+-profile profile_name
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+データベースに関連するプロファイルの名前を指定します。このプロファイルを使用すると、スケジュール済み処理のリストを表示できます。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+

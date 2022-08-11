@@ -1,0 +1,19 @@
+---
+permalink: windows/concept-snapmanager-repository.html 
+sidebar: sidebar 
+keywords: repository, store, information, snapmanager, operation, time, backup, tablespace, data, data, file, storage, system, clone, snapshot, copies, copy, create 
+summary: リポジトリには、バックアップ時刻、表領域とデータ・ファイルのバックアップ時刻、使用されているストレージ・システム、作成されたクローン、作成された Snapshot コピーなど、さまざまな SnapManager 処理に関連する情報が格納されます。 
+---
+= SnapManager リポジトリ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+リポジトリには、バックアップ時刻、表領域とデータ・ファイルのバックアップ時刻、使用されているストレージ・システム、作成されたクローン、作成された Snapshot コピーなど、さまざまな SnapManager 処理に関連する情報が格納されます。
+
+リポジトリデータベースは、同じデータベースに存在できず、 SnapManager がバックアップしているデータベースにも格納できません。これは、リポジトリには、バックアップ処理中に作成されたデータベース Snapshot コピーの名前が格納されるためです。リポジトリは、バックアップ対象のデータベースとは別のデータベースに作成する必要があります。つまり、 SnapManager リポジトリデータベースと、 SnapManager で管理されるターゲットデータベースの少なくとも 2 つのデータベースが必要です。SnapManager サービスを実行するには、両方のデータベースが稼働している必要があります。
+
+
+NOTE: リポジトリデータベースがダウンしているときは、 GUI または CLI を使用して SnapManager 処理を実行しないでください。

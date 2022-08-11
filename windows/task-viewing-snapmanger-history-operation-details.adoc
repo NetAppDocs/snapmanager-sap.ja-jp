@@ -1,0 +1,28 @@
+---
+permalink: windows/task-viewing-snapmanger-history-operation-details.html 
+sidebar: sidebar 
+keywords: view, history, setting, single, profile, snapmanager, configuration, detail 
+summary: 1 つのプロファイルの履歴設定を表示できます。 
+---
+= SnapManager の履歴の設定の詳細を表示する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+1 つのプロファイルの履歴設定を表示できます。
+
+SnapManager の履歴処理では、各プロファイルについて次の情報が表示されます。
+
+* 処理名
+* 保持クラス
+* 保持数
++
+.. 特定のプロファイルのSnapManager 履歴処理に関する情報を表示するには、次のコマンドを入力します。
++
+「smsaphistory show -profile profile_name」と入力します
+
+
+
+

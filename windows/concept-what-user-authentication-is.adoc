@@ -1,0 +1,44 @@
+---
+permalink: windows/concept-what-user-authentication-is.html 
+sidebar: sidebar 
+keywords: snapmanager, authenticate, user, operate, system, os, login, host, server, enable, password, smo, credential, smsap, set 
+summary: SnapManager は、 SnapManager サーバが実行されているホストでオペレーティングシステム（ OS ）ログインを使用してユーザを認証します。ユーザ認証は、処理時にパスワードのプロンプトを使用するか、smoクレデンシャルを使用して有効にできます。ユーザ認証は、処理時にパスワードのプロンプトを使用するか、SMSAPのクレデンシャルセットを使用して有効にできます。 
+---
+= ユーザ認証とは
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager は、 SnapManager サーバが実行されているホストでオペレーティングシステム（ OS ）ログインを使用してユーザを認証します。ユーザ認証は、操作時にパスワードプロンプトを使用するか、smoクレデンシャルを使用して有効にできます。ユーザ認証は、操作時にパスワード・プロンプトを使用するか、または「SMSAPのクレデンシャル・セット」を使用して有効にできます。
+
+ユーザ認証の要件は、処理を実行する場所によって異なります。
+
+* SnapManager クライアントが SnapManager ホストと同じサーバ上にある場合は、 OS のクレデンシャルによって認証されます。
++
+SnapManager サーバが実行されているホストにすでにログインしているため、パスワードの入力は求められません。
+
+* SnapManager クライアントと SnapManager サーバが異なるホスト上にある場合、 SnapManager は両方の OS クレデンシャルを使用してユーザを認証する必要があります。
++
+SnapManager ユーザクレデンシャルキャッシュに OS クレデンシャルを保存していない場合、 SnapManager は処理のためのパスワードの入力を求めます。「SMSAP credential set -host」コマンドを入力する場合は、SnapManager クレデンシャルキャッシュファイルにOSクレデンシャルを保存します。このため、SnapManager は処理のためにパスワードの入力を求めません。
+
+
+
+SnapManager サーバで認証されている場合は、有効なユーザとみなされます。すべての処理の実効ユーザは、処理が実行されるホストの有効なユーザアカウントである必要があります。たとえば、クローニング処理を実行する場合は、クローンのデスティネーションホストにログインできる必要があります。
+
+
+NOTE: SnapManager for SAPで、LDAPやADSなどの中央Active Directoryサービスで作成されたユーザの許可が失敗することがあります。認証が失敗しないようにするには、構成可能な「auth.disableServerAuthorization」を「* true *」に設定する必要があります。
+
+実効ユーザとして、次の方法でクレデンシャルを管理できます。
+
+* 必要に応じて、 SnapManager ユーザクレデンシャルファイルにユーザクレデンシャルを格納するように SnapManager を設定することができます。
++
+デフォルトでは、 SnapManager にはホストクレデンシャルは格納されません。たとえば、リモートホストへのアクセスを必要とするカスタムスクリプトがある場合などに、この変更が必要になることがあります。リモートクローニング処理は、リモートホストのユーザのログインクレデンシャルが必要な SnapManager 処理の例です。SnapManager がSnapManager ユーザのクレデンシャルキャッシュにユーザのホストのログインクレデンシャルを保存するようにするには、「SMSAP_CONFIG」ファイルで「host.credentials.Persist`」プロパティを「* true」に設定します。
+
+* リポジトリへのユーザ・アクセスを許可できます。
+* プロファイルへのユーザアクセスを許可できます。
+* すべてのユーザクレデンシャルを表示できます。
+* すべてのリソース（ホスト、リポジトリ、およびプロファイル）について、ユーザのクレデンシャルを消去できます。
+* 個々のリソース（ホスト、リポジトリ、およびプロファイル）のクレデンシャルを削除できます。
+

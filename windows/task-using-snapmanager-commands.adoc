@@ -1,0 +1,21 @@
+---
+permalink: windows/task-using-snapmanager-commands.html 
+sidebar: sidebar 
+keywords: start, snapmanager, host, server, enter, command, prompt 
+summary: SnapManager ホストサーバを起動したら、ホストのプロンプトでコマンドを入力して、 SnapManager を使用できます。 
+---
+= SnapManager コマンドを使用する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager ホストサーバを起動したら、ホストのプロンプトでコマンドを入力して、 SnapManager を使用できます。
+
+. 操作を実行するには：
++
+** Windowsホストの場合は、* Start *>* All Programs *>* NetApp *>* SnapManager for SAP *>* Start SMSAP Command Line Interface（CLI）*の順に選択します
+
+
+

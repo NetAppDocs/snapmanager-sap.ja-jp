@@ -1,0 +1,21 @@
+---
+permalink: unix-installation-cmode/task-smsap-isg-prepare-for-deployment.html 
+sidebar: sidebar 
+keywords: deploy, snapmanager, storage, system, unix, host, minimum, resource, requirement, prepare, deployment 
+summary: SnapManager を導入する前に、ストレージシステムと UNIX ホストがリソースの最小要件を満たしていることを確認する必要があります。 
+---
+= 導入を準備
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を導入する前に、ストレージシステムと UNIX ホストがリソースの最小要件を満たしていることを確認する必要があります。
+
+.手順
+. 必要なライセンスがあることを確認します。
+. サポートされている構成を確認します。
+. サポートされているストレージタイプを確認
+. UNIX ホストが SnapManager の要件を満たしていることを確認します。
+

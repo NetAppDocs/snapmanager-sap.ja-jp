@@ -1,0 +1,19 @@
+---
+permalink: windows/concept-introduction-to-data-protection-in-snapmanager.html 
+sidebar: sidebar 
+keywords: snapmanager, support, data, protection, protect, backup, secondary, tertiary, storage, system, snapmirror, snapvault, relationship, source, destination, volume 
+summary: SnapManager は、データ保護をサポートして、セカンダリストレージシステムまたはターシャリストレージシステム上のバックアップを保護します。ソースボリュームとデスティネーションボリュームの間に SnapMirror 関係と SnapVault 関係を設定する必要があります。 
+---
+= SnapManager でのデータ保護の概要
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager は、データ保護をサポートして、セカンダリストレージシステムまたはターシャリストレージシステム上のバックアップを保護します。ソースボリュームとデスティネーションボリュームの間に SnapMirror 関係と SnapVault 関係を設定する必要があります。
+
+
+NOTE: BR * Toolsを使用して作成したバックアップは、SnapManager for SAPでは保護できません。
+
+バックアップ後スクリプトをコマンドラインインターフェイス（ CLI ）とグラフィカルユーザインターフェイス（ GUI ）の両方から使用して、プライマリストレージシステム上のバックアップを保護することができます。

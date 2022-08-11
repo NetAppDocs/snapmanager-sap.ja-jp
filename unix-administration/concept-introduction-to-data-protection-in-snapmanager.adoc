@@ -1,0 +1,36 @@
+---
+permalink: unix-administration/concept-introduction-to-data-protection-in-snapmanager.html 
+sidebar: sidebar 
+keywords: snapmanager, data, protection, backup, secondary, tertiary, storage, system, snapmirror, snapvault, relationship, destination, volume 
+summary: SnapManager は、データ保護をサポートして、セカンダリストレージシステムまたはターシャリストレージシステム上のバックアップを保護します。ソースボリュームとデスティネーションボリュームの間に SnapMirror 関係と SnapVault 関係を設定する必要があります。 
+---
+= SnapManager でのデータ保護の概要
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager は、データ保護をサポートして、セカンダリストレージシステムまたはターシャリストレージシステム上のバックアップを保護します。ソースボリュームとデスティネーションボリュームの間に SnapMirror 関係と SnapVault 関係を設定する必要があります。
+
+Data ONTAP 7-Mode を使用している場合は、 OnCommand と Protection Manager （ SnapManager Unified Manager ）を統合することで、ポリシーベースのデータ保護を実現できます。これにより、 Protection Manager でストレージ管理者またはバックアップ管理者が作成した SnapVault または SnapMirror ポリシーを使用して、プライマリストレージシステム上またはターシャリストレージシステム上への SnapManager バックアップのレプリケートを自動化できます。プライマリストレージでの保持は、プロファイルの作成時に定義された保持設定、およびバックアップの作成時にタグ付けされた保持クラスに基づいて、 SnapManager によって制御されます。セカンダリストレージのバックアップ保持は、 Protection Manager で定義されたポリシーで制御されます。
+
+clustered Data ONTAP を使用している場合、 SnapManager 3.4 にはデータ保護のための _SnapManager_cDOT _ ミラーリング _ ポリシーと _SnapManager_cDOT _ ボールト _ ポリシーが用意されています。プロファイルを作成する際、これらのポリシーは、 clustered Data ONTAP の CLI または System Manager を使用して確立された SnapMirror 関係または SnapVault 関係に応じて選択できます。保護を有効にしたプロファイルを選択してバックアップを作成すると、バックアップはセカンダリストレージシステムで保護されます。
+
+
+NOTE: BR * Toolsを使用して作成したバックアップは、SnapManager for SAPでは保護できません。
+
+clustered Data ONTAP で SnapManager 3.3.1 を使用していた場合は、プロファイルの作成時に選択したポストスクリプトを使用してバックアップが保護されていました。これらのプロファイルを使用する場合は、 SnapManager 3.4 へのアップグレード後に次の操作を実行する必要があります。
+
+* プロファイルを更新して、 _SnapManager_cDOT _ ミラー _ または _SnapManager_cDOT _ ボールトポリシーを選択し、データ保護に使用したポストスクリプトを削除する必要があります。
+* プロファイルを更新して _SnapManager_cDOT _Vault_policy を使用するようにしたら、既存のバックアップスケジュールを削除し、新しいスケジュールを作成してバックアップの SnapVault ラベルを指定する必要があります。
+* ポストスクリプトを選択せずに SnapManager 3.3.1 でプロファイルを作成した場合は、プロファイルを更新して、データ保護を有効にするために _SnapManager_cDOT ミラーリングまたは _SnapManager_cDOT _ ボールトポリシーを選択する必要があります。
+
+
+
+NOTE: SnapManager 3.3.1 ポストスクリプトを使用してミラーリングまたはバックアップされたセカンダリストレージシステムにバックアップがある場合、 SnapManager 3.4 を使用してこれらのバックアップをリストアまたはクローニングすることはできません。
+
+clustered Data ONTAP を使用している場合、 SnapManager 3.4.2 ではソースボリュームに対して複数の保護関係（ SnapMirror と SnapVault ）がサポートされます。1 つのボリュームでサポートされる SnapMirror SnapVault 関係は 1 つだけです。個別のプロファイルを作成する必要がありますそれぞれのプロファイルでは'_SnapManager_cDOT _Mirror_'および'_SnapManager_cDOT _Vault_'ポリシーが選択されています
+
+
+NOTE: 複数の保護ポリシーを使用するには、 SnapDrive for Unix 5.3.2 以降が必要です。

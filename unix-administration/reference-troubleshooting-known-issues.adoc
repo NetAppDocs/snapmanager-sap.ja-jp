@@ -1,0 +1,335 @@
+---
+permalink: unix-administration/reference-troubleshooting-known-issues.html 
+sidebar: sidebar 
+keywords: aware, snapmanager, troubleshooting, known, issue 
+summary: SnapManager の使用時に発生する可能性がある既知の問題とその回避方法について理解しておく必要があります。 
+---
+= 既知の問題のトラブルシューティング
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager の使用時に発生する可能性がある既知の問題とその回避方法について理解しておく必要があります。
+
+
+
+== SnapManager for SAPで、プロファイルがclustered Data ONTAPのプロファイルとして識別されません
+
+SnapManager for SAPインストール・ディレクトリのcmode_profiles.configファイルにclustered Data ONTAPのプロファイル名がない場合は、次のエラー・メッセージが表示されることがあります。
+
+「SnapDrive config set -dfm user_name apply_name.」を使用してDFMサーバを構成してください
+
+また、SnapManager for SAPのアップグレード中に「/opt/NetApp/smsap/*`」フォルダを削除すると、clustered Data ONTAPのプロファイル名が含まれる「cmode_profiles.config」ファイルも削除されます。この問題も同じエラーメッセージをトリガーします。
+
+* 回避策 *
+
+プロファイルを更新します：「* SMSAP profile update -profile update_profile_<profile>_*」
+
+
+NOTE: SnapManager for SAPが「/opt/NetApp/smsap/`path」にインストールされている場合、ファイルの場所は「/opt/NetApp/smsap/cmode _profile/cmode_profiles.config.」になります
+
+
+
+== サーバを起動できません
+
+サーバの起動時に、次のようなエラーメッセージが表示されることがあります。
+
+「smsap-01104：コマンドの呼び出しエラー：smsap-17107：「SnapManager Server failed to start on port 8074」というエラーが表示されます。java.net.BindException: Address already in use」というエラーが表示されます
+
+これは、SnapManager リスニングポート（デフォルトは27314と27315）が別のアプリケーションで現在使用されているためです。
+
+このエラーは'SMSAP_SERVER'コマンドがすでに実行されているにもかかわらずSnapManager が既存のプロセスを検出しない場合にも発生することがあります
+
+* 回避策 *
+
+別のポートを使用するように SnapManager または他のアプリケーションを再設定できます。
+
+SnapManager を再構成するには'`/opt/NTAP/smsap/properties/sap.configファイルを編集します
+
+次の値を割り当てます。
+
+* SMSAPのServer.port = 27314
+* SMSAP Server.rmiRegistry.port=27315
+* remote.registry.ocijdbc.port=27315
++
+remote.registry.ocijdbc.port を Server.rmiRegistry.port と同じにする必要があります。
+
+
+
+SnapManager サーバを起動するには、「* smsap_server start *」コマンドを入力します
+
+
+NOTE: サーバがすでに実行中の場合は、エラーメッセージが表示されます。
+
+サーバがすでに稼働している場合は、次の手順を実行します。
+
+. 次のコマンドを入力してサーバを停止します：「* smsap_server stop *
+. 次のコマンドを入力して、サーバを再起動します：「* smsap_server start *」
+
+
+
+
+== 現在実行中の SnapManager 処理を終了します
+
+SnapManager サーバがハングし、処理を正常に実行できない場合には、 SnapManager とその処理を終了できます。
+
+* 回避策 *
+
+SnapManager は、 SnapManager と Protection Manager の両方で機能します。実行中のさまざまなプロセスを表示し、最後に実行されたプロセスを停止するには、次の手順を実行する必要があります。
+
+. 実行中のすべてのSnapDrive プロセスを表示します:ps
++
+「*ps」
+
++
+例
+
++
+'*ps|rep SnapDrive *'
+
+. SnapDrive プロセスまたはプロセスを停止します:`*kill <pid>*`
++
+`_pid_`は'ps`コマンドを使用して見つけたプロセスのリストである。
+
++
+
+NOTE: すべての SnapDrive プロセスを停止しないでください。実行中の最後のプロセスだけを終了することもできます。
+
+. いずれかの処理で保護されているバックアップをセカンダリストレージからリストアする場合は、 Protection Manager コンソールを開き、次の手順を実行します。
++
+.. 「システム」メニューから「 * ジョブ * 」を選択します。
+.. [* Restore] を選択します。
+.. SnapManager プロファイル内のデータセットと一致する名前を確認します。
+.. 右クリックして、 * キャンセル * を選択します。
+
+
+. SnapManager プロセスを一覧表示します。
++
+.. root ユーザとしてログインします。
+.. PS コマンドを使用して、プロセスの一覧を表示します。
++
+例:`*ps|grep java*`
+
+
+
+. SnapManager プロセスを終了します:`*kill <pid>*`
+
+
+
+
+== 最後に保護されたバックアップを削除または解放できません
+
+セカンダリストレージ上のプロファイルに対して最初のバックアップを作成すると、 SnapManager からそのバックアップに関するすべての情報が Protection Manager に送信されます。このプロファイルに関連する後続のバックアップでは、 SnapManager は変更された情報のみを送信します。最後に保護されたバックアップを削除すると、 SnapManager はバックアップ間の違いを識別できなくなり、これらの関係のベースラインを再設定する方法を見つける必要があります。したがって、最後に保護されたバックアップを削除しようとすると、エラー・メッセージが表示されます。
+
+* 回避策 *
+
+プロファイルを削除するか、プロファイル・バックアップだけを削除できます。
+
+プロファイルを削除するには、次の手順を実行します。
+
+. プロファイルのバックアップを削除します。
+. プロファイルを更新し、プロファイルの保護を無効にします。
++
+これにより、データセットが削除されます。
+
+. 最後に保護されたバックアップを削除します。
+. プロファイルを削除します。
+
+
+バックアップだけを削除するには、次の手順を実行します。
+
+. プロファイルの別のバックアップ・コピーを作成します。
+. そのバックアップコピーをセカンダリストレージに転送します。
+. 前のバックアップコピーを削除する
+
+
+
+
+== デスティネーション名が他のデスティネーション名に含まれている場合、アーカイブログファイルのデスティネーション名を管理できません
+
+アーカイブログのバックアップ作成時に、ユーザが他のデスティネーション名の一部であるデスティネーションを除外する場合は、その他のデスティネーション名も除外されます。
+
+たとえば'除外できるデスティネーションが3つあるとしますつまり'`dest'/dest1'```'/dest2.`と`/dest2.`です アーカイブ・ログ・ファイルのバックアップを作成するときに'コマンドを使用して'Des/dest'を除外する場合
+
+[listing]
+----
+smsap backup create -profile almsamp1 -data -online -archivelogs  -exclude-dest /dest
+----
+、SnapManager for SAPでは、_destで始まるすべての送信先を除外しています。
+
+* 回避策 *
+
+* デスティネーションが「v$archive_dest」で設定された後に、パス区切り文字を追加します。たとえば、「/dest`」を「dest/``」に変更します。
+* バックアップを作成する際には、デスティネーションを除外するのではなく、バックアップ先を指定してください。
+
+
+
+
+== Automatic Storage Management （ ASM ）および非 ASM ストレージで多重化されている制御ファイルのリストアに失敗します
+
+制御ファイルが ASM および非 ASM ストレージで多重化されると、バックアップ処理は成功します。ただし、そのバックアップから制御ファイルをリストアしようとすると、リストア処理に失敗します。
+
+
+
+== SnapManager のクローニング処理が失敗する
+
+SnapManager でバックアップをクローニングすると、 DataFabric Manager サーバでボリュームを検出できず、次のエラーメッセージが表示されることがあります。
+
+「SMSAP-13032：操作を実行できません：クローンの作成。ルート原因 ：smsap-11007：Snapshotからのエラークローニング：flow-11019：ExecuteConnectionSteps：SD-00018：/mnt/datafileclone3：sd-10016：SnapDrive コマンドの実行時のエラー「/usr/sbin/snapdrive storage show -fs/mnt/clone_11007：0002-719 Warning：500x.sdcfiler5000.2&r1.25x1.250.data.sm/sm/sm/sm/sm/smbストレージボリュームに対する処理を確認できません。/smn1.25x1.25x1.25x1.25x1.250.data.5000.data.sm/sm/sm/sm/sm/sm/sm/sm/sm/
+
+理由:無効なリソースが指定されましたOperations Managerサーバ10.x.x.xにIDが見つかりません
+
+ストレージシステムに大量のボリュームがある場合に発生します。
+
+* 回避策 *
+
+次のいずれかを実行する必要があります。
+
+* Data Fabric Managerサーバで、を実行します
++
+'*dfm host discover _storage_system_*'のように指定します
+
++
+また、シェルスクリプトファイルにコマンドを追加して、 DataFabric Manager サーバでジョブをスケジュールし、スクリプトを頻繁に実行することもできます。
+
+* 「snapdrive.conf」ファイルの「_dfM-rbac - retries _」の値を大きくします。
++
+SnapDrive では、デフォルトの更新間隔値とデフォルトの再試行回数が使用されます。デフォルト値の'_dfs-rbac -retry-sleep-secs_'は15秒'`_dfs-rbac -retrations_'は12回です
+
++
+
+NOTE: Operations Manager の更新間隔は、ストレージシステムの数、ストレージシステム内のストレージオブジェクトの数、および DataFabric Manager サーバの負荷によって異なります。
+
+
+
+推奨事項として、次の手順を実行します。
+
+. DataFabric Managerサーバから、データセットに関連付けられているすべてのセカンダリストレージシステムに対して次のコマンドを手動で実行します。
++
+'*dfm host discover _storage_system_*'のように指定します
+
+. ホスト検出処理の実行にかかった時間を2倍にして、その値を「_dfM-rbac retry-sleep-ssecs_`」に割り当てます。
++
+たとえば、処理に11秒かかった場合は、「_dfm -rbac -retrye-sleep-secs_」の値を22（11 * 2）に設定できます。
+
+
+
+
+
+== リポジトリデータベースのサイズは、バックアップの数ではなく、時間とともに増加します
+
+リポジトリデータベースのサイズは時間とともに大きくなります。これは、 SnapManager の処理によってリポジトリデータベーステーブル内のスキーマにデータが挿入または削除され、インデックススペースの使用率が高くなるためです。
+
+* 回避策 *
+
+リポジトリスキーマによって消費されるスペースを制御するには、 Oracle のガイドラインに従ってインデックスを監視し、再構築する必要があります。
+
+
+
+== リポジトリデータベースがダウンしていると、 SnapManager GUI にアクセスできず、 SnapManager 処理に失敗します
+
+SnapManager 処理は失敗し、リポジトリデータベースがダウンしていると GUI にアクセスできません。
+
+次の表に、実行するアクションとその例外を示します。
+
+[cols="1a,3a"]
+|===
+| 処理 | 例外 
+
+
+ a| 
+閉じたリポジトリを開く
+ a| 
+次のエラーメッセージが「SM_GUI.log：[WARN]：SMSAP-01106：リポジトリの照会中にエラーが発生しました：Closed Connection java.SQL.SQLException：Closed Connection.」に記録されます
+
+
+
+ a| 
+F5 キーを押して、開いているリポジトリを更新します
+ a| 
+リポジトリの例外がGUIに表示され'SM_GUI.logファイルにNullPointerExceptionも記録されます
+
+
+
+ a| 
+ホストサーバを更新しています
+ a| 
+NullPointerExceptionが'sumo_gui-log'ファイルに記録されます
+
+
+
+ a| 
+新しいプロファイルを作成します
+ a| 
+Profile Configuration ウィンドウに NullPointerException が表示されます。
+
+
+
+ a| 
+プロファイルを更新しています
+ a| 
+次のSQL例外が'SM_GUI.logに記録されます[WARN]：SMSAP-01106：リポジトリの照会中にエラーが発生しました：Closed Connection
+
+
+
+ a| 
+バックアップへのアクセス
+ a| 
+次のエラーメッセージが'SM_GUI.log:コレクションの初期化に失敗しました
+
+
+
+ a| 
+クローンのプロパティの表示
+ a| 
+次のエラーメッセージが'SM_GUI.log'および'sumo_GUI.log:コレクションの初期化に失敗しました
+
+|===
+* 回避策 *
+
+GUI にアクセスする場合や SnapManager の処理を実行する場合は、リポジトリデータベースが稼働していることを確認する必要があります。
+
+
+
+== クローンデータベースの一時ファイルを作成できません
+
+ターゲットデータベースの一時表領域ファイルが、データファイルのマウントポイントとは異なるマウントポイントに配置されている場合、クローンの作成は成功しますが、 SnapManager でクローンデータベースの一時ファイルが作成されません。
+
+* 回避策 *
+
+次のいずれかを実行する必要があります。
+
+* 一時ファイルがデータファイルと同じマウントポイントに配置されるように、ターゲットデータベースをレイアウトしてください。
+* クローンデータベースに一時ファイルを手動で作成または追加する。
+
+
+
+
+== プロトコルを NFSv3 から NFSv4 に移行できません
+
+プロトコルをNFSv3からNFSv4に移行するには、「snapdrive.conf」ファイルの「enable-migring-nfs-version」パラメータを有効にします。移行中、SnapDrive は、「rw」、「largefiles」、「nosuid」などのマウントポイントオプションに関係なく、プロトコルバージョンのみを考慮します。
+
+ただし、プロトコルを NFSv4 に移行したあとに NFSv3 を使用して作成されたバックアップをリストアすると、次の処理が実行されます。
+
+* NFSv3 と NFSv4 がストレージレベルで有効になっている場合は、リストア処理は成功しますが、バックアップ時に使用できたマウントポイントオプションを使用してマウントされます。
+* ストレージレベルで NFSv4 のみが有効になっている場合は、リストア処理が成功し、プロトコルバージョン（ NFSv4 ）のみが保持されます。
++
+ただし'rw'largefiles'nosuidなどの他のマウント・ポイント・オプションは保持されません
+
+
+
+* 回避策 *
+
+リストアの前に、データベースを手動でシャットダウンし、データベースのマウントポイントをアンマウントし、オプションを使用してマウントする必要があります。
+
+
+
+== Data Guard スタンバイデータベースのバックアップに失敗する
+
+いずれかのアーカイブログの場所にプライマリデータベースのサービス名が設定されていると、 Data Guard スタンバイデータベースのバックアップに失敗します。
+
+* 回避策 *
+
+GUI で、プライマリデータベースのサービス名に対応する [* 外部アーカイブログの場所を指定します（ Specify External Archive Log location* ） ] をクリアする必要があります。

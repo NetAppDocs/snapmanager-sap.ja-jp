@@ -1,0 +1,21 @@
+---
+permalink: windows/task-assigning-backups-with-a-specific-retention-class.html 
+sidebar: sidebar 
+keywords: dba, retention, class, hourly, daily, weekly, monthly, backup, eligible, assign 
+summary: DBA は、毎時、毎日、毎週、または毎月という特定の保持クラスをバックアップに割り当てることができます。特定の保持クラスを割り当てると、この変更に基づいて実行されたバックアップが削除対象になります。 
+---
+= 特定の保持クラスを持つバックアップを割り当てています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+DBA は、毎時、毎日、毎週、または毎月という特定の保持クラスをバックアップに割り当てることができます。特定の保持クラスを割り当てると、この変更に基づいて実行されたバックアップが削除対象になります。
+
+.ステップ
+. 特定のバックアップ保持クラスを割り当てるには、次のコマンドを入力します。
++
+'smsapbackup update-profileprofile_name{-labellabel[data|-archivelogs|-idID}-retain [-houra|-daily|-weekly|-monthly]
+
+

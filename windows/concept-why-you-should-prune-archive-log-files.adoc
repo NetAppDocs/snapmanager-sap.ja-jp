@@ -1,0 +1,19 @@
+---
+permalink: windows/concept-why-you-should-prune-archive-log-files.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, enable, delete, archive, log, file, system, back, up 
+summary: SnapManager for SAPを使用すると、すでにバックアップされているアクティブファイルシステムからアーカイブログファイルを削除できます。 
+---
+= アーカイブログファイルの削除が必要な理由
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPを使用すると、すでにバックアップされているアクティブファイルシステムからアーカイブログファイルを削除できます。
+
+プルーニングを使用すると、 SnapManager で個別のアーカイブ・ログ・ファイルのバックアップを作成できます。バックアップ保持ポリシーと一緒に削除すると、バックアップがパージされるときにアーカイブ・ログのスペースが解放されます。
+
+
+NOTE: アーカイブログファイルに対して Flash Recovery Area （ FRA ）が有効になっている場合は、アーカイブログファイルのプルーニングを実行できません。Flash Recovery Areaでアーカイブ・ログの場所を指定する場合は'archive_log_destパラメータでアーカイブ・ログの場所も指定する必要があります

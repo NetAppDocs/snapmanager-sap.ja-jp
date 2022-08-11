@@ -1,0 +1,33 @@
+---
+permalink: windows/task-create-operation-level-dump-files.html 
+sidebar: sidebar 
+keywords: smsap, operation, dump, command, name, id, fail, log, information, level, profile, host, environment, create, operation-level 
+summary: SMSAP operation dumpコマンドを使用して、失敗した処理の名前またはIDを指定して、特定の処理に関するログ情報を取得できます。さまざまなログレベルを指定して、特定の処理、プロファイル、ホスト、または環境に関する情報を収集できます。 
+---
+= 処理レベルのダンプ・ファイルを作成します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+失敗した処理の名前またはIDを指定して「SMSAP operation dump」コマンドを使用すると、特定の処理に関するログ情報を取得できます。さまざまなログレベルを指定して、特定の処理、プロファイル、ホスト、または環境に関する情報を収集できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+「* SMSAP operation dump-id_GUID_*」という名前になります
+
++
+
+NOTE: 「smsapoperation dump」コマンドは、「smsapprofile dump」コマンドで得られる情報のスーパーセットを提供し、「smsapsystem dump」コマンドで得られる情報のスーパーセットを提供します。
+
++
+ダンプファイルの場所：
+
++
+[listing]
+----
+Path:\<user-home>\Application Data\NetApp\smsap\3.3.0\smsap_dump_8abc01c814649ebd0114649ec69d0001.jar
+----
+

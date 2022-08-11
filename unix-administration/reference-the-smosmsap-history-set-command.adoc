@@ -1,0 +1,95 @@
+---
+permalink: unix-administration/reference-the-smosmsap-history-set-command.html 
+sidebar: sidebar 
+keywords: run, history, set, command, configure, operation, smsap 
+summary: history set コマンドを実行すると、履歴を表示する操作を設定できます。 
+---
+= SMSAPのhistory setコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+履歴を表示する操作を設定するには'history setコマンドを実行します
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap history set
+-profile {-name _profile_name_ [_profile_name1, profile_name2_\] | -all
+-repository -login [password _repo_password_\] -username _repo_username_
+-host _repo_host_
+-dbname _repo_dbname_
+-port _repo_port_}
+-operation {-operations _operation_name_ [_operation_name1, operation_name2_\] | -all}
+-retain
+{-count _retain_count_ | -daily _daily_count_ | -monthly _monthly_count_ | -weekly _weekly_count_}
+[-quiet | -verbose]]
+----
+
+
+== パラメータ
+
+* `*-profile profile *`
++
+プロファイルの名前を指定します。名前は 30 文字以内で指定し、ホスト内で一意である必要があります。
+
+* `*-repository*`
++
+プロファイルが格納されるデータベースの詳細を指定します。
+
+* *-dbdbname_repo_dbname_*`
++
+プロファイルが格納されたデータベースの名前を指定します。グローバル名またはシステム ID を使用できます。
+
+* `*-host_repo_host_*`
++
+リポジトリ・データベースが置かれているホストの名前または IP アドレスを指定します。
+
+* '*-login*
++
+リポジトリ・ログインの詳細を指定します。
+
+* `*-username_repo_username_*`
++
+リポジトリ・データベースへのアクセスに必要なユーザ名を指定します。
+
+* '*-port_repo_port_*'と入力します
++
+リポジトリデータベースへのアクセスに使用する TCP （ Transmission Control Protocol ）ポート番号を指定します。
+
+* `*-operation {-operation_operation_name_[_operation_name1、operation_name2_]|-all *`
++
+履歴を設定する SnapManager 操作を指定します。
+
+* `*-retain {-count_retain_count_|-daily_daily_count_|-monthly_schedule_count_|-weekly_weekly_count_}*`
++
+クローンの作成、バックアップの検証、リストアとリカバリ、およびクローンの作成とスプリット処理の保持クラスを指定します。保持クラスは、処理数、日数、週数、または月に基づいて設定されます。
+
+* 「*- quiet *」と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+'''
+
+
+== コマンドの例
+
+次の例は、バックアップ処理に関する情報を表示します。
+
+[listing]
+----
+smsap history set -profile -name PROFILE1 -operation -operations backup -retain -daily 6
+ -verbose
+----
+'''

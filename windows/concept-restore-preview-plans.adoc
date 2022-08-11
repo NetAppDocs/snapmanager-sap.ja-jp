@@ -1,0 +1,87 @@
+---
+permalink: windows/concept-restore-preview-plans.html 
+sidebar: sidebar 
+keywords: snapmanager, restore, plan, operation, preview, review, analyze, regard, method 
+summary: SnapManager では、リストア処理の実行前と実行後にリストア計画を提示します。リストア計画を使用して、さまざまなリストア方式についてプレビュー、確認、分析を行います。 
+---
+= リストアプレビュープランとは
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、リストア処理の実行前と実行後にリストア計画を提示します。リストア計画を使用して、さまざまなリストア方式についてプレビュー、確認、分析を行います。
+
+
+
+== リストアプランの構造
+
+リストア計画は、次の 2 つのセクションで構成されています。
+
+* プレビュー / レビュー：このセクションでは、 SnapManager で各ファイルをリストア（またはリストア）する方法について説明します。
+* 分析：このセクションでは、リストア処理中に一部のリストアメカニズムが使用されなかった理由について説明します。
+
+
+
+
+== [ プレビュー / レビュー（ Preview/Review ） ] セクション
+
+このセクションでは、各ファイルがどのようにリストアされるかを説明します。リストア処理の前にリストア計画を表示することをプレビューと呼びます。リストア処理の完了後に表示される設定を確認することを、レビューと呼びます。
+
+次のプレビュー例では、ストレージ側のファイルシステムのリストア方法とストレージ側のシステムのリストア方法を使用して、ファイルがリストアされています。同じリストア方式を使用して、すべてのファイルがリストアされない理由については、「分析」セクションを参照してください。
+
+[listing]
+----
+Preview:
+The following files will be restored completely via: storage side full file system restore
+E:\rac6\sysaux.dbf
+E:\rac6\system.dbf
+----
+各リストア方法について、そのリストア方法でリストアできるファイルの情報が 1 つのサブセクションにまとめられています。サブセクションの順序は、ストレージ方式の効率性のレベルから順番にいきます。
+
+1 つのファイルを複数のリストア方式でリストアできます。ファイルシステムに使用される基盤となる論理ユニット番号（ LUN ）が異なるストレージシステムボリュームに分散していて、一部のボリュームがボリュームリストアの対象となっているものの、リストアの対象とならないものがある場合は、複数のリストア方式が使用されます。複数のリストア方法で同じファイルをリストアする場合は、プレビューセクションは次のようになります。
+
+[listing]
+----
+The following files will be restored via a combination of:
+[storage side file system restore and storage side system restore]
+----
+
+
+== [ 解析（ Analysis ） ] セクション
+
+Analysis セクションには、一部の復元メカニズムが使用されない、または使用されなかった理由が示されています。この情報から、より効率的なリストアメカニズムを実現するために必要な情報を判断できます。
+
+次の例は、解析セクションを示しています。
+
+[listing]
+----
+Analysis:
+
+The following reasons prevent certain files from being
+restored completely via: storage side full file system restore
+   * LUNs present in snapshot of volume fas960:
+        \vol\disks may not be consistent when reverted:
+        [fas960:\vol\disks\DG4D1.lun]
+     Mapped LUNs in volume fas960:\vol\disks
+        not part of the restore scope will be reverted: [DG4D1.lun]
+
+Files to restore:
+     E:\disks\sysaux.dbf
+     E:\disks\system.dbf
+     E:\disks\undotbs1.dbf
+     E:\disks\undotbs2.dbf
+
+* Reasons denoted with an asterisk (*) are overridable.
+----
+この例では、コマンドラインインターフェイス（ CLI ）から、またはグラフィカルユーザインターフェイス（ GUI ）で * Override * を選択して、最初の障害をオーバーライドできます。ボリューム内のマッピングされている LUN で 2 つ目の障害は必須であり、オーバーライドすることはできません。
+
+次の方法でチェックを解決できます。
+
+* 必須チェックの失敗を解決するには、チェックが合格するように環境を変更します。
+* オーバーライド可能なチェックエラーを解決するには、環境を変更するか、チェックをオーバーライドします。
++
+ただし、チェックを無視すると望ましくない結果が生じる可能性があるため、注意が必要です。
+
+

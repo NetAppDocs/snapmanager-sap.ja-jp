@@ -1,0 +1,18 @@
+---
+permalink: windows/concept-clustered-configurations.html 
+sidebar: sidebar 
+keywords: snapmanager, operate, cluster, configuration 
+summary: SnapManager はクラスタ構成で動作します。 
+---
+= クラスタ構成
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager はクラスタ構成で動作します。
+
+SnapManager でサポートされるホストクラスタおよび構成は、 SnapDrive 製品および Host Utilities Kit でサポートされるホストクラスタと構成と同じです。
+
+また、単一のホストが単一のストレージシステムに接続されている非クラスタ構成、サポートされるホストクラスタ、および Data ONTAP コントローラフェイルオーバーを実行するストレージシステムについてもサポートされます。 SnapManager

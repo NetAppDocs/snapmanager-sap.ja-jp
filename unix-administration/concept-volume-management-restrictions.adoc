@@ -1,0 +1,20 @@
+---
+permalink: unix-administration/concept-volume-management-restrictions.html 
+sidebar: sidebar 
+keywords: snapmanager, volume, management, restriction, environment 
+summary: SnapManager には、環境に影響する可能性があるボリューム管理の制限があります。 
+---
+= ボリューム管理の制限
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager には、環境に影響する可能性があるボリューム管理の制限があります。
+
+データベースには複数のディスクグループを使用できますが、特定のデータベースのすべてのディスクグループに次の制限事項が適用されます。
+
+* データベースのディスク・グループを管理できるのは、 1 つのボリューム・マネージャだけです。
+* 論理ボリューム管理を使用しない Linux 環境には、パーティションが必要です。
+

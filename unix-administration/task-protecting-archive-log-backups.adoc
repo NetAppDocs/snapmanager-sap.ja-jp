@@ -1,0 +1,38 @@
+---
+permalink: unix-administration/task-protect-archive-log-backups.html 
+sidebar: sidebar 
+keywords: create, creating, profile, enable, protection, archive, log, backup, policy, protect 
+summary: プロファイルの作成中に、アーカイブログの保護ポリシーに基づいてアーカイブログのバックアップの保護を有効にできます。 
+---
+= アーカイブログのバックアップを保護する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルの作成中に、アーカイブログの保護ポリシーに基づいてアーカイブログのバックアップの保護を有効にできます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAP profile create -profile create -profile _profile_[-profile-password_profile_password_リポジトリ-dbname_repo_repo_repo_repo_repo_host_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_host_-login-username repo_db_dbname_host_db1_host_db1_host_db1_host_[-sid_db_sid_account] rman_password-drman [-drman_password-drman_group][rman_password-drman_host_db1_group]-rman_password-drman_host_db1_account[-drman_host_name[-drman_host_name[-drman_host_name}rman_host_name[-drman_drman_password-drman_host_name}rman_host_name[-drman_password-rman_リストア]-rman_host_name]|rman_host_name[-drman_host_name[ _m_][-daily][-count_n_][-duration _m_]][-duration_n_m_][-duration _ m_]][-monthly [-duration_n_m_]][-comment_m_]][-comment_comment_][-comment_][-snapname=pattern _notification_address_email][-durs1_email]-email]-email_notification[-durs1_email] email_address2__ subject_subject_pattern_]][-separate -archivelog -backups-retain -archivelog -hours_|-days_days _|-pwes_weys_|-months_months_[-protect][-protection][-include-policy_policy_policy_policy_policy_policy_policy_policy_policy_name_]|-noprotect][-on-pany-backup-no-backups|-noprotect][オンラインダンプを含む
+
++
+[cols="2a,5a"]
+|===
+| 状況 | 作業 
+
+
+ a| 
+* アーカイブ・ログ・バックアップを個別にバックアップし ' アーカイブ・ログ・ファイルを保護する場合 *
+ a| 
+次のオプションを指定します。
+
+** --separate -archivelog -bbackupsアーカイブ・ログ・ファイルをデータ・ファイルから分離できます
+** 「-protect」は、アーカイブ・ログ・アーカイブ・ログ・バックアップに個別の保護ポリシーを割り当てます。
+** 「-protection-policy」は、アーカイブ・ログ・バックアップの保護ポリシーを割り当てます。
+
+
+|===
+

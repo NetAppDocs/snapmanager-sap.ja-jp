@@ -1,0 +1,34 @@
+---
+permalink: windows/task-configure-history-for-backup-operation.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, enable, maintain, history, operation, cli, gui, history, operation, report, configure 
+summary: SnapManager for SAPでは、SnapManager のCLIまたはGUIから、SnapManager 処理の履歴を管理できます。SnapManager 処理の履歴はレポートとして表示できます。 
+---
+= SnapManager 処理の履歴を設定します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPでは、SnapManager のCLIまたはGUIから、SnapManager 処理の履歴を管理できます。SnapManager 処理の履歴はレポートとして表示できます。
+
+.ステップ
+. SnapManager 処理の履歴を設定するには、次のコマンドを入力します。
++
+`* SMSAP history set -profile｛-name、_profile_name_[_profile_name1_,_profile_name2_]|--all_repository -login [-password_repo__name2]-username_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_port_}-reta*-reta*-retain-operation_operation-weekly-name|-daily_ daily_安個の-daily_名前|-daily_ reta*-daily-day_name|-daily_安個の-name|-name|daily_
+
+
+
+[listing]
+----
+
+        smsap
+history set -profile -name PROFILE1 -operation -operations backup -retain -daily 6 -verbose
+----
+[listing]
+----
+
+        smsap
+history set -profile -name PROFILE1 -operation -all -retain -weekly 3 -verbose
+----

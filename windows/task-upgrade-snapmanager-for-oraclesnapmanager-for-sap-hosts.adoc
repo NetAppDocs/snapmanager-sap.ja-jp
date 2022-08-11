@@ -1,0 +1,71 @@
+---
+permalink: windows/task-upgrade-snapmanager-for-oraclesnapmanager-for-sap-hosts.html 
+sidebar: sidebar 
+keywords: upgrade, exist, snapmanager, host, version, simultaneous, result, downtime, schedule, operation, time 
+summary: 既存のすべての SnapManager ホストをアップグレードして、最新バージョンの SnapManager を使用できます。すべてのホストが同時にアップグレードされます。ただし、その際にすべての SnapManager ホストおよびスケジュールされた処理が停止する可能性があります。 
+---
+= SnapManager ホストをアップグレードします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+既存のすべての SnapManager ホストをアップグレードして、最新バージョンの SnapManager を使用できます。すべてのホストが同時にアップグレードされます。ただし、その際にすべての SnapManager ホストおよびスケジュールされた処理が停止する可能性があります。
+
+.手順
+. 次の手順を実行して、 SnapManager サーバを停止します。
++
+.. Windowsサービス*ウィンドウで、* NetApp SnapManager for SAP *を選択します。
+.. 左パネルで、 * 停止 * をクリックします。
+
+
+. SnapManager インストールファイルをダブルクリックします。
++
+|===
+| オペレーティングシステム | 使用する方法 
+
+
+ a| 
+Windows x86 の場合
+ a| 
+「NetApp.smsap.windows-x86-version_number」という形式で指定します
+
+
+
+ a| 
+Windows x64
+ a| 
+「NetApp.smsap.windows-x64- version_number」という形式で入力します
+
+|===
++
+「パブリッシャを検証できませんでした」というメッセージが表示されます。このソフトウェアを実行してもよろしいですか
+
+. [OK] をクリックします。
++
+Introduction ウィンドウが表示されます。
+
+. 「 * 次へ * 」をクリックします。
++
+[Choose Install Folder] ウィンドウが表示されます。
+
+. デフォルトのインストール場所をそのまま使用する場合は、 ［ * 次へ * ］ をクリックします。新しい場所を選択する場合は、 ［ 次へ
++
+デフォルトの場所は「C：\Program Files\NetApp\SnapManager for SAP~」です。
+
+. [*メニューの可用性*]ウィンドウで、[*次へ*]をクリックします。
+. [サービスプロパティの指定*]ウィンドウで、Windowsサービスのアカウントおよびパスワード情報を入力します。
++
+指定するアカウントは、次のグループのメンバーである必要があります。
+
++
+** ストレージ・システムのローカル・アドミニストレーション・グループ
+** ローカル管理者のグループ
+** ORA_DBA グループ：再起動後にサービスを自動的に開始する必要があるか ' サービスを手動で開始する必要があるかを指定できます
+
+
+. [* Pre-Installation Summary*（インストールの概要*）]ウィンドウで、[* Install*（インストール*）]をクリックします。
+. [インストール完了*]ウィンドウで、[次へ]をクリックします。
+. [重要な情報*]ウィンドウで、[完了]をクリックしてインストーラーを終了します。
+

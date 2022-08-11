@@ -1,0 +1,50 @@
+---
+permalink: unix-administration/reference-the-smosmsap-server-stop-command.html 
+sidebar: sidebar 
+keywords: command, stop, snapmanager, host, server, root, smsap_server 
+summary: このコマンドは、 SnapManager ホスト・サーバを停止し、ルートに入力します。 
+---
+= smsap_server stopコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、 SnapManager ホスト・サーバを停止し、ルートに入力します。
+
+
+
+== 構文
+
+[listing]
+----
+smsap_server stop
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* 「*- quiet *」と入力します
++
+エラー・メッセージのみがコンソールに表示されるように指定します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されるように指定します。
+
+
+
+'''
+
+
+== コマンドの例
+
+次の例では'smsap_server stopコマンドを使用します
+
+[listing]
+----
+smsap_server stop
+----
+'''

@@ -1,0 +1,27 @@
+---
+permalink: windows/task-free-or-delete-retention-policy-exempt-backups.html 
+sidebar: sidebar 
+keywords: backup, retention, class, unlimited, delete, free, hourly, daily, weekly, monthly, policy, exempt backups 
+summary: 保持クラスがunlimitedのバックアップは、直接削除または解放することはできません。これらのバックアップを削除したり解放したりするには、まず毎時、毎日、毎週、または毎月などの別の保持クラスを割り当てる必要があります。保持ポリシーの適用対象外になっているバックアップを削除または解放するには、削除または解放を可能にするために、最初にバックアップを更新する必要があります。 
+---
+= 保持ポリシーのバックアップを解放または削除します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+保持クラスが「 unlimited 」のバックアップは、直接削除または解放することはできません。これらのバックアップを削除したり解放したりするには、まず毎時、毎日、毎週、または毎月などの別の保持クラスを割り当てる必要があります。保持ポリシーの適用対象外になっているバックアップを削除または解放するには、削除または解放を可能にするために、最初にバックアップを更新する必要があります。
+
+.手順
+. 保持ポリシーによる削除の対象になるようにバックアップを更新するには、次のコマンドを入力します。
++
+「* SMSAP backup update -profile_name_{-label_[data|-archivelogs ]|-id_id_}-retain [-houra|-daily|-weekly|-monthly]*」を参照してください
+
+. バックアップを更新して削除できるようにしたら、バックアップを削除するか、または解放しておくことができます。
++
+** バックアップを削除するには、次のコマンドを入力します。+`* SMSAP backup delete -profile _name_{-label_[data|-archivelogs]|-id_id_|-all}*`
+** バックアップを削除するのではなく、バックアップ・リソースを解放するには、次のコマンドを入力します。+`* SMSAP backup free-profile_name_{-label_[data|-archivelogs ]|-id_id_|-all｝[-force][-dump][-quiet |-verbose *`
+
+
+

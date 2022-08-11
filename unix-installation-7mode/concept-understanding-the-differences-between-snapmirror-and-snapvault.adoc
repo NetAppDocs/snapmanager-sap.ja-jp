@@ -1,0 +1,28 @@
+---
+permalink: unix-installation-7mode/concept-understanding-the-differences-between-snapmirror-and-snapvault.html 
+sidebar: sidebar 
+keywords: snapmirror, disaster, recovery, technology, design, failover, primary, storage, secondary, geographical, remote, site, snapvault, disk-to-disk, replication, governance-related 
+summary: SnapMirror は、地理的に離れたサイトのプライマリストレージからセカンダリストレージへのフェイルオーバー用に設計されたディザスタリカバリテクノロジです。SnapVault は、標準への準拠およびその他のガバナンス関連の目的で設計された、ディスクツーディスクのバックアップレプリケーションテクノロジです。 
+---
+= SnapMirror と SnapVault の違いを理解する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapMirror は、地理的に離れたサイトのプライマリストレージからセカンダリストレージへのフェイルオーバー用に設計されたディザスタリカバリテクノロジです。SnapVault は、標準への準拠およびその他のガバナンス関連の目的で設計された、ディスクツーディスクのバックアップレプリケーションテクノロジです。
+
+このような目的の違いにより、各テクノロジがバックアップの有効期間とバックアップの保持の目標を両立させる際にも違いが生じます。
+
+* SnapMirror Stores _Only - プライマリストレージにある Snapshot コピー。災害が発生した場合に備えて、適切な状態の最新バージョンのプライマリデータをフェイルオーバーできる必要があります。
++
+たとえば、組織では、 10 日間にわたって本番データのコピーを 1 時間ごとにミラーリングしなければならない場合があります。フェイルオーバーの事例で示すように、ミラーリングされたストレージからデータを効率的に提供するには、セカンダリシステム上の機器がプライマリシステム上の機器と同じであるか、ほぼ同じである必要があります。
+
+* 一方、SnapVault は、Snapshotコピーが現在プライマリストレージにあるかどうかに関係なく、Snapshotコピーを格納します。これは、監査の際、履歴データへのアクセスが現在のデータへのアクセスと同様に重要になる可能性があるためです。
++
+たとえば、ビジネスに関する政府会計規則に準拠するために、 20 年にわたってデータの月次 Snapshot コピーを保持しなければならない場合があります。セカンダリストレージからデータを提供するための要件は存在しないため、SnapVaultシステムでは低速かつ低コストのディスクを使用できます。
+
+
+
+Snapshotコピーの数がボリュームごとに255個に制限されていることで、結果としてSnapMirrorとSnapVault がバックアップの有効期間とバックアップの保持に置く重みに違いが生じます。SnapMirrorが最新のコピーを保持する一方で、SnapVault は最長期間にわたって作成されたコピーを保持します。

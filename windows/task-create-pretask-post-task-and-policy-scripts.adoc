@@ -1,0 +1,182 @@
+---
+permalink: windows/task-create-pretask-post-task-and-policy-scripts.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, create, script, preprocess, activity, post-process, policy, task, backup, restore, clone, operation, installation, directory, pretask, post-task 
+summary: SnapManager では、前処理アクティビティ、後処理アクティビティ、およびバックアップ、リストア、クローン操作のポリシータスク用のスクリプトを作成できます。SnapManager 処理の前処理アクティビティ、後処理アクティビティ、およびポリシータスクを実行するには、スクリプトを正しいインストールディレクトリに配置する必要があります。 
+---
+= プリタスクスクリプト、ポストタスクスクリプト、ポリシースクリプトを作成します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、前処理アクティビティ、後処理アクティビティ、およびバックアップ、リストア、クローン操作のポリシータスク用のスクリプトを作成できます。SnapManager 処理の前処理アクティビティ、後処理アクティビティ、およびポリシータスクを実行するには、スクリプトを正しいインストールディレクトリに配置する必要があります。
+
+
+
+== このタスクについて
+
+* プリタスクおよびポストタスクスクリプトの内容 *
+
+すべてのスクリプトには、次のものが含まれている必要
+
+* 特定の操作（チェック、説明、実行）
+* （任意）定義済みの環境変数
+* 特定のエラー処理コード（リターンコード（ rc ））
+
+
+
+NOTE: スクリプトを検証するには、正しいエラー処理コードを含める必要があります。
+
+プリタスクスクリプトは、 SnapManager の処理を開始する前にディスクスペースをクリーンアップするなど、さまざまな目的に使用できます。また、ポストタスクスクリプトを使用して、 SnapManager の処理を完了するための十分なディスクスペースがあるかどうかを見積もることもできます。
+
+* ポリシータスクスクリプトの内容 *
+
+check 、 describe 、 execute などの特定の操作を使用せずに、ポリシースクリプトを実行できます。このスクリプトには、事前定義された環境変数（オプション）と特定のエラー処理コードが含まれています。
+
+ポリシースクリプトは、バックアップ、リストア、およびクローニングの各処理の前に実行されます。
+
+* サポートされている形式 *
+
+プリスクリプトやポストスクリプトとしては、 .cmd 拡張子を持つコマンドファイルを使用できます。
+
+
+NOTE: シェルスクリプトファイルを選択すると、 SnapManager 処理が応答しません。この問題を解決するには、プラグインディレクトリにコマンドファイルを指定してから、 SnapManager 処理を再度実行する必要があります。
+
+* スクリプトインストールディレクトリ *
+
+スクリプトをインストールするディレクトリによって、スクリプトの使用方法が異なります。ディレクトリにスクリプトを配置し、バックアップ、リストア、クローニングの処理の前後にスクリプトを実行できます。バックアップ、リストア、またはクローニングの処理を指定する場合は、このスクリプトを表に指定されたディレクトリに配置し、オプションとして使用する必要があります。
+
+
+NOTE: SnapManager 処理でスクリプトを使用する前に、 plugins ディレクトリに実行可能権限があることを確認する必要があります。
+
+[cols="4*"]
+|===
+| アクティビティ | バックアップ | リストア | クローン 
+
+
+ a| 
+前処理中です
+ a| 
+<default_installation_directory>\plugins\backup\create\pre
+ a| 
+<default_installation_directory>\plugins\restore\create\pre
+ a| 
+<default_installation_directory>\plugins\clone\create\pre
+
+
+
+ a| 
+後処理
+ a| 
+<default_installation_directory>\plugins\backup\create\post
+ a| 
+<default_installation_directory>\plugins\restore\create\post
+ a| 
+<default_installation_directory>\plugins\clone\create\post という名前を指定します
+
+
+
+ a| 
+ポリシーベース
+ a| 
+<default_installation_directory>\plugins\backup\create\policy
+ a| 
+<default_installation_directory>\plugins\restore\create\policy
+ a| 
+<default_installation_directory>\plugins\clone\create\policy
+
+|===
+* サンプルスクリプトの場所 *
+
+次の例は、インストールディレクトリパスで利用できるバックアップ処理とクローン処理の実行前スクリプトと実行後スクリプトを示しています。
+
+* <default_installation_directory>\plugins\examples\backup\create\pre
+* <default_installation_directory>\plugins\examples\backup\create\post と指定します
+* <default_installation_directory>\plugins\examples\clone\create\pre
+* <default_installation_directory>\plugins\examples\clone\create\post を指定します
+
+
+* スクリプトで変更できるもの *
+
+新しいスクリプトを作成する場合は 'describe 操作と execute 操作のみを変更できます各スクリプトには、「context」、「timeout」、「parameter」の各変数を含める必要があります。
+
+スクリプトの describe 関数で説明した変数は、スクリプトの開始時に宣言する必要があります。新しいパラメータ値を'parameter=()'に追加し'実行関数のパラメータを使用できます
+
+
+
+== サンプルスクリプト
+
+次に、 SnapManager ホストのスペースを見積もるための、ユーザ指定の戻りコードを含むサンプルスクリプトを示します。
+
+[listing]
+----
+@echo off
+REM $Id: //depot/prod/capstan/Rcapstan_ganges/src/plugins/windows/examples/clone/create/policy/validate_sid.cmd#1 $
+REM $Revision: #1 $ $Date: 2011/12/06 $
+REM
+REM
+
+set /a EXIT=0
+
+set name="Validate SID"
+set description="Validate SID used on the target system"
+set parameter=()
+
+rem reserved system IDs
+set INVALID_SIDS=("ADD" "ALL" "AND" "ANY" "ASC" "COM" "DBA" "END" "EPS" "FOR" "GID" "IBM" "INT" "KEY" "LOG" "MON" "NIX" "NOT" "OFF" "OMS" "RAW" "ROW" "SAP" "SET" "SGA" "SHG" "SID" "SQL" "SYS" "TMP" "UID" "USR" "VAR")
+
+if /i "%1" == "-check" goto :check
+if /i "%1" == "-execute" goto :execute
+if /i "%1" == "-describe" goto :describe
+
+:usage:
+	echo usage: %0 "{ -check | -describe | -execute }"
+	set /a EXIT=99
+	goto :exit
+
+:check
+	set /a EXIT=0
+	goto :exit
+
+:describe
+	echo SM_PI_NAME:%name%
+	echo SM_PI_DESCRIPTION:%description%
+	set /a EXIT=0
+	goto :exit
+
+:execute
+	set /a EXIT=0
+
+	rem SM_TARGET_SID must be set
+	if "%SM_TARGET_SID%" == "" (
+		set /a EXIT=4
+		echo SM_TARGET_SID not set
+		goto :exit
+	)
+
+	rem exactly three alphanumeric characters, with starting with a letter
+	echo %SM_TARGET_SID% | findstr "\<[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9]\>" >nul
+	if %ERRORLEVEL% == 1 (
+		set /a EXIT=4
+		echo SID is defined as a 3 digit value starting with a letter. [%SM_TARGET_SID%] is not valid.
+		goto :exit
+	)
+
+	rem not a SAP reserved SID
+	echo %INVALID_SIDS% | findstr /i \"%SM_TARGET_SID%\" >nul
+	if %ERRORLEVEL% == 0 (
+		set /a EXIT=4
+		echo SID [%SM_TARGET_SID%] is reserved by SAP
+		goto :exit
+	)
+
+	goto :exit
+
+
+
+:exit
+	echo Command complete.
+	exit /b %EXIT%
+----

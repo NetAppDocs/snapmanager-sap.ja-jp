@@ -1,0 +1,104 @@
+---
+permalink: unix-administration/reference-supported-partition-devices.html 
+sidebar: sidebar 
+keywords: partition, device, support, snapmanager 
+summary: SnapManager でサポートされているさまざまなパーティションデバイスを把握しておく必要があります。 
+---
+= サポートされているパーティションデバイス
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager でサポートされているさまざまなパーティションデバイスを把握しておく必要があります。
+
+次の表に、パーティション情報と、各オペレーティングシステムで有効にする方法を示します。
+
+[cols="3a,1a,1a,1a,1a"]
+|===
+| オペレーティングシステム | シングルパーティション | 複数のパーティション | パーティション化されていないデバイス | ファイルシステムまたは raw デバイス 
+
+
+ a| 
+Red Hat Enterprise Linux 5x
+
+または
+
+Oracle Enterprise Linux 5x
+ a| 
+はい。
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+ext3 *
+
+
+
+ a| 
+Red Hat Enterprise Linux 6x
+
+または
+
+Oracle Enterprise Linux 6x
+ a| 
+はい。
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+ext3 または ext4 *
+
+
+
+ a| 
+SUSE Linux Enterprise Server 11
+ a| 
+はい。
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+ext3 *
+
+
+
+ a| 
+SUSE Linux Enterprise Server 10
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+はい。
+ a| 
+ext3 ***
+
+
+
+ a| 
+*
+
+MPIO以外の環境の場合は、次のコマンドを入力します。
+
+sfdisk-us-f-L-q /dev/device_name
+
+MPIO 環境の場合は、次のコマンドを入力します。
+
+* sfdisk-us-f-L-q /dev/device_name
+* kpartx - a -p /dev/mapper/device_name
+
+
+
+
+ a| 
+*_*_*_*_*_*_*_*_*
+
+該当なし。
+
+|===
+サポートされているオペレーティングシステムのバージョンの詳細については、 Interoperability Matrix を参照してください。

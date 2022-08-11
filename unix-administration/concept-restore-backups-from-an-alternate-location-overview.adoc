@@ -1,0 +1,25 @@
+---
+permalink: unix-administration/concept-restore-backups-from-an-alternate-location-overview.html 
+sidebar: sidebar 
+keywords: restore, database, backup, alternate, location, overview 
+summary: 代替保存場所からデータベース・バックアップをリストアするには、次の主要な手順を実行します。これらの手順については、この項でさらに詳しく説明します。 
+---
+= 代替保存場所からのバックアップのリストアの概要
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+代替保存場所からデータベース・バックアップをリストアするには、次の主要な手順を実行します。これらの手順については、この項でさらに詳しく説明します。
+
+* データベースレイアウトおよびリストアが必要な項目に応じて、次のいずれかを実行します。
++
+** テープ、 SnapVault 、 SnapMirror 、またはその他のメディアから、データベースホストにマウントされた任意のファイルシステムに必要なデータファイルをリストアします。
+** 必要なファイルシステムをリストアし、データベースホストにマウントします。
+** ローカル・ホストに存在する必要な raw デバイスに接続します。
+
+
+* リストア仕様の Extensible Markup Language （ XML ）ファイルを作成します。このファイルには、 SnapManager が代替の場所から元の場所にリストアするために必要なマッピングが含まれています。SnapManager がアクセスできる場所にファイルを保存します。
+* リストア仕様 XML ファイルを使用してデータをリストアおよびリカバリするには、 SnapManager を使用します。
+

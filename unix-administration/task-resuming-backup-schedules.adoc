@@ -1,0 +1,24 @@
+---
+permalink: unix-administration/task-resume-backup-schedules.html 
+sidebar: sidebar 
+keywords: administrator, option, suspend, backup, schedule, resuming, resume 
+summary: 管理者は、中断したバックアップ・スケジュールを再開できます。 
+---
+= バックアップスケジュールを再開
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+管理者は、中断したバックアップ・スケジュールを再開できます。
+
+* このタスクについて *
+
+アクティブなスケジュールを再開しようとすると、「Cannot resume：schedule <schedulename> already in resume state」というエラーメッセージが表示されることがあります。
+
+. 中断されていたバックアップスケジュールを再開するには、次のコマンドを入力します。
++
+`* SMSAP schedule resume -profile _profile_name__-scheduled-name_scheduleName _[-quiet |-verbose *`
+
+

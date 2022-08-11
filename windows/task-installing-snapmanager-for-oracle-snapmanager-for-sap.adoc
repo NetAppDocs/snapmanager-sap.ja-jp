@@ -1,0 +1,96 @@
+---
+permalink: windows/task-installing-snapmanager-for-oracle-snapmanager-for-sap.html 
+sidebar: sidebar 
+keywords: install, snapmanager, host, database, manage, instance, host, sap 
+summary: 管理対象のデータベースが 1 つ以上あるホストに SnapManager をインストールできます。インストールできる SnapManager インスタンスは、ホストごとに 1 つだけです。 
+---
+= SnapManager for SAPをインストールしています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+管理対象のデータベースが 1 つ以上あるホストに SnapManager をインストールできます。インストールできる SnapManager インスタンスは、ホストごとに 1 つだけです。
+
+* インストール前に必要なタスクを完了しておく必要があります。
+* 最新の SnapManager インストールパッケージをダウンロードする必要があります。
+* すべてのターゲットホストに、適切なバージョンの SnapDrive for Windows をインストールし、設定する必要があります。
++
+SnapDrive for Windows のインストールと設定については、 SnapDrive for Windows インストレーションアドミニストレーションガイドを参照してください。
+
++
+.. SnapManager インストールファイルをダブルクリックします。
++
+|===
+| オペレーティングシステム | 使用する方法 
+
+
+ a| 
+Windows x86 の場合
+ a| 
+netapp.smsap.windows-x86-version.exe
+
+
+
+ a| 
+Windows x64
+ a| 
+netapp.smsap.windows-x64-version.exe
+
+|===
++
+次のメッセージが表示されます。パブリッシャを検証できませんでした。このソフトウェアを実行しますか？
+
+.. [OK] をクリックします。
+.. [ はじめに ] ウィンドウで、 [ * 次へ * ] をクリックします。
+.. [Choose Install Folder] ( インストールフォルダの選択 ) ウィンドウで、 [*Next] ( 次へ ) をクリックしてデフォルトのインストール場所を受け入れるか、新しい場所を選択します。
++
+デフォルトの場所は、C：\Program Files\NetApp\SnapManager for SAPです。
+
+.. [ メニューの可用性 ] ウィンドウで、 [ * 次へ * ] をクリックします。
+.. Specify Service Properties （サービスプロパティの指定）ウィンドウで、 Windows サービスのアカウントおよびパスワード情報を入力します。
++
+指定するアカウントは、次のグループのメンバーである必要があります。
+
++
+*** ストレージ・システムのローカル・アドミニストレーション・グループ
+*** ローカル管理者のグループ
+*** ORA_DBA グループ：再起動後にサービスを自動的に開始するか ' 手動で開始するかを指定できます
+
+
+.. [ インストール前の概要 ] ウィンドウで、 [*Install*] をクリックします。
+.. Install Complete （インストールの完了）ウィンドウで、 * Next （次へ） * をクリックします。
+.. [ 重要な情報 ] ウィンドウで、 [ 完了 ] をクリックしてインストーラを終了します。
+
+
+
+
+インストールが完了したら、インストールが正常に完了したことを確認できます。
+
+. SnapManager サーバを起動します。
++
+.. Windowsサービスウィンドウで、* NetApp SnapManager version for SAP *を選択します。
+.. 左パネルで、 * スタート * をクリックします。
+
+
+. SnapManager システムが正しく動作していることを確認します。
++
+.. [* Start *>* Programs *>* NetApp *>* SnapManager for SAP *>* Start SMSAP Command Line Interface（CLI）*]をクリックします。
+.. CLIで、次のコマンドを入力します。「SMSAP system verify」次のメッセージが表示されます。Operation ID number succeeded
+
+
++
+number は、処理 ID 番号です。
+
+
+
+* 関連情報 *
+
+xref:concept-preparing-to-install-snapmanager-for-oraclesnapmanager-for-sap.adoc[SnapManager for SAPのインストールの準備をしています]
+
+xref:concept-preinstallation-tasks.adoc[インストール前のタスク]
+
+xref:task-downloading-snapmanager-for-oraclesnapmanager-for-sap-installation-package.adoc[SnapManager for SAPインストールパッケージのダウンロード]
+
+http://mysupport.netapp.com/["ネットアップサポートサイトのドキュメント： mysupport.netapp.com"]

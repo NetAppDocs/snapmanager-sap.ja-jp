@@ -1,0 +1,27 @@
+---
+permalink: unix-administration/task-authorize-user-access-to-the-repository.html 
+sidebar: sidebar 
+keywords: addition, role-based, access, control, rbac, snapmanager, enable, set, credential, database, repository, restrict, prevent, host, profile, database, authorizing, authorize 
+summary: SnapManager では、ロールベースアクセス制御（ RBAC ）に加えて、データベースユーザがリポジトリにアクセスするためのクレデンシャルを設定できます。クレデンシャルを使用すると、 SnapManager ホスト、リポジトリ、プロファイル、およびデータベースへのアクセスを制限したり、禁止したりできます。 
+---
+= リポジトリへのアクセスを許可します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、ロールベースアクセス制御（ RBAC ）に加えて、データベースユーザがリポジトリにアクセスするためのクレデンシャルを設定できます。クレデンシャルを使用すると、 SnapManager ホスト、リポジトリ、プロファイル、およびデータベースへのアクセスを制限したり、禁止したりできます。
+
+* このタスクについて *
+
+credential set コマンドを使用してクレデンシャルを設定する場合、 SnapManager はパスワードの入力を求めません。
+
+ユーザクレデンシャルは、 SnapManager 以降のインストール時に設定できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAPクレデンシャルセット-repository-dbname_repo_repo_service_name_-login-username repo_repo_username _[-password_repo_password_]-port_repo_port_*`
+
+

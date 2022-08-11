@@ -1,0 +1,64 @@
+---
+permalink: windows/concept-managing-profiles-for-efficient-backups.html 
+sidebar: sidebar 
+keywords: create, profile, snapmanager, database, perform, operation, manage, efficient, backup 
+summary: SnapManager で、処理を実行するデータベースのプロファイルを作成する必要があります。プロファイルを選択し、実行する処理を選択する必要があります。 
+---
+= 効率的なバックアップを行うためのプロファイルの管理
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager で、処理を実行するデータベースのプロファイルを作成する必要があります。プロファイルを選択し、実行する処理を選択する必要があります。
+
+
+
+== プロファイルに関連するタスク
+
+次のタスクを実行できます。
+
+* プロファイルを作成して、プライマリストレージまたはセカンダリストレージへのフルバックアップまたはパーシャルバックアップを有効にします。
++
+プロファイルを作成して、アーカイブログのバックアップとデータファイルのバックアップを分けることもできます。
+
+* プロファイルを確認します。
+* プロファイルを更新します。
+* プロファイルを削除します。
+
+
+
+
+== プロファイルおよび認証について
+
+プロファイルを作成するときに、データベースを指定し、データベースに接続するための次のいずれかの方法を選択できます。
+
+* ユーザ名、パスワード、およびポートを使用した Oracle 認証
+* ユーザ名、パスワード、またはポートを使用しない OS 認証。
++
+OS 認証の場合は、 OS アカウントユーザおよびグループの情報を入力する必要があります。
+
+* 「sqlnet.authentication_services`」が「* none」に設定されている場合のデータベース認証。SnapManager は、ターゲットデータベースへのすべての接続に、データベースのユーザ名とパスワードを使用します。SnapManager では'NTS*にsqlnet.authentication_services`を設定した場合に'Windowsネイティブ認証を使用することもできます
+
+
+次の環境でのみ'`sqlnet.authentication_services`を*none*に設定できます
+
+|===
+| データベースレイアウト | Oracle のバージョン | ターゲットデータベースでサポートされているデータベース認証です 
+
+
+ a| 
+ASM 以外および RAC 以外のデータベース
+ a| 
+Oracle 10g および Oracle 11g （ 11.2.0.3 未満）
+ a| 
+はい。
+
+|===
+[NOTE]
+====
+sqlnet.authentication_services`を無効にし'認証方式をデータベース認証に変更した後'`sqlnet.authentication_services`を*none*に設定する必要があります
+
+====
+初めてプロファイルにアクセスする場合は、プロファイルのパスワードを入力する必要があります。クレデンシャルを入力すると、プロファイル内のデータベース・バックアップを表示できます。

@@ -1,0 +1,72 @@
+---
+permalink: unix-administration/task-use-snapmanager-for-oraclesnapmanager-for-sap-to-create-the-database-profile-for-a-local-backup.html 
+sidebar: sidebar 
+keywords: database, administrator, snapmanager, database, initiate, local, storage, primary, system, creation, process, involve, manager 
+summary: データベース管理者は、 SnapManager を使用してデータベースプロファイルを作成し、プライマリストレージシステム上のローカルストレージへのバックアップを開始します。プロファイルの作成プロセスとバックアップ作成プロセスはすべて SnapManager で実行され、 Protection Manager も含まれません。 
+---
+= SnapManager for SAPを使用して、ローカルバックアップのデータベースプロファイルを作成します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データベース管理者は、 SnapManager を使用してデータベースプロファイルを作成し、プライマリストレージシステム上のローカルストレージへのバックアップを開始します。プロファイルの作成プロセスとバックアップ作成プロセスはすべて SnapManager で実行され、 Protection Manager も含まれません。
+
+* このタスクについて *
+
+プロファイルには、クレデンシャル、バックアップの設定、バックアップの保護設定など、管理対象のデータベースに関する情報が含まれます。プロファイルを作成すると、そのデータベースに対して処理を実行するたびにデータベースの詳細を指定する必要がなくなり、プロファイル名を指定するだけで済みます。1 つのプロファイルが参照できるデータベースは 1 つだけです。同じデータベースは、複数のプロファイルから参照できます。
+
+.手順
+. SnapManager for SAP Clientにアクセスします。
+. SnapManager リポジトリツリーで、このプロファイルに関連付けるホストを右クリックし、 * プロファイルの作成 * を選択します。
+. [Profile Configuration Information] ページで、次の情報を入力し、 [Next] をクリックします。
++
+** プロファイル名： payroll_prod
+** プロファイルパスワード： payroll123
+** コメント： Production Payroll データベース
+
+
+. Database Configuration Information （データベース設定情報）ページで、次の情報を入力し、 * Next （次へ） * をクリックします。
++
+** データベース名： PAYDB
+** データベース SID ： payrolldb
+** Database host ：デフォルトの設定をそのまま使用します
++
+リポジトリツリー内のホストからプロファイルを作成しているため、 SnapManager にホスト名が表示されます。
+
+
+
+. 2 番目の Database Configuration Information ページで、次のデータベース情報を受け入れ、 * Next * をクリックします。
++
+** Oracleユーザアカウント（ora<sid>の場合）を表すホストアカウント：orapayrolldb
+** ホストグループ。 Oracle グループの場合は、 dba です
+
+
+. [ データベース接続情報 ] ページで、 [ データベース認証を使用 ] を選択して、ユーザーがデータベース情報を使用して認証できるようにします。
++
+この例では、次の情報を入力し、 * 次へ * をクリックします。
+
++
+** Administrator 権限を持つシステム・データベース管理者である sys を表す SYSDBA 特権ユーザ名
+** パスワード（ SYSDBA パスワード）： oracle
+** データベースホストに接続するポート：1527
+
+
+. スナップショットの命名情報ページで、変数を選択して、このプロファイルに関連付けられたスナップショットの命名規則を指定します。必要な唯一の変数は *smid* 変数で、一意のスナップショット識別子が作成されます。
++
+この例では、次の手順を実行します。
+
++
+.. [ 変数トークン ] リストで、 * ｛ usertext ｝ * 変数を選択し、 [ * 追加 ] をクリックします。
+.. ホスト名として「prod01.sample.com_"」と入力し、「* OK」をクリックします。
+.. 形式ボックスで「SMSAP」の直後にホスト名が表示されるまで、* Left *をクリックします。
+.. 「 * 次へ * 」をクリックします。
+
+
++
+Snapshotの命名規則「_smsap_hostname_smsapprofile_dbsid_scope_mode_smid_」は「smsap_prpd01.sample.com_P01_BACKUP_P01_f_a_x"」になります（「f」はフルバックアップ、「A」は自動モード、「x」は一意のSMIDを表します）。
+
+. [ 操作の実行 ] ページで、情報を確認し、 [ * 作成 ] をクリックします。
+. [* Operation Details] をクリックして、プロファイル作成処理およびボリューム・ベースのリストアの適格性情報を表示します。
+

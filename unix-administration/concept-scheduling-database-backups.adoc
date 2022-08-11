@@ -1,0 +1,30 @@
+---
+permalink: unix-administration/concept-scheduling-database-backups.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, enable, schedule, database, backup, off-peak, hour, scheduling, retention, policy 
+summary: SnapManager （3.2以降）for SAPでは、高いパフォーマンスを維持するために、オフピークの時間帯にデータベースのバックアップを定期的に実行するようにスケジュール設定できます。バックアップのスケジュールを設定するには、データベース情報と保持ポリシーを含むプロファイルを作成し、バックアップのスケジュールを設定します。 
+---
+= データベースのバックアップをスケジュール設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager （3.2以降）for SAPでは、高いパフォーマンスを維持するために、オフピークの時間帯にデータベースのバックアップを定期的に実行するようにスケジュール設定できます。バックアップのスケジュールを設定するには、データベース情報と保持ポリシーを含むプロファイルを作成し、バックアップのスケジュールを設定します。
+
+
+NOTE: バックアップは、 root ユーザまたは Oracle ユーザとしてスケジュールする必要があります。バックアップを既存ユーザ以外のユーザとしてスケジュールしようとすると、 SnapManager に「 Invalid user ： username ： cannot create schedule backup for a given user 」というエラーメッセージが表示されます
+
+スケジュール関連のタスクの一部を次に示します。
+
+* データベースバックアップのスケジュールを、毎時、毎日、毎週、毎月、または 1 回ごとに設定します。
+* プロファイルに関連付けられているスケジュールされたバックアップのリストを表示します。
+* スケジュールされたバックアップを更新する。
+* スケジュールを一時的に中断します。
+* 中断したスケジュールを再開します。
+* スケジュールを削除します
+
+
+
+NOTE: [ 今すぐメニュー操作を実行する *] チェックボックスは、スケジュールされたバックアップがそのスケジュールに対して実行されている場合は無効になります。

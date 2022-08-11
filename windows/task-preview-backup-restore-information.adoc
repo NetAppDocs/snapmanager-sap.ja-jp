@@ -1,0 +1,68 @@
+---
+permalink: windows/task-preview-backup-restore-information.html 
+sidebar: sidebar 
+keywords: preview, information, backup, restore, process, snapmanager, sap, analyze, determine, successful 
+summary: バックアップのリストアプロセスに関する情報を実行前にプレビューして、SnapManager for SAPでバックアップに見つかったリストア対応状況を確認できます。SnapManager はバックアップ上のデータを分析して、リストアプロセスを正常に完了できるかどうかを判断します。 
+---
+= バックアップリストア情報をプレビューします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップのリストアプロセスに関する情報を実行前にプレビューして、SnapManager for SAPでバックアップに見つかったリストア対応状況を確認できます。SnapManager はバックアップ上のデータを分析して、リストアプロセスを正常に完了できるかどうかを判断します。
+
+
+
+== このタスクについて
+
+リストアプレビューでは次の情報を確認できます。
+
+* 各ファイルのリストアに使用できるリストアメカニズム（ストレージ側のファイルシステムのリストア、ストレージ側のファイルのリストア、またはホスト側のファイルコピーのリストア）
+* 「-verbose」オプションを指定した場合に、各ファイルの復元に、より効率的なメカニズムが使用されなかった理由。
+
+
+「backup restore」コマンドで「-preview」オプションを指定した場合、SnapManager は何もリストアしませんが、リストアするファイルとリストア方法を一覧表示します。
+
+
+NOTE: すべてのタイプのリストアメカニズムをプレビューできます。プレビューには、最大 20 個のファイルに関する情報が表示されます。
+
+.手順
+. 次のコマンドを入力します。
++
+'*SMSAP backup restore -profile profile_name'-label_label_-complete-preview -verbose *
+
++
+* 例 *
+
++
+たとえば、次のように入力します。
+
++
+[listing]
+----
+smsap backup restore -profile targetdb1_prof1
+      -label full_bkup_sales_nov_08  -complete -preview -verbose
+----
++
+次の例は、リストア可能なファイルを示しており、それぞれに使用されるさまざまな方法を示しています。
+
++
+[listing]
+----
+The following files will be restored via storage side full file system
+restore:
+E:\disks\sysaux.dbf
+E:\disks\system.dbf
+
+The following files will be restored via host side file copy restore:
+E:\disks\undotbs1.dbf
+E:\disks\undotbs2.dbf
+----
+. 他のリストア・プロセスを使用できない理由を確認します。
+. 上書き可能な理由だけが表示されている場合は'-preview'オプションを使用せずにリストア操作を開始します
++
+必須でないチェックは無視してもかまいません。
+
+

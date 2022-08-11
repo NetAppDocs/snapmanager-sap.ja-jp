@@ -1,0 +1,32 @@
+---
+permalink: unix-administration/task-customize-the-email-subject-for-an-existing-profile.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, customize, email, subject, pattern, exist, profile, updating, update, applicable, update, customizing 
+summary: SnapManager では、既存のプロファイルを更新することで、そのプロファイルの E メールの件名のパターンをカスタマイズできます。このカスタマイズされた件名パターンは、更新されたプロファイルにのみ適用されます。 
+---
+= 既存のプロファイルのEメールの件名をカスタマイズします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、既存のプロファイルを更新することで、そのプロファイルの E メールの件名のパターンをカスタマイズできます。このカスタマイズされた件名パターンは、更新されたプロファイルにのみ適用されます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAPプロファイルupdate -profile update_profile_[-profile-password_profile_password_password_][-databB_db_dbname_host_host_[-sid_][-login-username db_username _db_username _password_db_password_port_db_port_]][{-rman_account_duration]/[{-sm-drman_account_password-dran-host]-admin_trman [-day][日間[RMANグループ[RMANパスワード[RMANパスワード[RMANパスワード[RMANパスワード[RMANパスワード]-RMANパスワード[RMANデータベース_継続時間][RMANデータベース_持続時間] [-monthly [-count_n_][-duration _m_]][-comment _comment_name][-snapname -pattern_pattern_][[-protect[-policy_protection] policy_policy_policy_policy_policy_policy_policy_name][-noprotect]][-success [-email_email_address1]、email_subject_address2_email_address_email_address1_email]-subject]-email_address_email_address_email_email_address_email_address_email_address_address_email_email_address_pattern [2-email
+
+
+
+'''
+次の例は、 E メールの件名のパターンを示しています。
+
+[listing]
+----
+
+smsap profile update -profile sales1 -profile-password sales1 -repository -dbname repo2 -host 10.72.197.133 -port 1521 -login -username admin2 -database -dbname DB1 -host 10.72.197.142 -sid DB1
+-osaccount oracle -osgroup dba -profile-notification -success -email admin@org.com -subject {profile}_{operation-name}_{db-sid}_{db-host}_{start-date}_{end-date}_{status}
+----
+'''

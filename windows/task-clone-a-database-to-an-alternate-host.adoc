@@ -1,0 +1,33 @@
+---
+permalink: windows/task-clone-a-database-to-an-alternate-host.html 
+sidebar: sidebar 
+keywords: clone, command, database, alternate, host 
+summary: clone create コマンドを使用すると、代替ホスト上でデータベース・バックアップをクローニングできます。 
+---
+= 代替ホストにデータベースをクローニングする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「clone create」コマンドを使用すると、代替ホスト上のデータベース・バックアップをクローニングできます。
+
+
+
+== 必要なもの
+
+* プロファイルを作成するか、既存のプロファイルを用意します。
+* フルバックアップを作成するか、既存のデータベースバックアップを用意します。
+* クローン仕様を作成するか、既存のクローン仕様を用意します。
+
+
+.ステップ
+. 代替ホストにデータベースをクローニングするには、次のコマンドを入力します。
++
+「* SMSAP clone create -backup-label_backup_label_name -newsid_new_sid_-host_target_host_-label_-comment_comment_text_-profile_name_-clonespec_full_path_to clonespecfile_*
+
++
+Oracle では、 SID が同じ 2 つのデータベースを、同じホスト上で同時に実行することはできません。そのため、クローンごとに新しい SID を指定する必要があります。ただし、同じ SID を持つデータベースを別のホストに配置することは可能です。
+
+

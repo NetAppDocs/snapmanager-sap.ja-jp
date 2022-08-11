@@ -1,0 +1,105 @@
+---
+permalink: windows/task-update-profiles.html 
+sidebar: sidebar 
+keywords: update, profile, modify, password, backup, database, operate, system, authentication, information, host, oracle 
+summary: プロファイルを更新して、プロファイルのパスワード、保持するバックアップの数、データベースへのアクセス、データベース認証に対するオペレーティングシステム（ OS ）認証、およびホストに関する情報を変更できます。Oracle データベースのパスワード情報が変更された場合は、プロファイル内のパスワード情報も変更する必要があります。 
+---
+= プロファイルを更新します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルを更新して、プロファイルのパスワード、保持するバックアップの数、データベースへのアクセス、データベース認証に対するオペレーティングシステム（ OS ）認証、およびホストに関する情報を変更できます。Oracle データベースのパスワード情報が変更された場合は、プロファイル内のパスワード情報も変更する必要があります。
+
+
+
+== このタスクについて
+
+SnapManager （3.2以降）では、「Separate archivelog -bbackups」オプションを使用して、アーカイブ・ログ・バックアップをデータファイル・バックアップから分離するようにプロファイルを更新できます。アーカイブログバックアップには、別の保持期間を指定できます。SnapManager を使用すると、オンラインデータベースバックアップに加えてアーカイブログバックアップも含めることができます。また、オンラインのデータファイルバックアップとアーカイブログバックアップを一緒に作成してクローニングすることもできます。オンラインデータファイルバックアップを作成すると、アーカイブログバックアップがデータファイルとともにすぐに作成されます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`*SMSAP patternprofile update -profile update_profile_[-new-profile_profile_name_][-profile-password_][-datab_name_db_dbname_host_host_[-sid_][-login-usernamedb_db_host]-usernamedb_host_host_host_][-usernamedb_username_password-durationdb_password-drman-duration[-dran-password-stan][-dran-count[-dran-password-retrman]-<週次データベース[-drman[-drman[-drman]-<パスワード[-dran-password-<名前>週次管理用パスワード[-dran-password-<名前>週次データベースパスワード[-drmanパスワード[-drman]-<名前>週次管理者パスワード[-drman [-drman]-<名前>_管理者パスワード[-drman [パスワード[-drmanパスワード[-drmanパスワード[-drmanパスワード[-drman]-<名前>_管理者パスワード[-drman]-<名前>_管理者パスワード[-drman [パスワード[-drman [パスワード[-dr _email_address2__ subject_pattern _][-failure-email_email_address1_,_email_address2__ subject_subject_pattern _][-Separe-archivelog-bbackups -retain-archivelog -hours_|-days_days _|-webys_wejects_pys_|-months -months -backups-on-dums|-months -months [オンラインバックアップを含めたバックアップを含めてください
+
++
+このコマンドの他のオプションは、次のとおりです。
+
++
+[`-force `][`-noprompt`]
+
++
+[`quiet `|`verbose`]
+
++
+|===
+| 状況 | 作業 
+
+
+ a| 
+* プロファイル * で、データベースのバックアップのバックアップ保持ポリシーを変更します
+ a| 
+保持ポリシーを変更するには、保持クラスの保持数または保持期間、あるいはその両方を指定します。期間はクラスの単位で指定します（たとえば、時間単位の場合は時間単位、日単位の場合は日単位）。
+
+** `-hourly`は'時間単位の保存クラスですこのクラスでは'[-countn`][`-durationm`]]は'それぞれ保存期間と保存期間を表します
+** -daily'は'日単位の保存クラスですこのクラスでは'[-countn`][`-durationm`]]は'それぞれ保存期間と保存期間を表します
+** 「-weekly」は週単位の保存クラスです。このクラスでは、[-countn`][`-durationm`]]はそれぞれ保持数と保持期間です。
+** -monthlyは'月単位の保存クラスですこのクラスでは'[-countn`][-durationm`]]は'それぞれ保存期間と保存期間を表します
+
+
+
+
+ a| 
+* データベース操作の完了ステータスの電子メール通知を有効にします *
+ a| 
+次のオプションと変数を指定します。
+
+** --summary-notification`を使用すると'リポジトリ・データベースの下にある複数のプロファイルのサマリー・メール通知を構成できます
+** --notification'プロファイルのデータベース操作の完了ステータスに関する電子メール通知を受け取ることができます
+** --success -email_address2`新しいプロファイルまたは既存のプロファイルを使用して正常に実行されたデータベース操作の完了後に電子メール通知を受け取ることができます。
+** `-failure-email_address2`新しいプロファイルまたは既存のプロファイルを使用して実行したデータベース操作に失敗した場合に電子メール通知を受け取ることができます。
+** 「-subjectsubject_text」には、新しいプロファイルまたは既存のプロファイルを作成するときの電子メール通知の件名を指定します。リポジトリに対して通知設定が設定されておらず、コマンドラインインターフェイス（CLI）を使用してプロファイル通知または要約通知を設定しようとしている場合、「SMSAP-14577：Notification Settings not configured」というメッセージがコンソールログに記録されます。
++
+通知設定を構成したあとに、リポジトリのサマリー通知を有効にせずにCLIを使用してサマリー通知を設定しようとすると、コンソールログに「SMSAP-14575：Summary notification configuration not available for this repository」というメッセージが記録されます
+
+
+
+
+
+ a| 
+* プロファイルを更新して、アーカイブ・ログ・ファイルのバックアップを個別に作成します。 *
+ a| 
+次のオプションと変数を指定します。
+
+** --separate-archivelog-backups：アーカイブ・ログ・ファイルのバックアップを'データベース・ファイルとは別に作成できます
++
+このオプションを指定すると、データファイルのみのバックアップまたはアーカイブログのみのバックアップを作成できます。フルバックアップは作成できません。また、バックアップを分離してプロファイル設定を元に戻すこともできません。SnapManager では、アーカイブログのみのバックアップを作成する前に作成されたバックアップの保持ポリシーに基づいてバックアップが保持されます。
+
+** 「-retain-archivelog -bbackups」は、アーカイブ・ログ・バックアップの保存期間を設定します。
++
+
+NOTE: 初めてプロファイルを更新する場合は、「-separate archivedlog-backups」オプションを使用して、アーカイブログのバックアップをデータファイルのバックアップから分離できます。アーカイブログのバックアップの保持期間は、「-retain-archivelog -backup」オプションを使用して指定する必要があります。プロファイルをあとで更新する場合、保持期間の設定は任意です。
+
+** --incluse-with -one-backup'は、アーカイブ・ログ・バックアップがデータベース・バックアップとともに含まれることを指定します。
+** 「-no-incluse-with -online-backups」は、アーカイブ・ログ・ファイルのバックアップがデータベース・バックアップに含まれないことを指定します。
+
+
+
+
+ a| 
+* ターゲット・データベースのホスト名を変更します *
+ a| 
+プロファイルのホスト名を変更するには'-hostnew_db_hostを指定します
+
+
+
+ a| 
+* プロファイルの更新処理後にダンプ・ファイルを収集 *
+ a| 
+-dump'オプションを指定します
+
+|===
+. 更新されたプロファイルを表示するには、「smsapprofile show」コマンドを入力します
+

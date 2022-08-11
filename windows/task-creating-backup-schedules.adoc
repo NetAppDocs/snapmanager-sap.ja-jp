@@ -1,0 +1,158 @@
+---
+permalink: windows/task-creating-backup-schedules.html 
+sidebar: sidebar 
+keywords: schedule, backup, time, frequency, suit, data, environment, creating, create 
+summary: バックアップは、データと環境に適した時間と頻度で実行するようにスケジュールを設定できます。 
+---
+= バックアップスケジュールを作成しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップは、データと環境に適した時間と頻度で実行するようにスケジュールを設定できます。
+
+SnapManager 3.2 for SAPでは、アーカイブ・ログ・ファイルのバックアップを個別にスケジュール設定できます。ただし、作成したプロファイルを使用して、アーカイブ・ログ・ファイルを分離する必要があります。
+
+データファイルとアーカイブログファイルのバックアップを同時にスケジュールした場合、 SnapManager は最初にデータファイルのバックアップを作成します。
+
+スケジュール間隔を -onetimeonly として選択すると、すべてのプルーニングオプションが使用可能になります。onetimeonly 以外のスケジュール間隔を選択した場合、 pruning オプション -until scn および -until date はサポートされず、次のエラーメッセージが表示されます。指定したアーカイブログプルーニングオプション、 -until scn または -until date for the schedule interval hourlyスケジュール間隔に -onetimeonly オプションを指定するか、または ｛ -months | -days | -we週 | -hours ｝ のいずれかのオプションを使用してアーカイブログの削除を実行します。
+
+Microsoft Windows Serverフェイルオーバークラスタ（WSFC）環境およびMicrosoftクラスタサーバ（MSCS）環境でフェイルオーバーが発生すると、サービス（仮想）アドレスがアクティブなホストにマッピングされ、SnapManager スケジュールがアクティブなSnapManager ホストに調整されるように、SnapManager for SAPサーバを再起動する必要があります。
+
+
+NOTE: 同じプロファイル名およびスケジュール名が別のリポジトリに存在する場合、そのリポジトリでバックアップのスケジュール設定処理は開始されません。処理は終了し、「 operation is already running 」というメッセージが表示されます。
+
+. 次のコマンドを入力します。 SMSAP schedule create -profile profile_name｛[-full｛-online |-offline-auto｝[-retain [-hourly |-daily |-weekly |-unlimited ][-verify]|[-data [-files[files]]|[-one-log]-profile]|[-desay]-destpath-retain-destpath|-destpaths|-destpath|-destpath][--researchivers][すべてのアーカイブ[--unlimited |-backup |-untilSCNuntilscn |-untedyyyy-m-dd HH：MM：ss |-before｛-months |-wee|-days |-hours｝-prune-destprune dest1、prune_dest2 -nameschedule_comment [-schedule_comment]-interval{-taskm-day-task-asle-asm|/asunte-string}-asunte-string<-asle-user-dm|-ase-string<-ase-string}-asle-asle-unte-string<-ase-string}-asle-asle-ase-string<-asle-asle-asle-asle-asle-asle-asle-asle-asle-asle|-
++
+|===
+| 状況 | 作業 
+
+
+ a| 
+* オンラインまたはオフラインのデータベースのバックアップをスケジュール * します
+ a| 
+offline または -online を指定して、オフライン・データベースまたはオンライン・データベースのバックアップをスケジュールします。これらのパラメータを指定する場合、 -auto は使用できません。
+
+
+
+ a| 
+* SnapManager では ' データベースがオンラインであるかオフラインであるかに関係なく ' データベースのスケジュール設定を処理できます *
+ a| 
+auto を指定します。auto を指定した場合、 -offline または -online は使用できません。
+
+
+
+ a| 
+* データファイルのバックアップをスケジュールする *
+ a| 
+ファイルをカンマで区切ってリストするには、 -data-files を指定します。たとえば、 F1 、 F2 、 F3 などのファイル名を使用します。
+
+
+
+ a| 
+* 特定の表領域のパーシャル・バックアップをスケジュール *
+ a| 
+tablespaces を指定すると、カンマで区切った表領域がリストされます。たとえば、 TS1 、 TS2 、 TS3 を使用します。
+
+
+
+ a| 
+* アーカイブ・ログ・ファイルのバックアップをスケジュール *
+ a| 
+次の情報を指定します。
+
+** -archivelog アーカイブ・ログ・ファイルのバックアップをスケジュールする場合
+** -backup-dest ：バックアップに含めるアーカイブログファイルのデスティネーションをスケジュール設定します
+** -exclude-dest ：バックアップから除外するアーカイブログのデスティネーションをスケジュール設定します
+
+
+
+
+ a| 
+* 保持クラスの値を指定します *
+ a| 
+retain を指定し、次のいずれかの保持クラスに従ってバックアップを保持するかどうかを指定します。
+
+** 毎時
+** 毎日
+** 毎週
+** 毎月
+** - 無制限の SnapManager デフォルトは hourly です。
+
+
+
+
+ a| 
+* アーカイブ・ログ・ファイルの削除をスケジュール *
+ a| 
+バックアップのスケジュールを設定しているときにアーカイブログファイルをプルーニングするために、 **-prunelogs ：アーカイブログファイルのプルーニングに使用するアーカイブログデスティネーションを指定するために、アーカイブログファイルをプルーニングするために指定します
+
+
+
+ a| 
+* スケジュール名を入力 *
+ a| 
+schedule-name を指定します。
+
+
+
+ a| 
+* 特定の時間間隔でのデータベースのバックアップをスケジュール * します
+ a| 
+interval オプションを指定して、バックアップを作成する、次の間隔を選択します。
+
+** 毎時
+** 毎日
+** 毎週
+** 毎月
+** - onetimeonly
+
+
+
+
+ a| 
+* スケジュールを設定 *
+ a| 
+cronstring を指定し、個々のオプションを説明する次の 7 つのサブ式を含めます。
+
+** 1 は秒を表します。
+** 2 は分を表します。
+** 3 は時間を表します。
+** 4 は 1 か月の 1 日を表します。
+** 5 は月を表します。
+** 6 は 1 週間のうちの 1 日を表します。
+** （任意） 7 は年を表します。* 注意： * バックアップを cronstring と -start-time の異なる時間でスケジュールした場合、バックアップのスケジュールは -start-time で上書きされてトリガされます。
+
+
+
+
+ a| 
+* バックアップ・スケジュールに関するコメントを追加 *
+ a| 
+schedule-comment に続けて概要文字列を指定します。
+
+
+
+ a| 
+* スケジュール操作の開始時刻 * を指定します
+ a| 
+yyyy-mm-dd hh:mm 形式で -start-time を指定します。
+
+
+
+ a| 
+* バックアップのスケジュール設定時に、スケジュールされたバックアップ操作のユーザーを変更します。 *
+ a| 
+runAsUser を指定します。この処理は、スケジュールを作成したユーザ（ root ユーザまたは Oracle ユーザ）として実行されます。ただし、データベースプロファイルとホストの両方に有効なクレデンシャルがある場合は、独自のユーザ ID を使用できます。
+
+
+
+ a| 
+* プリタスクおよびポストタスク仕様 XML ファイル * を使用して、バックアップスケジュール操作のタスク前またはタスク後のアクティビティを有効にします
+ a| 
+taskspec オプションを指定し、バックアップスケジュールの処理の前後に前処理または後処理アクティビティを実行するためのタスク仕様 XML ファイルの絶対パスを指定します。
+
+|===
+

@@ -1,0 +1,182 @@
+---
+permalink: unix-administration/reference-sample-database-volume-layouts.html 
+sidebar: sidebar 
+keywords: sample, database, volume, layout, configuring, configure 
+summary: データベースの設定方法については、サンプルのデータベースボリュームレイアウトを参照してください。 
+---
+= データベースボリュームのレイアウト例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データベースの設定方法については、サンプルのデータベースボリュームレイアウトを参照してください。
+
+
+
+== シングルインスタンスデータベース
+
+[cols="1a,3a,1a,1a"]
+|===
+| ファイルの種類 | ボリューム名 | ファイルタイプ専用ボリューム | 自動 Snapshot コピー 
+
+
+ a| 
+Oracle バイナリ
+ a| 
+orabin_`_host name_`
+ a| 
+はい。
+ a| 
+オン
+
+
+
+ a| 
+データ・ファイル
+ a| 
+oradata_`_sid`
+ a| 
+はい。
+ a| 
+オフ
+
+
+
+ a| 
+一時データファイル
+ a| 
+または'p_`_sid`を使用します
+ a| 
+はい。
+ a| 
+オフ
+
+
+
+ a| 
+制御ファイル
+ a| 
+oracntrl01_`_sid_`(多重化)
+
+oracntrl02_`_sid`(多重化)
+ a| 
+はい。
+ a| 
+オフ
+
+
+
+ a| 
+REDO ログ
+ a| 
+oralog01_`_sid_`(多重化)
+
+oralog02_`_sid_`(多重化)
+ a| 
+はい。
+ a| 
+オフ
+
+
+
+ a| 
+ログのアーカイブ
+ a| 
+oraarch_`_sid`
+ a| 
+はい。
+ a| 
+オフ
+
+|===
+
+
+== Real Application Clusters （ RAC ）データベースの略
+
+[cols="1a,3a,1a,1a"]
+|===
+| ファイルの種類 | ボリューム名 | ファイルタイプ専用ボリューム | 自動 Snapshot コピー 
+
+
+ a| 
+Oracle バイナリ
+ a| 
+orabin_`_host name_`
+ a| 
+はい。
+ a| 
+オン
+
+
+
+ a| 
+データ・ファイル
+ a| 
+oradata_`_dbdbname_`
+ a| 
+はい。
+ a| 
+オフ
+
+
+
+ a| 
+一時データファイル
+ a| 
+または'p_`_dbdbname_`を使用します
+ a| 
+はい。
+ a| 
+オフ
+
+
+
+ a| 
+制御ファイル
+ a| 
+oracntrl01_`_dbdbname_`(多重化)
+
+oracntrl02_`_dbdbname_`(多重化)
+ a| 
+はい。
+ a| 
+オフ
+
+
+
+ a| 
+REDO ログ
+ a| 
+ORLOOLI01 _`_dbdbname_`(多重化)
+
+oralog02_`_dbdbname_`(多重化)
+ a| 
+はい。
+ a| 
+オフ
+
+
+
+ a| 
+ログのアーカイブ
+ a| 
+oraarch_`_dbdbname_`
+ a| 
+はい。
+ a| 
+オフ
+
+
+
+ a| 
+クラスタファイル
+ a| 
+oracrs_`_clustername_`
+ a| 
+はい。
+ a| 
+オン
+
+|===

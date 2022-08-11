@@ -1,0 +1,41 @@
+---
+permalink: windows/concept-general-layout-and-configuration.html 
+sidebar: sidebar 
+keywords: information, recommend, general, database, layout, storage, configuration, issue, disk, group, file, type, tablespace 
+summary: ディスクグループ、ファイルタイプ、表領域に関する問題を回避するために、推奨される一般的なデータベースレイアウトおよびストレージ構成に関する情報を参照できます。 
+---
+= 一般的なレイアウトと構成
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ディスクグループ、ファイルタイプ、表領域に関する問題を回避するために、推奨される一般的なデータベースレイアウトおよびストレージ構成に関する情報を参照できます。
+
+* 複数のタイプの SAN ファイルシステムのファイルをデータベースに含めないでください。
++
+データベースを構成するすべてのファイルは、同じタイプのファイルシステム上に存在している必要があります。
+
+* SnapManager には 4K ブロックのサイズが複数必要です。
+
+
+ボリュームを分離する際のいくつかのガイドラインを次に示します。
+
+* ボリュームに格納できるのは、 1 つのデータベースのデータファイルだけです。
+* データベースバイナリ、データファイル、オンライン REDO ログファイル、アーカイブ REDO ログファイル、および制御ファイルという分類のファイルごとに、別々のボリュームを使用する必要があります。
+* SnapManager では一時データベースファイルがバックアップされないため、一時データベースファイル用に別のボリュームを作成する必要はありません。
+
+
+SAPでは、Oracleデータベースのインストールに標準的なレイアウトを使用します。このレイアウトでは、SAPはOracle制御ファイルのコピーを「E：\oracle\SID\origlogA」、「E：\oracle\SID\origlogB」、および「E：\oracle\SID\sapdata1 file systems」に配置します。
+
+
+NOTE: BR * ToolsバックアップにはOracleのインストール環境のデータベースサブディレクトリにあるOracleプロファイルとSAPプロファイルが含まれているため、Oracleをストレージにインストールする必要があります。
+
+新規導入の場合、SAPinstを使用して制御ファイルの場所を変更し、sapdata1ファイルシステムに通常配置されている制御ファイルを、データファイルとは異なるファイルシステムに移動することができます。（SAPinstはSAPシステム導入ツールです）。
+
+詳細については、SnapManager for SAP Best Practices _を参照してください。
+
+* 関連情報 *
+
+http://media.netapp.com/documents/tr-3823.pdf["SnapManager for SAPのベストプラクティス：media.netapp.com/documents/tr-3823.pdf"^]

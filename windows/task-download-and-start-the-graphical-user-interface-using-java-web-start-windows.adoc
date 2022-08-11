@@ -1,0 +1,133 @@
+---
+permalink: windows/task-download-and-start-the-graphical-user-interface-using-java-web-start-windows.html 
+sidebar: sidebar 
+keywords: java, web, start, snapmanager, install, host, download, graphical, user, interface, gui, jre 
+summary: SnapManager がホストにインストールされていない場合は、 Java Web Start を使用できます。Java Web Start は、 SnapManager コンポーネントをダウンロードし、 GUI （グラフィカルユーザインターフェイス）を起動します。サポートされている JRE のバージョンは、 1.5 、 1.6 、および 1.7 です。 
+---
+= Java Web Startを使用して、グラフィカルユーザーインタフェースをダウンロードして起動します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager がホストにインストールされていない場合は、 Java Web Start を使用できます。Java Web Start は、 SnapManager コンポーネントをダウンロードし、 GUI （グラフィカルユーザインターフェイス）を起動します。サポートされている JRE のバージョンは、 1.5 、 1.6 、および 1.7 です。
+
+
+
+== 必要なもの
+
+次の条件が満たされていることを確認する必要があります。
+
+* SnapManager サーバが実行されている。
+* Web ブラウザウィンドウが開きます。
+
+
+.手順
+. Microsoft Internet ExplorerのWebブラウザ・ウィンドウに「+ https://smsap-server.domain.com:port+`」と入力します。
++
+「smsap-server.domain.com」はSnapManager をインストールした完全修飾ホスト名とドメインで、「port」はSnapManager サーバのリスニングポートです（デフォルトは27314）。
+
++
+
+NOTE: ブラウザ・ウィンドウにhttpsと入力する必要があります
+
++
+次のメッセージが表示されたダイアログボックスが表示されます。
+
+
+
+
+IMPORTANT: 「サイトのセキュリティ証明書に問題があります...続行しますか？」というメッセージを示すダイアログボックスが表示されます
+
+. [ はい ] または [ 続行 ] をクリックします。
+. 「*」というラベルのリンクをクリックして、JRE 6.0とアプリケーション*をダウンロードしてインストールします。
++
+「Download Java Web Start with the following」というメッセージが表示されます。
+
+
+
+
+IMPORTANT: このサイトでは、次のActiveXコントロールが必要になる場合があります。Java Plug-in 1.6 "インストールするにはここをクリックしてください
+
+. [* Install *（インストール*）]ウィンドウで、次の手順を実行します。
++
+.. 「Click here to install...」というメッセージをクリックします
++
+[ActiveX コントロールのインストール *] メニューが表示されます。
+
+.. [ActiveX コントロールのインストール ...] を選択します。
++
+次のメッセージが表示されます。
+
+
+
+
+
+
+IMPORTANT: 「Internet Explorer - Security Warning」に次のテキストが含まれています。「このソフトウェアをインストールしますか？」名前: Java Plug-in 1.6`
+
+. 「 * Install * 」をクリックします。
++
+J2SE Runtime Environment 1.6 のインストーラの「 Java Plug-in 1.6 」ウィンドウが表示されます。
+
+. 「 * Install * 」をクリックします。
++
+J2SE Runtime Environment 1.6 のインストールを要求するウィンドウが表示されます。。インストールウィンドウで、次の手順を実行します。
+
+. [ライセンス契約*]ページで、[* I accept the terms in the license agreement*]を選択し、[*次へ*]をクリックします。
+. [* Setup Type*（セットアップタイプ*）]ページで[* Typical*（標準）]を選択し、[* Next *（次へ*）]を
+. [インストール完了*]ウィンドウで、[完了*]をクリックします。
++
+SnapManager がダウンロードを開始します。
+
++
+「このファイルを保存しますか？」というメッセージが表示された[ファイルのダウンロード]ダイアログボックスapplication.jnlpが表示されます。。ファイルのダウンロード*ウィンドウで、次の手順を実行します。
+
+. Windows クライアントに最新バージョンの JRE 1.6 をインストールします。
+. 次のコマンドを実行して'Javaがインストールされていることを確認します
++
+出力には、 Java のバージョンが 1.6.0_24 （ Java 1.6 以降）であることが示されます。
+
+. Windows の構成設定を変更して、 Java Web Start Launcher プログラムを使用して、拡張子 jnlp のファイルを常に開くようにします。
++
+Windows の設定を変更する手順は、使用している Windows のバージョンによって異なります。
+
+. 手順 1 で指定した SnapManager URL を入力します。
++
+WindowsクライアントでSnapManager のダウンロードが開始され、次の警告が表示されます
+
+
+
+
+WARNING: 「security dialog box is displayed」と表示されます
+
+. 次の手順を実行します。
++
+メッセージの内容とボタンラベルは、プラットフォームによって異なります。
+
++
+.. [警告-セキュリティ*]ダイアログボックスで、[はい*]をクリックします。
++
+ダイアログボックスが表示されます。
+
+.. ホスト名の不一致のダイアログボックスで、 * ファイル名を指定して実行 * をクリックします。
++
+SnapManager アプリケーションの署名に関するメッセージが表示された [ 警告 - セキュリティ ] ダイアログボックスが表示されます。
+
+.. [ ファイル名を指定して実行 ] をクリック
++
+「Java Installer - Security Warning」というタイトルのダイアログボックスが表示され、次のメッセージが表示されます。
+
+
+
+
+
+
+WARNING: 「警告のセキュリティ」-アプリケーションのデジタル署名にエラーがあります。アプリケーションを実行しますか
+
+. [ ファイル名を指定して実行 ] をクリック
++
+ブラウザでSnapManager for SAP GUIがダウンロードされて起動します。
+
+

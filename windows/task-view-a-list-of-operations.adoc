@@ -1,0 +1,37 @@
+---
+permalink: windows/task-view-a-list-of-operations.html 
+sidebar: sidebar 
+keywords: view, summary, operation, perform, profile, list 
+summary: プロファイルに対して実行されたすべての処理について、概要情報を表示できます。 
+---
+= 処理のリストを表示します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルに対して実行されたすべての処理について、概要情報を表示できます。
+
+
+
+== このタスクについて
+
+特定のプロファイルに関連付けられている処理をリスト表示すると、次の情報を表示できます。
+
+* 処理の開始日と終了日
+* 処理のステータス
+* 処理 ID
+* 処理のタイプ
+* 処理を行ったホスト
+
+
+.ステップ
+. すべての処理の概要情報を表示するには、次のコマンドを使用します。
++
+`* SMSAP operation list profile -profile profile_profile_name -- delimiter_character [-quiet |-verbose *`
+
++
+--delimiterオプションを指定した場合は、各行に1行ずつリストが表示され、各行の属性は指定した文字で区切られます。
+
+

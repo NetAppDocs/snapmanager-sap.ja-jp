@@ -1,0 +1,39 @@
+---
+permalink: windows/task-configure-e-mail-notification-for-an-existing-profile.html 
+sidebar: sidebar 
+keywords: update, profile, configure, receive, email, notification, completion, database, operation, exist 
+summary: プロファイルを更新する場合は、データベース処理が完了したときに E メール通知を受け取るようにを設定できます。 
+---
+= 既存のプロファイルのEメール通知を設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルを更新する場合は、データベース処理が完了したときに E メール通知を受け取るようにを設定できます。
+
+
+
+== 必要なもの
+
+* アラートの送信元 E メールアドレスを設定する必要があります。
+* アラートの送信先となる E メールアドレスは 1 つまたは複数入力する必要があります。
++
+複数のアドレスをカンマで区切って指定できます。カンマと次の E メールアドレスの間にスペースを入れないようにしてください。必要に応じて、 E メールに件名を追加することもできます。
+
++
+
+NOTE: 一連の複数の E メールアドレスを二重引用符で囲む必要があります。
+
+
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAPプロファイルupdate -profile update_profile_[-profile-password_profile_password_][-databname_db_dbname_host_host_[-sid_][-login-username db_username_password_db_password_db_password_db_port_][{-rman_duration]}][{-rman_password-retura[-dran-count]コマンド[RMANパスワード[-drman_duration[-drman_drman_duration|}][日間][RMANパスワード[RMANパスワード[RMANパスワード[RMAN _持続時間] [-duration_m_]][-comment_comment_][-snapname -pattery_pattery_][[][][][][][][][][][][][][][][-notification[-success -email_address1_,_email_address2_-subject_pattery_pattery][-failure-email_email_address1_,_subject_address1_][-dee_subject_email_address_address*
+
++
+「success」オプションを使用すると、成功したデータベース操作についてのみ通知を受け取り、「failure」オプションを使用して、失敗したデータベース操作についてのみ通知を受信できます。
+
+

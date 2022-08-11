@@ -1,0 +1,198 @@
+---
+permalink: unix-administration/task-restore-backups-on-primary-storage.html 
+sidebar: sidebar 
+keywords: backup, restore, command, database, primary, storage, restoring 
+summary: プライマリストレージにデータベースバックアップをリストアするには、 backup restore コマンドを使用します。 
+---
+= プライマリストレージでバックアップをリストアする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「backup restore」コマンドを使用すると、プライマリ・ストレージ上のデータベース・バックアップをリストアできます。
+
+* このタスクについて *
+
+SnapManager は、デフォルトでボリュームベースの高速リストアを実行しようとし、適格性チェック情報を提供します。必要に応じて、一部の資格チェックを無効にすることができます。高速リストアを使用してバックアップを実行できないことが確実な場合は、高速リストアの適格性チェックを無効にし、ファイルベースのリストアを実行できます。
+
+「backup restore」コマンド・オプションを使用して、SnapManager がバックアップのすべてをリストアするか、一部をリストアするかを指定できます。SnapManager では、 1 度のユーザ処理で、データ・ファイルまたは表領域のいずれかと制御ファイルをバックアップからリストアすることもできます。-controlfilesを-completeに指定すると'表領域およびデータ・ファイルとともに制御ファイルをリストアできます
+
+次のいずれかのオプションを選択して、バックアップをリストアします。
+
+[cols="1a,1a"]
+|===
+| リストアの対象 | 使用 
+
+
+ a| 
+すべての表領域およびデータ・ファイルを含むバックアップ全体
+ a| 
+「-complete」のようになります
+
+
+
+ a| 
+特定の表領域のリスト
+ a| 
+`- tablespaces
+
+
+
+ a| 
+特定のデータ・ファイル
+ a| 
+「-files」と入力します
+
+
+
+ a| 
+制御ファイルのみ
+ a| 
+-controlcontrolfiles
+
+
+
+ a| 
+表領域、データ・ファイル、および制御ファイル
+ a| 
+-complete-controlfiles
+
+|===
+また'-restorespecを指定して'代替保存場所からバックアップをリストアすることもできます
+
+--recover'を含めると'データベースを次のようにリカバリできます
+
+* データベースで実行された最後のトランザクション（すべてのログ）
+* 特定の日時
+* 特定の Oracle System Change Number （ SCN ）
+* バックアップした時点（ログを使用しない）
+* リストアのみ
+
+
+
+NOTE: 日時および SCN によるリカバリは、 point-in-time リカバリです。
+
+SnapManager （ 3.2 以降）では、アーカイブ・ログ・ファイルを使用して、リストアされたデータベース・バックアップを自動的にリカバリできます。アーカイブ・ログ・ファイルが外部の場所にある場合でも'-recovery-from-locationオプションを指定した場合SnapManager は'外部の場所にあるアーカイブ・ログ・ファイルを使用して'リストアしたデータベース・バックアップをリカバリします
+
+SnapManager は、 Oracle の外部の場所を提供します。ただし、 Oracle は外部の保存先からファイルを識別しません。この動作は、フラッシュリカバリ領域のデスティネーションで検出されます。これらは Oracle の問題であり、回避策では、このようなデータベースレイアウトでアーカイブログファイルのバックアップを常に保持しています。
+
+整合性のないSCNまたは日付が指定された場合、「Recovery succeeded、but insufficient」というエラーメッセージが表示され、リカバリが最後に整合性のある時点で停止します。整合性のある状態へのリカバリは、手動で実行する必要があります。
+
+リカバリでログが適用されない場合、 SnapManager は、バックアップ中に作成された最後のアーカイブログファイルの最後の SCN までリカバリします。この SCN までデータベースに整合性がある場合、データベースは正常にオープンされます。この時点でデータベースに整合性がない場合、 SnapManager はデータベースのオープンを試行します。データベースに整合性がある場合は、このデータベースが正常にオープンされます。
+
+
+NOTE: SnapManager では、アーカイブログのみのバックアップのリカバリはサポートされていません。
+
+NFS マウントポイント上のアーカイブログのデスティネーションボリュームが Snapshot 対応のストレージでない場合、 SnapManager を使用すると、プロファイルを使用して、リストアしたデータベースバックアップをリカバリできます。非Snapshot対応ストレージでSnapManager 処理を実行する前に、「smsap.config」に「archivedLogs.exclude」のデスティネーションを追加する必要があります。
+
+プロファイルを作成する前に、除外パラメータを設定する必要があります。SnapManager 構成ファイルで除外パラメータを設定した場合にのみ、プロファイルの作成が成功します。
+
+バックアップがすでにマウントされている場合、 SnapManager はバックアップを再マウントせず、すでにマウントされているバックアップを使用します。バックアップが別のユーザによってマウントされている場合、現在のユーザが以前にマウントされたバックアップにアクセスできないときは、他のユーザがその権限を提供する必要があります。すべてのアーカイブログファイルには、グループ所有者に対する読み取り権限が設定されています。バックアップが別のユーザグループでマウントされている場合、現在のユーザには権限が付与されないことがあります。ユーザは、マウントされたアーカイブログファイルに対する権限を手動で付与して、リストアまたはリカバリを再試行できます。
+
+Real Application Clusters （ RAC ）環境でのデータベースバックアップのリカバリ
+
+RAC 環境でのデータベース・バックアップのリカバリ中に、必要なアーカイブ・ログ・ファイルが見つからない場合、 Oracle はアーカイブ・ログ・ファイルを要求し、 RAC データベース内の異なるスレッド数と変更番号を切り替えます。SnapManager for SAPでは、データベースのリカバリを最大限に試みます。RAC 環境でデータベースバックアップが正常にリカバリされるかどうかは、バックアップ内のアーカイブログファイルを使用できるかどうかによって異なります。
+
+RAC データベースに推奨されるリカバリ・メカニズムは、次のとおりです。
+
+* すべてのアーカイブログファイルがバックアップ内にあること、またはすべてのアーカイブログファイルが 1 つの外部アーカイブログデスティネーション内にあることを確認します。
+* 複数の外部アーカイブログデスティネーションを指定する場合は、すべてのスレッドの外部アーカイブログデスティネーションを指定しながら、アーカイブログファイルの重複を指定できます。
++
+たとえば、外部アーカイブログの場所 -i には 1~100 個のアーカイブログファイルを格納できます。外部アーカイブログの場所 -II には 98~200 個のアーカイブログファイルを格納でき、外部アーカイブログの場所 III には 198-300 個のアーカイブログファイルを格納できます。
+
+* アーカイブログファイルの削除時に、すべてのアーカイブログファイルを削除する代わりに、 SCN または日付までのアーカイブログファイルを削除して、バックアップが同じアーカイブログファイルを持つようにすることができます。
+
+
+オプションのパラメータとして -dump オプションを指定すると、リストア処理の成功後または失敗後にダンプファイルを収集できます。
+
+.手順
+. 次のコマンドを入力します。
++
+'*SMSAP backup restore -profile profile_name__-label_label_-complete -recover-alllogs [-recover-from-location_path _[_、path2_]]-dump -verbose *`
+
++
+* 例 *
+
++
+`* SMSAP backup restore -profile targetdb1_prof1 -label full_bkup_sales_Nov_08 -complete-recover-alllogs -verbose *`
+
+. さまざまなシナリオでデータをリストアするには、次のいずれかを実行します。
++
+[cols="2a,4a"]
+|===
+| リストアの対象 | コマンド例 
+
+
+ a| 
+* 制御ファイルを含まない完全なデータベース。特定の SCN 番号（ 3794392 ）にリカバリ。この場合、現在の制御ファイルは存在しますが、すべてのデータファイルが破損しているか失われています。既存のオンラインフルバックアップから、その SCN の直前の時点までデータベースをリストアおよびリカバリします。 *
+ a| 
+`* SMSAP backup restore -profile targetdb1_prof1 -label full_bkup_sales_Nov_08 -complete-recover -until 3794392 -verbose *`
+
+
+
+ a| 
+* 制御ファイルなしでデータベースを完了し、日付と時刻までリカバリします。 *
+ a| 
+`* SMSAP backup restore -profile targetdb1_prof1 -label full_bkup_sales_Nov_08 -complete-recover until 2008-09-15:15:29:23 -verbose *`
+
+
+
+ a| 
+* 制御ファイルなしでデータベース全体を完了し、データと時間までリカバリできます。この場合、現在の制御ファイルは存在しますが、すべてのデータファイルが破損したり失われたり、特定の時間が経過した後に論理エラーが発生したりします。データベースをリストアし、障害発生時点の直前の日時に、既存のオンラインフルバックアップからリカバリします。 *
+ a| 
+`* SMSAP backup restore -profile targetdb1_prof1 -label full_bkup_sales_Nov_08 -complete-recover until "2008-09-15:15:29:23"-verbose *`
+
+
+
+ a| 
+* 制御ファイルを含まない部分的なデータベース（ 1 つ以上のデータ・ファイル）と、使用可能なすべてのログを使用してリカバリします。この場合、現在の制御ファイルは存在しますが、 1 つ以上のデータファイルが破損したり失われたりします。これらのデータ・ファイルをリストアし、使用可能なすべてのログを使用して、既存のフル・オンライン・バックアップからデータベースをリカバリします。 *
+ a| 
+*SMSAP backup restore -profile targetdb1_prof1 -label full_bkup_sales_Nov_08 -files/oracle/fla /sapdata1 /SR3.data1 /SR3.data1 /oracle/sapdata1 /sapdata1 /SR3.data2 /oracle/sapdata1 /SR3.data2 /sapdata1 /SR3_3/SR3.data3 -verbose *-flaには、"FLA"になります
+
+
+
+ a| 
+* 制御ファイルを含まない部分的なデータベース（ 1 つまたは複数の表領域）と、使用可能なすべてのログを使用したリカバリ。この場合、現在の制御ファイルは存在しますが、 1 つ以上の表領域が削除されたか、表領域に属する 1 つ以上のデータ・ファイルが破損したり失われたりします。これらの表領域をリストアし、使用可能なすべてのログを使用して、既存のオンライン・フル・バックアップからデータベースをリカバリします。 *
+ a| 
+`* SMSAP backup restore -profile targetdb1_prof1 -label full_bkup_sales_Nov_08 -tablespaces users -recover-alllogs -verbose *
+
+
+
+ a| 
+* 制御ファイルのみを管理し、使用可能なすべてのログを使用してリカバリします。この場合、データファイルは存在しますが、制御ファイルはすべて破損しているか失われています。制御ファイルだけをリストアし、使用可能なすべてのログを使用して、既存のフルオンラインバックアップからデータベースをリカバリします。 *
+ a| 
+`* SMSAP backup restore -profile targetdb1_prof1 -label full_bkup_sales_Nov_08 -controlfiles -recover-alllogs -verbose *`
+
+
+
+ a| 
+* 制御ファイルなしでデータベースを完全に作成し、バックアップ制御ファイルと使用可能なすべてのログを使用してリカバリします。この場合、すべてのデータファイルが破損しているか失われています。制御ファイルだけをリストアし、使用可能なすべてのログを使用して、既存のフルオンラインバックアップからデータベースをリカバリします。 *
+ a| 
+`* SMSAP backup restore -profile targetdb1_prof1 -label full_bkup_sales_Nov_08 -complete-using-backup-controlfile -recover-alllogs -verbose *`
+
+
+
+ a| 
+* アーカイブ・ログ・ファイルを使用して ' リストアされたデータベースを外部アーカイブ・ログの場所からリカバリします *
+ a| 
+`* SMSAP backup restore -profile targetdb1_prof1 -label full_bkup_sales_Nov_08 -complete-using-backup-controlfile -recover-from-location/user1/archive -verbose *
+
+|===
+. 高速リストアの適格性チェックを確認します。
++
+* 例 *
+
++
+次のコマンドを入力します。
+
++
+`* SMSAP backup restore -profile targetdb1_prof1 -label full_bkup_sales_Nov_08 -complete-recover-alllogs -recover-from-location/user1/archive -verbose *
+
+. 資格チェックで、必須チェックが失敗していないことが表示され、特定の条件を無視できる場合、および復元プロセスを続行する場合は、次のように入力します。
++
+'*backup restore - fast override*
+
+. -recover-from-locationオプションを使用して'外部アーカイブ・ログの場所を指定します
+

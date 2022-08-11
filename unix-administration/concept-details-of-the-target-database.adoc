@@ -1,0 +1,32 @@
+---
+permalink: unix-administration/concept-details-of-the-target-database.html 
+sidebar: sidebar 
+keywords: example, integrate, database, protection, payroll, example, detail, target 
+summary: この統合データベース保護の例では、給与データベースの保護について説明します。この例では次のデータを使用しています。 
+---
+= ターゲットデータベースの詳細
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+この統合データベース保護の例では、給与データベースの保護について説明します。この例では次のデータを使用しています。
+
+アトランタに本社を置く 3000 人の企業 TechCo のデータベース管理者（ DBA ）は、生産給与データベース PAYDB の一貫したバックアップを作成する必要があります。プライマリストレージとセカンダリストレージにバックアップする保護戦略では、データベース管理者とストレージ管理者が協力して、プライマリストレージ上でローカルに Oracle データベースをバックアップするとともに、リモートサイトのセカンダリストレージにリモートで Oracle データベースをバックアップする必要があります。
+
+* * プロファイル情報 *
++
+SnapManager でプロファイルを作成する場合は、次のデータが必要です。
+
++
+** データベース名：P01
+** ホスト名：prod01.sample.com
+** データベースID：P01
+** プロファイル名：P1_BACKUP
+** 接続モード：データベース認証
+** Snapshotの命名方法：`_ssmsap_hostname_dbsid_sapprofile_scope_mode_smid_`（「smsap_prod01.sample.com_p01_p01_backup_f_h_x"」に変換）
+** リポジトリユーザ：<sid>rep。このユーザは、p01repに変換されます。
+
+
+

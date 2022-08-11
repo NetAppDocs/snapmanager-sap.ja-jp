@@ -1,0 +1,34 @@
+---
+permalink: windows/concept-upgrading-snapmanager-hosts-by-using-rolling-upgrade.html 
+sidebar: sidebar 
+keywords: roll, upgrade, enable, host, stagger, host-by-host, manner, support, snapmanager 
+summary: SnapManager 3.1 からは、段階的なホスト単位のアップグレード方式を使用してホストをアップグレードできるローリングアップグレード方式がサポートされます。 
+---
+= ローリングアップグレードを使用した SnapManager ホストのアップグレード
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager 3.1 からは、段階的なホスト単位のアップグレード方式を使用してホストをアップグレードできるローリングアップグレード方式がサポートされます。
+
+SnapManager 3.0 以前では、すべてのホストを同時にアップグレードできました。その結果、アップグレード処理中にすべての SnapManager ホストとスケジュールされた処理が停止します。
+
+ローリングアップグレードには、次のような利点があります。
+
+* 一度にアップグレードされるホストが 1 つだけなので、 SnapManager のパフォーマンスが向上しました。
+* 他のホストをアップグレードする前に、 1 つの SnapManager サーバホストで新しい機能をテストする機能。
+
+
+
+NOTE: ローリングアップグレードを実行するには CLI を使用する必要があります。
+
+image::../media/scrn_en_drw_rollupgrade_architecture.gif[SCRN en drw rollupgrade アーキテクチャ]
+
+ローリングアップグレードが正常に完了すると、 SnapManager ホスト、プロファイル、スケジュール、バックアップ、 ターゲットデータベースのプロファイルに関連付けられたクローンは、以前のバージョンの SnapManager のリポジトリデータベースから新しいバージョンのリポジトリデータベースに移行されます。以前のバージョンの SnapManager で作成されたプロファイル、スケジュール、バックアップ、およびクローンを使用して実行される処理の詳細が、新しいバージョンのリポジトリデータベースに格納されるようになりました。ユーザ .config ファイルのデフォルトの設定値を使用して、 GUI を起動することができます。以前のバージョンの SnapManager の user.config ファイルに設定された値は考慮されません。
+
+これで、アップグレードした SnapManager サーバが、アップグレードしたリポジトリデータベースと通信できるようになります。アップグレードされなかったホストは、以前のバージョンの SnapManager のリポジトリを使用することでターゲットデータベースを管理でき、それによって以前のバージョンで利用できる機能を利用できます。
+
+
+NOTE: ローリングアップグレードを実行する前に、リポジトリデータベース内のすべてのホストを解決できることを確認する必要があります。ホストの解決方法については、「SnapManager for SAP_のトラブルシューティング」を参照してください。

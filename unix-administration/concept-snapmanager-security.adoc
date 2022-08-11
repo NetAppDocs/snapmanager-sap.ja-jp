@@ -1,0 +1,67 @@
+---
+permalink: unix-administration/concept-snapmanager-security.html 
+sidebar: sidebar 
+keywords: snapmanager, operation, credential, security, authentication, role-based, access, control, rbac, lun, data, file, database 
+summary: SnapManager 処理は、適切なクレデンシャルがある場合にのみ実行できます。SnapManager のセキュリティは、ユーザ認証とロールベースアクセス制御（ RBAC ）によって管理されます。データベース管理者は、 RBAC を使用して、データベース内のデータファイルを保持するボリュームや LUN に対して SnapManager で実行できる処理を制限できます。 
+---
+= SnapManager によるセキュリティの維持方法
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager 処理は、適切なクレデンシャルがある場合にのみ実行できます。SnapManager のセキュリティは、ユーザ認証とロールベースアクセス制御（ RBAC ）によって管理されます。データベース管理者は、 RBAC を使用して、データベース内のデータファイルを保持するボリュームや LUN に対して SnapManager で実行できる処理を制限できます。
+
+データベース管理者は、 SnapDrive を使用して SnapManager の RBAC を有効にします。次に、データベース管理者が SnapManager ロールに権限を割り当て、これらのロールを Operations Manager のグラフィカルユーザインターフェイス（ GUI ）またはコマンドラインインターフェイス（ CLI ）のユーザに割り当てます。RBAC 権限チェックは DataFabric Manager サーバで実行されます。
+
+SnapManager では、ロールベースアクセスに加えて、パスワードのプロンプトまたはユーザクレデンシャルの設定によってユーザ認証を要求することでセキュリティを維持します。有効なユーザが SnapManager サーバで認証および許可されている。
+
+SnapManager のクレデンシャルとユーザ認証は、 SnapManager 3.0 とは大きく異なります。
+
+* SnapManager 3.0 より前のバージョンでは、 SnapManager のインストール時に任意のサーバパスワードを設定していました。SnapManager サーバを使用する場合は、 SnapManager サーバのパスワードが必要です。SnapManager サーバのパスワードは、「smsap-credential set -host」コマンドを使用してユーザクレデンシャルに追加する必要があります。
+* SnapManager （ 3.0 以降）では、 SnapManager サーバのパスワードが個々のユーザオペレーティングシステム（ OS ）認証に置き換えられています。ホストと同じサーバからクライアントを実行しない場合、 SnapManager サーバは OS のユーザ名とパスワードを使用して認証を実行します。OSパスワードの入力を求められない場合は、「smsaps credential set -host」コマンドを使用してSnapManager ユーザクレデンシャルキャッシュにデータを保存できます。
++
+
+NOTE: smsap.configファイルの「host.credentials.persist`プロパティが「* true *」に設定されている場合、「smsap-scredential set-host」コマンドはクレデンシャルを記憶します。
+
+
+
+* 例 *
+
+user1 と User2 は、 Prof2 というプロファイルを共有しています。このとき、 User2 は、 Host1 へのアクセスが許可されていないと、 Host1 の Database1 のバックアップを実行できません。User1 は、 Host3 へのアクセスが許可されていない Host3 にデータベースのクローンを作成することはできません。
+
+次の表に、ユーザに割り当てられているさまざまな権限を示します。
+
+[cols="2a,1a,1a"]
+|===
+| 権限のタイプ | ユーザ 1 | ユーザ 2 
+
+
+ a| 
+ホストパスワード
+ a| 
+ホスト 1 、ホスト 2
+ a| 
+Host2 、 Host3
+
+
+
+ a| 
+リポジトリパスワード
+ a| 
+リポ 1.
+ a| 
+リポ 1.
+
+
+
+ a| 
+プロファイルパスワード
+ a| 
+Prof1 、 Prof2
+ a| 
+PROF2
+
+|===
+User1 と User2 に共有プロファイルがなく、 User1 には Host1 と Host2 へのアクセスが許可されており、 User2 には Host2 へのアクセスが許可されているとします。User2は'dumpや'system verify'などのプロファイル以外のコマンドもHost1上で実行できません

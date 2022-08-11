@@ -1,0 +1,61 @@
+---
+permalink: windows/task-configuring-summary-e-mail-notification-for-multiple-profiles.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, configure, summary, email, notification, multiple, profile, repository, database, configuring 
+summary: SnapManager では、リポジトリデータベースの複数のプロファイルについて、サマリー E メール通知を設定できます。 
+---
+= 複数のプロファイルに関するサマリー E メール通知の設定
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、リポジトリデータベースの複数のプロファイルについて、サマリー E メール通知を設定できます。
+
+SnapManager サーバホストを通知ホストとして設定し、そこから受信者に概要通知 E メールを送信できます。SnapManager サーバのホスト名または IP アドレスが変更された場合は、通知ホストも更新できます。
+
+E メール通知が必要なスケジュール時間はどれでも選択できます。
+
+* Hourly ： 1 時間ごとに E メール通知を受信します
+* Daily ：毎日 E メール通知を受信します
+* 毎週： E メール通知を毎週受信します
+* Monthly ： E メール通知を毎月受信します
+
+
+プロファイルを使用して実行した処理に関する通知を受け取るには、 1 つの E メールアドレスまたはカンマで区切った E メールアドレスのリストを入力する必要があります。複数の E メールアドレスを入力する場合は、カンマと次の E メールアドレスの間にスペースを入れないようにしてください。
+
+
+NOTE: 一連の複数の E メールアドレスを二重引用符で囲む必要があります。
+
+SnapManager では、次の変数を使用して、カスタマイズした E メールの件名を追加できます。
+
+* データベース処理に使用するプロファイル名。
+* データベース名
+* データベースの SID
+* ホスト・サーバの名前
+* yyyymmdd ： hh ： ss 形式のデータベース処理の開始時間です
+* yyyymmdd ： hh ： ss 形式のデータベース処理の終了時間
+* データベース処理のステータス
+
+
+カスタマイズした件名を追加しない場合、 SnapManager に「 Missing value-subject 」というエラーメッセージが表示されます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`+SMSAP通知の更新概要通知-notification-repository-port-dbnamerepo_service_name -hostreppo_host-login-usernamerepo_username-email_address1、email_address2-subjectsubjectsubject-pattern -frequency｛-timedyeson_time|-hourly_time|-policy2|-timetime-profile2|-timehospay_notification|2|2|-time}--time}--time}|--time}--time}--time}--time}|--time}--time}--time|}|}--time}--time}--time}--time|--time}--time|--time|--time}|--time|}--time|}|--time}--time}--time}|
+
++
+このコマンドの他のオプションは、次のとおりです。
+
++
+[-force] [-nopromp]
+
++
+[quiet | -verbose]
+----
+
+smsap notification update-summary-notification –repository –port 1521 –dbname repo2 –host 10.72.197.133 –login –username oba5 –email-address admin@org.com –subject success –frequency -daily -time 19:30:45 –profiles sales1 -notification-host wales
+----
+

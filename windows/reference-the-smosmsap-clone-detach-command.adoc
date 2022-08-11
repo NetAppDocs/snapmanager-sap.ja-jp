@@ -1,0 +1,45 @@
+---
+permalink: windows/reference-the-smosmsap-clone-detach-command.html 
+sidebar: sidebar 
+keywords: split, clone, volume, parent, data, ontap, detach, command, snapmanager, smsap 
+summary: Data ONTAP の親ボリュームからクローンボリュームをスプリットしたら、 SnapManager から clone detach コマンドを実行して、そのボリュームがクローンでなくなったことを SnapManager に通知できます。 
+---
+= SMSAPのclone detachコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Data ONTAP で親ボリュームからクローンボリュームをスプリットしたあと、SnapManager から「clone detach」コマンドを実行すると、ボリュームがクローンでなくなったことをSnapManager に通知できます。
+
+
+
+== 構文
+
+'smsapclone detach-profile profile_name -label clone_label'
+
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+クローン作成元のプロファイルの名前を指定します。
+
+* *`-label_clone_label_`*
++
+クローニング処理で生成される名前を示します。
+
+
+
+
+
+== 例
+
+次のコマンドは、クローンを切断します。
+
+[listing]
+----
+smsap clone detach -profile SALES1 -label sales1_clone
+----

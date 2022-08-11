@@ -1,0 +1,14 @@
+---
+permalink: windows/concept-archive-log-consolidation.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, consolidate, archive, log, backup, file, identify, identifies, consolidation 
+summary: SnapManager （3.2以降）for SAPは、アーカイブ・ログ・ファイルのバックアップを最小限の数だけ保持するように、アーカイブ・ログ・バックアップを統合します。SnapManager for SAPは、他のバックアップのサブセットであるアーカイブ・ログ・ファイルを含むバックアップを識別して解放します。 
+---
+= アーカイブログの統合
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager （3.2以降）for SAPは、アーカイブ・ログ・ファイルのバックアップを最小限の数だけ保持するように、アーカイブ・ログ・バックアップを統合します。SnapManager for SAPは、他のバックアップのサブセットであるアーカイブ・ログ・ファイルを含むバックアップを識別して解放します。

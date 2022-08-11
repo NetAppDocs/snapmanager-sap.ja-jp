@@ -1,0 +1,71 @@
+---
+permalink: unix-administration/reference-the-smo-notification-removesummarynotification-command.html 
+sidebar: sidebar 
+keywords: command, disable, summary, notification, profile, repository, database, smsap, remove-summary-notification 
+summary: このコマンドは、リポジトリデータベースの複数のプロファイルに関する概要通知を無効にします。 
+---
+= SMSAPの通知remove-summary-notificationコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、リポジトリデータベースの複数のプロファイルに関する概要通知を無効にします。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap notification remove-summary-notification
+-repository
+-dbname _repo_service_name_
+-port _repo_port_
+-host _repo_host_
+-login -username _repo_username_
+[-quiet | -verbose]]
+----
+
+
+== パラメータ
+
+* `*-repository*`
++
+-repositoryのあとに続くオプションは'リポジトリのデータベースの詳細を指定します
+
+* '*-port_repo_port_*'と入力します
++
+リポジトリが格納されたデータベースへのアクセスに使用する TCP ポート番号を指定します。
+
+* `*-dbname_repo_service_name *`
++
+リポジトリが格納されたデータベースの名前を指定します。グローバル名または SID を使用します。
+
+* `*-host_repo_host_*`
++
+リポジトリ・データベースが稼働しているホスト・コンピュータの名前または IP アドレスを指定します。
+
+* `*-login_repo_username_*`
++
+リポジトリが格納されたデータベースへのアクセスに必要なログイン名を指定します。
+
+* 「*- quiet *」と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+'''
+次に、リポジトリデータベース上の複数のプロファイルについてサマリー通知を無効にする例を示します。
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap notification remove-summary-notification –repository –port 1521 –dbname repo2 –host 10.72.197.133 –login -username oba5]
+----
+'''

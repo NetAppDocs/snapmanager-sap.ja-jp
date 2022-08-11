@@ -1,0 +1,191 @@
+---
+permalink: windows/reference-troubleshooting-known-issues.html 
+sidebar: sidebar 
+keywords: aware, issue, snapmanager, troubleshoot 
+summary: SnapManager の使用時に発生する可能性がある既知の問題とその回避方法について理解しておく必要があります。 
+---
+= 既知の問題のトラブルシューティング
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager の使用時に発生する可能性がある既知の問題とその回避方法について理解しておく必要があります。
+
+
+
+== SnapManager for SAPで、プロファイルがclustered Data ONTAPのプロファイルとして識別されません
+
+SnapManager for SAPインストール・ディレクトリのcmode_profiles.configファイルにclustered Data ONTAPのプロファイル名がない場合は、次のエラー・メッセージが表示されることがあります。
+
+「SnapDrive config set -dfm user_name apply_name」を使用してDFMサーバを構成してください。
+
+また、SnapManager for SAPのアップグレード中に「/opt/NetApp/smsap/`*」フォルダを削除すると、clustered Data ONTAPのプロファイル名が含まれる「cmode_profiles.config」ファイルも削除されます。この問題も同じエラーメッセージをトリガーします。
+
+* 回避策 *
+
+プロファイルを更新します：SMSAP profile update -profile <profile_name\>`
+
+
+NOTE: SnapManager for SAPが「/opt/NetApp/smsap/`」パスにインストールされている場合、ファイルの場所は「/opt/NetApp/smsap/cmode _profile/cmode_profiles.config」になります。
+
+
+
+== サーバを起動できません
+
+サーバの起動時に、次のようなエラーメッセージが表示されることがあります。
+
+「smsap-01104：コマンドの呼び出しエラー：smsap-17107：「SnapManager Server failed to start on port 8074」というエラーが表示されます。java.net.BindException: Address already in use」というエラーが表示されます
+
+これは、SnapManager リスニングポート（デフォルトは27314と27315）が別のアプリケーションで現在使用されているためです。
+
+このエラーは'SMSAP_SERVER'コマンドがすでに実行されているにもかかわらずSnapManager が既存のプロセスを検出しない場合にも発生することがあります
+
+* 回避策 *
+
+別のポートを使用するように SnapManager または他のアプリケーションを再設定できます。
+
+SnapManager を再設定するには、「C：\Program Files\NetApp\SnapManager for SAP\properties\SMSAP_CONFIG」というファイルを編集します
+
+次の値を割り当てます。
+
+* SMSAPのServer.port = 27314
+* SMSAP Server.rmiRegistry.port=27315
+* remote.registry.ocijdbc.port=27315
++
+remote.registry.ocijdbc.port を Server.rmiRegistry.port と同じにする必要があります。
+
+
+
+SnapManager サーバを起動するには、次の手順を実行します。
+
+.手順
+. [ * スタート * > * コントロールパネル * > * 管理ツール * > * サービス * ] をクリックします。
+. サービスウィンドウが開いたら、NetApp SnapManager 3.3 for SAPを選択します。
+. サーバは、次の 3 つの方法のいずれかで起動できます。
++
+** 左パネルで、 * スタート * をクリックします。
+** SAPのNetApp SnapManager 3.3を右クリックし、ドロップダウンメニューから* Start *を選択します。
+** SAP用のNetApp SnapManager 3.3をダブルクリックし、表示されたプロパティウィンドウで、* Start *をクリックします。
+
+
+
+
+
+
+== デスティネーション名が他のデスティネーション名に含まれている場合、アーカイブログファイルのデスティネーション名を管理できません
+
+アーカイブログのバックアップ作成時に、ユーザが他のデスティネーション名の一部であるデスティネーションを除外する場合は、その他のデスティネーション名も除外されます。
+
+たとえば、除外できる宛先が3つあるとします。「E：\\arch」、「G：\\arch」、および「H：\\arch」です。アーカイブ・ログ・ファイルのバックアップを作成するときに'E：\\arch'をコマンドを使用して除外した場合
+
+[listing]
+----
+smsap backup create -profile almsamp1 -data -online -archivelogs  -exclude-dest E:\\arch
+----
+SnapManager for SAPでは'E:\arch'で始まるすべての送信先が除外されます
+
+* 回避策 *
+
+* デスティネーションが「v$archive_dest」で設定された後に、パス区切り文字を追加します。たとえば、「E:\\arch'」を「E:\\arch\`」に変更します。
+* バックアップを作成する際には、デスティネーションを除外するのではなく、バックアップ先を指定してください。
+
+
+
+
+== リポジトリデータベースのサイズは、バックアップの数ではなく、時間とともに増加します
+
+リポジトリデータベースのサイズは時間とともに大きくなります。これは、 SnapManager の処理によってリポジトリデータベーステーブル内のスキーマにデータが挿入または削除され、インデックススペースの使用率が高くなるためです。
+
+* 回避策 *
+
+リポジトリスキーマによって消費されるスペースを制御するには、 Oracle のガイドラインに従ってインデックスを監視し、再構築する必要があります。
+
+
+
+== リポジトリデータベースがダウンしていると、 SnapManager GUI にアクセスできず、 SnapManager 処理に失敗します
+
+SnapManager 処理は失敗し、リポジトリデータベースがダウンしていると GUI にアクセスできません。
+
+次の表に、実行するアクションとその例外を示します。
+
+|===
+| 処理 | 例外 
+
+
+ a| 
+閉じたリポジトリを開く
+ a| 
+次のエラーメッセージが「SM_GUI.log：[WARN]：SMSAP-01106：リポジトリの照会中にエラーが発生しました：Closed Connection java.SQL.sqlException: Closed Connection」。
+
+
+
+ a| 
+F5 キーを押して、開いているリポジトリを更新します
+ a| 
+リポジトリの例外がGUIに表示され'SM_GUI.logファイルにNullPointerExceptionも記録されます
+
+
+
+ a| 
+ホストサーバを更新しています
+ a| 
+NullPointerExceptionが'sumo_gui-log'ファイルに記録されます
+
+
+
+ a| 
+新しいプロファイルを作成します
+ a| 
+Profile Configuration ウィンドウに NullPointerException が表示されます。
+
+
+
+ a| 
+プロファイルを更新しています
+ a| 
+次のSQL例外が'SM_GUI.logに記録されます[WARN]：SMSAP-01106：リポジトリの照会中にエラーが発生しました：Closed Connection
+
+
+
+ a| 
+バックアップへのアクセス
+ a| 
+次のエラーメッセージが'SM_GUI.log:コレクションの初期化に失敗しました
+
+
+
+ a| 
+クローンのプロパティの表示
+ a| 
+次のエラーメッセージが'SM_GUI.log'および'sumo_GUI.log:コレクションの初期化に失敗しました
+
+|===
+* 回避策 *
+
+GUI にアクセスする場合や SnapManager の処理を実行する場合は、リポジトリデータベースが稼働していることを確認する必要があります。
+
+
+
+== クローンデータベースの一時ファイルを作成できません
+
+ターゲットデータベースの一時表領域ファイルが、データファイルのマウントポイントとは異なるマウントポイントに配置されている場合、クローンの作成は成功しますが、 SnapManager でクローンデータベースの一時ファイルが作成されません。
+
+* 回避策 *
+
+次のいずれかを実行する必要があります。
+
+* 一時ファイルがデータファイルと同じマウントポイントに配置されるように、ターゲットデータベースをレイアウトしてください。
+* クローンデータベースに一時ファイルを手動で作成または追加する。
+
+
+
+
+== Data Guard スタンバイデータベースのバックアップに失敗する
+
+いずれかのアーカイブログの場所にプライマリデータベースのサービス名が設定されていると、 Data Guard スタンバイデータベースのバックアップに失敗します。
+
+* 回避策 *
+
+GUI で、プライマリデータベースのサービス名に対応する [* 外部アーカイブログの場所を指定します（ Specify External Archive Log location* ） ] をクリアする必要があります。

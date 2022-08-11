@@ -1,0 +1,93 @@
+---
+permalink: windows/reference-the-smosmsap-repository-rollingback-command.html 
+sidebar: sidebar 
+keywords: command, enable, roll, back, revert, version, snapmanager, upgrade, smsap 
+summary: このコマンドを使用すると、 SnapManager の上位バージョンからアップグレード元のバージョンにロールバックまたはリバートできます。 
+---
+= SMSAPのリポジトリのロールバックコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドを使用すると、 SnapManager の上位バージョンからアップグレード元のバージョンにロールバックまたはリバートできます。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap repository rollback
+-repository
+-dbname repo_service_name
+-host repo_host
+-login -username repo_username
+-port repo_port
+-rollbackhost host_with_target_database
+[-force]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-repository`*
++
+-repositoryのあとに続くオプションは'リポジトリのデータベースの詳細を指定します
+
+* *`-dbname_repo_service_name *
++
+リポジトリが格納されたデータベースの名前を指定します。グローバル名または SID を使用します。
+
+* *`-host_repo_host_`*
++
+リポジトリ・データベースが稼働しているホスト・コンピュータの名前または IP アドレスを指定します。
+
+* *`-login`*
++
+リポジトリ・ログインの詳細設定を開始します。
+
+* *`-username_repo_username_`*
++
+リポジトリが格納されたデータベースにアクセスするために必要なユーザ名を指定します。
+
+* *`-rollbackhost_host_with _target_database_`*
++
+上位バージョンの SnapManager から元の下位バージョンにロールバックするホストの名前を指定します。
+
+* *`-port_repo_port_`*
++
+リポジトリが格納されたデータベースへのアクセスに使用する TCP ポート番号を指定します。
+
+* *`-force *
++
+リポジトリを強制的に更新しようとします。更新前に、現在のリポジトリのバックアップを作成するように要求されます。 SnapManager
+
+* *`-noprompt`*
++
+は、リポジトリデータベースを更新する前にプロンプトを表示しません。-nopromptオプションを使用すると'プロンプトが表示されなくなり'スクリプトを使用したリポジトリの更新が容易になります
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== コマンドの例
+
+次に、データベース SALESDB 内のリポジトリを更新する例を示します。
+
+[listing]
+----
+smsap repository rollback -repository -dbname SALESDB
+-host server1 -login -username admin -port 1521 -rollbackhost hostA
+----

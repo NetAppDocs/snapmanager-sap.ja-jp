@@ -1,0 +1,88 @@
+---
+permalink: windows/reference-the-smosmsap-history-purge-command.html 
+sidebar: sidebar 
+keywords: command, enable, delete, history, snapmanager, operation, smsap, purge 
+summary: このコマンドを使用すると、 SnapManager 処理の履歴を削除できます。 
+---
+= SMSAPのhistory purgeコマンドを実行します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドを使用すると、 SnapManager 処理の履歴を削除できます。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap history purge
+-profile {-name profile_name [profile_name1, profile_name2] | -all
+-repository
+-login [-password repo_password]
+-username repo_username
+-host repo_host
+-dbname repo_dbname
+-port repo_port}
+-operation {-operations operation_name [operation_name1, operation_name2] | -all}
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_`*
++
+プロファイルの名前を指定します。この名前には 30 文字まで使用でき、ホスト内で一意である必要があります。
+
+* *`-repository`*
++
+repository のあとに続くオプションは、プロファイルが格納されるデータベースの詳細を指定します。
+
+* *`-dbname_repo_dbname_`*
++
+プロファイルが格納されたデータベースの名前を指定します。グローバル名または SID を使用します。
+
+* *`-host_repo_host_`*
++
+リポジトリ・データベースが稼働しているホスト・コンピュータの名前または IP アドレスを指定します。
+
+* *`-login`*
++
+リポジトリ・ログインの詳細設定を開始します。
+
+* *`-username_repo_username_`*
++
+リポジトリが格納されたデータベースにアクセスするために必要なユーザ名を指定します。
+
+* *`-port_repo_port_`*
++
+リポジトリが格納されたデータベースへのアクセスに使用する TCP ポート番号を指定します。
+
+* *`-operation {-operationsoperation_name[_operation_name1、operation_name2_]|-all '*
++
+履歴を設定する SnapManager 処理を指定します。
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== コマンドの例
+
+[listing]
+----
+smsap history purge -profile -name PROFILE1 -operation -operations backup
+-verbose
+----

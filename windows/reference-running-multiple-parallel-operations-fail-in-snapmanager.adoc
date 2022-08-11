@@ -1,0 +1,29 @@
+---
+permalink: windows/reference-running-multiple-parallel-operations-fail-in-snapmanager.html 
+sidebar: sidebar 
+keywords: multiple, run, parallel, operation, seperate, database, reside, storage, system, igroup, lun, associate, delete, snapmanager, display, error, message 
+summary: 同じストレージシステム上の異なるデータベースに対して複数の並列処理を実行すると、一方の処理が原因で、両方のデータベースに関連付けられている LUN の igroup が削除されることがあります。そのあとに他の処理が削除された igroup を使用しようとすると、 SnapManager にエラーメッセージが表示されます。 
+---
+= SnapManager で複数の並列処理を実行すると失敗します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+同じストレージシステム上の異なるデータベースに対して複数の並列処理を実行すると、一方の処理が原因で、両方のデータベースに関連付けられている LUN の igroup が削除されることがあります。そのあとに他の処理が削除された igroup を使用しようとすると、 SnapManager にエラーメッセージが表示されます。
+
+たとえば、ほとんど同時に異なるデータベースに対して backup delete 処理と backup create 処理を実行すると、バックアップ作成処理は失敗します。以下に示す手順は、ほとんどの場合、異なるデータベースに対してバックアップの削除処理とバックアップの作成処理を同時に実行したときの動作を示しています。
+
+.手順
+. backup deleteコマンドを実行します
+. backup createコマンドを実行します
+. backup createコマンドを実行すると、既存のigroupが識別され、同じigroupを使用してLUNがマッピングされます。
+. backup deleteコマンドは'同じigroupにマッピングされているバックアップLUNを削除します
+. 「backup delete」コマンドを実行すると、このigroupにはLUNが関連付けられていないため、igroupが削除されます。
+. backup createコマンドを実行すると'バックアップが作成され'存在しないigroupへのマッピングが試行されるため'操作は失敗します
+
+
+* するべきこと *
+
+データベースが使用するストレージ・システムごとにigroupを作成するには、次のコマンドを使用します。「* sdcli igroup create *

@@ -1,0 +1,193 @@
+---
+permalink: unix-administration/task-create-pretask-post-task-and-policy-scripts.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, create, script, preprocessing, activity, post-processing, policy, task, backup, restore, clone, operation, pretask, post-task, creating 
+summary: SnapManager では、前処理アクティビティ、後処理アクティビティ、およびバックアップ、リストア、クローン操作のポリシータスク用のスクリプトを作成できます。SnapManager 処理の前処理アクティビティ、後処理アクティビティ、およびポリシータスクを実行するには、スクリプトを正しいインストールディレクトリに配置する必要があります。 
+---
+= プリタスクスクリプト、ポストタスクスクリプト、ポリシースクリプトを作成します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、前処理アクティビティ、後処理アクティビティ、およびバックアップ、リストア、クローン操作のポリシータスク用のスクリプトを作成できます。SnapManager 処理の前処理アクティビティ、後処理アクティビティ、およびポリシータスクを実行するには、スクリプトを正しいインストールディレクトリに配置する必要があります。
+
+* このタスクについて *
+
+* プリタスクおよびポストタスクスクリプトの内容 *
+
+すべてのスクリプトには、次のものが含まれている必要
+
+* 特定の操作（チェック、説明、実行）
+* （任意）定義済みの環境変数
+* 特定のエラー処理コード（リターンコード（ rc ））
+
+
+
+NOTE: スクリプトを検証するには、正しいエラー処理コードを含める必要があります。
+
+プリタスクスクリプトは、 SnapManager の処理を開始する前にディスクスペースをクリーンアップするなど、さまざまな目的に使用できます。また、ポストタスクスクリプトを使用して、 SnapManager の処理を完了するための十分なディスクスペースがあるかどうかを見積もることもできます。
+
+* ポリシータスクスクリプトの内容 *
+
+check 、 describe 、 execute などの特定の操作を使用せずに、ポリシースクリプトを実行できます。このスクリプトには、事前定義された環境変数（オプション）と特定のエラー処理コードが含まれています。
+
+ポリシースクリプトは、バックアップ、リストア、およびクローニングの各処理の前に実行されます。
+
+* サポートされている形式 *
+
+プリスクリプトやポストスクリプトには、 .sh 拡張子の付いたシェルスクリプトファイルを使用できます。
+
+* スクリプトインストールディレクトリ *
+
+スクリプトをインストールするディレクトリによって、スクリプトの使用方法が異なります。ディレクトリにスクリプトを配置し、バックアップ、リストア、クローニングの処理の前後にスクリプトを実行できます。バックアップ、リストア、またはクローニングの処理を指定する場合は、このスクリプトを表に指定されたディレクトリに配置し、オプションとして使用する必要があります。
+
+
+NOTE: SnapManager 処理でスクリプトを使用する前に、 plugins ディレクトリに実行可能権限があることを確認する必要があります。
+
+[cols="1a,3a,3a,3a"]
+|===
+| アクティビティ | バックアップ | リストア | クローン 
+
+
+ a| 
+前処理中です
+ a| 
+<default_installation_directory>/plugins/backup/create/pre
+ a| 
+<default_installation_directory>/plugins/restore/create/pre
+ a| 
+<default_installation_directory>/plugins/clone/create/pre
+
+
+
+ a| 
+後処理
+ a| 
+<default_installation_directory>/plugins/backup/create/post
+ a| 
+<default_installation_directory>/plugins/restore/create/post
+ a| 
+<default_installation_directory>/plugins/clone/create/post
+
+
+
+ a| 
+ポリシーベース
+ a| 
+<default_installation_directory>/plugins/backup/create/policy
+ a| 
+<default_installation_directory>/plugins/restore/create/policy
+ a| 
+<default_installation_directory>/plugins/clone/create/policy
+
+|===
+* サンプルスクリプトの場所 *
+
+次の例は、インストールディレクトリパスで利用できるバックアップ処理とクローン処理の実行前スクリプトと実行後スクリプトを示しています。
+
+* <default_installation_directory>/plugins/examples/backup/create/pre
+* <default_installation_directory>/plugins/examples/backup/create/post
+* <default_installation_directory>/plugins/examples/clone/create/pre
+* <default_installation_directory>/plugins/examples/clone/create/post
+
+
+* スクリプトで変更できるもの *
+
+新しいスクリプトを作成する場合は 'describe 操作と execute 操作のみを変更できます各スクリプトには'_context'timeout'_`'および'_parameter_`の変数を含める必要があります
+
+スクリプトの describe 関数で説明した変数は、スクリプトの開始時に宣言する必要があります。新しいパラメータ値を'parameter=()'に追加し'実行関数のパラメータを使用できます
+
+'''
+
+
+== サンプルスクリプト
+
+次に、 SnapManager ホストのスペースを見積もるための、ユーザ指定の戻りコードを含むサンプルスクリプトを示します。
+
+[listing]
+----
+
+    #!/bin/bash
+    # $Id: //depot/prod/capstan/main/src/plugins/unix/examples/backup/create/pre/disk_space_estimate.sh#5 $
+    name="disk space estimation ($(basename $0))"
+    description="pre tasks for estimating the space on the target system"
+    context=
+    timeout="0"
+    parameter=()
+    EXIT=0
+    PRESERVE_DIR="/tmp/preserve/$(date +%Y%m%d%H%M%S)"
+    function _exit {
+       rc=$1
+       echo "Command complete."
+       exit $rc
+    }
+    function usage {
+       echo "usage: $(basename $0) { -check | -describe | -execute }"
+       _exit 99
+    }
+    function describe {
+       echo "SM_PI_NAME:$name"
+       echo "SM_PI_DESCRIPTION:$description"
+       echo "SM_PI_CONTEXT:$context"
+       echo "SM_PI_TIMEOUT:$timeout"
+       IFS=^
+       for entry in ${parameter[@]}; do
+           echo "SM_PI_PARAMETER:$entry"
+       done
+       _exit 0
+    }
+    function check {
+       _exit 0
+    }
+    function execute {
+       echo "estimating the space on the target system"
+       # Shell script to monitor or watch the disk space
+       # It will display alert message, if the (free available) percentage
+       # of space is >= 90%
+       # ----------------------------------------------------------------------
+       # Linux shell script to watch disk space (should work on other UNIX oses )
+       # set alert level 90% is default
+       ALERT=90
+       df -H | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5 " " $1 }' | while read output;
+       do
+         #echo $output
+         usep=$(echo $output | awk '{ print $1}' | cut -d'%' -f1  )
+         partition=$(echo $output | awk '{ print $2 }' )
+       if [ $usep -ge $ALERT ]; then
+           echo "Running out of space \"$partition ($usep%)\" on $(hostname) as on $(date)" |
+       fi
+       done
+      _exit 0
+     }
+    function preserve {
+        [ $# -ne 2 ] && return 1
+        file=$1
+        save=$(echo ${2:0:1} | tr [a-z] [A-Z])
+        [ "$save" == "Y" ] || return 0
+        if [ ! -d "$PRESERVE_DIR" ] ; then
+           mkdir -p "$PRESERVE_DIR"
+           if [ $? -ne 0 ] ; then
+               echo "could not create directory [$PRESERVE_DIR]"
+               return 1
+           fi
+        fi
+        if [ -e "$file" ] ; then
+            mv "$file" "$PRESERVE_DIR/."
+        fi
+        return $?
+    }
+    case $(echo $1 | tr [A-Z] [a-z]) in
+        -check)    check
+                  ;;
+        -execute)  execute
+                  ;;
+        -describe) describe
+                  ;;
+     *)         echo "unknown option $1"
+              usage
+              ;;
+     esac
+----
+'''

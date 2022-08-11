@@ -1,0 +1,30 @@
+---
+permalink: windows/task-deleting-backups.html 
+sidebar: sidebar 
+keywords: delete, backup, free, space, occupy, remove, snapshot, copies, copy, volume, deleting 
+summary: 不要になったバックアップを削除する必要があります。これにより、バックアップが占有するスペースが解放されます。バックアップを削除することにより、ボリュームあたりの Snapshot コピー数が上限の 255 に達する可能性が低くなります。 
+---
+= バックアップを削除する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+不要になったバックアップを削除する必要があります。これにより、バックアップが占有するスペースが解放されます。バックアップを削除することにより、ボリュームあたりの Snapshot コピー数が上限の 255 に達する可能性が低くなります。
+
+* バックアップを使用してクローンを作成していないことを確認する必要があります。
+
+
+保持するバックアップは、保持クラスを変更することなく、無制限に削除できます。
+
+必要に応じて、バックアップの削除処理が成功または失敗したあとにダンプファイルを収集できます。
+
+アーカイブログバックアップを削除する場合は、アーカイブログバックアップに対して設定された保持期間を確認する必要があります。アーカイブログのバックアップが保持期間内にあり、リストアされたデータベースのリカバリにアーカイブログファイルが必要な場合、アーカイブログのバックアップを削除することはできません。
+
+. 次のコマンドを入力して、処理が完了したことを確認します。SMSAP operation list -profile profile_name -dump -quiet -verbose
+. バックアップを削除するには、次のコマンドを入力します。「SMSAP backup delete -profile profile_name [-label label [data|-archivelogs]|-idID|-all ][-force][-dump][-quiet |-verbose」`
++
+force オプションを使用して、バックアップを強制的に削除します。処理を完了していないバックアップを削除しようとすると、バックアップが不完全な状態のまま残ることがあります。
+
+

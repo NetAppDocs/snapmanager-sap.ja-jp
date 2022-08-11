@@ -1,0 +1,14 @@
+---
+permalink: unix-administration/concept-restoring-protected-backups-from-secondary-storage.html 
+sidebar: sidebar 
+keywords: restore, backup, protect, secondary, storage, primary, restoring, 
+summary: 保護されているバックアップはセカンダリストレージからリストアできます。ただし、プライマリストレージにバックアップが存在する場合、セカンダリストレージからバックアップをリストアすることはできません。 
+---
+= セカンダリストレージから保護されたバックアップをリストアする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+保護されているバックアップはセカンダリストレージからリストアできます。ただし、プライマリストレージにバックアップが存在する場合、セカンダリストレージからバックアップをリストアすることはできません。

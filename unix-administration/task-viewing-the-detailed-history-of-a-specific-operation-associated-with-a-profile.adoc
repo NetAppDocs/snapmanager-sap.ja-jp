@@ -1,0 +1,21 @@
+---
+permalink: unix-administration/task-view-the-detailed-history-of-a-specific-operation-associated-with-a-profile.html 
+sidebar: sidebar 
+keywords: view, detail, history, snapmanager, operation, profile 
+summary: プロファイルに関連付けられた特定の SnapManager 処理の詳細な履歴を表示できます。 
+---
+= プロファイルに関連付けられている特定の処理の詳細な履歴を表示します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルに関連付けられた特定の SnapManager 処理の詳細な履歴を表示できます。
+
+.ステップ
+. プロファイルに関連付けられた特定のSnapManager 処理に関する詳細な履歴情報を表示するには、次のコマンドを入力します。
++
+「* SMSAP history operation - show -profile_name_{-label_|-id_id_}[-quiet |-verbose」*
+
+

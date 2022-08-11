@@ -1,0 +1,27 @@
+---
+permalink: unix-administration/task-edit-the-configuration-parameters.html 
+sidebar: sidebar 
+keywords: depend, environment, change, default, value, assign, configuration, parameter, edit 
+summary: 環境に応じて、構成パラメータに割り当てられているデフォルト値を変更することができます。 
+---
+= 設定パラメータを編集します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+環境に応じて、構成パラメータに割り当てられているデフォルト値を変更することができます。
+
+.手順
+. 次のデフォルトの場所から構成ファイルを開きます。
++
+デフォルトのインストール場所は、_/properties/smsap.configです
+
+. 設定パラメータのデフォルト値を変更します。
++
+
+NOTE: 構成ファイルに含まれていないサポート対象の構成パラメータを追加して、値を割り当てることもできます。
+
+. SnapManager for SAP Serverを再起動します。
+

@@ -1,0 +1,49 @@
+---
+permalink: unix-administration/task-change-the-retention-policy-default-behavior.html 
+sidebar: sidebar 
+keywords: backup, expire, base, retention, policy, snapmanager, determine, delete, back, up, setting, behavior, unprotect, protect, changing, change 
+summary: 保持ポリシーに基づいてバックアップが期限切れになると、 SnapManager は保持設定に基づいてバックアップを削除するかどうかを決定します。デフォルトでは、バックアップの削除が実行されます。このデフォルトの動作を変更して、保護されていないバックアップを解放するように選択できます。 
+---
+= 保持ポリシーのデフォルト動作を変更します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+保持ポリシーに基づいてバックアップが期限切れになると、 SnapManager は保持設定に基づいてバックアップを削除するかどうかを決定します。デフォルトでは、バックアップの削除が実行されます。このデフォルトの動作を変更して、保護されていないバックアップを解放するように選択できます。
+
+* このタスクについて *
+
+デフォルトでは、 SnapManager は、保護されているかどうかに応じて、バックアップを削除するか、解放します。
+
+* 保護されたバックアップでは、 SnapManager が期限切れになるとローカルバックアップを解放します。
+* 保護されていないバックアップの場合、 SnapManager は有効期限が切れた時点でローカルバックアップを削除します。
++
+このデフォルトの動作は変更できます。
+
+
+
+保護されたバックアップについては、 SnapManager でローカルコピーを削除するかどうかを判断する際に次の点が考慮されません。
+
+* セカンダリストレージへのバックアップに失敗したか、または保護処理中です。
++
+これにより、保持ポリシーが適用される前に、セカンダリストレージにバックアップを転送できるようになります。
+
+* その後、セカンダリストレージからコピーが削除された。
+
+
+.手順
+. 次のデフォルトの場所にアクセスします。
++
+`_default SMSAPのインストール場所__/properties/smsap.config`
+
+. 「smsap.config」ファイルを編集します。
+. 'smsap.config'ファイルの'retain.alwaysFreeExpiredBackups'プロパティをtrueに設定します
++
+例：
+
++
+`*retain.alwaysFreeExpiredBackups=true*`
+
+

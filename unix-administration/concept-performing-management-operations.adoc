@@ -1,0 +1,16 @@
+---
+permalink: unix-administration/concept-performing-management-operations.html 
+sidebar: sidebar 
+keywords: perform, management, task, configure, snapmanager, restore, back, up, restoring, restore, cloning, clone, operation 
+summary: 管理タスクは、 SnapManager をセットアップして設定したあとに実行できます。これらのタスクを使用すると、バックアップ、リストア、およびクローニング以外の通常の処理も管理できます。 
+---
+= 管理処理を実行しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+管理タスクは、 SnapManager をセットアップして設定したあとに実行できます。これらのタスクを使用すると、バックアップ、リストア、およびクローニング以外の通常の処理も管理できます。
+
+管理者は、グラフィカルユーザインターフェイスまたはコマンドラインインターフェイスを使用して処理を実行できます。

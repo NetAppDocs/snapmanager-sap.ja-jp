@@ -1,0 +1,36 @@
+---
+permalink: unix-installation-cmode/task-create-the-repository-database-instance.html 
+sidebar: sidebar 
+keywords: repository, database, instance, oracle, snapmanager, stand-alone, target, create 
+summary: リポジトリデータベースインスタンスは、 SnapManager リポジトリを作成する Oracle データベースです。リポジトリデータベースインスタンスはスタンドアロンのデータベースである必要があります。また、ターゲットデータベースにすることはできません。 
+---
+= リポジトリデータベースインスタンスを作成します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+リポジトリデータベースインスタンスは、 SnapManager リポジトリを作成する Oracle データベースです。リポジトリデータベースインスタンスはスタンドアロンのデータベースである必要があります。また、ターゲットデータベースにすることはできません。
+
+
+
+== 必要なもの
+
+データベースにアクセスするには、 Oracle データベースとユーザアカウントが必要です。
+
+.手順
+. SQL*Plus:sqlplus '/as sysdba'にログインします
+. SnapManager リポジトリ用の新しいテーブルスペースを作成します。「* create tableespacablspace_name datafile /u01/app/oracle/oradata/datafile /tablespace_name.' dbf size 100M autextend on；*
++
+「tablespace_name」は、テーブルスペースの名前です。
+
+. テーブルスペースのブロック・サイズを確認します*select tablespace_name'dba_tablespacesからblock_size ;*
++
+SnapManager では、表領域用に 4 、 000 以上のブロックサイズが必要です。
+
+
+
+* 関連情報 *
+
+http://www.netapp.com/us/media/tr-3761.pdf["ネットアップテクニカルレポート 3761 ：『 SnapManager for Oracle ： Best Practices 』"^]

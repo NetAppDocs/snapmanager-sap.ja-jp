@@ -1,0 +1,33 @@
+---
+permalink: unix-administration/task-configure-e-mail-notification-for-an-existing-profile.html 
+sidebar: sidebar 
+keywords: updating, update, profile, configure, receive, email, notification, completion, database, operation, configuring, exist 
+summary: プロファイルを更新する場合は、データベース処理が完了したときに E メール通知を受け取るようにを設定できます。 
+---
+= 既存のプロファイルのEメール通知を設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルを更新する場合は、データベース処理が完了したときに E メール通知を受け取るようにを設定できます。
+
+* 必要なもの *
+
+* アラートの送信元 E メールアドレスを設定する必要があります。
+* アラートの送信先となる E メールアドレスは 1 つまたは複数入力する必要があります。
++
+複数のアドレスをカンマで区切って指定できます。カンマと次の E メールアドレスの間にスペースを入れないようにしてください。必要に応じて、 E メールに件名を追加することもできます。
+
+
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAPプロファイルupdate -profile update_profile_[-profile-password_profile_password_password_][-databname_db_dbname_host_host_[-sid_][-login-username db_username_db_password_db_password_db_password_port_host][{-rman_account_duration]/[{-sm-drman_account_password-drman_day]-userman-day.出力 データベース[日間[RMANデータベースパスワード[RMANデータベースパスワード[RMANデータベース_継続時間][RMANグループ[RMANデータベース_管理継続時間][RMANパスワード[RMANデータベース_管理継続時間][RMANデータベース_グループ[RMANデータベース_管理用][RMANパスワード[RMANパスワード[RMANパスワード][RMANデータベース_管理データベース_管理データベース_管理データベース_継続時間 _n_][-duration _m_]][-comment_comment_][-snapname -pattern_][[-protect [-policy_policy_policy_policy_policy_policy_name_]]|[-noprotect]][-notification[-success [-email_email_address1]、email_address2_subject_subject_address_email_email_address_email_email_address*]-email_address_email_email_address_email_address*-email-email_address_email_email_address_address_address_email_email_address_email_email_address*-email-email-email_address_email_address_email
+
++
+success オプションを使用すると、成功したデータベース処理についてのみ通知が受信され、失敗したデータベース処理についてのみ通知が受信されます。
+
+

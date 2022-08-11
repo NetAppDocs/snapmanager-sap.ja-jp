@@ -1,0 +1,24 @@
+---
+permalink: windows/task-start-snapmanager-for-oraclefor-sap.html 
+sidebar: sidebar 
+keywords: snapmanager, startup, section, task, perform, start, sap 
+summary: SnapManager の起動セクションには、 SnapManager の起動時に実行するタスクがリストされています。このセクションは、 SnapManager について学習している場合にも使用します。 
+---
+= SnapManager for SAPを起動します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager の起動セクションには、 SnapManager の起動時に実行するタスクがリストされています。このセクションは、 SnapManager について学習している場合にも使用します。
+
+
+
+== 必要なもの
+
+SnapManager を使用する前に、次の作業を完了しておく必要があります。
+
+* SnapManager ソフトウェアをダウンロードしてインストール
+* グラフィカルユーザインターフェイスとコマンドラインインターフェイスのどちらを使用するかを決定。
+

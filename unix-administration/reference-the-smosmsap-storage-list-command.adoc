@@ -1,0 +1,54 @@
+---
+permalink: unix-administration/reference-the-smosmsap-storage-list-command.html 
+sidebar: sidebar 
+keywords: run, storage, list, command, display, system, profile, smsap 
+summary: 特定のプロファイルに関連付けられているストレージ・システムのリストを表示するには、 storage list コマンドを実行します。 
+---
+= SMSAPのstorage listコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+storage listコマンドを実行すると'特定のプロファイルに関連づけられているストレージ・システムのリストを表示できます
+
+
+
+== 構文
+
+[listing]
+----
+smsap storage list
+-profile profile
+----
+
+
+== パラメータ
+
+* `*-profile profile *`
++
+プロファイルの名前を指定します。名前は 30 文字以内で指定し、ホスト内で一意である必要があります。
+
+
+
+'''
+
+
+== 例
+
+次の例は、プロファイル mjullian に関連付けられているストレージシステムを表示します。
+
+[listing]
+----
+smsap storage list -profile mjullian
+----
+[listing]
+----
+
+Sample Output:
+Storage Controllers
+--------------------
+FAS3020-RTP07OLD
+----
+'''

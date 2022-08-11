@@ -1,0 +1,211 @@
+---
+permalink: windows/reference-the-smosmsapprofile-create-command.html 
+sidebar: sidebar 
+keywords: run, profile, create, command, database, repository, smsap 
+summary: profile create コマンドを実行して、リポジトリ内にデータベースのプロファイルを作成できます。このコマンドを実行する前に、データベースをマウントする必要があります。 
+---
+= SMSAP profile createコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「profile create」コマンドを実行して、リポジトリ内にデータベースのプロファイルを作成できます。このコマンドを実行する前に、データベースをマウントする必要があります。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap profile create
+-profile profile
+[-profile-password profile_password]
+-repository
+-dbname repo_service_name
+-host repo_host
+-port repo_port
+-login -username repo_username
+-database
+-dbname db_dbname
+-host db_host
+[-sid  db_sid]
+[-login
+[-username db_username -password db_password -port db_port]
+]
+[-rman {-controlfile | {-login
+-username  rman_username -password  rman_password}
+-tnsname  rman_tnsname}}]
+
+
+[-retain
+[-hourly [-count n] [-duration m]]
+[-daily [-count n] [-duration m]]
+[-weekly [-count n] [-duration m]]
+[-monthly [-count n] [-duration m]]]]
+-comment comment
+-snapname-pattern pattern
+[]
+[-summary-notification]
+[-notification
+[-success
+-email email_address1,email_address2
+-subject subject_pattern]
+[-failure
+-email email_address1,email_address2
+-subject subject_pattern]
+[-separate-archivelog-backups
+-retain-archivelog-backups
+-hours hours |
+-days days |
+-weeks weeks |
+-months months
+[]
+[-include-with-online-backups | -no-include-with-online-backups]]
+[-dump]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_`*
++
+プロファイルの名前を指定します。この名前には 30 文字まで使用でき、ホスト内で一意である必要があります。
+
+* *`-profile-password_profile_password_`*
++
+プロファイルのパスワードを指定します。
+
+* *`-repository`*
++
+-repositoryのあとに続くオプションは'プロファイルを格納するデータベースの詳細を指定します
+
+* *`-dbname_repo_service_name *
++
+プロファイルが格納されたデータベースの名前を指定します。グローバル名または SID を使用します。
+
+* *`-host_repo_host_`*
++
+リポジトリ・データベースが稼働しているホスト・コンピュータの名前または IP アドレスを指定します。
+
+* *`-sid_db_sid_`*
++
+プロファイルに記述されるデータベースのシステム識別子を指定します。デフォルトでは、 SnapManager はデータベース名をシステム識別子として使用します。システム識別子がデータベース名と異なる場合は'-sid`オプションを使用して指定する必要があります
+
+* *`-login`*
++
+リポジトリ・ログインの詳細を指定します。
+
+* *`-username_repo_username_`*
++
+リポジトリ・データベースへのアクセスに必要なユーザ名を指定します。
+
+* *`-port_repo_port_`*
++
+リポジトリ・データベースへのアクセスに使用する TCP ポート番号を指定します。
+
+* *`-bたべ ーす`*
++
+プロファイルに記述されるデータベースの詳細を指定します。このデータベースに対してバックアップ、リストア、またはクローニングが実行されます。
+
+* *`-dbname_db_dbname_`*
++
+プロファイルに記述されるデータベースの名前を指定します。グローバル名またはシステム ID を使用できます。
+
+* *`-host_db_host db_host_`*
++
+データベースが稼働しているホスト・コンピュータの名前または IP アドレスを指定します。
+
+* *`-login`*
++
+データベース・ログインの詳細を指定します。
+
+* *`-username_db_username_`*
++
+プロファイルに記述されるデータベースにアクセスするために必要なユーザ名を指定します。
+
+* *`-password_ddb_password_`*
++
+プロファイルに記述されるデータベースにアクセスするために必要なパスワードを指定します。
+
+* *`-port_db_port_`*
++
+プロファイルに記述されるデータベースへのアクセスに使用する TCP ポート番号を指定します。
+
+* *`-retain [-hourly [-count n][-duration m]][-daily [-duration n][-duration n][-duration m]][-weekly [-count n][-duration n][-duration m]][-monthly [-monthly ][-duration m]`*
++
+バックアップの保持ポリシーを指定します。保持数のどちらか、または両方に加えて、保持クラス（毎時、毎日、毎週、毎月）の保持期間を指定します。
+
++
+保持クラスごとに、保持数または保持期間のどちらか、または両方を指定できます。期間はクラスの単位で指定します（たとえば、時間単位の場合は時間単位、日単位の場合は日単位）。たとえば、日次バックアップの保持期間として 7 のみを指定した場合、 SnapManager ではプロファイルの日次バックアップの数が制限されません（保持数が 0 であるため）。ただし、 SnapManager では、 7 日前に作成された日次バックアップが自動的に削除されます。
+
+* *`-comment_comment_`*
++
+プロファイルドメインを記述するプロファイルのコメントを指定します。
+
+* *`-snapname -pattern_pattern_`*
++
+Snapshot コピーの命名パターンを示します。すべての Snapshot コピー名に、可用性の高い処理用の HAOPS などのカスタムテキストを含めることもできます。Snapshot コピーの命名パターンは、プロファイルの作成時、またはプロファイルの作成後に変更できます。更新後のパターンは、まだ作成されていない Snapshot コピーにのみ適用されます。存在する Snapshot コピーには、前の snapname パターンが保持されます。パターンテキストでは、複数の変数を使用できます。
+
+* *`-summary notification`*
++
+新しいプロファイルでサマリー E メール通知を有効にします。
+
+* *`-notification-success -email_email_address1,電子メールアドレス2__ subject_subject_pattern_`*
++
+SnapManager の処理が成功したときに受信者に E メールが送信されるように、新しいプロファイルで E メール通知を有効にします。E メールアラートの送信先となる 1 つまたは複数の E メールアドレスと新しいプロファイルの E メール件名のパターンを入力する必要があります。
+
++
+また、新しいプロファイルにカスタムの件名を含めることもできます。件名テキストは、プロファイルの作成時またはプロファイルの作成後に変更できます。更新された件名は、送信されない E メールにのみ適用されます。E メールの件名にはいくつかの変数を使用できます。
+
+* *`-notification-failure-email_email-mail_address1,電子メールアドレス2__ subject_subject_pattern_`*
++
+新しいプロファイルで E メール通知を有効にして、 SnapManager の処理が失敗したときに受信者に E メールを送信するように指定します。E メールアラートの送信先となる 1 つまたは複数の E メールアドレスと新しいプロファイルの E メール件名のパターンを入力する必要があります。
+
++
+また、新しいプロファイルにカスタムの件名を含めることもできます。件名テキストは、プロファイルの作成時またはプロファイルの作成後に変更できます。更新された件名は、送信されない E メールにのみ適用されます。E メールの件名にはいくつかの変数を使用できます。
+
+* *`-cseparate -archivelog -bbackups *
++
+アーカイブログのバックアップをデータファイルのバックアップから分離します。これは、プロファイルの作成時に指定できるオプションのパラメータです。このオプションを使用してバックアップを分けたあと、データファイルのみのバックアップを作成するか、ログのみのバックアップをアーカイブするかを選択できます。
+
+* *`-retain-archivelog -hours_|-days_dys_|-pwe週_|-months_months_months_`*
++
+アーカイブログの保持期間（毎時、毎日、毎週、毎月）に基づいてアーカイブログのバックアップを保持するように指定します。
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+* *`-include-y-one-backups*
++
+オンラインデータベースバックアップにアーカイブログバックアップを含めるように指定します。
+
+* *`-no-include-with -one-backups*
++
+オンラインデータベースバックアップにアーカイブログバックアップを含めないように指定します。
+
+* *`-dump`*
++
+プロファイル作成処理が成功したあとにダンプ・ファイルを収集するように指定します。
+
+
+
+
+
+== 例
+
+次の例は、時間単位の保持ポリシーと E メール通知を使用してプロファイルを作成する方法を示しています。
+
+[listing]
+----
+smsap profile create -profile test_rbac -profile-password netapp -repository -dbname SMSAPREP -host hostname.org.com -port 1521 -login -username smsaprep -database -dbname RACB -host saal -sid racb1 -login -username sys -password netapp -port 1521 -rman -controlfile -retain -hourly -count 30 -verbose
+Operation Id [8abc01ec0e78ebda010e78ebe6a40005] succeeded.
+----

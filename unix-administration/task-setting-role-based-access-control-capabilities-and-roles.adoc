@@ -1,0 +1,278 @@
+---
+permalink: unix-administration/task-set-role-based-access-control-capabilities-and-roles.html 
+sidebar: sidebar 
+keywords: enable, role-based, access, control, rbac, snapmanager, snapdrive, capabilities, capability, setting, role, operation 
+summary: SnapDrive を使用して SnapManager 用のロールベースアクセス制御（ RBAC ）を有効にしたあと、ロールに RBAC の機能とユーザを追加して SnapManager の処理を実行できます。 
+---
+= ロールベースアクセス制御の機能とロールを設定します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapDrive を使用して SnapManager 用のロールベースアクセス制御（ RBAC ）を有効にしたあと、ロールに RBAC の機能とユーザを追加して SnapManager の処理を実行できます。
+
+* 必要なもの *
+
+Data Fabric Manager サーバでグループを作成し、そのグループをプライマリストレージシステムとセカンダリストレージシステムの両方に追加する必要があります。次のコマンドを実行します。
+
+* dfm group create _smsap_grp_`
+* 「dfm group add_ssmsap_grpprimary_storage_system_`」のように指定します
+* 「dfm group add_ssmsap_grpsecondary_storage_system_`」のように入力します
+
+
+* このタスクについて *
+
+Operations Manager Web インターフェイスまたは Data Fabric Manager Server Command-Line Interface （ CLI ；コマンドラインインターフェイス）のいずれかを使用して、 RBAC の機能とロールを変更できます。
+
+次の表に、 SnapManager の処理を実行するために必要な RBAC の機能を示します。
+
+[cols="1a,2a,3a"]
+|===
+| SnapManager 処理 | データ保護が有効になっていない場合は RBAC 機能が必要です | データ保護を有効にする場合は RBAC 機能が必要です 
+
+
+ a| 
+プロファイルの作成またはプロファイルの更新
+ a| 
+sd.storage.Read（SMSAP_grp）
+ a| 
+sd.Storage.Read（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+プロファイルの保護
+ a| 
+dfm_Database/Write（SMSAP_grp）
+
+sd.storage.Read（SMSAP_grp）
+
+sd.Config.Read（SMSAP_grp）
+
+sd.Config.Write（SMSAP_grp）
+
+sd.Config.Delete（SMSAP_grp）
+
+GlobalDataProtection
+ a| 
+なし
+
+
+
+ a| 
+Backup create をクリックします
+ a| 
+sd.storage.Read（SMSAP_grp）
+
+sd.Snapshot.Write（SMSAP_grp）
+
+sd.Snapshot.Read（SMSAP_grp）
+
+sd.Snapshot.Delete（SMSAP_grp）
+ a| 
+sd.Storage.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Write（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Delete（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+backup create （ DBverify を使用） backup create （ DBverify ヲシ
+ a| 
+sd.storage.Read（SMSAP_grp）
+
+sd.Snapshot.Write（SMSAP_grp）
+
+sd.Snapshot.Read（SMSAP_grp）
+
+sd.Snapshot.Delete（SMSAP_grp）
+
+sd.snapshot.Clone（SMSAP_grp）
+ a| 
+sd.Storage.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Write（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Delete（SMSAP `_profile_`データセット）
+
+sd.snapshot.Clone（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+Backup create （ RMAN を使用）
+ a| 
+sd.storage.Read（SMSAP_grp）
+
+sd.Snapshot.Write（SMSAP_grp）
+
+sd.Snapshot.Read（SMSAP_grp）
+
+sd.Snapshot.Delete（SMSAP_grp）
+
+sd.snapshot.Clone（SMSAP_grp）
+ a| 
+sd.Storage.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Write（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Delete（SMSAP `_profile_`データセット）
+
+sd.snapshot.Clone（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+バックアップのリストア
+ a| 
+sd.storage.Read（SMSAP_grp）
+
+sd.Snapshot.Write（SMSAP_grp）
+
+sd.Snapshot.Read（SMSAP_grp）
+
+sd.Snapshot.Delete（SMSAP_grp）
+
+sd.snapshot.Clone（SMSAP_grp）
+
+sd.Snapshot.Restore（SMSAP_grp）
+ a| 
+sd.Storage.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Write（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Delete（SMSAP `_profile_`データセット）
+
+sd.snapshot.Clone（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Restore（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+バックアップの削除
+ a| 
+sd.Snapshot.Delete（SMSAP_grp）
+ a| 
+sd.Snapshot.Delete（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+バックアップの検証
+ a| 
+sd.storage.Read（SMSAP_grp）
+
+sd.Snapshot.Read（SMSAP_grp）
+
+sd.Snapshot.Clone（SMSAP_grp）
+ a| 
+sd.Storage.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Clone（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+バックアップマウント
+ a| 
+sd.storage.Read（SMSAP_grp）
+
+sd.Snapshot.Read（SMSAP_grp）
+
+sd.Snapshot.Clone（SMSAP_grp）
+ a| 
+sd.Storage.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Clone（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+バックアップのアンマウント
+ a| 
+sd.Snapshot.Clone（SMSAP_grp）
+ a| 
+sd.Snapshot.Clone（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+クローンの作成
+ a| 
+sd.storage.Read（SMSAP_grp）
+
+sd.Snapshot.Read（SMSAP_grp）
+
+sd.snapshot.Clone（SMSAP_grp）
+ a| 
+sd.Storage.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Read（SMSAP `_profile_`データセット）
+
+sd.snapshot.Clone（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+クローンの削除
+ a| 
+sd.Snapshot.Clone（SMSAP_grp）
+ a| 
+sd.Snapshot.Clone（SMSAP `_profile_`データセット）
+
+
+
+ a| 
+クローンスプリット
+ a| 
+sd.storage.Read（SMSAP_grp）
+
+sd.Snapshot.Read（SMSAP_grp）
+
+sd.snapshot.Clone（SMSAP_grp）
+
+sd.Snapshot.Delete（SMSAP_grp）
+
+sd.storage.Write（SMSAP_grp）
+ a| 
+sd.Storage.Read（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Read（SMSAP `_profile_`データセット）
+
+sd.snapshot.Clone（SMSAP `_profile_`データセット）
+
+sd.Snapshot.Delete（SMSAP `_profile_`データセット）
+
+sd.storage.Write（SMSAP `_profile_`データセット）
+
+|===
+RBAC 機能の定義の詳細については、『 OnCommand Unified Manager Operations Manager アドミニストレーションガイド』を参照してください。
+
+.手順
+. Operations Manager コンソールにアクセスします。
+. [ セットアップ ] メニューから、 [* 役割 * ] を選択します。
+. 既存のロールを選択するか、新しいロールを作成します。
+. データベース・ストレージ・リソースに操作を割り当てるには ' ［ * 機能の追加 * ］ をクリックします
+. [ 役割の設定の編集 ] ページで、役割の変更を保存するには、 [*Update*] をクリックします。
+
+
+* 関連情報 *
+
+http://support.netapp.com/documentation/productsatoz/index.html["『OnCommand Unified Manager Operations Manager Administration Guide』を参照してください"^]

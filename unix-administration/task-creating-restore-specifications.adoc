@@ -1,0 +1,106 @@
+---
+permalink: unix-administration/task-create-restore-specifications.html 
+sidebar: sidebar 
+keywords: restore, specification, file, xml, original, alternate, location, file, restore, snapmanager, specification, location, creating, create 
+summary: リストア仕様ファイルは、ファイルのリストア元となる元の場所および別の場所を含む XML ファイルです。SnapManager はこの仕様ファイルを使用して、指定した場所からファイルをリストアします。 
+---
+= リストア仕様を作成します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+リストア仕様ファイルは、ファイルのリストア元となる元の場所および別の場所を含む XML ファイルです。SnapManager はこの仕様ファイルを使用して、指定した場所からファイルをリストアします。
+
+* このタスクについて *
+
+リストア仕様ファイルは任意のテキスト・エディタを使用して作成できます。ファイルには、 .xml 拡張子を使用する必要があります。
+
+.手順
+. テキストファイルを開きます。
+. 次のように入力します。
++
+`*<restore-specification xmlns="http://www.netapp.com">*`[]
+
+. 次の例に示す形式を使用して、ファイルマッピング情報を入力します。
++
+[listing]
+----
+<file-mapping>
+    <original-location>/path/dbfilename.dbf</original-location>
+    <alternate-location>/path/dbfilename1.dbf</alternate-location>
+</file-mapping>
+----
++
+ファイルマッピングでは、ファイルのリストア元を指定します。元の場所は、バックアップ時にアクティブファイルシステム上にあるファイルの場所です。代替保存場所は、ファイルのリストア元の場所です。
+
+. マウントされたファイルシステムのマッピング情報を、次のような形式で入力します。
++
+[listing]
+----
+<mountpoint-mapping>
+     <original-location>/path/db_name</original-location>
+     <snapname>snapname</snapname>
+     <alternate-location>/path/vaultlocation</alternate-location>
+</mountpoint-mapping>
+<mountpoint-mapping>
+     <original-location>+DiskGroup_1</original-location>
+     <snapname>snapname</snapname>
+     <alternate-location>+DiskGroup_2</alternate-location>
+</mountpoint-mapping>
+----
++
+mountpointは'ディレクトリ・パス/mnt/myfs/を参照しますマウントポイント・マッピングでは、ファイルのリストア元となるマウントポイントを指定します。元の場所は、バックアップ時のアクティブ・ファイルシステム内のマウントポイントの場所です。代替保存場所は、元の場所にあるファイルのリストア元のマウントポイントです。`_snapname_`は、オリジナルのファイルがバックアップされているSnapshotコピーの名前です。
+
++
+
+NOTE: Snapshot コピー名は、 1 回のバックアップ処理で同じファイルシステムを複数回使用できるため（データファイル用とログ用など）、必須のコンポーネントです。
+
+. 以下の例に示す形式を使用して、 raw デバイスマッピングのタグと場所を入力します。
++
+[listing]
+----
+<raw-device-mapping>
+     <original-location>/path/raw_device_name</original-location>
+     <alternate-location>/path/raw_device_name</alternate-location>
+</raw-device-mapping>
+----
++
+raw デバイスマッピングでは、 raw デバイスのリストア元の場所を指定します。
+
+. 次のように入力します。
++
+'*</restore-specification >*'
+
+. ファイルを .xml ファイルとして保存し、仕様を閉じます。
+
+
+
+
+== リストア仕様の例
+
+次に、リストア仕様の構造の例を示します。
+
+[listing]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<restore-specification xmlns="http://www.netapp.com">
+<!-- "Restore from file(s)" -->
+     <file-mapping>
+          <original-location>/mnt/pathname/dbname/users01.dbf</original-location>
+          <alternate-location>/mnt/vault/users01.dbf</alternate-location>
+     </file-mapping>
+<!-- "Restore from host mounted file system(s)" -->
+     <mountpoint-mapping>
+          <original-location>/mnt/pathname/dbname/fs</original-location>
+          <snapname>Snapshotname</snapname>
+          <alternate-location>/mnt/vaultlocation</alternate-location>
+     </mountpoint-mapping>
+<!-- "Restore from raw device" -->
+     <raw-device-mapping>
+          <original-location>/pathname/devicename</original-location>
+          <alternate-location>/pathname/devicename</alternate-location>
+     </raw-device-mapping>
+</restore-specification>
+----

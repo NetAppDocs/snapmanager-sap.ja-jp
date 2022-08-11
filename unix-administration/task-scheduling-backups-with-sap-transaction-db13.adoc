@@ -1,0 +1,37 @@
+---
+permalink: unix-administration/task-schedule-backups-with-sap-transaction-db13.html 
+sidebar: sidebar 
+keywords: enable, backup, snapmanager, sap, dba, planning, calendar, transaction, db13, scheduling 
+summary: SnapManager for SAPがDBA Planning CalendarトランザクションDB13からバックアップを実行できるようにするには、いくつかの手順が必要です。 
+---
+= SAPトランザクションDB13を使用してバックアップをスケジュールします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPがDBA Planning CalendarトランザクションDB13からバックアップを実行できるようにするには、いくつかの手順が必要です。
+
+.手順
+. ディレクトリ「/oracle/SID/sapbackup」の権限を変更して、sidadmユーザ識別子による書き込みアクセスを許可します。
++
+次のコマンドを「orasid'」として使用します。
+
++
+*chmod 775/oracle/sid/sapbackup*`
+
++
+これにより'dbaグループのメンバーは'そのディレクトリに書き込むことができますユーザ識別子sidadmは'dbaグループのメンバーです
+
+. SnapManager for SAP credentialsファイルの権限を'orasid'用に変更して'sidadmのアクセスを許可します「orasid'」によって実行される次のコマンドを使用します。
++
+「orasid'」によって実行される次のコマンドを使用します。
+
++
+*chmod 660/oracle/SID/.NetApp/smsap/credentials *
+
++
+SnapManager for SAPリポジトリにsidadmのユーザ識別子を登録するには、セクション3.3の「Registering Systems in the Repository」（TR-3582『SnapManager for SAP Best Practices』）の手順に従ってください。
+
+

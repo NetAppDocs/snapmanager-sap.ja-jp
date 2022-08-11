@@ -1,0 +1,88 @@
+---
+permalink: windows/reference-the-smosmsaprepository-delete-command.html 
+sidebar: sidebar 
+keywords: command, delete, repository, store, database, profile, associate, credential, smsap 
+summary: このコマンドは、データベースプロファイルおよび関連付けられているクレデンシャルを格納するリポジトリを削除します。リポジトリを削除できるのは、リポジトリにプロファイルがない場合だけです。 
+---
+= SMSAPのrepository deleteコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、データベースプロファイルおよび関連付けられているクレデンシャルを格納するリポジトリを削除します。リポジトリを削除できるのは、リポジトリにプロファイルがない場合だけです。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap repository delete
+-repository
+-port repo_port
+-dbname repo_service_name
+-host repo_host
+-login -username repo_username
+[-force] [-noprompt]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-repository`*
++
+-repositoryのあとに続くオプションは'リポジトリのデータベースの詳細を指定します
+
+* *`-port_repo_port_`*
++
+リポジトリが格納されたデータベースへのアクセスに使用する TCP ポート番号を指定します。
+
+* *`-dbname_repo_service_name *
++
+リポジトリが格納されたデータベースの名前を指定します。グローバル名または SID を使用します。
+
+* *`-host_repo_host_`*
++
+リポジトリ・データベースが稼働しているホスト・コンピュータの名前または IP アドレスを指定します。
+
+* *`-login`*
++
+リポジトリ・ログインの詳細設定を開始します。
+
+* *`-username_repo_username_`*
++
+リポジトリが格納されたデータベースにアクセスするために必要なユーザ名を指定します。
+
+* *`-force *
++
+未完了の処理がある場合でも、リポジトリを強制的に削除しようとします。未完了の処理がある場合、 SnapManager はリポジトリを削除するかどうかを確認するプロンプトを表示します。
+
+* *`-noprompt`*
++
+は、リポジトリを削除する前にプロンプトを表示しません。-nopromptオプションを使用すると'プロンプトが表示されなくなり'スクリプトを使用したリポジトリの削除が容易になります
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== コマンド例
+
+次に、データベース SALESDB 内のリポジトリを削除する例を示します。
+
+[listing]
+----
+smsap repository delete -repository -dbname SALESDB
+-host server1 -login -username admin -port 1527 -force -verbose
+----

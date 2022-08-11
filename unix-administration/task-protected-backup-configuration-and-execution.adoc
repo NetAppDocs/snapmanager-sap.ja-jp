@@ -1,0 +1,14 @@
+---
+permalink: unix-administration/task-protected-backup-configuration-and-execution.html 
+sidebar: sidebar 
+keywords: configure, snapmanager, protection, manager, support, database, backup, secondary, administrator, coordinate, action, protect, configuration, execution 
+summary: セカンダリストレージへのデータベースバックアップをサポートするには、 SnapManager と Protection Manager を設定する必要があります。データベース管理者とストレージ管理者は、各自のアクションを調整する必要があります。 
+---
+= 保護されたバックアップ構成と実行
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+セカンダリストレージへのデータベースバックアップをサポートするには、 SnapManager と Protection Manager を設定する必要があります。データベース管理者とストレージ管理者は、各自のアクションを調整する必要があります。

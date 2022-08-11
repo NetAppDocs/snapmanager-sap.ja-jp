@@ -1,0 +1,60 @@
+---
+permalink: windows/task-cloning-databases-from-backups.html 
+sidebar: sidebar 
+keywords: clone, database, backup, create, command, cloning 
+summary: バックアップからデータベースをクローニングするには、 clone create コマンドを使用します。 
+---
+= バックアップからデータベースをクローニングする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップからデータベースをクローニングするには、 clone create コマンドを使用します。
+
+最初に、データベースのクローン仕様ファイルを作成する必要があります。SnapManager は、この仕様ファイル内の情報に基づいてクローンを作成します。
+
+データベースをクローニングした後、新しいクローンデータベース接続情報を使用して、クライアントマシン上の tnsnames.ora ファイルを更新することができます。tnsnames.ora ファイルは、完全なデータベース情報を指定することなく Oracle インスタンスに接続するために使用されます。SnapManager は tnsnames.ora ファイルを更新しません。
+
+プロファイルに -include-pone-backups を指定して作成したものを使用している場合は、必ずアーカイブ・ログ・ファイルを含むバックアップを作成します。 SnapManagerSnapManager でクローニングできるのは、フルデータベースバックアップのみです。
+
+SnapManager （ 3.2 以降）では、データ・ファイルおよびアーカイブ・ログ・ファイルが含まれているバックアップをクローニングできます。
+
+アーカイブログが外部の場所から利用できる場合、クローニング中に外部の場所を指定して、クローンデータベースを整合性のある状態にリカバリできます。外部の場所に Oracle からアクセスできることを確認する必要があります。アーカイブログのみのバックアップのクローニングはサポートされていません。
+
+アーカイブログのバックアップは、オンラインのパーシャルバックアップとともに作成されますが、このバックアップを使用してデータベースのクローンを作成することはできません。
+
+クローニングされたデータベースを整合性のある状態にリカバリするために外部アーカイブログの場所を指定する場合は、外部の場所の名前を完全に大文字で指定する必要があります。ファイルシステムでは、すべてのフォルダとサブフォルダの名前が大文字である必要があります。これは、 Oracle データベースではデスティネーションパスが大文字に変換され、外部のデスティネーションパス、フォルダ名、サブフォルダ名が大文字であることが前提となるためです。外部アーカイブログのデスティネーションパスを小文字で指定すると、指定されたパスがデータベースで識別できず、クローンデータベースのリカバリに失敗することがあります。
+
+外部アーカイブログファイルの場所からデータベースバックアップをクローニングできるのは、スタンドアロンデータベースの場合だけです。
+
+オプションのパラメータとして -dump オプションを指定すると、クローン作成処理の成功後または失敗後にダンプファイルを収集できます。
+
+* アーカイブログバックアップなしのデータファイルバックアップのクローニング *
+
+データファイルのバックアップにアーカイブログバックアップが含まれていない場合、SnapManager for SAPはバックアップ時に記録されたSystem Change Number（SCN）に基づいてデータベースのクローンを作成します。クローニングされたデータベースをリカバリできない場合は、SnapManager for SAPがデータベースのクローニングを続行していて、最後にクローンの作成に成功したにもかかわらず、「The Archived log file for thread <number> and change <scn > required to complete recovery」というエラーメッセージが表示されます。
+
+アーカイブログのバックアップを含めずにデータファイルのバックアップを使用してクローニングする場合、 SnapManager は、バックアップ中に記録される最後のアーカイブログ SCN まで、クローニングされたデータベースをリカバリします。
+
+. クローン仕様ファイルを作成します。
+. クローンを作成するには、次のコマンドを入力します。「+SMSAP clone create -backup-labelbackup_name -newsidnew_sid -labelclone_label -profileprofileprofileprofileprofileprofileprofileprofileprofile_name -clonespecfull_path_to_clonespecfile [-taskspectaskspec][-recover-from-location] path1\[,<path2\...\dum
+
+
+* 関連情報 *
+
+xref:task-cloning-databases-in-the-current-state.adoc[現在の状態のデータベースをクローニングしています]
+
+xref:concept-considerations-for-cloning-a-database-to-an-alternate-host.adoc[代替ホストにデータベースをクローニングする場合の考慮事項]
+
+xref:task-creating-clone-specifications.adoc[クローン仕様を作成しています]
+
+xref:reference-the-smosmsapclone-create-command.adoc[SMSAPのclone createコマンドを使用します]
+
+xref:task-creating-pretask-post-task-and-policy-scripts.adoc[プリタスクスクリプト、ポストタスクスクリプト、ポリシースクリプトの作成]
+
+xref:concept-variables-available-in-the-task-scripts-for-clone-operation.adoc[クローニング処理のタスクスクリプトで使用できる変数]
+
+xref:task-creating-task-scripts.adoc[タスクスクリプトの作成]
+
+xref:task-storing-the-task-scripts.adoc[タスクスクリプトの保存]

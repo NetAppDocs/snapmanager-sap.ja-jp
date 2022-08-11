@@ -1,0 +1,119 @@
+---
+permalink: windows/concept-variables-available-in-the-task-scripts-for-clone-operation.html 
+sidebar: sidebar 
+keywords: snapmanager, context, information, form, environment, variable, clone, operation, perform, example, script, original, host, database, backup 
+summary: SnapManager は、実行するクローン処理に関連する環境変数の形式でコンテキスト情報を提供します。たとえば、元のホストの名前、クローンデータベースの名前、バックアップのラベルを取得できます。 
+---
+= クローニング処理のタスクスクリプトで使用できる変数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager は、実行するクローン処理に関連する環境変数の形式でコンテキスト情報を提供します。たとえば、元のホストの名前、クローンデータベースの名前、バックアップのラベルを取得できます。
+
+次の表に、スクリプトで使用できる環境変数を示します。
+
+|===
+| 変数（ variables ） | 説明 | の形式で入力し 
+
+
+ a| 
+「_SM_original_SID_`」
+ a| 
+元のデータベースの SID
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_ORIGIY_HOST_」
+ a| 
+元のデータベースに関連付けられているホスト名
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_original_OS_USER_」
+ a| 
+元のデータベースの OS 所有者
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_original_OS_GRON_`」を指定します
+ a| 
+元のデータベースの OS グループ
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_TARY_SID_`」
+ a| 
+クローンデータベースの SID
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_TARY_HOST_」
+ a| 
+クローンデータベースに関連付けられたホスト名
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_TARY_OS_USER_」
+ a| 
+クローンデータベースの OS 所有者
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_TARY_OS_GRON_GROUP _」
+ a| 
+クローンデータベースの OS グループ
+ a| 
+文字列
+
+
+
+ a| 
+`_SM_TARY_DB_PORT_`
+ a| 
+ターゲットデータベースのポート
+ a| 
+整数
+
+
+
+ a| 
+'_SM_TARGET_GLOBAL_DB_NAME_`
+ a| 
+ターゲットデータベースのグローバルデータベース名
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_BACKUP _LABEL_`」
+ a| 
+クローンに使用されるバックアップのラベル
+ a| 
+文字列
+
+|===

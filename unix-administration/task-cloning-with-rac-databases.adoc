@@ -1,0 +1,24 @@
+---
+permalink: unix-administration/task-clone-with-rac-databases.html 
+sidebar: sidebar 
+keywords: clone, rac, database, cloning 
+summary: RAC データベースを非 RAC データベースにクローニングしたり、非 RAC データベースにクローニングしてから RAC データベースに変更したりできます。 
+---
+= RACデータベースをクローニングします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+RAC データベースを非 RAC データベースにクローニングしたり、非 RAC データベースにクローニングしてから RAC データベースに変更したりできます。
+
+.手順
+. RACデータベースをクローニングするには、次のコマンドを入力します。
++
+「* SMSAP clone create -backup-label_backup_label_-profile_name_-newsid_new_SID_clonespec_full_path_to_clonespec_file_d-verbose *」を参照してください
+
+. クローン作成された非RACデータベースをRACデータベースに変更するには'ファイルの名前を'_initclone_SID.ora_'から'_initclone_local_instance_SID.ora_'に変更します
+. 名前を変更したファイルを編集して'cluster.database'パラメータを'_true_'に設定しますRAC データベース情報。
+. srvctl を使用して、クローニングされた RAC データベースを登録します。
+

@@ -1,0 +1,55 @@
+---
+permalink: windows/reference-the-smosmsapprofile-delete-command.html 
+sidebar: sidebar 
+keywords: run, profile, delete, command, database, smsap 
+summary: profile delete コマンドを実行して、データベースのプロファイルを削除できます。 
+---
+= SMSAPのprofile deleteコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データベースのプロファイルを削除するには'profile deleteコマンドを実行します
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap profile delete
+-profile profile
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_`*
++
+削除するプロファイルを指定します。
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== 例
+
+次に、プロファイルを削除する例を示します。
+
+[listing]
+----
+smsap profile delete -profile SALES1
+Operation Id [Ncaf00af0242b3e8dba5c68a57a5ae932] succeeded.
+----

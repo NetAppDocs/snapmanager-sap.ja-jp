@@ -1,0 +1,108 @@
+---
+permalink: windows/reference-the-smosmsap-notification-updatesummarynotification-command.html 
+sidebar: sidebar 
+keywords: run, notification, update-summary-notification, command, enable, summary, repository, database, smsap 
+summary: notification update-summary-notification コマンドを実行すると、リポジトリデータベースのサマリー通知をイネーブルにできます。 
+---
+= SMSAPの通知update summary-notificationコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+リポジトリ・データベースのサマリー通知をイネーブルにするには'notification update-summary-notification'コマンドを実行します
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap notification update-summary-notification
+-repository
+-port repo_port
+-dbname  repo_service_name
+-host repo_host
+-login -username repo_username
+-email email-address1,email-address2
+-subject subject-pattern
+-frequency
+[-daily –time daily_time |
+-hourly –time hourly_time |
+-monthly –time monthly_time -date [1|2|3|...|31] |
+-weekly  –time weekly_time -day [1|2|3|4|5|6|7]]
+-profiles profile1,profile2
+-notification-host notification-host
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-repository`*
++
+リポジトリ・データベースの詳細を指定します。
+
+* *`-port_repo_port_`*
++
+リポジトリ・データベースへのアクセスに使用する TCP ポート番号を指定します。
+
+* *`-dbname_repo_service_name *
++
+リポジトリ・データベースの名前を指定します。グローバル名またはシステム ID を使用できます。
+
+* *`-host_repo_host_`*
++
+リポジトリ・データベースが格納されているホストの名前または IP アドレスを指定します。
+
+* *`-login`*
++
+リポジトリ・ログインの詳細を指定します。これはオプションです。指定しない場合、 SnapManager はデフォルトで OS 認証接続モードになります。
+
+* *`-username_repo_username_`*
++
+リポジトリ・データベースへのアクセスに必要なユーザ名を指定します。
+
+* *`-email_email-address1, e-mail-address2_`*
++
+受信者の E メールアドレスを指定します。
+
+* *`-psubject_subject-pattery_`*
++
+E メールの件名のパターンを指定します。
+
+* *`-frequency {-daily --hour_daily_time_|-hourly --hourly_schedule_hourly_schedule_time_|-monthly --time_monthly_schedule_day_{1|2|3...|31}|-weekly --time_weekly_time-day_{1|2|3|4|5|6|7}*
++
+E メール通知を使用するスケジュールのタイプとスケジュールの時刻を指定します。
+
+* *`-profiles_profile1,profile2_`*
++
+E メール通知を必要とするプロファイル名を指定します。
+
+* *`-notification-host_notification-host_`*
++
+サマリー通知 E メールの送信元である SnapManager サーバホストを指定します。通知ホストのホスト名または IP アドレスを指定できます。ホストの IP 名またはホスト名を更新することもできます。
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== 例
+
+次に、リポジトリデータベースのサマリー通知をイネーブルにする例を示します。
+
+[listing]
+----
+
+smsap notification update-summary-notification –repository –port 1521 –dbname repo2 –host 10.72.197.133 –login –username oba5 –email admin@org.com –subject success –frequency -daily -time 19:30:45 –profiles sales1
+----

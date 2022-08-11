@@ -1,0 +1,30 @@
+---
+permalink: unix-administration/concept-requirements-for-using-databases-with-nfs-and-snapmanager.html 
+sidebar: sidebar 
+keywords: requirement, database, network, file, system, nfs, snapmanager, root, attribute, caching, cache, sybolic, link 
+summary: ネットワークファイルシステム（ NFS ）および SnapManager でデータベースを使用するための要件を確認しておく必要があります。推奨事項には、 root 、属性のキャッシュ、およびシンボリックリンクとしての実行が含まれます。 
+---
+= NFS および SnapManager でデータベースを使用するための要件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ネットワークファイルシステム（ NFS ）および SnapManager でデータベースを使用するための要件を確認しておく必要があります。推奨事項には、 root 、属性のキャッシュ、およびシンボリックリンクとしての実行が含まれます。
+
+* SnapManager はルートとして実行する必要があります。 SnapManager は、データファイル、制御ファイル、オンライン REDO ログ、アーカイブログ、およびデータベースホームが格納されたファイルシステムにアクセスできる必要があります。
++
+ルートがファイルシステムにアクセスできるようにするために、次の NFS エクスポートオプションのいずれかを設定します。
+
++
+** root =`_host name_`
+** rw =`_host name_`, anon=0
+
+
+* データベースデータファイル、制御ファイル、 REDO ログとアーカイブログ、およびデータベースホームを含むすべてのボリュームで、属性のキャッシュを無効にする必要があります。
++
+NOAC （ Solaris および AIX の場合）または actimeo=0 （ Linux の場合）オプションを使用してボリュームをエクスポートします。
+
+* マウントポイントレベルでのみシンボリックリンクをサポートするには、ローカルストレージのデータベースデータファイルを NFS にリンクする必要があります。
+

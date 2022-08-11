@@ -1,0 +1,26 @@
+---
+permalink: windows/task-set-the-path-for-br-tools.html 
+sidebar: sidebar 
+keywords: set, path, br, tools, command 
+summary: BR * Toolsコマンドを使用するには、BR * Toolsのパスを設定する必要があります。 
+---
+= BR * Toolsのパスを設定します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+BR * Toolsコマンドを使用するには、BR * Toolsのパスを設定する必要があります。
+
+
+
+== このタスクについて
+
+パスが設定されていない場合に、BR * Toolsを使用してシステムダンプ操作を実行しようとすると、「CONFIG_SUMMARY .txt：'brtools'は内部コマンドまたは外部コマンド、動作可能なプログラム、またはバッチファイルとして認識されません」というエラーメッセージが記録されます
+
+.手順
+. [*スタート*]、[*マイコンピュータ*]の順にクリックし、[*プロパティ*]、[*詳細設定*]、[*環境変数*]の順に右クリックします。
+. 環境変数*ウィンドウで、新しいBR * TOOLSパスを追加するには* New *をクリックし、システム変数とユーザ変数の両方の既存のBR * Toolsパスを編集するには* Edit *をクリックします。
+. [OK]をクリックして変更を保存します。
+

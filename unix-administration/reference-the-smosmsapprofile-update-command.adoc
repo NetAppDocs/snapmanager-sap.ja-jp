@@ -1,0 +1,256 @@
+---
+permalink: unix-administration/reference-the-smosmsapprofile-update-command.html 
+sidebar: sidebar 
+keywords: run, profile, update, command, information, exist, smsap 
+summary: profile update コマンドを実行して、既存のプロファイルの情報を更新できます。 
+---
+= SMSAPのprofile updateコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「profile update」コマンドを実行すると、既存のプロファイルの情報を更新できます。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap profile update
+-profile profile
+[-new-profile _new_profile_name_\]
+[-profile-password _profile_password_\]
+[-database
+-dbname _db_dbname_
+-host _db_host_
+[-sid _db_sid_\]
+[-login
+[-username _db_username_ -password _db_password_ -port _db_port_\]
+[-asminstance -asmusername _asminstance_username_  -asmpassword _asminstance_password_\]]
+pass:quotes[[{-rman  {-controlfile | {{-login
+-username  _rman_username_
+-password  _rman_password_ }
+[-tnsname  _tnsname_\]}}} |
+-remove-rman\]
+-osaccount _osaccount_
+-osgroup _osgroup_
+[-retain
+[-hourly [-count _n_\] [-duration _m_\]\]
+[-daily [-count _n_\] [-duration _m_\]]
+pass:quotes[[-weekly [-count _n_] pass:quotes[[-duration _m_]]
+pass:quotes[[-monthly [-count _n_] pass:quotes[[-duration _m_]]]]
+pass:quotes[-comment _comment_
+-snapname-pattern _pattern_
+[-protect [-protection-policy _policy_name_\] | [-noprotect\]]
+[-summary-notification]
+[-notification
+[-success
+pass:quotes[-email _email_address1,email_address2_
+-subject _subject_pattern_\]
+[-failure
+-email _email_address1,email_address2_
+-subject _subject_pattern_]
+pass:quotes[[-separate-archivelog-backups
+-retain-archivelog-backups
+-hours  _hours_ |
+-days _days_ |
+-weeks _weeks_ |
+-months _months_
+[-protect [-protection-policy _policy_name_\] | [-noprotect\]]
+[-include-with-online-backups | -no-include-with-online-backups]]
+[-dump]
+[-quiet | -verbose]]
+----
+
+
+== パラメータ
+
+プロファイルに保護ポリシーが設定されている場合は、 SnapManager を使用してポリシーを変更することはできません。ポリシーは Protection Manager のコンソールを使用して変更する必要があります。
+
+* ``*-profile_*``
++
+プロファイルの名前を指定します。この名前には 30 文字まで使用でき、ホスト内で一意である必要があります。
+
+* ``*-profile-password_profile_password_*``
++
+プロファイルのパスワードを指定します。
+
+* ``*-new-profile_new_profile_name_*``
++
+プロファイルに指定できる新しい名前を指定します。
+
+* `*-bたべ ーす*``
++
+プロファイルに記述されるデータベースの詳細を指定します。このデータベースに対してバックアップ、リストアなどが実行されます。
+
+* `*-dbdbname_dbname_dbname_*``
++
+プロファイルに記述されるデータベースの名前を指定します。グローバル名またはシステム ID を使用できます。
+
+* `*-host_db_host_*``
++
+データベースが稼働しているホスト・コンピュータの名前または IP アドレスを指定します。
+
+* ``*-sid_db_sid_*``
++
+プロファイルに記述されるデータベースのシステム識別子を指定します。デフォルトでは、 SnapManager はデータベース名をシステム識別子として使用します。システム識別子がデータベース名と異なる場合は'-sid`オプションを使用して指定する必要があります
+
++
+たとえば、 Oracle Real Application Clusters （ RAC ）を使用している場合は、 SnapManager の実行元 RAC ノード上の RAC インスタンスの SID システム識別子を指定する必要があります。
+
+* `*-login*``
++
+リポジトリ・ログインの詳細を指定します。
+
+* `*-username_repo_username_*``
++
+リポジトリ・データベースへのアクセスに必要なユーザ名を指定します。
+
+* `*-port_repo_port_*``
++
+リポジトリ・データベースへのアクセスに必要な TCP ポート番号を指定します。
+
+* `*-bたべ ーす*``
++
+プロファイルに記述されるデータベースの詳細を指定します。このデータベースに対してバックアップ、リストア、またはクローニングが実行されます。
+
+* `*-dbdbname_dbname_dbname_*``
++
+プロファイルに記述されるデータベースの名前を指定します。グローバル名またはシステム ID を使用できます。
+
+* `*-host_db_host_*``
++
+データベースが稼働しているホスト・コンピュータの名前または IP アドレスを指定します。
+
+* `*-login*``
++
+データベース・ログインの詳細を指定します。
+
+* ``*-username_db_username_*``
++
+プロファイルに記述されるデータベースにアクセスするために必要なユーザ名を指定します。
+
+* `*-password_ddb_password_*``
++
+プロファイルに記述されるデータベースにアクセスするために必要なパスワードを指定します。
+
+* `*-port_db_port_*``
++
+プロファイルに記述されるデータベースへのアクセスに必要な TCP ポート番号を指定します。
+
+* `*-asminstance*`
++
+Automatic Storage Management （ ASM ）インスタンスへのログインに使用するクレデンシャルを指定します。
+
+* ``*-asmusername_asminstance_username_*``
++
+ASM インスタンスへのログインに使用するユーザ名を指定します。
+
+* `*-asmpassword_asminstance_password_*``
++
+ASM インスタンスへのログインに使用するパスワードを指定します。
+
+* `*-osaccount_osaccount_*``
++
+Oracle データベースのユーザアカウントの名前を指定します。SnapManager はこのアカウントを使用して、起動やシャットダウンなどの Oracle 処理を実行します。通常は、ホスト上でOracleソフトウェアを所有しているユーザ（orasidなど）です。
+
+* `*-osgroup_osgroup_*``
++
+orasidアカウントに関連付けられたOracleデータベース・グループ名を指定します。
+
+* ``*-retain [-hourly [-count_n_][-duration _m_]][-daily [-duration_n_][-duration _ m_]][-weekly [-count_n_][-duration _ m_]][-monthly [-count_n_][-monthly][-count_n_m_]][-duration_dm_]*```````````
++
+バックアップの保持クラス（毎時、毎日、毎週、毎月）を指定します。
+
++
+各保持クラスについて、保持数または保持期間、あるいはその両方を指定できます。期間はクラスの単位で指定します（たとえば、時間単位の場合は時間単位、日単位の場合は日単位）。たとえば、日次バックアップの保持期間として 7 のみを指定した場合、 SnapManager ではプロファイルの日次バックアップの数が制限されません（保持数が 0 であるため）。ただし、 SnapManager では、 7 日前に作成された日次バックアップが自動的に削除されます。
+
+* `*-comment comment*``
++
+プロファイルのコメントを指定します。
+
+* `*-snapname -pattern_pattern_*``
++
+Snapshot コピーの命名パターンを示します。すべての Snapshot コピー名に、可用性の高い処理用の HAOPS などのカスタムテキストを含めることもできます。Snapshot コピーの命名パターンは、プロファイルの作成時、またはプロファイルの作成後に変更できます。更新後のパターンは、まだ実行されていない Snapshot コピーにのみ適用されます。存在する Snapshot コピーには、前の snapname パターンが保持されます。パターンテキストでは、複数の変数を使用できます。
+
+* ``*-protect[-protection-policy_policy_name_]|[-noprotection]*``
++
+バックアップをセカンダリストレージで保護するかどうかを指定します。
+
++
+
+NOTE: 「-protect`」が「-protection-policy」なしで指定された場合、データセットには保護ポリシーがありません。「-protect`」が指定されていて、プロファイルの作成時に「-protection-policy」が設定されていない場合は、あとで「smsapprofile update」コマンドを使用して設定するか、Protection Managerのコンソールを使用してストレージ管理者が設定することができます。
+
++
+-noprotectオプションは'プロファイルをセカンダリ・ストレージに保護しないように指定します
+
+* `*-summary通知*`
++
+既存のプロファイルでサマリー E メール通知を有効にします。
+
+* `*-notification [-success -email_email_address1,電子メールアドレス2_-subject_subject_pattern_]*``
++
+既存のプロファイルに関する E メール通知を有効にして、 SnapManager 処理が成功したときに受信者から E メールが受信されるようにします。E メールアラートの送信先となる 1 つまたは複数の E メールアドレスと、既存のプロファイルの E メール件名のパターンを入力する必要があります。
+
++
+件名のテキストは、プロファイルの更新中に変更することも、カスタムの件名テキストを含めることもできます。更新された件名は、送信されない E メールにのみ適用されます。E メールの件名にはいくつかの変数を使用できます。
+
+* `*-notification [-failure-email_email_address1,電子メールアドレス2_-subject_subject_pattern_]*``
++
+既存のプロファイルに関する E メール通知を有効にして、 SnapManager 処理が失敗したときに受信者に E メールを送信できるようにします。E メールアラートの送信先となる 1 つまたは複数の E メールアドレスと、既存のプロファイルの E メール件名のパターンを入力する必要があります。
+
++
+件名のテキストは、プロファイルの更新中に変更することも、カスタムの件名テキストを含めることもできます。更新された件名は、送信されない E メールにのみ適用されます。E メールの件名にはいくつかの変数を使用できます。
+
+* `*-separate -archivelog -bbackups *``
++
+アーカイブログバックアップとデータファイルバックアップを分離します。これは、プロファイルの作成時に指定できるオプションのパラメータです。このオプションを使用してバックアップを分けたあとで、データファイルのみのバックアップまたはアーカイブログのみのバックアップを作成できます。
+
+* `*-retain-archivelog -backups-hours_|-days_dys_|-pwes_weys_|-months_months_months_*``
++
+アーカイブログの保持期間（毎時、毎日、毎週、毎月）に基づいてアーカイブログのバックアップを保持するように指定します。
+
+* `*-protect [-protection-policy_policy_name_]|-noprotect *``
++
+アーカイブログの保護ポリシーに基づいてアーカイブログファイルを保護するように指定します。
+
++
+アーカイブ・ログ・ファイルを-noprotectオプションを使用して保護しないことを指定します
+
+* `*-include-with -online-backups|-no-include-with -online-backups*``
++
+オンラインデータベースバックアップにアーカイブログバックアップを含めるように指定します。
+
++
+オンラインデータベースバックアップにアーカイブログバックアップを含めないように指定します。
+
+* `*-dump*``
++
+プロファイル作成処理が成功したあとにダンプ・ファイルを収集するように指定します。
+
+* `*-quiet *``
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== 例
+
+次に、プロファイルで説明されているデータベースのログイン情報を変更し、このプロファイルに電子メール通知を設定する例を示します。
+
+[listing]
+----
+smsap profile update -profile SALES1 -database -dbname SALESDB
+ -sid SALESDB -login -username admin2 -password d4jPe7bw -port 1521
+-host server1 -profile-notification -success -e-mail Preston.Davis@org.com -subject success
+Operation Id [8abc01ec0e78ec33010e78ec3b410001] succeeded.
+----

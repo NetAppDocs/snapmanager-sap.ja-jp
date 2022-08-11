@@ -1,0 +1,50 @@
+---
+permalink: unix-administration/reference-the-smosmsap-server-restart-command.html 
+sidebar: sidebar 
+keywords: command, restart, snapmanager, host, server, enter, root, smsap_server 
+summary: このコマンドは、 SnapManager ホストサーバを再起動し、 root として入力します。 
+---
+= smsap_server restartコマンド
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、 SnapManager ホストサーバを再起動し、 root として入力します。
+
+
+
+== 構文
+
+[listing]
+----
+smsap_server restart
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* 「*- quiet *」と入力します
++
+エラー・メッセージのみがコンソールに表示されるように指定します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されるように指定します。
+
+
+
+'''
+
+
+== コマンドの例
+
+次に、ホスト・サーバを再起動する例を示します。
+
+[listing]
+----
+smsap_server restart
+----
+'''

@@ -1,0 +1,249 @@
+---
+permalink: unix-administration/concept-variables-available-in-the-task-scripts-for-backup-operation.html 
+sidebar: sidebar 
+keywords: snapmanager, context, information, environment, variable, operation, backup, task, script, retention, policy 
+summary: SnapManager は、実行されるバックアップ処理に関連する環境変数の形式でコンテキスト情報を提供します。たとえば、元のホストの名前、保持ポリシーの名前、バックアップのラベルを取得できます。 
+---
+= バックアップ処理のタスクスクリプトで使用できる変数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager は、実行されるバックアップ処理に関連する環境変数の形式でコンテキスト情報を提供します。たとえば、元のホストの名前、保持ポリシーの名前、バックアップのラベルを取得できます。
+
+次の表に、スクリプトで使用できる環境変数を示します。
+
+[cols="2a,3a,1a"]
+|===
+| 変数（ variables ） | 説明 | の形式で入力し 
+
+
+ a| 
+'_SM_OPERATION_ID_'
+ a| 
+現在の処理の ID を指定します
+ a| 
+文字列
+
+
+
+ a| 
+`_SM_PROFILE_NAME_`
+ a| 
+使用するプロファイルの名前を指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_SID_`」
+ a| 
+データベースのシステム識別子を指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_HOST_`」
+ a| 
+データベースのホスト名を指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_OS_USER_」
+ a| 
+データベースのオペレーティングシステム（ OS ）の所有者を指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_OS_GRON_`」
+ a| 
+データベースの OS グループを指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_BACKUP _TYPE_`」
+ a| 
+バックアップのタイプを指定します（ online 、 offline 、 auto ）。
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_BACKUP _LABEL_`」
+ a| 
+バックアップのラベルを指定します
+ a| 
+文字列
+
+
+
+ a| 
+'_sm_backup_ID_`
+ a| 
+バックアップの ID を指定します
+ a| 
+文字列
+
+
+
+ a| 
+'_sm_backup_retention_
+ a| 
+保持期間を指定します
+ a| 
+文字列
+
+
+
+ a| 
+'_sm_backup_profile_
+ a| 
+このバックアップに使用するプロファイルを指定します
+ a| 
+文字列
+
+
+
+ a| 
+`_SM_ALLOWLE_DATABASEE_SHUTDOWN _
+ a| 
+データベースを起動またはシャットダウンするかどうかを指定します必要に応じて ' コマンドラインインタフェースから -force オプションを使用できます
+ a| 
+ブール値
+
+
+
+ a| 
+'_sm_backup_scope_`
+ a| 
+バックアップの範囲を指定します（フルまたはパーシャル）。
+ a| 
+文字列
+
+
+
+ a| 
+'_sm_backup_protection_
+ a| 
+バックアップ保護が有効になっているかどうかを示します
+ a| 
+ブール値
+
+
+
+ a| 
+「_SM_TARY_filer _name_」
+ a| 
+ターゲット・ストレージ・システム名を指定します
+
+
+NOTE: 複数のストレージシステムを使用する場合は、ストレージシステム名をカンマで区切る必要があります。
+ a| 
+文字列
+
+
+
+ a| 
+'_SM_TARGET_volume_name_`
+ a| 
+ターゲットボリューム名を指定します
+
+
+NOTE: ターゲットボリューム名には、ストレージデバイス名の先頭にsm_createdというプレフィックスを付ける必要があります。
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_HOST_FILE_SYSTEM_`」
+ a| 
+ホスト・ファイルシステムを指定します
+ a| 
+文字列
+
+
+
+ a| 
+`_SM_SNAPSHOT_NAMES _`
+ a| 
+Snapshotリストを指定します
+
+
+NOTE: Snapshotコピー名には、ストレージシステム名およびボリューム名のプレフィックスを付ける必要があります。Snapshot コピーの名前はカンマで区切って指定します。
+ a| 
+文字列の配列
+
+
+
+ a| 
+'_SM_ARCHIVE _logs_director_'
+ a| 
+アーカイブログディレクトリを指定します
+
+
+NOTE: アーカイブログが複数のディレクトリに格納されている場合は、ディレクトリの名前をカンマで区切って指定します。
+ a| 
+文字列の配列
+
+
+
+ a| 
+`_SM_REDOログ_DIRECTION_DIRECTION_`
+ a| 
+redo logsディレクトリを指定します
+
+
+NOTE: REDOログが複数のディレクトリに格納されている場合は、それらのディレクトリの名前をカンマで区切って指定します。
+ a| 
+文字列の配列
+
+
+
+ a| 
+`_SM_control_files_director_`
+ a| 
+制御ファイルのディレクトリを指定します
+
+
+NOTE: 制御ファイルが複数のディレクトリにある場合は、ディレクトリの名前をカンマで区切って指定します。
+ a| 
+文字列の配列
+
+
+
+ a| 
+'_SM_data_files_director_'
+ a| 
+データファイルディレクトリを指定します
+
+
+NOTE: データファイルが複数のディレクトリにある場合は、それらのディレクトリの名前をカンマで区切って指定します。
+ a| 
+文字列の配列
+
+
+
+ a| 
+`_user_defined_`
+ a| 
+ユーザが定義する追加のパラメータを指定します。ポリシーとして使用されるプラグインでは、ユーザ定義のパラメータは使用できません。
+ a| 
+ユーザ定義
+
+|===

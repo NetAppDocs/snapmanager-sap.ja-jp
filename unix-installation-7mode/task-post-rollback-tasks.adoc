@@ -1,0 +1,38 @@
+---
+permalink: unix-installation-7mode/task-post-rollback-tasks.html 
+sidebar: sidebar 
+keywords: perform, additional, step, rollback, repository, database, downgrade, snapmanager, host, schedule, version, post, task 
+summary: リポジトリ・データベースをロールバックし、 SnapManager ホストを SnapManager 3.2 から SnapManager 3.0 にダウングレードしたあと、以前のバージョンのリポジトリ・データベースで作成されたスケジュールを表示するには、いくつかの追加手順を実行する必要があります。 
+---
+= ロールバック後のタスク
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+リポジトリ・データベースをロールバックし、 SnapManager ホストを SnapManager 3.2 から SnapManager 3.0 にダウングレードしたあと、以前のバージョンのリポジトリ・データベースで作成されたスケジュールを表示するには、いくつかの追加手順を実行する必要があります。
+
+. 「cd /opt/NetApp/smsap/repositories」に移動します。
++
+「repositories」ディレクトリには、各リポジトリに2つのファイルが含まれる場合があります。番号記号（ # ）の付いたファイル名は SnapManager 3.1 以降を使用して作成され、ハイフン（ - ）の付いたファイル名は SnapManager 3.0 を使用して作成されます。
+
++
+* 例 *
+
++
+ファイル名は次のようになります。
+
++
+** Repository #SMSAP300a #SMSAPPREPO1#10.72.197.141#1521
+** 「repository-smsap300a -saprepo1-10.72.197.141-1521
+
+
+. ファイル名のシャープ記号（ # ）をハイフン（ - ）に置き換えます。
++
+* 例 *
+
++
+番号記号(#)が付いているファイル名には'現在ハイフン(-)が含まれていますリポジトリSMSAP300A-SMSAPPREPO1-10.72.197.141-1521
+
+

@@ -1,0 +1,60 @@
+---
+permalink: windows/task-performing-backup-restore-and-clone-operations-using-prescript-and-post-scripts.html 
+sidebar: sidebar 
+keywords: script, initiating, initiate, backup, restore, clone, operation, snapmanager, task-enabling, page, create, wizard, restore, recover, create, parameter, prescript, post-script 
+summary: 独自のスクリプトを使用して、バックアップ、リストア、またはクローニングの処理を開始できます。SnapManager では、バックアップ作成ウィザード、リストアウィザード、リカバリウィザード、またはクローン作成ウィザードのタスク有効化ページが表示されます。このページで、スクリプトを選択し、スクリプトに必要なパラメータの値を指定できます。 
+---
+= プリスクリプトとポストスクリプトを使用してバックアップ、リストア、クローニングの処理を実行する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+独自のスクリプトを使用して、バックアップ、リストア、またはクローニングの処理を開始できます。SnapManager では、バックアップ作成ウィザード、リストアウィザード、リカバリウィザード、またはクローン作成ウィザードのタスク有効化ページが表示されます。このページで、スクリプトを選択し、スクリプトに必要なパラメータの値を指定できます。
+
+* プラグインスクリプトを、正しい SnapManager のインストール場所にインストールします。
+* SMSAP plugin check コマンドを使用して、プラグインが正しくインストールされていることを確認します。
+* bash シェルを使用していることを確認します。
+
+
+コマンドラインインターフェイス（ CLI ）で、スクリプト名をリストし、パラメータを選択して値を設定します。
+
+. bashシェルを使用しているかどうかを確認するには、コマンドプロンプトで「bash」と入力します
++
+または、プロンプトで bash コマンドを入力し、スクリプトの開始パラメータとしてコマンド出力を使用することもできます。
+
++
+bash シェルは、エラーが表示されなければ正常に動作しています。
+
+. バックアップ処理の場合は、-taskspecオプションを入力して、バックアップ処理の前後に前処理や後処理を実行するためのタスク仕様XMLファイルの絶対パスを指定します。
++
+SMSAP backup create -profile profile_name｛[-full｛-online |-offline |-auto｝[-retain｛-hourly |[-daily |-weekly |-monthly |-unlimited｝][-verify]|[-data [[-files[files]|[-tablespaces -tablespaces [--tablespaces [--unlimited |-ontap]-commental|-archabell-label-]|-retain-labe|-unlimited [-ontap|-commental|-unlimited |-unlimited｝] [-backup-destpath1[,[path2]][-exclude-destpath1[,path2]][-prunelogs {all|-untSCNuntilscn|-before {-deyyyy-md HH:mm:months |-days |-wee|-hours |-hours |-hours |-hours |-prune backups}-dest-dump-dest-d]-dest-dese-dest-dump [オンラインでのバックアップを含めて実行しない]-dest-dump-dest-dump-dest-des|-dest-dpruneを含む]-dest-des|-dest-des|-dest-des|-dest-des|-dest-des|-dest-dpruneジョブを含む
+
++
+バックアッププラグイン処理に失敗した場合は、プラグイン名と戻りコードのみが表示されます。プラグインスクリプトにログメッセージを含め、ユーザ定義のログファイルにメッセージをリダイレクトする必要があります。
+
+. バックアップリストア処理の場合は、-taskspecオプションを使用して、前処理やポストプロセス処理を実行するためのタスク仕様XMLファイルの絶対パスを指定します。
++
+「SMSAP backup restore -profile profile_name｛-label <label>|-id <id>｝｛-files <files>|-tablespaces <tablespaces \>|-complete |-controlfiles｝[-recover｛alllogs |-nologs |-until <until >｝][-restorespec <restorespec >][-taskspec <labelspec>][force-backup][force-off][force-backup][必須
+
++
+リストアプラグインの処理に失敗した場合は、プラグイン名と戻りコードのみが表示されます。プラグインスクリプトにログメッセージを含め、ユーザ定義のログファイルにメッセージをリダイレクトする必要があります。
+
+. クローン作成処理の場合、-taskspecオプションを使用してタスク仕様XMLファイルの絶対パスを指定することで、前処理や後処理を実行してクローン処理の前後に処理を実行できます。
++
+「SMSAP clone create -profile profile_name｛-backup-labelbackup_name |-backup-id <backup-id>|-current｝-newsidnew_sid -clonespecfull_path_to_clonespecfile [-reserve <yes、no、inherit>][-host <host>][-label <label>][-dosquiet] taskspec<spec>
+
++
+クローンプラグイン処理に失敗した場合は、プラグイン名と戻りコードのみが表示されます。プラグインスクリプトにログメッセージを含め、ユーザ定義のログファイルにメッセージをリダイレクトする必要があります。
+
+
+
+
+
+== タスク仕様 XML ファイルを使用したバックアップの作成例
+
+[listing]
+----
+smsap backup create -profile SALES1 -full -online -taskspec sales1_taskspec.xml -force -verify
+----

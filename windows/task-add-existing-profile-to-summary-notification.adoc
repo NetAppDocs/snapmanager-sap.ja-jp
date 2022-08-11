@@ -1,0 +1,21 @@
+---
+permalink: windows/task-add-existing-profile-to-summary-notification.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, add, exist, profile, summary, email, notification, updating, update 
+summary: SnapManager を使用すると、既存のプロファイルを概要 E メール通知に追加し、そのプロファイルを更新できます。 
+---
+= サマリーEメール通知に既存のプロファイルを追加します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を使用すると、既存のプロファイルを概要 E メール通知に追加し、そのプロファイルを更新できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAPプロファイルupdate -profile update_profile_profile_name_[-profile-password-password_profile_password_]-repository-dbname_repo_repo_repo_repo_repo_repo_repo_repo_host_host_-port_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_db_dbname_host_db1_host_db1_db_host_db1_db_host_db1_db_dba_login]-db_db_host_db1_db_host_db1_db_domain_srman_password-drman [-drman_password-drman [-drman_password-drman_db1_db_< username [-drman_password-drman_db1_db_< username [-drman_db1_db_< username }rman_db1_db_db_<-drman_host_password-drman_host_host_host_name>]-admin_password-drman_db1_db_< username }rman_host_db1_db_rman_db1_db_rman_db1_db_host_name -count _n_][-duration _m_]][-weekly-count_n_][-duration _m_]][-monthly-count_n_][-duration _m_]][-duration_m_]][-comment_]][-snapname=-pattern_pattern_pattern_][][][][][][-summary-notification]*```
+
+

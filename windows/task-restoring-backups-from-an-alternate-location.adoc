@@ -1,0 +1,29 @@
+---
+permalink: windows/task-restoring-backups-from-an-alternate-location.html 
+sidebar: sidebar 
+keywords: restore, alternate, location, data, file, intermediate, system, active, restoring, backup 
+summary: 別の場所からリストアして、中間ファイルシステムからアクティブファイルシステムにデータファイルをリストアできます。 
+---
+= 別の場所からのバックアップのリストア
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+別の場所からリストアして、中間ファイルシステムからアクティブファイルシステムにデータファイルをリストアできます。
+
+* リストア仕様 XML ファイルを作成し、使用するリストア方式を指定します。
+
+
+SMSAPのbackup restoreコマンドを使用して、別の場所からバックアップをリストアするために作成したリストア仕様XMLファイルを指定できます。
+
+. 次のコマンドを入力します。
++
+「SMSAP backup restore -profile profile -labellabel -complete -alllogs -restorespecespecespec」を参照してください
+
+
+
+* 関連情報 *
+
+xref:reference-the-smosmsapbackup-restore-command.adoc[SMSAPのbackup restoreコマンドを使用します]

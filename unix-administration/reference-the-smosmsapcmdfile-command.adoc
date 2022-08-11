@@ -1,0 +1,71 @@
+---
+permalink: unix-administration/reference-the-smosmsapcmdfile-command.html 
+sidebar: sidebar 
+keywords: cmdfile, command, shell, host, limit, number, character, smsap, line 
+summary: ホスト上のシェルでコマンド・ラインに表示できる文字数が制限されている場合は、 cmdfile コマンドを使用して、任意のコマンドを実行できます。 
+---
+= SMSAP cmdfileコマンドを使用してください
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ホスト上のシェルでコマンド・ラインに表示できる文字数が制限されている場合は、「cmdfile」コマンドを使用して、任意のコマンドを実行できます。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap cmdfile
+-file _file_name_
+[-quiet | -verbose\]]
+----
+このコマンドをテキスト・ファイルに格納し、「smsapcmdfile」コマンドを使用してコマンドを実行できます。テキストファイルに追加できるコマンドは 1 つだけです。コマンド構文にSMSAPを含めることはできません。
+
+
+NOTE: 「SMSAP cmdfile cmdfile」コマンドは、「smsapfile」コマンドに代わるものです。「SMSAP cmdfile」は、「smsapfile」コマンドと互換性がありません。
+
+
+
+== パラメータ
+
+* `*-file-file_name _*``
++
+実行するコマンドを含むテキスト・ファイルのパスを指定します。
+
+* `*-quiet *``
++
+エラー・メッセージのみがコンソールに表示されるように指定します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されるように指定します。
+
+
+
+'''
+
+
+== 例
+
+この例では'/tmp/tmp'にある"command.txt"に'profile createコマンドを含めて'プロファイルを作成します次に'SMSAP cmdfileコマンドを実行します
+
+テキストファイルには次の情報が含まれています。
+
+[listing]
+----
+profile create -profile SALES1 -repository -dbname SNAPMGRR
+-login -username server1_user -password ontap -port 1521 -host server1
+-database -dbname SMSMSAP -sid SMSMSAP -login -username sys -password oracle -port 1521
+-host Host2 -osaccount oracle -osgroup db2
+----
+これで、「command.txt」ファイルを指定して「smsapcmdfile」コマンドを実行し、プロファイルを作成できるようになりました。
+
+[listing]
+----
+smsap cmdfile -file /tmp/command.txt
+----
+'''

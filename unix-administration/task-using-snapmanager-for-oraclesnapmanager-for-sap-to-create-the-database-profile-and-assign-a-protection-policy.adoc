@@ -1,0 +1,100 @@
+---
+permalink: unix-administration/task-use-snapmanager-for-oraclesnapmanager-for-sap-to-create-the-database-profile-and-assign-a-protection-policy.html 
+sidebar: sidebar 
+keywords: create, profile, snapmanager, sap, enable, protection, assign, policy, protection, backup 
+summary: SnapManager for SAPでプロファイルを作成し、プロファイルで保護を有効にし、保護ポリシーを割り当てて保護されたバックアップを作成する必要があります。 
+---
+= SnapManager for SAPを使用して、データベースプロファイルを作成し、保護ポリシーを割り当てます
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPでプロファイルを作成し、プロファイルで保護を有効にし、保護ポリシーを割り当てて保護されたバックアップを作成する必要があります。
+
+* このタスクについて *
+
+プロファイルには、クレデンシャル、バックアップの設定、バックアップの保護設定など、管理対象のデータベースに関する情報が含まれています。プロファイルの作成後は、処理を実行するたびにデータベースの詳細を指定する必要はありません。1 つのプロファイルで参照できるデータベースは 1 つだけですが、同じデータベースを複数のプロファイルで参照できます。
+
+.手順
+. SnapManager for SAP Clientにアクセスします。
+. リポジトリツリーでホストを右クリックし、 * プロファイルの作成 * を選択します。
+. [プロファイル構成情報*]ページで、プロファイルの詳細を入力し、[次へ*]をクリックします。
++
+* 例 *
+
++
+次の情報を入力できます。
+
++
+** プロファイル名：P1_BACKUP
+** プロファイルパスワード： payroll123
+** コメント： Production Payroll データベース
+
+
+. データベース構成情報*ページで、データベースの詳細を入力し、*次へ*をクリックします。
++
+* 例 *
+
++
+次の情報を入力できます。
+
++
+** データベース名：P01
+** データベースSID：P01
+** Database host ：デフォルトの設定をそのまま使用します。リポジトリツリー内のホストからプロファイルを作成しているため、 SnapManager にホスト名が表示されます。
+** Oracleユーザアカウント（ora<sid>の場合）を表すホストアカウント：orapayrolldb
+** ホストグループ。 Oracle グループの場合は、 dba です
+
+
+. [データベース接続情報*]ページで、[データベース認証を使用する]をクリックして、ユーザーがデータベース情報を使用して認証できるようにします。
+. データベース接続の詳細を入力し、 * 次へ * をクリックします。
++
+* 例 *
+
++
+次の情報を入力できます。
+
++
+** Administrator 権限を持つシステム・データベース管理者である sys を表す SYSDBA 特権ユーザ名
+** パスワード（ SYSDBA パスワード）： oracle
+** データベースホストに接続するポート：1527
+
+
+. スナップショット命名情報ページで、変数を選択して、このプロファイルに関連付けられたスナップショットの命名規則を指定します。
++
+`_smpid_`変数は一意のスナップショット識別子を作成します
+
++
+次の手順を実行します。
+
++
+.. [変数トークン*]リストで'_usertext_'を選択し'[*Add*]をクリックします
+.. ホスト名として「_prod01.sample.com__`」と入力し、「*OK*」をクリックします。
+.. SMSAPの直後のフォーマットボックスにホスト名が表示されるまで、*左*をクリックします。
+.. 「 * 次へ * 」をクリックします。
+
+
++
+Snapshotの命名規則「_smsap_hostname_smsapprofile_dbsid_scope_mode_smid_」は「smsap_prpd01.sample.com_P01_BACKUP_P01_f_a_x"」になります（「f」はフルバックアップ、「a」は自動モード、「x」は一意のSMIDを表します）。
+
+. [* Protection Manager Protection Policy] を選択します。
++
+Protection Manager Protection Policy * を使用すると、 NetApp Management Console を使用して設定した保護ポリシーを選択できます。
+
+. NetApp Management Console から取得した保護ポリシーで「 TechCo Payroll Data ： Backup * 」を選択し、「 * Next 」をクリックします。
+. [操作の実行*]ページで、情報を確認し、[作成*]をクリックします。
+. [* Operation Details] をクリックして、プロファイル作成処理およびボリューム・ベースのリストアの適格性情報を表示します。
+
+
+* 結果 *
+
+* データベースプロファイルにNetApp Management Console保護ポリシーを割り当てると、自動的に非適合データセットが作成され、NetApp Management ConsoleオペレータにはSMSAP_<hostname>_<profilename>という命名規則またはこの例でsmsap_prod01.sample.com_P01_BACKUPという名前のデータセットが表示されます。
+* このプロファイルがボリュームリストア（高速リストア）の対象でない場合は、次のように処理されます。
++
+** [ * 結果 * （ * Results * ） ] タブには、プロファイルの作成が成功し、操作中に警告が発生したことが示されます。
+** [ * 操作の詳細 * ] タブには警告ログが含まれています。このログには、プロファイルが高速リストアの対象ではないこと、およびその理由が示されています。
+
+
+

@@ -1,0 +1,37 @@
+---
+permalink: windows/task-creating-oracle-users-for-the-repository-database.html 
+sidebar: sidebar 
+keywords: create, oracle, user, repository, database, assign, privilege, operation, creating 
+summary: リポジトリデータベース用の Oracle ユーザを作成し、リポジトリデータベースに対して複数の処理を実行するための特定の権限を割り当てることができます。 
+---
+= リポジトリデータベース用の Oracle ユーザの作成
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+リポジトリデータベース用の Oracle ユーザを作成し、リポジトリデータベースに対して複数の処理を実行するための特定の権限を割り当てることができます。
+
+接続権限とリソース権限を Oracle ユーザに割り当てる必要があります。sysdba 権限を持つリポジトリデータベースのユーザを作成する必要はありません。
+
+
+NOTE: ただし、ターゲットデータベースの sysdba ロールを持つ Oracle ユーザを作成する必要があります。
+
+. SQL*Plus にログインします。
++
+コマンドプロンプトで'sqlplus '/as sysdba'と入力します
+
++
+[listing]
+----
+SQL*Plus: Release 11.2.0.1.0 Production on Wed Jun 1 06:01:26 2011
+Copyright (c) 1982, 2009, Oracle.  All rights reserved.
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - Production
+With the Partitioning, Automatic Storage Management, OLAP, Data Mining
+and Real Application Testing options
+----
+. たとえば'adminpw1などの管理者パスワードを持つリポジトリ用のユーザ（たとえば'repo1_user）を作成するには'SQLプロンプトで次のコマンドを入力しますSQL> create user repo1_user identified by adminpw1;`
+. ユーザーに接続とリソースの権限を付与するには' grant connect ' resource to repo1_user;'コマンドを入力します
+

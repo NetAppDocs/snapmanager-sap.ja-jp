@@ -1,0 +1,58 @@
+---
+permalink: windows/task-configuring-e-mail-notification-for-a-new-profile.html 
+sidebar: sidebar 
+keywords: creating, create, profile, configure, receive, email, notification, completion, database, operation, configuring, profile 
+summary: 新しいプロファイルを作成する場合、データベース処理が完了したときに E メール通知を受け取るようにを設定できます。 
+---
+= 新しいプロファイルの E メール通知を設定しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+新しいプロファイルを作成する場合、データベース処理が完了したときに E メール通知を受け取るようにを設定できます。
+
+* アラートの送信元 E メールアドレスを設定する必要があります。
+* 複数の E メールアドレスを指定する場合は、カンマで区切って指定する必要があります。
++
+カンマと次の E メールアドレスの間にスペースを入れないようにしてください。
+
++
+
+NOTE: 一連の E メールアドレスは二重引用符で囲む必要があります。
+
+
+
+.ステップ
+. 次のコマンドを入力します。
++
+SMSAP profile create -profile create -profile profile[-profile-passwordprofile_password]-repository -dberepo_service_name -hostrepppo_host-comment-usernamerepo_username -database -dbname -dbnamedb_dbname -host[-siddb_hostname][-password-durerman [-drast_address_addressm -email-password][-drman[-drst_addressm -password-password][-drman [-drst_addressm -password-password-password][-drst_addressm [-drman [-drst_addressm -password][--atername -password]-password-password-password-password-password-password-atlename -password][-drst_addressm [-drst_addressm [-dr全般[-drst_addressm [-drst_addressm [-drst_addressm [-drman [-drman][-drman]-password][-drman]-password][-drman]-password][-drman][--atime-mail-password]-password]-password
+
++
+このコマンドの他のオプションは、次のとおりです。
+
++
+[-force]
+
++
+
+NOTE: SnapManager では、 E メールアドレスが最大 1000 文字までサポートされます。
+
++
+プロファイルを使用して（アーカイブログの個別バックアップを作成するために）データファイルとアーカイブログファイルのバックアップを作成し、データファイルのバックアップの作成に失敗した場合は、データバックアップとアーカイブログのバックアップではなく、処理名としてデータバックアップが送信されます。データファイルおよびアーカイブログファイルのバックアップ処理が成功すると、出力は次のようになります。
+
++
+[listing]
+----
+
+Profile Name    : PROF_31
+Operation Name 	: Data Backup and Archive Logs Backup
+Database SID   	: TENDB1
+Database Host 	 : repo1.rtp.org.com
+Start Date 	    : Fri Sep 23 13:37:21 EDT 2011
+End Date 	      : Fri Sep 23 13:45:24 EDT 2011
+Status 	        : SUCCESS
+Error messages 	:
+----
+

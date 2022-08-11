@@ -1,0 +1,44 @@
+---
+permalink: windows/task-updating-the-existing-repository.html 
+sidebar: sidebar 
+keywords: update, exist, repository, upgrading, upgrade, snapmanager, path, updating 
+summary: SnapManager 3.3.x から SnapManager 3.4 以降にアップグレードする場合、既存のリポジトリを更新する必要はありませんが、他のすべてのアップグレードパスでは、アップグレード後にアクセスできるように既存のリポジトリを更新する必要があります。 
+---
+= 既存のリポジトリを更新しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager 3.3.x から SnapManager 3.4 以降にアップグレードする場合、既存のリポジトリを更新する必要はありませんが、他のすべてのアップグレードパスでは、アップグレード後にアクセスできるように既存のリポジトリを更新する必要があります。
+
+* アップグレードした SnapManager サーバを起動して確認しておく必要があります。
+* 既存のリポジトリのバックアップが存在している必要があります。
+* SnapManager 3.1 より前のバージョンから SnapManager 3.3 以降にアップグレードする場合は、まず SnapManager 3.2 にアップグレードする必要があります。
++
+SnapManager 3.2 にアップグレードしたあと、 SnapManager 3.3 以降にアップグレードできます。
+
+* リポジトリを更新すると、以前のバージョンの SnapManager ではそのリポジトリを使用できなくなります。
++
+.. 既存のリポジトリを更新します。「SMSAP repository update -repository -dbname repository_service_name -host repository_host_name -login -username repository_user_name -port repository_port
++
+*** リポジトリのユーザ名、リポジトリサービス名、およびリポジトリホスト名には、英数字、マイナス記号、アンダースコア、ピリオドを使用できます。
+*** リポジトリポートには、任意の有効なポート番号を使用できます。既存のリポジトリの更新時に使用されるその他のオプションは、次のとおりです。
+*** force オプション
+*** noprompt オプション
+*** quiet オプション
+*** verbose オプション
+
+
+
+
++
+[listing]
+----
+smsap repository update -repository -dbname HR1
+-host server1 -login -username admin -port 1521
+----
+
+
+SnapManager サーバを再起動して、関連付けられているスケジュールをすべて再開します。

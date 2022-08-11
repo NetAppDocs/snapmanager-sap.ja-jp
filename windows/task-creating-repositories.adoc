@@ -1,0 +1,73 @@
+---
+permalink: windows/task-creating-repositories.html 
+sidebar: sidebar 
+keywords: snapmanager, require, repository, host, data, operation, perform, creating, create 
+summary: SnapManager では、実行した処理に関するデータを保持するために、ホスト上にリポジトリが必要です。 
+---
+= リポジトリの作成
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、実行した処理に関するデータを保持するために、ホスト上にリポジトリが必要です。
+
+次の作業が完了していることを確認します。
+
+. リポジトリデータベースに Oracle ユーザとパスワードを作成します。
+. リポジトリへのユーザ・アクセスを許可します。
+
+
+リポジトリの場合、SnapManager for SAPでは、表領域をインストールするために、最低4Kのブロックサイズが必要です。ブロックサイズは、次の SQL コマンドを使用して確認できます。
+
+[listing]
+----
+select a.username, a.default_tablespace, b.block_size
+from dba_users a, dba_tablespaces b
+a.username = repo_user
+----
+ここで、
+
+* a.default_tablespace = b. tablespace_name に設定します
+* a.username = リポジトリ上のユーザ名
+
+
+リポジトリをアップグレードする場合、 SnapManager サーバをリブートして、関連するスケジュールを再起動する必要があります。
+
+. リポジトリを作成するには、次の一般的な形式でrepository createコマンドを入力します。
++
+「smsaprepository create -repository -dbname repo_service_name -host repo_hostname -login -username repo_username -port repo_port [-force-noprompe][-quiet |-verbose」というメッセージが表示されます
+
++
+ここで、
+
++
+** repository -dbname は、リポジトリ・データベースの名前です。
+** -host は、リポジトリのホストの名前です。
+** -username は、リポジトリにアクセスできるデータベース・ユーザの名前です。
+** -port は、ホストのポートです。このコマンドの他のオプションは、次のとおりです。
+
+
++
+[-force] [-nopromp]
+
++
+[+]
+
++
++ 注 : 同じ名前の既存のリポジトリがある場合に -force オプションを使用すると ' 既存のリポジトリスキーマ内のすべてのデータが上書きされます
+
+
+
+
+
+== リポジトリの作成
+
+次のコマンド・ラインを使用すると、リポジトリが作成されます。
+
+[listing]
+----
+smsap repository create -repository -dbname HR1
+-host server1 -login -username admin -port 1521
+----

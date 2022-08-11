@@ -1,0 +1,90 @@
+---
+permalink: unix-installation-7mode/task-smsap-isg-install-snapmanager.html 
+sidebar: sidebar 
+keywords: install, snapmanager, host, database, backup, run 
+summary: バックアップするデータベースが実行されている各ホストに SnapManager をインストールする必要があります。 
+---
+= SnapManager をインストールします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップするデータベースが実行されている各ホストに SnapManager をインストールする必要があります。
+
+* 必要なもの *
+
+データベースホストに SnapDrive for UNIX がインストールされ、ストレージシステムへの接続が確立されている必要があります。
+
+SnapDrive をインストールしてストレージ・システムへの接続を確立する方法については、 SnapDrive for UNIX のマニュアルを参照してください。
+
+* このタスクについて *
+
+データベースホストごとに 1 つの SnapManager インスタンスをインストールする必要があります。Real Application Cluster （ RAC ）データベースを使用している状況で RAC データベースをバックアップする場合は、 RAC データベースのすべてのホストに SnapManager をインストールする必要があります。
+
+. UNIX用SnapManager for SAPインストールパッケージをネットアップサポートサイトからダウンロードし、ホストシステムにコピーします。
++
+http://mysupport.netapp.com/NOW/cgi-bin/software["ネットアップのダウンロード：ソフトウェア"^]
+
+. root ユーザとしてデータベースホストにログインします。
+. コマンドプロンプトで、インストールパッケージをコピーしたディレクトリに移動します。
+. インストールパッケージを実行可能にします。
++
+*chmod 754_install_package.bin _*
+
+. SnapManager のインストール：
++
+'*_./install_package.bin _*
+
+. Enterキーを押して続行します。
+. 次の手順を実行します。
++
+.. オペレーティング・システム・ユーザーのデフォルト値を'*or*`sid_`に変更しますここで'_sid_はデータベースのシステム識別子です
+.. オペレーティング・システム・グループのデフォルト値を受け入れるには、Enterキーを押します。
++
+グループのデフォルト値は、_dba__です。
+
+.. Enterキーを押して'スタートアップ・タイプのデフォルト値を受け入れます
+
+
++
+設定の概要が表示されます。
+
+. 構成の概要を確認し、Enterキーを押して続行します。
++
+SnapManager for SAPおよび必要なJava Runtime Environment (JRE)がインストールされ'SMSAP_setup'スクリプトが自動的に実行されます
+
++
+SnapManager for SAPは'/opt/NetApp/smsap'にインストールされます
+
+
+
+* 終了後 *
+
+インストールが正常に完了したかどうかを確認するには、次の手順を実行します。
+
+. 次のコマンドを実行して、SnapManager サーバのを起動します。
++
+「* smsap_server start *」と入力します
+
++
+for SnapManager サーバが実行中であることを示すメッセージが表示されます。
+
+. 次のコマンドを入力して、SnapManager for SAP for systemが正しく動作していることを確認します。
++
+'*SMSAP system verify*
+
++
+「Operation ID number succeeded」というメッセージが表示されます。
+
++
+number は、処理 ID 番号です。
+
+
+
+* 関連情報 *
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30050["ネットアップのマニュアル： SnapDrive for UNIX"^]
+
+http://mysupport.netapp.com/["ネットアップサポートサイトのドキュメント： mysupport.netapp.com"^]

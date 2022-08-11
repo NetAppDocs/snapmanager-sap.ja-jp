@@ -1,0 +1,312 @@
+---
+permalink: windows/reference-troubleshooting-snapmanager.html 
+sidebar: sidebar 
+keywords: information, common, issue, resolve, troubleshoot, snapmanager 
+summary: ここでは、発生する可能性のある最も一般的な問題とその解決方法について説明します。 
+---
+= SnapManager のトラブルシューティング
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ここでは、発生する可能性のある最も一般的な問題とその解決方法について説明します。
+
+次の表に、一般的な問題と解決策を示します。
+
+[cols="2*"]
+|===
+| 問題主導の質問 | 解決策の可能性があります 
+
+
+ a| 
+ターゲット・データベースとリスナーは動作していますか
+ a| 
+lsnrctl statusコマンドを実行しますデータベース・インスタンスがリスナーに登録されていることを確認します。
+
+
+
+ a| 
+ストレージは認識されていますか。
+ a| 
+次の手順を実行します。
+
+. [ マイコンピュータ ] を右クリックし、 [ * 管理 ] を選択します。
+. [*Storage*>*SnapDrive *>*Hostname*>*Disks*] をクリックします。
+
+
+
+
+ a| 
+SnapManager サーバは稼働していますか。
+ a| 
+ステータスを確認し、サービス設定を使用してサーバを起動します。
+
+グラフィカルユーザインターフェイス（ GUI ）またはコマンドラインインターフェイス（ CLI ）を使用してプロファイルに関連する SnapManager コマンドを開始するには、サーバが稼働している必要があります。サーバを起動せずにリポジトリを作成または更新できますが、他のすべての SnapManager 操作を実行するには、サーバが実行されている必要があります。
+
+SnapManager サーバを起動するには、次のコマンドを入力します。
+
+「SMSAP_SERVER START」
+
+
+
+ a| 
+SnapManager の実行に必要なすべてのコンポーネントが正しく設定されていますか？
+ a| 
+「SMSAP system verify」コマンドを実行して、SnapDrive が正しく設定されていることを確認します。
+
+
+
+ a| 
+正しいバージョンの SnapManager を使用していますか？
+ a| 
+「SMSAP version」コマンドを使用して、SnapManager のバージョンを確認します。
+
+
+
+ a| 
+問題ログファイルを調べて、エラーメッセージが SnapManager の特定に役立つかどうかを確認しましたか。
+ a| 
+SnapManager は、すべてのログ・エントリを 1 組の循環型ログ・ファイルに記録します。ログ・ファイルはC：\program_files\NetApp\SnapManager for SAP\logsにあります。
+
+Windows 2008 を使用している場合、ログは次の場所にあります。
+
+* 処理ログ：
++
+** C：\Program Files\NetApp\SnapManager for SAP\var\log\smsap`
+
+
+* クライアントログ：
++
+** 「C：\Users\ Administrator\AppData\Roaming\NetApp\SMS\3.3.0\」に移動します
+
+
+
+
+ログの参照先としては、「C：\Documents and Settings\hostname\Application Data\NetApp\SMS\3.3.3.0\log」も推奨されます
+
+各処理ログは、「SMSAP_OF_DATE_TIME .log」という形式の独自のログファイルに書き込まれます。
+
+
+
+ a| 
+Data ONTAP を実行していないストレージ・システムにアーカイブ・ログが格納されている場合、 SnapManager でのバックアップ処理からそれらのログを除外しましたか。
+ a| 
+「smsap.config」ファイルを使用すると、特定のアーカイブログファイルを除外できます。Windowsの場合、このファイルは「C：\Program files\NetApp/smsap\properties\smsap.config」の場所にあります
+
+ローカルアーカイブログを除外するには、ファイルに記載されている形式を使用します。追加情報については、「設定プロパティ」のトピックを参照してください。
+
+SnapManager CLI からバックアップを作成する際に、アーカイブログのデスティネーションを除外することもできます。追加情報については ' データベース・バックアップの作成に関するトピックを参照してください
+
+SnapManager の GUI からバックアップを作成する際に、アーカイブログのデスティネーションを除外することもできます。
+
+
+
+ a| 
+Windows で SnapManager をインストールまたはアップグレードしようとしているディレクトリで MS-DOS ウィンドウが開いていますか ?
+ a| 
+次のようなエラーメッセージが表示されます。
+
+[listing]
+----
+Directory
+C:\Program Files\NetApp\SnapManager for SAP\bin
+is currently in use by another program.
+Any window, opened by you or
+another user, that is currently
+referencing this directory must be
+closed before installation can proceed.
+----
+ウィンドウを閉じて、インストールまたはアップグレードを再試行します。
+
+
+
+ a| 
+リポジトリに接続できませんでしたか ?
+ a| 
+リポジトリへの接続に失敗した場合は'リポジトリ・データベース上でlsnrctl statusコマンドを実行し'アクティブなサービス名を確認しますSnapManager がリポジトリデータベースに接続すると、データベースのサービス名が使用されます。リスナーの設定によっては、短縮サービス名または完全修飾サービス名が使用されます。バックアップ、リストア、またはその他の処理のために SnapManager がデータベースに接続するときは、ホスト名と SID が使用されます。リポジトリが現在アクセスできないために正常に初期化されない場合は ' リポジトリを削除するかどうかを確認するエラー・メッセージが表示されますリポジトリを現在のビューから削除すると、他のリポジトリに対しても処理を実行できます。
+
+また、対応するサービスが実行されているかどうかも確認してください。
+
+
+
+ a| 
+ホスト名はシステムで解決できるか。
+ a| 
+指定したホスト名が別のサブネット上にあるかどうかを確認してください。SnapManager がホスト名を解決できないというエラーメッセージが表示された場合は、ホストファイルにホスト名を追加します。ホスト名は、C:\windows\system32\drivers\etc\hosts \hosts：xxx.xxx hostname IP address`にあるファイルに追加します
+
+
+
+ a| 
+SnapDrive は稼働していますか。
+ a| 
+SnapDrive のステータスを表示するには、 [ サービス ] に移動し、 SnapDrive サービスを選択します。
+
+
+
+ a| 
+SnapDrive でアクセスするように設定されているストレージシステムはどれですか？
+ a| 
+SnapDrive 用に構成されているストレージ・システムを検索するには、次の手順を実行します。
+
+. [ マイコンピュータ ] を右クリックし、 [ 管理 ] を選択します。
+. [ * ストレージ * > * SnapDrive * ] をクリックします。
+. ホスト名を右クリックし、 * transport protocol settings * を選択します。
+
+
+
+
+ a| 
+SnapManager GUI のパフォーマンスはどのように向上するのですか。
+ a| 
+* リポジトリ、プロファイルホスト、およびプロファイルの有効なユーザ・クレデンシャルがあることを確認します。
++
+クレデンシャルが無効な場合は、リポジトリ、プロファイルホスト、およびプロファイルのユーザクレデンシャルを消去してください。リポジトリ、プロファイルホスト、およびプロファイルに対して以前に設定したユーザクレデンシャルをリセットします。追加情報のユーザクレデンシャルの再設定については、「クレデンシャルキャッシュをクリアした後のクレデンシャルの設定」を参照してください。
+
+* 未使用のプロファイルを閉じます。
++
+開いているプロファイルの数が多い場合、 SnapManager の GUI のパフォーマンスは低下します。
+
+* SnapManager GUI から、「ユーザー環境設定」ウィンドウの「管理者」メニューで「起動時に開く」が有効になっているかどうかを確認します。
++
+このオプションを有効にすると、「C：\Documents and Settings\Administrator\Application Data\NetApp\SMSAP_3.3.0\GUI\STATE`にあるユーザ設定（「user.config」）ファイルが「openOnStartup=profile」と表示されます。
+
++
+*起動時に開く*が有効になっているため、SnapManager GUIから最近開いたプロファイルを確認する必要があります。これには、ユーザ設定(user.config')ファイル内のlastOpenProfilesを使用します
+
++
+リストされているプロファイル名を削除して、開いているプロファイルの数を常に最小限に抑えることができます。
+
+* Windows ベースの環境に SnapManager の新しいバージョンをインストールする前に、次の場所にある SnapManager クライアント側のエントリを削除します。
++
+C ： \Documents and Settings\Administrator\Application Data\NetApp
+
+
+
+
+
+ a| 
+複数の SnapManager 処理がバックグラウンドで同時に開始されて実行されている場合、 SnapManager GUI の更新に時間がかかります。バックアップを右クリックすると（すでに削除されているが SnapManager GUI に表示される）、そのバックアップのバックアップ・オプションは [Backup or Clone] ウィンドウでは有効になりません。
+ a| 
+SnapManager の GUI が更新されるまで待ってから、バックアップのステータスを確認する必要があります。
+
+
+
+ a| 
+Oracle データベースが英語で設定されていない場合はどうすればよいですか。
+ a| 
+Oracle データベースの言語が英語に設定されていないと、 SnapManager の処理が失敗することがあります。 Oracle データベースの言語を英語に設定します。
+
+. NLS_LANG 環境変数が設定されていないことを確認します。 echo %NLS_LANG%
+. C:\SnapManager_install_directory\service`にある「wrapper.conf」ファイルに次の行を追加します。
++
+`set.NLS_LANG=America_AmericA.WE8MSWIN1252`
+
+. SnapManager サーバを再起動します。
++
+「smsap_server restart」を指定します
+
+
+
+
+NOTE: システム環境変数が NLS_LANG に設定されている場合は、 NLS_LANG を上書きしないようにスクリプトを編集する必要があります。
+
+
+
+ a| 
+リポジトリ・データベースが複数の IP を指していて、各 IP のホスト名が異なる場合に、バックアップのスケジュール設定処理が失敗するとどうなりますか。
+ a| 
+. SnapManager サーバを停止します。
+. リポジトリディレクトリ内のスケジュールファイルは、バックアップスケジュールをトリガーするホストから削除します。
++
+スケジュールファイル名は次の形式にすることができます。
+
++
+** リポジトリ #repo_username#repository_database_name #repository_host#repo_port
+** repository -repo_namerestory_database_name -repository_host -repo_port
+
+
+
+
+
+NOTE: スケジュールファイルは、リポジトリの詳細に一致する形式で削除する必要があります。
+
+. SnapManager サーバを再起動します。
+. SnapManager GUI から同じリポジトリの下にある他のプロファイルを開き、これらのプロファイルのスケジュール情報が失われないようにします。
+
+
+
+
+ a| 
+クレデンシャルファイルロックエラーが発生して SnapManager 処理が失敗した場合、どうすればよいですか？
+ a| 
+SnapManager は、更新前にクレデンシャルファイルをロックし、更新後にロックを解除します。複数の処理を同時に実行すると、いずれかの処理によって、クレデンシャルファイルがロックされて更新されることがあります。ロックされたクレデンシャルファイルに同時に別の処理でアクセスしようとすると、ファイルロックエラーが発生して処理が失敗します。
+
+SMSAP_CONFIGファイルに、同時処理の頻度に応じて次のパラメータを設定します。
+
+* FileLock.RetryInterval=100 ミリ秒
+* FileLock.timeout=5000 ミリ秒
+
+
+
+NOTE: パラメータには、ミリ秒単位の値を指定する必要があります。
+
+
+
+ a| 
+バックアップ検証処理がまだ実行中であっても、バックアップ検証処理の中間ステータスが Monitor タブに failed と表示された場合はどうすればよいですか？
+ a| 
+エラーメッセージは sm_gui.log ファイルに記録されます。ログ・ファイルを参照して'operation.heartbeatInterval'およびoperator.heartbeatThreshold'パラメータの新しい値を確認する必要がありますこの問題 を解決します
+
+. 「SMSAP_CONFIG」ファイルに次のパラメータを追加します。
++
+** opering.heartbeatInterval`=5000
+** 「operation.heartbeatThreshold」=5000 SnapManager によって割り当てられるデフォルト値は5000です。
+
+
+. これらのパラメータに新しい値を割り当てます。
++
+
+NOTE: パラメータには、ミリ秒単位の値を指定する必要があります。
+
+. SnapManager サーバを再起動し、処理を再実行してください。
+
+
+
+
+ a| 
+ヒープ領域の問題が発生した場合の対処方法
+ a| 
+SnapManager for SAPの処理中にヒープスペースの問題 が発生した場合は、次の手順を実行する必要があります。
+
+. SnapManager for SAPのインストールディレクトリに移動します。
+. installationdirectory\bin\launchjavaのpathから'launchjavaファイルを開きます
+. java -Xmx160m java heap-space パラメータの値を大きくします。
++
+たとえば、デフォルト値の 160m を 200 m に増やすことができます。
+
++
+
+NOTE: 以前のバージョンのSnapManager for SAPでJava heap-spaceパラメータの値を増やした場合は、この値を維持する必要があります。
+
+
+
+
+
+ a| 
+Windows 環境で SnapManager サービスが開始されず、「 Windows could not start Snap Manager on Local computer. 」というエラーメッセージが表示されます。詳細については、システムイベントログを参照してください。Microsoft 以外のサービスの場合は、サービスベンダーに問い合わせて、サービス固有のエラーコード 1 を参照してください。
+ a| 
+「Installation_directory\service」にあるwrapper.confファイルの次のパラメータを設定します。
+
+* ラッパーのスタートアップタイムアウトパラメータは、 Java 仮想マシン（ JVM ）を起動するラッパーとアプリケーションが起動した JVM からの応答の最大許容時間を定義します。
++
+デフォルト値は 90 秒に設定されています。ただし、 0 より大きい値を変更することはできます。無効な値を指定した場合は、代わりにデフォルトが使用されます。
+
+* wrapper.ping.timeoutパラメータは'JVMにpingを送信するラッパーとJVMからの応答の間の最大許容時間を定義しますデフォルト値は 90 秒に設定されています。
++
+ただし、 0 より大きい値に変更することはできます。無効な値を指定した場合は、代わりにデフォルトが使用されます。
+
+
+
+|===

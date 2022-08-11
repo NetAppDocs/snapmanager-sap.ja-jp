@@ -1,0 +1,28 @@
+---
+permalink: unix-administration/task-view-status-of-clone-split-process.html 
+sidebar: sidebar 
+keywords: view, progress, split, start, process, clone 
+summary: 開始したスプリットプロセスの進行状況を表示できます。 
+---
+= クローンスプリットプロセスのステータスを表示します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+開始したスプリットプロセスの進行状況を表示できます。
+
+.ステップ
+. クローンスプリットプロセスの進捗状況を表示するには、次のコマンドを入力します。
++
+`* SMSAP clone split -status -profile_profile_[-host_hostname_][-label_split-label_|-id_split-id_][-dquiet |-verbose *`
+
+
+
+'''
+[listing]
+----
+smsap clone split-status -profile p1 -id 8abc01ec0e78f3e2010e78f3fdd00001
+----
+'''

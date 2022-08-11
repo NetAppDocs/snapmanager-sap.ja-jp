@@ -1,0 +1,95 @@
+---
+permalink: unix-administration/reference-the-smosmsapbackup-unmount-command.html 
+sidebar: sidebar 
+keywords: run, backup, unmount, command, smsap 
+summary: backup unmount コマンドを実行して、バックアップをアンマウントできます。 
+---
+= SMSAPのbackup unmountコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップをアンマウントするには'backup unmountコマンドを実行します
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap backup unmount
+-profile _profile_name_
+[-label _label_ [-data | -archivelogs\] | [-id _id_\]
+[-force\]
+[-dump\][-quiet | -verbose\]]
+----
+
+
+== パラメータ
+
+* ``*-profile_name_*``
++
+バックアップをアンマウントするプロファイルを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* `*-id_id_*``
++
+指定した GUID を持つバックアップをアンマウントします。GUID はバックアップを作成するときに SnapManager によって生成されます。SMSAPのbackup listコマンドを使用して、各バックアップのGUIDを表示できます。
+
+* `*-label_label_*``
++
+指定したラベルを持つバックアップをアンマウントします。
+
+* `*-data*``
++
+データファイルを指定します。
+
+* `*-archivelogs *``
++
+アーカイブログファイルを指定します。
+
+* `*-dump*``
++
+アンマウント処理が成功または失敗したあとにダンプファイルを収集します。
+
+* `*-force *``
++
+バックアップに関連付けられたリソースを解放する際に問題が発生した場合も、バックアップをアンマウントします。SnapManager がバックアップをアンマウントし、関連付けられているすべてのリソースをクリーンアップします。ログにアンマウント処理が正常に完了したことが記録されていますが、ログにエラーがある場合は、リソースを手動でクリーンアップしなければならないことがあります。
+
+* `*-quiet *``
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+'''
+
+
+== 例
+
+次に、アンマウント処理の例を示します。
+
+[listing]
+----
+# smsap backup unmount -label test -profile SALES1 -verbose
+----
+[listing]
+----
+SMSAP-13046 [INFO ]: Operation GUID 8abc013111b909eb0111b90a02f50001 starting on Profile SALES1
+SMSAP-08028 [INFO ]: Beginning to disconnect connected mount(s)
+[/u/user1/mnt/_mnt_ssys1_logs_SMSAP_SALES1_hsdb1_F_C_1_8abc013111a450480111a45066210001,
+ /u/user1/mnt/_mnt_ssys1_data_SMSAP_SALES1_hsdb1_F_C_1_8abc013111a450480111a45066210001].
+SMSAP-08030 [INFO ]: Done disconnecting connected mount(s)
+[/u/user1/mnt/_mnt_ssys1_logs_SMSAP_SALES1_hsdb1_F_C_1_8abc013111a450480111a45066210001,
+ /u/user1//mnt/_mnt_ssys1_data_SMSAP_SALES1_hsdb1_F_C_1_8abc013111a450480111a45066210001].
+SMSAP-13037 [INFO ]: Successfully completed operation: Backup Unmount
+SMSAP-13048 [INFO ]: Operation Status: SUCCESS
+SMSAP-13049 [INFO ]: Elapsed Time: 0:00:33.715
+Operation Id [8abc013111b909eb0111b90a02f50001] succeeded.
+----
+'''

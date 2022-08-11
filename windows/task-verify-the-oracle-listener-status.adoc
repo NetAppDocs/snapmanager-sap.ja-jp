@@ -1,0 +1,41 @@
+---
+permalink: windows/task-verify-the-oracle-listener-status.html 
+sidebar: sidebar 
+keywords: verify, oracle, listener, lsnrctl, status, command 
+summary: Oracle リスナーのステータスを確認するには、 lsnrctl status コマンドを使用します。 
+---
+= Oracleリスナーのステータスを確認します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Oracleリスナーのステータスを確認するには'lsnrctl statusコマンドを使用します
+
+
+
+== 必要なもの
+
+* データベースに接続する必要があります。
+
+
+
+
+== このタスクについて
+
+リスナーポートの詳細は、次のとおりです。
+
+* SAP Oracleの標準インストールでは'リスナー・ポートが1527に設定されます
+* 管理対象データベースリスナーポートを参照する場合は、値を1527にする必要があります。
+* リポジトリ・データベースのリスナー・ポートを参照する場合は、1521の値を設定する必要があります。
+
+
+Oracleリスナーのログは'%ORACLE_HOME%\network\logにありますここで'ORACLE_HOMEは\ORACLE_SID\Oracleバージョンです
+
+.ステップ
+. コマンドプロンプトで、次のコマンドを入力します。
++
+*lsnrctlステータス*`
+
+

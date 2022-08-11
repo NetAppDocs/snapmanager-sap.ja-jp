@@ -1,0 +1,48 @@
+---
+permalink: unix-administration/task-clone-protected-backups.html 
+sidebar: sidebar 
+keywords: snapmanager, clone, copy, backup, protect, cloning 
+summary: SnapManager を使用して、保護されているバックアップのコピーをクローニングすることができます。 
+---
+= 保護されたバックアップをクローニングする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を使用して、保護されているバックアップのコピーをクローニングすることができます。
+
+* 必要なもの *
+
+クローン用に選択したホストは、同じストレージプロトコル（ SAN や NAS など）を使用してセカンダリストレージにアクセスできる必要があります。
+
+セカンダリ・ストレージからクローンを作成するように指定するには'-srom-ssecondar'オプションを使用します
+
+* このタスクについて *
+
+--from-secondaryオプションを指定する場合は、必ず-copy-idオプションを指定する必要があります。セカンダリストレージシステムに複数のバックアップがある場合は、 -copy-id オプションを使用して、セカンダリストレージ上でクローニングに使用するバックアップコピーを指定します。
+
+
+NOTE: Data ONTAP 7-Modeを使用している場合は、「-copy-id」オプションに有効な値を指定する必要があります。ただし、clustered Data ONTAP を使用している場合、-copy-id`オプションは不要です。
+
+セカンダリストレージシステムで保護されているバックアップのクローンを削除すると、処理に失敗することがあります。この問題は、プライマリストレージシステムとセカンダリストレージシステムのシステム時間が同期されていない場合に発生します。
+
+.ステップ
+. 保護されたバックアップコピーのクローンを作成します。
++
+「* SMSAP clone create -backup-label_backup_name _-newsid_new_sid _-label_clone_label_-profile_name_-clonespecfile_-from-secondary-copy-id_id_*
+
+
+
+'''
+
+
+== 例
+
+[listing]
+----
+smsap clone create -label testdb_clone_clstest
+-profile sys_db_finance -from-secondary -copy-id 3042 sys_db_finance_sept_08
+----
+'''

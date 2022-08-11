@@ -1,0 +1,72 @@
+---
+permalink: windows/concept-dump-files.html 
+sidebar: sidebar 
+keywords: dump, file, compress, log, contain, information, snapmanager, environment, operation, profile, system 
+summary: ダンプファイルは、 SnapManager とその環境に関する情報が格納された圧縮ログファイルです。作成されるログファイルには、処理、プロファイル、およびシステムダンプファイルの種類があります。 
+---
+= ダンプ・ファイル
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ダンプファイルは、 SnapManager とその環境に関する情報が格納された圧縮ログファイルです。作成されるログファイルには、処理、プロファイル、およびシステムダンプファイルの種類があります。
+
+グラフィカルユーザーインタフェース（ GUI ）の dump コマンドまたは * Create Diagnostics * タブを使用して、操作、プロファイル、または環境に関する情報を収集できます。システムダンプにはプロファイルは必要ありませんが、プロファイルおよび処理ダンプにはプロファイルが必要です。
+
+SnapManager のダンプ・ファイルには、次の診断情報が格納されています。
+
+* 実行された手順
+* 各ステップが完了するまでの時間
+* 各手順の結果
+* 処理中にエラーが発生した場合は、そのエラーです
+
+
+
+NOTE: SnapManager のログファイルまたはダンプファイルを使用すると、 root ユーザおよび root ユーザグループに属するその他のユーザに対してのみ読み取りおよび書き込み権限が有効になります。
+
+SnapManager のファイルには、次の情報も含まれています。
+
+* オペレーティングシステムのバージョンとアーキテクチャ
+* 環境変数（ Environment Variables ）
+* Java のバージョン
+* SnapManager のバージョンとアーキテクチャ
+* SnapManager の環境設定
+* SnapManager メッセージ
+* log4j プロパティ
+* SnapDrive のバージョンとアーキテクチャ
+* SnapDrive ログファイル
+* Oracle のバージョン
+* Oracle OPatch のローカルインベントリの詳細
+* リポジトリデータベースの Oracle のバージョン
+* ターゲットのデータベースタイプ（スタンドアロン）
+* ターゲット・データベースの役割（プライマリ、物理スタンバイ、または論理スタンバイ）
+* ターゲット・データベースの Oracle Recovery Manager （ RMAN ）のセットアップ（ RMAN との統合なし、制御ファイルを含む RMAN 、またはカタログ・ファイルを使用した RMAN ）
+* ターゲットのデータベースの Oracle バージョン
+* ターゲットデータベースの System Identifier （ SID ；システム ID ）
+* リポジトリデータベースのサービス名
+* ホストにデータベースインスタンスがインストールされている必要があります
+* プロファイル記述子
+* 最大共有メモリ
+* スワップ・スペース情報
+* メモリ情報
+* マルチパス環境
+* Host Utilities のバージョン
+* Windows 用の Microsoft Internet Small Computer System Interface （ iSCSI ）ソフトウェアイニシエータのバージョン
+* backintインターフェイスのバージョン
+* BRツールバージョン
+* パッチレベル
+* system verifyコマンドの出力
+
+
+ダンプファイルには、 Windows における SnapManager の制限事項も記載されています。
+
+SnapManager ダンプファイルには、 SnapDrive データコレクタファイルと Oracle アラートログファイルも含まれています。「smsapoperation dump」コマンドと「smsapprofile dump」コマンドを使用して、Oracleアラートログファイルを収集できます。
+
+
+NOTE: システムダンプには Oracle のアラートログは含まれませんが、プロファイルと処理ダンプにはアラートログが含まれます。
+
+SnapManager ホストサーバが実行されていない場合でも、コマンドラインインターフェイス（ CLI ）または GUI を使用してダンプ情報にアクセスできます。
+
+問題が解決できない場合は、これらのファイルをネットアップグローバルサービスに送信できます。

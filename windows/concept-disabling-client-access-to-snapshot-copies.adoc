@@ -1,0 +1,28 @@
+---
+permalink: windows/concept-disabling-client-access-to-snapshot-copies.html 
+sidebar: sidebar 
+keywords: storage, system, volume, nfs, protocol, sap, data, back up, tools, disable, client, snapshot, copies, copy, disable 
+summary: 'NFSプロトコルを使用するストレージ・システム・ボリュームに、BR * Toolsを使用してバックアップされたSAPデータが含まれている場合には、そのボリュームのSnapshotコピーへのクライアント・アクセスを無効にする必要があります。クライアント・アクセスが有効になっている場合"BR * Toolsは"以前のバックアップを含む非表示の.snapshotディレクトリのバックアップを作成しようとします' 
+---
+= Snapshotコピーへのクライアントアクセスを無効にします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NFSプロトコルを使用するストレージ・システム・ボリュームに、BR * Toolsを使用してバックアップされたSAPデータが含まれている場合には、そのボリュームのSnapshotコピーへのクライアント・アクセスを無効にする必要があります。クライアント・アクセスが有効になっている場合'BR * Toolsは'以前のバックアップを含む非表示の.snapshotディレクトリのバックアップを作成しようとします
+
+クライアントアクセスを無効にするには、次のいずれかの方法を使用します。
+
+* Data ONTAP を使用する場合：Data ONTAP コマンド・ライン・インターフェイスを使用して、次のコマンドを入力します。「vol options volume_name nosnapdir on’servolume_name」は、SAPデータが格納されているボリュームの名前です。たとえば、「/vol/ falls_sap_cerry_data1」と入力します
+* FilerViewの使用：FilerViewグラフィカルユーザインターフェイスを使用したアクセスを無効にするには、ボリュームのSnapshotコピーがすでに存在している必要があります。
++
+.. FilerViewの左側のペインで、* Volumes *>* Snapshots *>* Manage *を選択します。
+.. Manage Snapshots（スナップショットの管理）ページで、Volume（ボリューム）列のボリューム名をクリックします。
+.. スナップショットの設定ページで、スナップショットディレクトリの表示チェックボックスをオフにし、*適用.*をクリックします
+
+
+
+
+Snapshotコピーへのクライアント・アクセスを無効にする方法の詳細については、ご使用のData ONTAP バージョンの『Data ONTAP データ保護：オンライン・バックアップおよびリカバリ・ガイド』の「のSnapshot管理」の章を参照してください。

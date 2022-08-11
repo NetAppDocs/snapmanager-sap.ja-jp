@@ -1,0 +1,22 @@
+---
+permalink: windows/concept-restore-files-from-an-alternate-location.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, restore, data, file, control, location, snapshot, copies, copy, volume, alternate, location 
+summary: SnapManager を使用すると、元のボリューム内の Snapshot コピー以外の場所からデータファイルと制御ファイルをリストアできます。 
+---
+= 別の場所からファイルをリストアする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を使用すると、元のボリューム内の Snapshot コピー以外の場所からデータファイルと制御ファイルをリストアできます。
+
+元の場所は、バックアップ時にアクティブファイルシステム上にあるファイルの場所です。代替保存場所は、ファイルのリストア元の場所です。
+
+別の場所からリストアして、中間ファイルシステムからアクティブファイルシステムにデータファイルをリストアできます。
+
+リカバリは SnapManager によって自動化されます。外部の場所からファイルをリカバリする場合、SnapManager は「recovery automatic from location」コマンドを使用します。
+
+SnapManager は、 Oracle Recovery Manager （ RMAN ）を使用してファイルをリカバリすることもできます。リカバリ対象のファイルは Oracle で認識可能である必要があります。ファイル名はデフォルトの形式にする必要があります。フラッシュリカバリ領域からリカバリする場合、 SnapManager は Oracle への変換されたパスを提供します。ただし、では正しいファイル名が生成されないため、フラッシュリカバリ領域からはリカバリされません。フラッシュリカバリ領域は、 RMAN の使用を目的としたデスティネーションとして使用することを推奨します。

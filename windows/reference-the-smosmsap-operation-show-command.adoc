@@ -1,0 +1,63 @@
+---
+permalink: windows/reference-the-smosmsap-operation-show-command.html 
+sidebar: sidebar 
+keywords: run, operation, show, command, list, summary, information, profile, client, user, pc, smsap 
+summary: operation show コマンドを実行して、指定したプロファイルに対して実行されたすべての処理の概要情報をリストできます。この出力には、クライアントユーザ（クライアント PC のユーザ）と有効なユーザ（選択したホストで有効な SnapManager のユーザ）が表示されます。 
+---
+= SMSAP operation showコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+operation showコマンドを実行して、指定したプロファイルに対して実行されたすべての操作の概要情報を一覧表示できます。この出力には、クライアントユーザ（クライアント PC のユーザ）と有効なユーザ（選択したホストで有効な SnapManager のユーザ）が表示されます。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap operation show
+-profile profile_name
+[-label label | -id id]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+プロファイルの名前を指定します。この名前には 30 文字まで使用でき、ホスト内で一意である必要があります。
+
+* *`-label_label_`*
++
+処理のラベルを指定します。
+
+* *`-id_id_`*
++
+処理の識別子を指定します。
+
+* *`-quiet `*
++
+オプション：コンソールにエラーメッセージだけを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+オプション：エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== 例
+
+次のコマンド・ラインを使用すると、処理に関する詳細情報を表示できます。
+
+[listing]
+----
+smsap operation show -id 8ac861781d0ac992011d0ac999680001  -profile CER
+----

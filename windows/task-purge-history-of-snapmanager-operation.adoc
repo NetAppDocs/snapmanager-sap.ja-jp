@@ -1,0 +1,21 @@
+---
+permalink: windows/task-purge-history-of-snapmanager-operation.html 
+sidebar: sidebar 
+keywords: delete, history, snapmanager, operation, detail 
+summary: 履歴の詳細が不要になった場合は、 SnapManager 処理の履歴を削除できます。 
+---
+= SnapManager 処理の履歴を削除します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+履歴の詳細が不要になった場合は、 SnapManager 処理の履歴を削除できます。
+
+.ステップ
+. SnapManager 処理の履歴を削除するには、次のコマンドを入力します。
++
+`* SMSAP history purge -profile｛_name_,_profile_name_profile_name1_,_profile_name2_]|_all_repository -login [-password_repo_name2]-username_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_dbname_repo_host_port_operation_name|-verbose * operations_name1_operation、*
+
+

@@ -1,0 +1,14 @@
+---
+permalink: windows/concept-configuring-snapmanager-for-oraclesap.html 
+sidebar: sidebar 
+keywords: install, snapmanager, perform, configuration, task, environment, use, configure 
+summary: SnapManager をインストールしたら、使用している環境に応じて、いくつかの追加の設定タスクを実行する必要があります。 
+---
+= SnapManager を設定しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager をインストールしたら、使用している環境に応じて、いくつかの追加の設定タスクを実行する必要があります。

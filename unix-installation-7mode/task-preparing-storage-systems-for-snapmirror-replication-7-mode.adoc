@@ -1,0 +1,118 @@
+---
+permalink: unix-installation-7mode/task-prepare-storage-systems-for-snapmirror-replication-7-mode.html 
+sidebar: sidebar 
+keywords: snapmanager, snapmirror, technology, mirror, snapshot, copies, copy, configure, initialize, data-protection, relationship, destination, volume, prepare, preparing, storage, system, replication 
+summary: SnapManagerの統合されたSnapMirrorテクノロジを使用してSnapshotコピーをミラーリングするには、ソースボリュームとデスティネーションボリューム間のデータ保護関係を設定して初期化する必要があります。初期化の際に、SnapMirrorはソースボリュームのSnapshotコピーを作成して、そのコピーおよびコピーが参照するすべてのデータブロックをデスティネーションボリュームに転送します。また、ソースボリューム上の最新ではない Snapshot コピーもすべてデスティネーションボリュームに転送します。 
+---
+= SnapMirrorレプリケーションのストレージシステムを準備
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManagerの統合されたSnapMirrorテクノロジを使用してSnapshotコピーをミラーリングするには、ソースボリュームとデスティネーションボリューム間のデータ通信保護関係_を設定して初期化する必要があります。初期化の際に、SnapMirrorはソースボリュームのSnapshotコピーを作成して、そのコピーおよびコピーが参照するすべてのデータブロックをデスティネーションボリュームに転送します。また、ソースボリューム上の最新ではない Snapshot コピーもすべてデスティネーションボリュームに転送します。
+
+* このタスクについて *
+
+これらのタスクを実行するには、ONTAP CLIまたはOnCommand のSystem Managerを使用します。次の手順 は、CLIを使用することを前提としています。詳細については、を参照してください https://library.netapp.com/ecm/ecm_download_file/ECMP1368826["『Data ONTAP 8.2 Data Protection Online Backup and Recovery Guide for 7-Mode』"^]。
+
+
+NOTE: SnapManager を使用してqtreeをミラーリングすることはできません。SnapManager でサポートされるのはボリュームミラーリングのみです。
+
+SnapManager を同期ミラーリングに使用することはできません。SnapManager でサポートされるのは非同期ミラーリングのみです。
+
+
+IMPORTANT: データベースファイルとトランザクションログを別々のボリュームに格納する場合は、データベースファイルのソースボリュームとデスティネーションボリュームの間、およびトランザクションログのソースボリュームとデスティネーションボリュームの間に関係を作成する必要があります。
+
+. ソース・システムのコンソールで'options snapmirror.accessコマンドを使用して'ソース・システムからデータを直接コピーできるシステムのホスト名を指定します
++
+* 例 *
+
++
+次のエントリでは、destination_systemBへのレプリケーションを許可します。
+
++
+[listing]
+----
+options snapmirror.access host=destination_systemB
+----
+. デスティネーション・システムで'/etc/snapmirror.confファイルを作成または編集し'コピーするボリュームを指定します
++
+* 例 *
+
++
+次のエントリでは、source_systemAのvol0からdestination_systemBのvol2へのレプリケーションを指定します。
+
++
+[listing]
+----
+source_systemA:vol0 destination_systemB:vol2
+----
+. ソース・システムとデスティネーション・システムの両方のコンソールで、snapmirror onコマンドを使用してSnapMirrorを有効にします。
++
+* 例 *
+
++
+次のコマンドでは、SnapMirrorを有効にします。
+
++
+[listing]
+----
+snapmirror on
+----
+. デスティネーション・システムのコンソールで、「vol create」コマンドを使用して、ソース・ボリュームと同じサイズ以上のSnapMirrorデスティネーション・ボリュームを作成します。
++
+* 例 *
+
++
+次のコマンドでは、アグリゲートaggr1に、vol2という名前の2GBのデスティネーションボリュームを作成します。
+
++
+[listing]
+----
+vol create vol2 aggr1 2g
+----
+. デスティネーション・システムのコンソールで、vol restrictコマンドを使用して、デスティネーション・ボリュームを制限付きに設定します。
++
+* 例 *
+
++
+次のコマンドは、デスティネーションボリュームvol2を制限付きに設定します。
+
++
+[listing]
+----
+vol restrict vol2
+----
+. ソース・システムのコンソールで'snap schedコマンドを使用して'スケジュールされた転送をすべて無効にします
++
+* 例 *
+
++
+SnapDrive とスケジュールが競合しないように、スケジュールされた転送を無効にする必要があります。
+
++
+次のコマンドは、スケジュールされた転送を無効にします
+
++
+[listing]
+----
+snap sched vol1 -----
+----
+. デスティネーション・システムのコンソールで、snapmirror initializeコマンドを使用して、ソース・ボリュームとデスティネーション・ボリューム間の関係を作成し、その関係を初期化します。
++
+初期化プロセスでは、デスティネーションボリュームへの _ ベースライン転送 _ が実行されます。SnapMirror はソースボリュームの Snapshot コピーを作成して、そのコピーおよびコピーが参照するすべてのデータブロックをデスティネーションボリュームに転送します。また、ソースボリューム上の他の Snapshot コピーもすべてデスティネーションボリュームに転送します。
+
++
+* 例 *
+
++
+次のコマンドでは、source_systemAのソースボリュームvol0とdestination_systemBのデスティネーションボリュームvol2との間のSnapMirror関係を作成して、その関係を初期化します。
+
++
+[listing]
+----
+snapmirror initialize -S source_systemA:vol0 destination_systemB:vol2
+----
+

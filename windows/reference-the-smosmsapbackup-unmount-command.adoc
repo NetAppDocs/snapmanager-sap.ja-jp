@@ -1,0 +1,92 @@
+---
+permalink: windows/reference-the-smosmsapbackup-unmount-command.html 
+sidebar: sidebar 
+keywords: run, backup, unmount, command, smsap 
+summary: backup unmount コマンドを実行して、バックアップをアンマウントできます。 
+---
+= SMSAPのbackup unmountコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップをアンマウントするには'backup unmountコマンドを実行します
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap backup unmount
+-profile profile_name
+[-label label [-data | -archivelogs] | [-id id]
+[-force]
+[-dump]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+バックアップをアンマウントするプロファイルを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* *`-id_id_`*
++
+指定した GUID を持つバックアップをアンマウントします。GUID はバックアップを作成するときに SnapManager によって生成されます。「SMSAP backup list」コマンドを使用して、各バックアップのGUIDを表示できます。
+
+* *`-label_label_`*
++
+指定したラベルを持つバックアップをアンマウントします。
+
+* *`-data`*
++
+データファイルを指定します。
+
+* *`-archivelogs`*
++
+アーカイブログファイルを指定します。
+
+* *`-dump`*
++
+アンマウント処理が成功または失敗したあとにダンプファイルを収集します。
+
+* *`-force *
++
+バックアップに関連付けられたリソースを解放する際に問題が発生した場合も、バックアップをアンマウントします。SnapManager がバックアップをアンマウントし、関連付けられているすべてのリソースをクリーンアップします。ログにアンマウント処理が正常に完了したことが記録されていますが、ログにエラーがある場合は、リソースを手動でクリーンアップしなければならないことがあります。
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== 例
+
+次に、アンマウント処理の例を示します。
+
+[listing]
+----
+# smsap backup unmount -label test -profile SALES1 -verbose
+----
+[listing]
+----
+[INFO ]: SMSAP-13051: Process PID=9788
+[INFO ]: SMSAP-13036: Starting operation Backup Unmount on host hadley.domain.private
+[INFO ]: SMSAP-13036: Starting operation Backup Unmount on host hadley.domain.private
+[INFO ]: SMSAP-13046: Operation GUID 8abc015738849a3d0138849a43900001 starting on Profile FAS_P1
+[INFO ]: SD-00031: Beginning to disconnect filesystem(s) [C:\SnapManager_auto_mounts\H-2012071400592312_0, C:\SnapManager_auto_mounts\I-2012071400592328_0].
+[INFO ]: SD-00032: Finished disconnecting filesystem(s) [C:\SnapManager_auto_mounts\H-2012071400592312_0, C:\SnapManager_auto_mounts\I-2012071400592328_0].
+[INFO ]: SMSAP-13048: Backup Unmount Operation Status: SUCCESS
+[INFO ]: SMSAP-13049: Elapsed Time: 0:07:26.754
+----

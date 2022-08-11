@@ -1,0 +1,77 @@
+---
+permalink: windows/task-schedule-archive-log-file-pruning.html 
+sidebar: sidebar 
+keywords: create, backup, schedule, prune, archive, log, file 
+summary: バックアップを作成する場合、指定した時間にアーカイブ・ログ・ファイルが削除されるようにスケジュールを設定できます。 
+---
+= アーカイブ・ログ・ファイルの削除をスケジュールします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップを作成する場合、指定した時間にアーカイブ・ログ・ファイルが削除されるようにスケジュールを設定できます。
+
+
+
+== このタスクについて
+
+SnapManager を使用すると、アクティブファイルシステムからアーカイブログファイルを定期的に削除できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAP schedule create -profile profile_profile_name_{[-full｛-online |-offline-offline|-auto｝[-retain [-hourly |-weekly |-unlimited ][-verify]]|[-data [-files_[_[_files_]|[_retain-dest]-comment [-dayaes]|daily. comments|-retain-dest-comments|-backup-comments|-unlimited path1_[、[_path2_]][-exclude-dest_path1_[,_path2_]][-prunelogs {-all |-untilscc_untilscn _|-before｛-date_yyyy-mm-dd HH：mm：ss _|-months_months_|-wex_unprune days |-dest_bunprune days |-prune days prune_dest2_]-schedule - name_schedule_name _[-schedule-comment_schedule_comment_comment_]-interval｛--hour_|_-weekly_|_-monthly_schedule_|_onetimeonly_｝-cronstring_string_-start -time｛_start_time_sunque_hh_yyyy_time｝-runm<-asle_ユーザー名-runm>名前>--runm<毎月実行時間<月_実行時間>
+
++
+|===
+| 状況 | 作業 
+
+
+ a| 
+* アーカイブ・ログ・ファイルの削除をスケジュール *
+ a| 
+次のオプションを指定します。
+
+** アーカイブ・ログ・ファイルのプルーニングをスケジュールするには'-logprunsを使用します
+** アーカイブ・ログ・デスティネーションからアーカイブ・ログ・ファイルをプルーニングするには'-prune-dest'を指定します
+
+
+
+
+ a| 
+* スケジュール名を入力 *
+ a| 
+--schedule-nameオプションを指定します
+
+
+
+ a| 
+* 特定の時間間隔でアーカイブ・ログ・ファイルを削除するようにスケジュールします *
+ a| 
+interval オプションを指定し、次の間隔クラスに基づいて、アーカイブログファイルを削除するかどうかを指定します。
+
+** `-時間単位」
+** 「-daily`」
+** 「-weekly」と入力します
+** 「-monthly」を指定できます
+** 「-onetimeonly」と入力します
+
+
+
+
+ a| 
+* スケジュール操作に関するコメントを追加します。 *
+ a| 
+オプションの後ろに概要 文字列を付けて'-schedule-comment'を指定します
+
+
+
+ a| 
+* スケジュール操作の開始時刻 * を指定します
+ a| 
+yyyy-mm-dd hh:mm形式で「-start-time」オプションを指定します。
+
+|===
+

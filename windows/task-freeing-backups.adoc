@@ -1,0 +1,35 @@
+---
+permalink: windows/task-freeing-backups.html 
+sidebar: sidebar 
+keywords: free, backup, delete, snapshot, copies, copy, deleting, metadata, function, space, smsap 
+summary: バックアップを解放して、バックアップのメタデータを削除することなく Snapshot コピーを削除できます。この機能により、バックアップが占有するスペースが解放されます。SMSAPのbackup freeコマンドを使用してバックアップを解放できます。 
+---
+= バックアップの解放
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップを解放して、バックアップのメタデータを削除することなく Snapshot コピーを削除できます。この機能により、バックアップが占有するスペースが解放されます。SMSAPのbackup freeコマンドを使用してバックアップを解放できます。
+
+バックアップを解放できるようにするには、次の点を確認する必要があります。
+
+* バックアップは成功しました
+* バックアップはマウントされません
+* バックアップにクローンがありません
+* バックアップは、保持ポリシーを無制限に設定して保持することはできません
+* バックアップはまだ解放されていません
+
+
+オプションのパラメータとして -dump オプションを指定すると、バックアップの解放処理の成功後または失敗後にダンプファイルを収集できます。
+
+. 次のコマンドを入力します。
++
+「SMSAP backup free-profile profile_name {-label label label label [ data |-archivelogs ]|-id id|-all｝-force [-dump][-quiet][-force]]」
+
+
+
+* 関連情報 *
+
+xref:reference-the-smosmsapbackup-free-command.adoc[SMSAPのbackup freeコマンドを使用します]

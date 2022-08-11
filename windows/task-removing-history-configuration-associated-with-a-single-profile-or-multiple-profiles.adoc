@@ -1,0 +1,20 @@
+---
+permalink: windows/task-removing-history-configuration-associated-with-a-single-profile-or-multiple-profiles.html 
+sidebar: sidebar 
+keywords: snapmanager, remove, history, setting, operation, purge, information, profile, single, multiple, removing, associate 
+summary: SnapManager を使用すると、 SnapManager 処理の履歴設定を削除できます。この操作を実行すると、 1 つまたは複数のプロファイルに関連付けられているすべての履歴情報が消去されます。 
+---
+= 単一のプロファイルまたは複数のプロファイルに関連付けられている履歴設定を削除する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を使用すると、 SnapManager 処理の履歴設定を削除できます。この操作を実行すると、 1 つまたは複数のプロファイルに関連付けられているすべての履歴情報が消去されます。
+
+. 1つまたは複数のプロファイルに関連付けられたSnapManager 処理の履歴を削除するには、次のコマンドを入力します。
++
+「SMSAP history remove -profile｛-name、profile_name [profile_name1、profile_name2 ]|all-repository-login [-passwordpo_password]-usernamerepo_username -dbname -hostrepo_host-portrepo_port｝-operation｛-soperational_name [operation_name2 | verbose|verbose]-operational_name1 | verbose|verbose<
+
+

@@ -1,0 +1,66 @@
+---
+permalink: windows/task-clone-database-backups-without-resetlogs.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, flexible, clone, recover, database, resetlog, data, guard, standby 
+summary: SnapManager では柔軟なクローニングを実行できるため、 resetlogs を使用してデータベースを開かなくても、クローンデータベースを希望の時点に手動でリカバリできます。クローニングされたデータベースを Data Guard Standby データベースとして手動で設定することもできます。 
+---
+= resetlogsを行わずにデータベースバックアップをクローニングする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では柔軟なクローニングを実行できるため、 resetlogs を使用してデータベースを開かなくても、クローンデータベースを希望の時点に手動でリカバリできます。クローニングされたデータベースを Data Guard Standby データベースとして手動で設定することもできます。
+
+
+
+== このタスクについて
+
+クローンの作成時に-no-resetlogsオプションを選択すると、SnapManager は次のアクティビティを実行してクローンデータベースを作成します。
+
+.手順
+. クローン処理を開始する前に、前処理タスクアクティビティを実行します（指定されている場合）
+. ユーザ指定の SID を持つクローンデータベースを作成します
+. クローニングされたデータベースに対して発行された SQL ステートメントを実行します。
++
+マウント状態で実行できる SQL ステートメントのみが正常に実行されます。
+
+. 指定されている場合は、後処理タスクアクティビティを実行します。
+
+
+* クローン・データベースを手動でリカバリするために必要な作業 *
+
+.手順
+. マウントパスのアーカイブログファイルを使用して、アーカイブログバックアップをマウントし、クローンデータベースを手動でリカバリします。
+. 手動リカバリの実行後に'resetlogs'オプションを使用して'リカバリされたクローン・データベースを開きます
+. 必要に応じて、一時表領域を作成します。
+. DBNEWID ユーティリティを実行します。
+. クローニングされたデータベースのクレデンシャルに sysdba 権限を付与します。
+
+
+「-no-resetlogs」オプションを使用してデータベース・バックアップをクローニングする際、SnapManager はクローン・データベースを手動リカバリのためにマウント状態のままにします。
+
+
+NOTE: no-resetlogsオプションを指定して作成されたクローンデータベースは、完全なデータベースではありません。したがって、このデータベースに対して SnapManager 処理を実行しないでください。ただし、 SnapManager では処理の実行が制限されません。
+
+-no-resetlogsオプションを指定しない場合、SnapManager はアーカイブ・ログ・ファイルを適用し、resetlogsでデータベースを開きます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+「* SMSAP clone create -profile _profile_name_[-backup-label_backup_name_|-backup-id_backup_id_id_|current]-newsid_new_sid _-clonespec_full_path_to_clonespecfile__ no-resetlogs *
+
++
+「-no-resetlogs」と「recovery-from-location」の両方のオプションを指定しようとすると、SnapManager ではこれらのオプションを同時に指定できず、「SMSAP-04084：-no-resetlogs」または「-recovery-from-location」のいずれかのオプションを指定する必要があります。
+
+
+
+
+
+== 例
+
+[listing]
+----
+smsap clone create -profile product -backup-label full_offline -newsid PROD_CLONE -clonespec prod_clonespec.xml -label prod_clone-reserve -no-reset-logs
+----

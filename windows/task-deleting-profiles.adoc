@@ -1,0 +1,21 @@
+---
+permalink: windows/task-deleting-profiles.html 
+sidebar: sidebar 
+keywords: delete, profile, successful, incomplete, backup, free, deleting 
+summary: 成功したバックアップまたは未完了のバックアップが含まれていないかぎり、プロファイルはいつでも削除できます。解放または削除されたバックアップを含むプロファイルを削除できます。 
+---
+= プロファイルの削除
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+成功したバックアップまたは未完了のバックアップが含まれていないかぎり、プロファイルはいつでも削除できます。解放または削除されたバックアップを含むプロファイルを削除できます。
+
+. プロファイルを削除するには、「SMSAP profile delete -profile profileprofile_name`」というコマンドを入力します
+
+
+* 関連情報 *
+
+xref:reference-the-smosmsapprofile-delete-command.adoc[SMSAPのprofile deleteコマンドを使用します]

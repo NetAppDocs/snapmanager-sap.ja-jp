@@ -1,0 +1,29 @@
+---
+permalink: unix-administration/task-restore-backups-from-an-alternate-location.html 
+sidebar: sidebar 
+keywords: restore, backup, alternate, location, data, file, intermediate, system, block, raw, device, restoring 
+summary: 別の場所からバックアップをリストアして、中間ファイルシステムからアクティブファイルシステムにデータファイルをリストアしたり、中間 raw デバイスからアクティブ raw デバイスにデータブロックをリストアしたりできます。 
+---
+= 別の場所からバックアップをリストアする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+別の場所からバックアップをリストアして、中間ファイルシステムからアクティブファイルシステムにデータファイルをリストアしたり、中間 raw デバイスからアクティブ raw デバイスにデータブロックをリストアしたりできます。
+
+* 必要なもの *
+
+* リストア仕様 XML ファイルを作成し、使用するリストア方式を指定します。
+
+
+* このタスクについて *
+
+SMSAPのbackup restoreコマンドを使用して、作成したリストア仕様XMLファイルを指定し、別の場所からバックアップをリストアできます。
+
+. 次のコマンドを入力します。
++
+'*SMSAP backup restore -profile _profile__ label_label_-complete-alllogs -restorespec_restorespec_*
+
+

@@ -1,0 +1,21 @@
+---
+permalink: unix-administration/task-add-existing-profile-to-summary-notification.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, exist, add, profile, summary, email, notification, update, updating 
+summary: SnapManager を使用すると、既存のプロファイルを概要 E メール通知に追加し、そのプロファイルを更新できます。 
+---
+= サマリーEメール通知に既存のプロファイルを追加します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を使用すると、既存のプロファイルを概要 E メール通知に追加し、そのプロファイルを更新できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAPプロファイルupdate -profile update_profile_profile_name_[-profile-password-password_profile_profile_name_host-repository_repo_repo_repo_repo_repo_repo_repo_repo_repo_port_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_username -host_namea_datab_database-db_hosts_[-sidbos_account_password]-daily_username_RMANパスワード[-drman_usrman_account_password_tsdba_username [-drmanバージョン[-drmanバージョン[-drmanパスワード]-出力 データベース_グループ[-drman_password_tsdb_password_tdb_group] [-duration_m_]][-weekly-count_n_][-duration _m_]][-monthly-count_n_][-duration _m_]][-comment_m_]][-snapname -pattern_pattern_]][-protect [-protection] policy_policy_policy_policy_name][-notification-notification][-summary.notification
+
+

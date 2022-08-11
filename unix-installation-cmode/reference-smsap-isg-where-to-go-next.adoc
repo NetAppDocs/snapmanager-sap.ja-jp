@@ -1,0 +1,52 @@
+---
+permalink: unix-installation-cmode/reference-smsap-isg-where-to-go-next.html 
+sidebar: sidebar 
+keywords: install, snapmanager, successful, create, backup, perform, restore, recovery, clone, operation, addition, information, feature, operation, history, where, to, go, next 
+summary: SnapManager をインストールしてバックアップを正常に作成したら、 SnapManager を使用してリストア、リカバリ、およびクローニングの処理を実行できます。また、スケジュール設定、 SnapManager 処理の管理、処理履歴の保持など、 SnapManager のその他の機能に関する情報も必要になる場合があります。 
+---
+= 次の手順
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager をインストールしてバックアップを正常に作成したら、 SnapManager を使用してリストア、リカバリ、およびクローニングの処理を実行できます。また、スケジュール設定、 SnapManager 処理の管理、処理履歴の保持など、 SnapManager のその他の機能に関する情報も必要になる場合があります。
+
+これらの機能に関する詳細情報および SnapManager のリリース固有の情報については、次のドキュメントを参照してください。これらはすべてにあり、から入手できます http://mysupport.netapp.com["ネットアップサポート"^]。
+
+* https://library.netapp.com/ecm/ecm_download_file/ECMP12481453["『SnapManager 3.4.1 for SAP Administration Guide for UNIX』を参照してください"^]
++
+SnapManager for SAPの管理を構成する方法について説明します。データベースの設定、バックアップ、リストア、クローニング、二次保護の実行の方法について説明します。 CLIコマンドの説明も含まれています。
+
+* https://library.netapp.com/ecm/ecm_download_file/ECMP12481455["『SnapManager 3.4 for SAP Release Notes』"^]
++
+SnapManager for SAPの新機能、解決済みの問題、重要な注意事項、既知の問題、および制限事項について説明します。
+
+* SnapManager for SAPオンラインヘルプ_
++
+SnapManager UI を使用してさまざまな SnapManager 処理を実行するためのステップバイステップの手順について説明します。
+
++
+
+NOTE: オンラインヘルプ _ は SnapManager UI に統合されており、サポートサイトでは利用できません。
+
+* http://www.netapp.com/us/media/tr-3761.pdf["ネットアップテクニカルレポート 3761 ：『 SnapManager for Oracle ： Best Practices 』"^]
++
+SnapManager for Oracle のベストプラクティスについて説明します。
+
+* http://www.netapp.com/us/media/tr-3633.pdf["ネットアップテクニカルレポート 3633 ：『 Best Practices for Oracle Databases on NetApp Storage 』"^]
++
+ネットアップストレージシステムに Oracle データベースを設定するためのベストプラクティスについて説明します。
+
+* http://www.netapp.com/us/media/tr-3442.pdf["ネットアップテクニカルレポート3442：『SAP with Oracle on UNIX and NFS and NetApp Storage』"^]
++
+SAPソリューションをサポートするネットアップストレージを導入するためのベストプラクティスについて説明します。
+
+
+
+* 関連情報 *
+
+http://mysupport.netapp.com["ネットアップサポート"^]
+
+http://mysupport.netapp.com/documentation/productsatoz/index.html["ネットアップのマニュアル： Product Library A-Z"^]

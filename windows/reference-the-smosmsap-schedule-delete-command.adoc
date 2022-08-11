@@ -1,0 +1,40 @@
+---
+permalink: windows/reference-the-smosmsap-schedule-delete-command.html 
+sidebar: sidebar 
+keywords: command, delete, backup, schedule, smsap 
+summary: このコマンドは、不要になったバックアップスケジュールを削除します。 
+---
+= SMSAPのschedule deleteコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、不要になったバックアップスケジュールを削除します。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap schedule delete
+-profile profile_name
+-schedule-name schedule_name
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+バックアップスケジュールを削除するデータベースに関連するプロファイルの名前を指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* *`-schedule - name_schedule_name_`*
++
+バックアップスケジュールの作成時に指定したスケジュール名を指定します。
+
+

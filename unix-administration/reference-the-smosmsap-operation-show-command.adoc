@@ -1,0 +1,98 @@
+---
+permalink: unix-administration/reference-the-smosmsap-operation-show-command.html 
+sidebar: sidebar 
+keywords: run, operation, show, command, list, summary, information, output, client, user, snapmanager, host, smsap 
+summary: operation show コマンドを実行して、指定したプロファイルに対して実行されたすべての処理の概要情報をリストできます。この出力には、クライアントユーザ（クライアント PC のユーザ）と有効なユーザ（選択したホストで有効な SnapManager のユーザ）が表示されます。 
+---
+= SMSAP operation showコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+operation show コマンドを実行して、指定したプロファイルに対して実行されたすべての処理の概要情報をリストできます。この出力には、クライアントユーザ（クライアント PC のユーザ）と有効なユーザ（選択したホストで有効な SnapManager のユーザ）が表示されます。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap operation show
+-profile _profile_name_
+[-label _label_ | -id _id_\] [-quiet | -verbose\]]
+----
+
+
+== パラメータ
+
+* `*-profile_name_*`
++
+プロファイルの名前を指定します。この名前には 30 文字まで使用でき、ホスト内で一意である必要があります。
+
+* '*-label_label_*
++
+処理のラベルを指定します。
+
+* '*-id_id_*
++
+処理の識別子を指定します。
+
+* 「*- quiet *」と入力します
++
+オプション：コンソールにエラーメッセージだけを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+オプション：エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+'''
+
+
+== 例
+
+次のコマンド・ラインを使用すると、処理に関する詳細情報を表示できます。
+
+[listing]
+----
+smsap operation show -id 8ac861781d0ac992011d0ac999680001  -profile CER
+----
+[listing]
+----
+Operation Attempted
+    Operation ID: 8ac861781d0ac992011d0ac999680001
+    Type:Backup
+    For profile: CER
+    With Force: No
+    Label: 081017180043
+    Comments: BRBACKUP
+Operation Runtime Information
+   Status: SUCCESS
+   Start date: 2008-10-16 18:01:00 IST
+   End date: 2008-10-17 18:01:26 IST
+   Client user: oracle
+   Effective user: oracle
+   By schedule: none
+Host
+   Host Run upon: lnx225-248.lab.eng.org.com
+   Process ID: 29096
+   SnapManager version: 3.3
+Repository
+   Connection: krishna@smsaprep/10.72.225.155:1521
+   Repository version: 62
+Error messages
+   The operation did not generate any error messages.
+Resources in use
+   Snapshots:
+      f270-225-57:/vol/f270_lnx225_248_10gr2_sap_oracle_cer:smsap_cer_cer1_f_c_2_8ac861781d0ac992011d0ac999680001_0
+   Storage components:
+    /sapbackup/backCER1.log (File)
+    /sapbackup/bdzbalta.anf (File)
+    /sapreorg/spaceCER1.log (File)
+    /mnt/oracle/CER (File System)
+    ...
+----
+'''

@@ -1,0 +1,56 @@
+---
+permalink: windows/task-use-post-processing-task-specification-to-vault-qtrees.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, enable, script, vault, qtrees, backup, operation, windows, environment, post-process, task, specification 
+summary: SnapManager for SAPでは、Windows環境でバックアップ処理が行われたあとに、スクリプトを使用してqtreeをバックアップできます。 
+---
+= qtreeを格納するには、ポストプロセスタスク仕様を使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPでは、Windows環境でバックアップ処理が行われたあとに、スクリプトを使用してqtreeをバックアップできます。
+
+.手順
+. タスク仕様 XML ファイルを作成します。
+. XML ファイルで、入力パラメータとしてスクリプト名を入力します。
+. タスク仕様 XML ファイルを保存します。
+. 次のコマンドを使用して、セカンダリストレージへのデータベースの保護されたバックアップを作成します。
++
+保護されたバックアップを作成する際には'-taskspec'オプションの後に'保存されたタスク仕様XMLファイルの完全なパスを指定する必要があります
+
++
+例：「smsapbackup create -profile test_profile -full-online-taskspec」C：\\mirror\\snapvault.xml
+
+
+
+Data ONTAP 7-Mode を使用している場合のポストプロセスタスクの仕様構造の例を次に示します。
+
+[listing]
+----
+# <post-tasks>
+#                <task>
+#                  <name>Vault the backup</name>
+#                   <description>Vault the backup</description>
+#              </task>
+#         <post-tasks>
+----
+clustered Data ONTAP を使用している場合のポストプロセスタスクの仕様構造の例を次に示します。
+
+[listing]
+----
+# <task-specification>
+#                <post-tasks>
+#                  <task>
+#                   <name>"Vault the backup for cDOT"</name>
+#                 <parameter>
+#                    <name>SNAPSHOT_LABEL</name>
+#                    <value>TST</value>
+#                    </parameter>
+#                  </task>
+#                </post-tasks>
+#              </task-specification>
+#            </preposttask-specification>
+----

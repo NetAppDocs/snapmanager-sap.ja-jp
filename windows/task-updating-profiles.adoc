@@ -1,0 +1,102 @@
+---
+permalink: windows/task-updating-profiles.html 
+sidebar: sidebar 
+keywords: update, profile, modify, password, backup, database, operating, system, authentication, information, host, oracle, updating 
+summary: プロファイルを更新して、プロファイル・パスワード、保持するバックアップ数、データベースへのアクセス、データベース認証に対するオペレーティング・システム認証（ OS ）、およびホストに関する情報を変更できます。Oracle データベースのパスワード情報が変更された場合は、プロファイル内のパスワード情報も変更する必要があります。 
+---
+= プロファイルの更新
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルを更新して、プロファイルのパスワード、保持するバックアップの数、データベースへのアクセス、データベース認証に対するオペレーティングシステム（ OS ）認証、およびホストに関する情報を変更できます。Oracle データベースのパスワード情報が変更された場合は、プロファイル内のパスワード情報も変更する必要があります。
+
+SnapManager （ 3.2 以降）では、 Separe-archivelog-backups オプションを使用して、アーカイブログのバックアップをデータファイルのバックアップから分離するようにプロファイルを更新できます。アーカイブログバックアップには、別の保持期間を指定できます。SnapManager を使用すると、オンラインデータベースバックアップに加えてアーカイブログバックアップも含めることができます。また、オンラインのデータファイルバックアップとアーカイブログバックアップを一緒に作成してクローニングすることもできます。オンラインデータファイルバックアップを作成すると、アーカイブログバックアップがデータファイルとともにすぐに作成されます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+SMSAP profile update-profileprofile[-new-profilefilenew_profile_name][-profile-password-passwordprofile_password][-db_dbname -host[-sidb_host[-siddleb_usernamedb_password-password-port][{-retran_addressm-drum-email-email-countm-drman][-drman-email-password-drman [-drman [-drman [-drman [--password][-drman [-drman [-drume-address_address_address_addressm -email-email-password][-drman][-drum][-drman-email-email-email-email-email-password][-drman][-drman][-drman][-drman][-drman][-drman][-drman][-drman[-drman][-drman-email-password-password][-drman][-drman][-drman][-drman][-drum][-drman[-email-email-email-email-password
+
++
+このコマンドの他のオプションは、次のとおりです。
+
++
+[-force] [-nopromp]
+
++
+|===
+| 状況 | 作業 
+
+
+ a| 
+* プロファイル * で、データベースのバックアップのバックアップ保持ポリシーを変更します
+ a| 
+保持ポリシーを変更するには、保持クラスの保持数または保持期間、あるいはその両方を指定します。期間はクラスの単位で指定します（たとえば、時間単位の場合は時間単位、日単位の場合は日単位）。
+
+** -hourly は、時間単位の保持クラスです。 [-countn] [-durationm] は、それぞれ保持数および保持期間です。
+** -daily は、日単位の保持クラスです。 [-countn] [-durationm] は、それぞれ保持数と保持期間です。
+** -weekly は週単位の保持クラスであり、 [-countn] [-durationm] はそれぞれ保持数および保持期間です。
+** -monthly は月単位の保持クラスです。 [-countn] [-durationm] は、それぞれ保持数および保持期間です。
+
+
+
+
+ a| 
+* データベース操作の完了ステータスの電子メール通知を有効にします *
+ a| 
+次のオプションと変数を指定します。
+
+** -summary-notification を使用すると、リポジトリデータベース内の複数のプロファイルについて、サマリー E メール通知を設定できます。
+** -notification を使用すると、プロファイルのデータベース処理の完了ステータスに関する E メール通知を受信できます。
+** -success -email_address2 を使用すると、新規または既存のプロファイルを使用して正常に実行されたデータベース処理の完了後に、 E メール通知を受け取ることができます。
+** -failure-email_address2 を使用すると、新規または既存のプロファイルを使用して実行されたデータベース処理に失敗した場合に、 E メール通知を受け取ることができます。
+** -subjectsubjectsub_text ：新しいプロファイルまたは既存のプロファイルを作成する際の E メール通知の件名を指定します。リポジトリに対して通知設定が設定されておらず、コマンドラインインターフェイス（CLI）を使用してプロファイル通知または概要通知を設定しようとしている場合は、コンソールログに次のメッセージが記録されます。SMSAP-14577：通知設定が設定されていません。
++
+通知設定を行っている状況で、リポジトリの概要通知を有効にせずにCLIを使用して概要通知を設定しようとすると、コンソールログに次のメッセージが記録されます。________SMSAP-14575：このリポジトリで通知設定を使用することはできません
+
+
+
+
+
+ a| 
+* プロファイルを更新して、アーカイブ・ログ・ファイルのバックアップを個別に作成します。 *
+ a| 
+次のオプションと変数を指定します。
+
+** -separate-archivelog バックアップを使用すると、データベース・ファイルとは別にアーカイブ・ログ・ファイルのバックアップを作成できます。
++
+このオプションを指定すると、データファイルのみのバックアップまたはアーカイブログのみのバックアップを作成できます。フルバックアップは作成できません。また、バックアップを分離してプロファイル設定を元に戻すこともできません。SnapManager では、アーカイブログのみのバックアップを作成する前に作成されたバックアップの保持ポリシーに基づいてバックアップが保持されます。
+
+** -retain-archivedlog backups ：アーカイブログのバックアップの保存期間を設定します。
++
+
+NOTE: 初めてプロファイルを更新する場合は、 -separate archivedlog-backups オプションを使用して、アーカイブログのバックアップをデータファイルのバックアップから分離できます。 -retain-archivelog backups オプションを使用して、アーカイブログのバックアップの保持期間を指定する必要があります。プロファイルをあとで更新する場合、保持期間の設定は任意です。
+
+** includee-with -one-backups ：アーカイブログのバックアップをデータベースのバックアップとともに格納するように指定します。
+** -no-inclu他 の -one-backups ：アーカイブログファイルのバックアップがデータベースバックアップに含まれないことを指定します。
+
+
+
+
+ a| 
+* ターゲット・データベースのホスト名を変更します *
+ a| 
+プロファイルのホスト名を変更するには、 -hostnew_db_host を指定します。
+
+
+
+ a| 
+* プロファイルの更新処理後にダンプ・ファイルを収集 *
+ a| 
+dump オプションを指定します。
+
+|===
+. 更新されたプロファイルを表示するには、次のコマンドを入力します。SMSAP profile show
+
+
+* 関連情報 *
+
+xref:concept-how-to-collect-dump-files.adoc[ダンプ・ファイルの収集方法]

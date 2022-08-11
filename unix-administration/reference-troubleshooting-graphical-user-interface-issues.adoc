@@ -1,0 +1,206 @@
+---
+permalink: unix-administration/reference-troubleshooting-graphical-user-interface-issues.html 
+sidebar: sidebar 
+keywords: information, common, graphical, user, interface, gui, issue, resolve, troubleshooting 
+summary: ここでは、グラフィカルユーザインターフェイス（ GUI ）に関するいくつかの一般的な問題について、解決に役立つ情報を記載します。 
+---
+= グラフィカルユーザインターフェイスの問題のトラブルシューティング
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ここでは、グラフィカルユーザインターフェイス（ GUI ）に関するいくつかの一般的な問題について、解決に役立つ情報を記載します。
+
+|===
+| 問題 | 説明 | 回避策 
+
+
+ a| 
+SnapManager GUIにアクセスして処理を実行しようとすると、「SMSAP-20111：Authentication failed for user on host.」というエラーメッセージが表示されることがあります
+ a| 
+この問題は、 SnapManager サーバが実行されているホストでユーザのパスワードが変更された場合に発生します。パスワードが変更されると、 GUI を起動したユーザに対して作成されたクレデンシャルキャッシュが無効になります。SnapManager GUI は引き続きキャッシュ内のクレデンシャルを使用して認証を行うため、認証は失敗します。
+ a| 
+次のいずれかのタスクを実行する必要があります。
+
+* 次のコマンドを実行して、パスワードが変更されたユーザのクレデンシャルを削除し、新しいクレデンシャルをキャッシュに追加します。
++
+.. 「smsapcredential delete」
+.. SMSAPのクレデンシャル・セット
+
+
+* 「smsapcredential clearコマンド」を実行してキャッシュ全体をクリアします。GUI を再度開き、プロンプトが表示されたらクレデンシャルを設定します。
+
+
+
+
+ a| 
+Java Web Start を使用して SnapManager GUI にアクセスするときに、セキュリティ警告が表示されます。
+ a| 
+Java Web Start を使用して SnapManager GUI にアクセスするときに、セキュリティ警告が表示されます。 JNLP jar は自己署名の JRE であり、 SnapManager で使用されている Java バージョンでは、高度なセキュリティレベルで自己署名の jar が許可されていないため、この問題が発生します。
+ a| 
+Java コントロールパネルでセキュリティ設定を medium に変更するか、 SnapManager GUI URL を例外リストに追加します。
+
+
+
+ a| 
+SnapManager Web Start GUI に、正しくないバージョンが表示される。
+ a| 
+Web スタート GUI を起動したときに、新しいバージョンから以前のバージョンに SnapManager をダウングレードすると、 SnapManager Web Start GUI の新しいバージョンが起動されます。
+ a| 
+また、次の手順を実行してキャッシュをクリアする必要があります。
+
+. コンソールを起動します。
+. 次のように入力します*javaws -viewer*
+. Java キャッシュビューア画面で、 SnapManager アプリケーションを右クリックし、「 * 削除 * 」を選択します。
+
+
+
+
+ a| 
+GUI を再起動し、特定のプロファイルのバックアップをチェックする際には、プロファイル名だけが表示されます。
+ a| 
+SnapManager では、プロファイルを開くまで、そのプロファイルに関する情報は表示されません。
+ a| 
+次の手順を実行します。
+
+. プロファイルを右クリックし、メニューから * 開く * を選択します。
++
+SnapManager によって、 [Profile Authentication] ダイアログボックスが表示されます。
+
+. ホストのユーザ名とパスワードを入力します。
++
+バックアップリストが表示されます。 SnapManager
+
+
+
+
+NOTE: プロファイルの認証が必要になるのは、クレデンシャルが有効でキャッシュに保持されている場合のみです。
+
+
+
+ a| 
+GUIで最初のリポジトリを開くと'プロファイル名XXXXが以前にロードしたリポジトリと競合していますというエラーメッセージが表示されます
+ a| 
+同じ名前のプロファイルをリポジトリに含めることはできませんまた ' 一度に開くことができるリポジトリは 1 つだけです
+ a| 
+2つの異なるオペレーティングシステム（OS）ユーザ間で競合しているプロファイルを参照するか、リポジトリに対してSQLステートメントを発行してプロファイルの名前を変更します：「* update smsap_33_profile set name='new_name' where name='old_name'*」
+
+
+
+ a| 
+次のようなエラーメッセージが表示されます。SMSAP-01092：'Unable to initialize repository repo1@ does not exist：repo1SMSAP-11006：cannot resolve host does not exist'
+ a| 
+リポジトリが存在しない可能性があるため、リポジトリにアクセスできません。GUI は、 credentials ファイルからリポジトリのリストを初期化します。
+ a| 
+このリポジトリを削除して、今後ロードしないようにするかどうかを確認するメッセージが表示されます。このリポジトリにアクセスする必要がない場合は '*Delete* をクリックして 'GUI ビューから削除しますこれにより、クレデンシャルファイル内のリポジトリへの参照が削除され、 GUI はリポジトリのロードを再試行しません。
+
+
+
+ a| 
+SUSE Linux Enterprise Server 10 および SUSE Linux Enterprise Server 11 プラットフォームで、ホスト資格情報の認証に失敗するため、プロファイルの作成に失敗します。
+ a| 
+SnapManager では、 Pluggable Authentication Module （ PAM ）を使用してユーザを認証します。SUSE Linux Enterprise Serverバージョン10および11プラットフォームでは、デフォルトでは必要な認証の詳細を提供する「SnapManager 」ファイルが/etc/pam.d'ディレクトリにありません。そのため、ホストのクレデンシャルが失敗します
+ a| 
+SUSE Linux Enterprise Server 10 および 11 プラットフォームでホストに正常にログインするには、次の手順を実行します。
+
+. 「/etc/pam.d/.`」にSnapManager ファイルを作成します
+. /etc/pam.d/snapmanagerにあるSnapManager ファイルに次の内容を追加します
++
+[listing]
+----
+
+#%PAM-1.0
+auth     include   common-auth
+account  include   common-account
+password include   common-password
+session  include   common-session
+----
+. ファイルを保存し、プロファイル作成処理を再試行します。
+
+
+
+
+ a| 
+SnapManager でデータベースツリー構造のロードに時間がかかり、 SnapManager GUI にタイムアウトエラーメッセージが表示されます。
+ a| 
+SnapManager GUI からパーシャル・バックアップ処理を実行すると、 SnapManager はすべてのプロファイルのクレデンシャルをロードしようとします。エントリが無効な場合、 SnapManager はエントリの検証を試み、タイムアウト・エラー・メッセージが表示されます。
+ a| 
+SnapManager コマンド・ライン・インターフェイス（CLI）からcredential deleteコマンドを使用して'未使用のホスト'リポジトリ'およびプロファイルのクレデンシャルを削除します
+
+
+
+ a| 
+クローンスプリット処理のあとに SnapManager で新しいプロファイルの生成が失敗し、新しいプロファイルが作成されたかどうかがわかりません。
+ a| 
+クローンスプリット処理のあとに新しいプロファイルが作成されない場合、 SnapManager はプロンプトを表示しません。失敗した処理についてはメッセージが表示されないため、プロファイルが作成されていると想定できます。
+ a| 
+クローンスプリット処理用に新しいプロファイルが作成されるかどうかを確認するには、次の手順を実行します。
+
+. * Monitor * タブをクリックし、クローン・スプリット処理のエントリを右クリックして * Properties * を選択します。
+. Profile Properties ウィンドウで、 * Logs * タブをクリックして、クローン・スプリット処理とプロファイル作成ログを表示します。
+
+
+
+
+ a| 
+バックアップ、リストア、クローンの処理の前後にプリプロセスやポストプロセスのアクティビティを実行するカスタムスクリプトは、 SnapManager GUI には表示されません。
+ a| 
+カスタムスクリプトをバックアップ、リストア、またはクローンスクリプトのカスタムスクリプトの場所に追加する際、各ウィザードを起動したあとに、そのカスタムスクリプトは [ 使用可能なスクリプト ] リストに表示されません。
+ a| 
+SnapManager ホスト・サーバを再起動し、 SnapManager GUI を開きます。
+
+
+
+ a| 
+SnapManager （ 3.1 以前）で作成したクローン仕様 XML ファイルをクローン処理に使用することはできません。
+ a| 
+SnapManager 3.2 for SAPでは、タスク仕様セクション（タスク仕様）は、個別のタスク仕様XMLファイルとして提供されています。
+ a| 
+SnapManager 3.2 for SAPを使用している場合は、クローン仕様XMLからタスク仕様セクションを削除するか、クローン仕様XMLファイルを新規作成する必要があります。SnapManager 3.3以降では、SnapManager 3.2以前のリリースで作成されたクローン仕様XMLファイルはサポートされていません。
+
+
+
+ a| 
+SnapManager CLIから「smsapcredential clear」コマンドを使用するか、SnapManager GUIから「admin *>* Credentials *>* Clear *>* Cache *」をクリックしてユーザクレデンシャルをクリアしたあとに、GUIでのSnapManager 処理は続行されません。
+ a| 
+リポジトリ、ホスト、およびプロファイルに設定されているクレデンシャルがクリアされます。SnapManager は、処理を開始する前にユーザクレデンシャルを検証します。ユーザクレデンシャルが無効な場合、 SnapManager は認証に失敗します。ホストまたはプロファイルをリポジトリから削除しても、そのユーザクレデンシャルはキャッシュに残っています。これらの不要なクレデンシャルエントリによって、 GUI からの SnapManager 処理が遅くなります。
+ a| 
+キャッシュのクリア方法に応じて、 SnapManager GUI を再起動します。
+
+[NOTE]
+====
+* SnapManager GUI からクレデンシャルキャッシュをクリアした場合は、 SnapManager GUI を終了する必要はありません。
+* SnapManager CLI からクレデンシャルキャッシュをクリアした場合は、 SnapManager GUI を再起動する必要があります。
+* 暗号化されたクレデンシャルファイルを手動で削除した場合は、 SnapManager GUI を再起動する必要があります。
+
+
+====
+リポジトリ、プロファイルホスト、およびプロファイルに対して指定したクレデンシャルを設定します。SnapManager GUI で、リポジトリツリーの下にリポジトリがマップされていない場合は、次の手順を実行します。
+
+. [ タスク *>* 既存のリポジトリの追加 *] をクリックします
+. リポジトリを右クリックし '[* 開く *] をクリックし '[* リポジトリ資格情報の認証 *] ウィンドウにユーザー資格情報を入力します
+. リポジトリの下にあるホストを右クリックし '[*Open*] をクリックし '[*Host Credentials Authentication*]( ホスト資格情報の認証 ) にユーザー資格情報を入力します
+. ホストの下のプロファイルを右クリックし、 * 開く * をクリックして、 * プロファイル資格情報認証 * にユーザー資格情報を入力します。
+
+
+
+
+ a| 
+Profile Propertiesウィンドウの* Protection Manager Protection Policy *ドロップダウンメニューとProfile createウィザードのpolicy settingsページから* None *を選択すると、Protection Manager is temporarily unavailable'というエラーメッセージが表示されます。
+ a| 
+Protection Manager に SnapManager が設定されていないか、 Protection Manager が実行されていません。
+ a| 
+対処は不要です。
+
+
+
+ a| 
+ブラウザの SSL 暗号強度が弱いため、 Java Web Start GUI を使用して SnapManager GUI を開くことはできません。
+ a| 
+SnapManager は、 128 ビットより弱い SSL 暗号をサポートしていません。
+ a| 
+ブラウザのバージョンをアップグレードし、暗号強度を確認します。
+
+|===

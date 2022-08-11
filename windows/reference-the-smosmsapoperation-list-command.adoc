@@ -1,0 +1,71 @@
+---
+permalink: windows/reference-the-smosmsapoperation-list-command.html 
+sidebar: sidebar 
+keywords: command, list, summary, information, operation, record, profile, smsap 
+summary: このコマンドは、指定したプロファイルに対して記録されたすべての処理の概要情報を表示します。 
+---
+= SMSAPのoperation listコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、指定したプロファイルに対して記録されたすべての処理の概要情報を表示します。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap operation list
+-profile profile_name
+[-delimiter character]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+プロファイルの名前を指定します。この名前には 30 文字まで使用でき、ホスト内で一意である必要があります。
+
+* *`- delimiter_character_`*
++
+（任意）このパラメータを指定すると、行ごとに別々の行が表示され、その行の属性は指定した文字で区切られます。
+
+* *`-quiet `*
++
+（任意）コンソール上のエラーメッセージだけを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+（任意）エラー、警告、および情報メッセージをコンソールに表示します。
+
+
+
+
+
+== コマンドの例
+
+次に、指定したプロファイルに対して記録されたすべての処理の概要情報を表示する例を示します。
+
+[listing]
+----
+smsap operation list -profile myprofile
+----
+[listing]
+----
+Start Date Status Operation ID Type Host
+-------------------- ---------- -------------------------------- ------------------ --
+2007-07-16 16:03:57 SUCCESS 8abc01c813d0a1530113d0a15c5f0005 Profile Create Host3
+2007-07-16 16:04:55 FAILED 8abc01c813d0a2370113d0a241230001 Backup Host3
+2007-07-16 16:50:56 SUCCESS 8abc01c813d0cc580113d0cc60ad0001 Profile Update Host3
+2007-07-30 15:44:30 SUCCESS 8abc01c81418a88e011418a8973e0001 Remove Backup Host3
+2007-08-10 14:31:27 SUCCESS 8abc01c814510ba20114510bac320001 Backup Host3
+2007-08-10 14:34:43 SUCCESS 8abc01c814510e9f0114510ea98f0001 Mount Host3
+2007-08-10 14:51:59 SUCCESS 8abc01c814511e6e0114511e78d40001 Unmount Host3
+----

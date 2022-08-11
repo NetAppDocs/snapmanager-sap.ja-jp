@@ -1,0 +1,21 @@
+---
+permalink: unix-administration/task-update-a-backup-schedule.html 
+sidebar: sidebar 
+keywords: view, list, schedule, operation, update, frequency, start, time, cronstring, expression, user, updating, backup 
+summary: スケジュールされた処理のリストを表示し、必要に応じて更新できます。スケジューリング頻度、スケジュールの開始時刻、 cronstring 式、バックアップをスケジュールしたユーザを更新できます。 
+---
+= バックアップスケジュールを更新
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スケジュールされた処理のリストを表示し、必要に応じて更新できます。スケジューリング頻度、スケジュールの開始時刻、 cronstring 式、バックアップをスケジュールしたユーザを更新できます。
+
+.ステップ
+. バックアップのスケジュールを更新するには、次のコマンドを入力します。
++
+「* SMSAP schedule update -profile profile_profile_name」-schedule - name_scheduleName _[-schedule-comment_schedule comment_]- interval｛_-hourly_|_-daily_|_-weekly_|_-monthly_schedule_|_onetimeonly_｝-start-time_starttime_cronstring_cronstring_verbose*-run`Asquiet」-ユーザー名
+
+

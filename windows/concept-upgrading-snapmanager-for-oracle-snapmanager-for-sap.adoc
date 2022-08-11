@@ -1,0 +1,14 @@
+---
+permalink: windows/concept-upgrading-snapmanager-for-oracle-snapmanager-for-sap.html 
+sidebar: sidebar 
+keywords: upgrade, version, snapmanager, sap, host, perform, stagger, host-by-host, manner 
+summary: どのバージョンよりも前のバージョンから、最新バージョンのSnapManager for SAPにアップグレードできます。すべての SnapManager ホストを同時にアップグレードすることも、ローリングアップグレードを実行することもできます。これにより、ホストを段階的にホスト単位でアップグレードできます。 
+---
+= SnapManager のアップグレード
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+どのバージョンよりも前のバージョンから、最新バージョンのSnapManager for SAPにアップグレードできます。すべての SnapManager ホストを同時にアップグレードすることも、ローリングアップグレードを実行することもできます。これにより、ホストを段階的にホスト単位でアップグレードできます。

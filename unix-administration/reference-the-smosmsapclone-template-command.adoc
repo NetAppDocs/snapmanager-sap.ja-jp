@@ -1,0 +1,65 @@
+---
+permalink: unix-administration/reference-the-smosmsapclone-template-command.html 
+sidebar: sidebar 
+keywords: command, create, clone, specification, template, smsap 
+summary: このコマンドを使用すると、クローン仕様テンプレートを作成できます。 
+---
+= SMSAPのclone templateコマンド
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドを使用すると、クローン仕様テンプレートを作成できます。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap clone template
+-profile _name_
+[-backup-id _guid_  | -backup-label _backup_name_\]
+[-quiet | -verbose]]
+----
+
+
+== パラメータ
+
+* ``*-profile_name_*``
++
+クローン仕様を作成するデータベースを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* `*-backup-id_GUID_*``
++
+指定した GUID を持つバックアップからクローン仕様を作成します。GUID はバックアップを作成するときに SnapManager によって生成されます。SMSAPのbackup listコマンドを使用して、各バックアップのGUIDを表示します。
+
+* ``*-backup-label_backup_label_name_*``
++
+指定したバックアップ・ラベルを持つバックアップからクローン仕様を作成します。
+
+* `*-quiet *``
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+'''
+
+
+== コマンドの例
+
+次に、 full_backup_sales_May というラベルのバックアップからクローン仕様テンプレートを作成する例を示します。SMSAPのclone templateコマンドが完了すると、クローン仕様テンプレートが完成します。
+
+[listing]
+----
+smsap clone template -profile SALES1 -backup-label full_backup_sales_May
+Operation Id [8abc01ec0e79004b010e79006da60001] succeeded.
+----
+'''

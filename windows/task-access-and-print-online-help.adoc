@@ -1,0 +1,25 @@
+---
+permalink: windows/task-access-and-print-online-help.html 
+sidebar: sidebar 
+keywords: online, help, instruction, task, snapmanager, graphical, user, interface, windows, wizard, access, print 
+summary: オンラインヘルプには、 SnapManager のグラフィカルユーザインターフェイスを使用して実行できるタスクの手順が記載されています。また、オンラインヘルプでは、 Windows およびウィザードのフィールドについても説明しています。 
+---
+= オンラインヘルプにアクセスして印刷します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+オンラインヘルプには、 SnapManager のグラフィカルユーザインターフェイスを使用して実行できるタスクの手順が記載されています。また、オンラインヘルプでは、 Windows およびウィザードのフィールドについても説明しています。
+
+.手順
+. 次のいずれかを実行します。
++
+** メインウィンドウで、 * Help * > * Help Contents * をクリックします。
+** 任意のウィンドウまたはウィザードで、 [* ヘルプ ] をクリックして、そのウィンドウに固有のヘルプを表示します。
+
+
+. 左側のペインにある * 目次 * を使用して、トピックをナビゲートします。
+. ヘルプウィンドウの上部にあるプリンタアイコンをクリックして、個々のトピックを印刷します。
+

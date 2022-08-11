@@ -1,0 +1,26 @@
+---
+permalink: windows/concept-what-snapmanager-for-oraclefor-sap-is.html 
+sidebar: sidebar 
+keywords: snapmanager, tools, perform, policy-driven, data, management, schedule, create, database, backup, restore, primary, storage, post-process, sap 
+summary: SnapManager には、ポリシーベースのデータ管理、定期的なデータベースバックアップのスケジュール設定と作成、データ損失や災害が発生した場合のこれらのバックアップからのデータのリストア、データベースクローンの作成に必要なツールが用意されています。ポストプロセススクリプトを使用して、プライマリストレージにバックアップを作成し、保護されたバックアップをセカンダリストレージに作成できます。 
+---
+= SnapManagerfor SAPとは
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager には、ポリシーベースのデータ管理、定期的なデータベースバックアップのスケジュール設定と作成、データ損失や災害が発生した場合のこれらのバックアップからのデータのリストア、データベースクローンの作成に必要なツールが用意されています。ポストプロセススクリプトを使用して、プライマリストレージにバックアップを作成し、保護されたバックアップをセカンダリストレージに作成できます。
+
+SnapManager は、最新のデータベースリリースと統合する際にネットアップのテクノロジを活用します。SnapManager は、ネットアップの次のアプリケーションやテクノロジと統合されています。
+
+* SnapDrive は、ストレージのプロビジョニングタスクを自動化し、エラーが発生しない、ホストと整合性のあるストレージの Snapshot コピーを作成するプロセスを簡易化します。
+* Data ONTAP の機能である Snapshot を使用すると、データベースのポイントインタイムコピーを作成できます。
+* Data ONTAP （ SnapVault のライセンス機能）は、ディスクベースのバックアップを利用して、信頼性の高い低オーバーヘッドのデータベースのバックアップとリカバリを実現します。
+* SnapMirror （ Data ONTAP のライセンス機能）は、シンプルかつ信頼性とコスト効率に優れた方法で、グローバルネットワーク全体にデータベースデータを複製します。
+* SnapRestore （ Data ONTAP のライセンス機能）は、容量やファイル数に関係なく、データベース全体を数秒でリカバリします。
+* FlexClone （ Data ONTAP のライセンス機能）を使用すると、 Snapshot バックアップから、スペース効率に優れたデータベースのクローンを短時間で作成できます。
+
+
+SnapManager は、 SAN （ FC および iSCSI ）プロトコルで動作します。

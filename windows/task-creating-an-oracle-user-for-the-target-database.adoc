@@ -1,0 +1,24 @@
+---
+permalink: windows/task-creating-an-oracle-user-for-the-target-database.html 
+sidebar: sidebar 
+keywords: create, oracle, user, sysdba, role, connext, database, perform, operation, creating, target 
+summary: データベースに接続してデータベース処理を実行する sysdba ロールを持つ Oracle ユーザを作成する必要があります。 
+---
+= ターゲットデータベースの Oracle ユーザを作成しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データベースに接続してデータベース処理を実行する sysdba ロールを持つ Oracle ユーザを作成する必要があります。
+
+SnapManager では、ターゲットデータベースに sysdba 権限を持つ任意の Oracle ユーザを使用できます。たとえば、デフォルトの「 sys 」ユーザなどです。ターゲットデータベースに、 SnapManager だけが使用するユーザを作成することもできます。
+
+. SQL*Plus にログインします。
++
+コマンドプロンプトで'sqlplus '/as sysdba'と入力します
+
+. adminpw1など、管理者パスワードを指定したsmsap_operなどのユーザを作成するには、SQLプロンプトに次のコマンドを入力します。SQL> create user smsap_oper identified by adminpw1;`
+. 次のコマンドを入力して、Oracleユーザにsysdba権限を付与します。「sql > grant sysdba to smsap_opa;`
+

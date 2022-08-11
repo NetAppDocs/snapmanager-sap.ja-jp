@@ -1,0 +1,47 @@
+---
+permalink: unix-administration/task-verify-installation-of-plugin-scripts.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, install, custom, script, various, operation, snapmanager, plugin, backup, restore, clone, operation, automate, custom, script, plug-in 
+summary: SnapManager では、カスタムスクリプトをインストールして使用することで、さまざまな処理を実行できます。SnapManager には、バックアップ、リストア、クローニングの各処理のプラグインが用意されています。このプラグインを使用すると、バックアップ、リストア、クローニングの各処理の前後にカスタムスクリプトを自動化できます。 
+---
+= プラグインスクリプトのインストールを確認
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、カスタムスクリプトをインストールして使用することで、さまざまな処理を実行できます。SnapManager には、バックアップ、リストア、クローニングの各処理のプラグインが用意されています。このプラグインを使用すると、バックアップ、リストア、クローニングの各処理の前後にカスタムスクリプトを自動化できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+'*SMSAP plugin check-osaccount_os db user name_*
+
++
+-osaccount'オプションを指定しない場合'プラグイン・スクリプトのインストールの検証は'指定されたユーザーではなくrootユーザーに対して行われます
+
++
+* 例 *
+
++
+次の出力は、 policy1 、プラグイン 1 、およびプラグイン 2 の各スクリプトが正常にインストールされたことを示しています。ただし、プラグイン 1 以降のスクリプトは動作しません。
+
++
+[listing]
+----
+
+            smsap plugin check
+Checking plugin directory structure ...
+<installdir>/plugins/clone/policy
+   OK: 'policy1' is executable
+
+<installdir>/plugins/clone/pre
+   OK: 'pre-plugin1' is executable and returned status 0
+   OK: 'pre-plugin2' is executable and returned status 0
+
+<installdir>/plugins/clone/post
+   ERROR: 'post-plugin1' is executable and returned status 3
+Command complete.
+----
+

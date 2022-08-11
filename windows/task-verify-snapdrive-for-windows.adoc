@@ -1,0 +1,30 @@
+---
+permalink: windows/task-verify-snapdrive-for-windows.html 
+sidebar: sidebar 
+keywords: install, snapdrive, windows, snapshot, verify, create, copy 
+summary: SnapDrive for Windows をインストールした場合は、 SnapManager を使用する前に、 Snapshot コピーを作成できることを確認します。 
+---
+= SnapDrive for Windowsを確認します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapDrive for Windows をインストールした場合は、 SnapManager を使用する前に、 Snapshot コピーを作成できることを確認します。
+
+.手順
+. [ スタート ] メニューの [ マイコンピュータ ] を右クリックし、 [ 管理 ] を選択します。
+. [*コンピューターの管理*]ウィンドウで、[*ストレージ*]、[* SnapDrive *]の順にクリックします。
+. ディスクを選択します。
++
+SnapDrive の使用方法の詳細については、 SnapDrive for Windows インストレーションアドミニストレーションガイドを参照してください。
+
++
+SnapDrive 製品のディスク情報が正常に表示されていれば、 SnapDrive は正しく動作しています。
+
+
+
+* 関連情報 *
+
+http://support.netapp.com/documentation/productsatoz/index.html["『SnapDrive for Windowsインストレーションアドミニストレーションガイド』"^]

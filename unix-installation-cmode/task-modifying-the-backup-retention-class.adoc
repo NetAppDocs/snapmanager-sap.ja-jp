@@ -1,0 +1,66 @@
+---
+permalink: unix-installation-cmode/task-modify-the-backup-retention-class.html 
+sidebar: sidebar 
+keywords: upgrade, snapmanager, assign, default, backup, retention, exist, default, class, value, requirement, modify, class 
+summary: アップグレード後、 SnapManager はデフォルトのバックアップ保持クラスを既存のバックアップに割り当てます。デフォルトの保持クラスの値は、バックアップの要件に合わせて変更することができます。 
+---
+= バックアップ保持クラスを変更します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+アップグレード後、 SnapManager はデフォルトのバックアップ保持クラスを既存のバックアップに割り当てます。デフォルトの保持クラスの値は、バックアップの要件に合わせて変更することができます。
+
+
+
+== このタスクについて
+
+既存のバックアップに割り当てられるデフォルトのバックアップ保持クラスは次のとおりです。
+
+|===
+| バックアップタイプ | アップグレード後の保持クラスの割り当て 
+
+
+ a| 
+バックアップを無期限に保持する
+ a| 
+無制限
+
+
+
+ a| 
+その他のバックアップ
+ a| 
+毎日
+
+|===
+[NOTE]
+====
+保持クラスを変更することなく、永続的に保持されているバックアップを削除できます。
+
+====
+SnapManager 3.0 以降にアップグレードすると、次の 2 つのうち大きい方の値が既存のプロファイルに割り当てられます。
+
+* プロファイルの以前の保持数
+* 「SMSAP_CONFIG」ファイルで指定された、日次バックアップの保持数および保持期間のデフォルト値
+
+
+.ステップ
+. 「SMSAP_CONFIG`」ファイルで「retain.hourly.count」および「retain.hourly.duration」に割り当てられた値を変更します。
++
+「SMSAP_CONFIG」ファイルは、デフォルトのインストール場所/properties/smsap.configにあります。
+
++
+* 例 *
+
++
+次の値を入力できます。
+
++
+** `retain.hourly.count`=*12*
+** `retain.hourly.duration `=*2*
+
+
+

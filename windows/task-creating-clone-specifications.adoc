@@ -1,0 +1,298 @@
+---
+permalink: windows/task-creating-clone-specifications.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, clone, specification, xml, file, mapping, option, parameter, clone, operation, information, creating, create 
+summary: SnapManager for SAPでは、クローン仕様XMLファイルを使用します。このファイルには、クローン処理で使用するマッピング、オプション、およびパラメータが含まれています。SnapManager は、この情報を使用して、クローニングするファイルの配置場所、および診断情報、制御ファイル、パラメータなどの処理方法を決定します。 
+---
+= クローン仕様を作成しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPでは、クローン仕様XMLファイルを使用します。このファイルには、クローン処理で使用するマッピング、オプション、およびパラメータが含まれています。SnapManager は、この情報を使用して、クローニングするファイルの配置場所、および診断情報、制御ファイル、パラメータなどの処理方法を決定します。
+
+クローン仕様ファイルは、 SnapManager のグラフィカルユーザインターフェイス（ GUI ）、コマンドラインインターフェイス（ CLI ）、またはテキストエディタを使用して作成できます。
+
+テキストエディタを使用してクローン仕様ファイルを作成する場合は、 .xml ファイルとして保存する必要があります。この XML ファイルは、他のクローニング処理に使用できます。
+
+クローン仕様テンプレートを作成し、カスタマイズすることもできます。SMSAPのクローンテンプレートコマンドを使用するか、GUIでクローンウィザードを使用できます。
+
+SnapManager for SAPでは、生成されるクローン仕様テンプレートにバージョン文字列が追加されます。SnapManager for SAPは、バージョン文字列がないクローン仕様ファイルの最新バージョンを前提としています。
+
+リモートクローニングを実行する場合は、クローン仕様ファイル内のデータファイル、 REDO ログファイル、および制御ファイルのデフォルトの場所を変更しないでください。デフォルトの場所を変更した場合、 SnapManager は、 Snapshot 機能をサポートしていないデータベース上でクローンの作成に失敗するか、クローンを作成しません。そのため、プロファイルの自動作成は失敗します。
+
+
+NOTE: マウントポイントと ASM ディスクグループの情報は GUI から編集できますが、変更できるのはファイル名のみで、ファイルの場所は変更できません。
+
+同じパラメータと値の組み合わせを使用して、タスクを複数回実行できます。
+
+SAPでは、データベース設定に特定のOracle設定を使用します。これらの設定は、$ORACLE_HOME\databaseにあるinit<SID>.oraで確認できます。これらはクローン仕様に含める必要があります。
+
+. テキストファイルを開き、次の例に示すようにテキストを入力します。
++
+[listing]
+----
+<clone-specification xmlns="http://www.example.com>
+     <storage-specification/>
+     <database-specification/>
+ </clone-specification>
+----
+. ストレージ仕様コンポーネントで、データファイルのマウントポイントを入力します。
++
+ストレージ仕様には、データ・ファイルのマウント・ポイントや raw デバイスなど、クローン用に作成された新しいストレージの場所が表示されます。これらの項目は、ソースからデスティネーションにマッピングする必要があります。
+
++
+次に、NFS接続ストレージ上の単一のNFSマウントポイントの例を示します。
+
++
+[listing]
+----
+<mountpoint>
+      <source>\oracle\<SOURCE SID>_sapdata</source>
+      <destination>\oracle\<TARGET SID>_sapdata</destination>
+</mountpoint>
+----
+. データベース仕様コンポーネントで、制御ファイルの情報を、クローン用に作成する制御ファイルのリストとして指定します。
++
+データベース仕様では、制御ファイル、 REDO ログ、アーカイブ・ログ、 Oracle パラメータなど、クローンのデータベース・オプションを指定しています。
+
++
+次に、クローン仕様で使用する制御ファイルの構文の例を示します。
+
++
+[listing]
+----
+<controlfiles>
+     <file>\oracle\<TARGET SID>\origlogA\cntrl\cntrl<TARGET SID>.dbf</file>
+     <file>\oracle\<TARGET SID>\origlogB\cntrl\cntrl<TARGET SID>.dbf</file>
+     <file>\oracle\<TARGET SID>\sapdata1\cntrl\cntrl<TARGET SID>.dbf</file>
+</controlfiles>
+----
+. クローンの REDO ログ構造を指定します。
++
+次に、クローニングの REDO ログディレクトリの構造を表示する例を示します。
+
++
+[listing]
+----
+<redologs>
+     <redogroup>
+        <file>E:\oracle\<TARGET SID>\origlogA\log_g11m1.dbf</file>
+        <file>E:\oracle\<TARGET SID>\mirrlogA\log_g11m2.dbf</file>
+        <number>1</number>
+        <size unit="M">100</size>
+     </redogroup>
+     <redogroup>
+        <file>E:\oracle\<TARGET SID>\origlogB\log_g12m1.dbf</file>
+        <file>E:\oracle\<TARGET SID>\mirrlogB\log_g12m2.dbf</file>
+        <number>2</number>
+        <size unit="M">100</size>
+     </redogroup>
+     <redogroup>
+        <file>E:\oracle\<TARGET SID>\origlogA\log_g13m1.dbf</file>
+        <file>E:\oracle\<TARGET SID>\mirrlogA\log_g13m2.dbf</file>
+        <number>3</number>
+        <size unit="M">100</size>
+     </redogroup>
+     <redogroup>
+        <file>E:\oracle\<TARGET SID>\origlogB\log_g14m1.dbf</file>
+        <file>E:\oracle\<TARGET SID>\mirrlogB\log_g14m2.dbf</file>
+        <number>4</number>
+        <size unit="M">100</size>
+     </redogroup>
+</redologs>
+----
+. クローニングしたデータベースで、別の値に設定する Oracle パラメータを指定します。Oracle 10 を使用している場合は、次のパラメータを指定する必要があります。
++
+** バックグラウンド・ダンプ
+** コアダンプ
+** ユーザダンプ
+** （オプション）ログをアーカイブします
++
+
+NOTE: パラメータ値が正しく設定されていないとクローニング処理が停止し、エラーメッセージが表示されます。
+
+
+
++
+アーカイブログの格納場所を指定しない場合、 SnapManager は NOARCHIVELOG モードでクローンを作成します。SnapManager は、このパラメータ情報をクローンの init.ora ファイルにコピーします。
+
++
++ 次の例は、クローン仕様で使用するパラメータ構文を示しています。
+
++
+[+]
+
++
+[listing]
+----
+<parameters>
+     <parameter>
+          <name>log_archive_dest</name>
+          <value>LOCATION=>E:\oracle\<TARGET SID>\oraarch</value>
+     </parameter>
+     <parameter>
+          <name>background_dump_dest</name>
+          <value>E:\oracle\<TARGET SID>\saptrace\background</value>
+     </parameter>
+     <parameter>
+          <name>core_dump_dest</name>
+          <value>E:\oracle\<TARGET SID>\saptrace\background</value>
+     </parameter>
+     <parameter>
+     <name>user_dump_dest</name>
+     <value>E:\oracle\<TARGET SID>\saptrace\usertrace</value>
+     </parameter>
+</parameters>
+----
++
++ デフォルト値を使用するには、パラメータ要素内で default 要素を使用します。次の例では、デフォルトの要素が指定されているため、 os_authentication_prefix パラメータでデフォルト値が使用されます。
+
++
+[+]
+
++
+[listing]
+----
+<parameters>
+     <parameter>
+          <name>os_authent_prefix</name>
+          <default></default>
+     </parameter>
+</parameters>
+----
++
++ 空の要素を使用して、パラメータの値として空の文字列を指定できます。次の例では、 os_authentication_prefix が空の文字列に設定されます。
+
++
+[+]
+
++
+[listing]
+----
+<parameters>
+     <parameter>
+          <name>os_authent_prefix</name>
+          <value></value>
+     </parameter>
+</parameters>
+----
++
++ 注 : ソースデータベースの init.ora ファイルの値は、エレメントを指定せずにパラメータに使用できます。
+
++
++ パラメータに複数の値がある場合は、パラメータ値をカンマで区切って指定できます。たとえば、ある場所から別の場所にデータファイルを移動する場合は、 db_file_name _convert パラメータを使用し、データファイルパスをカンマで区切って指定できます。次に例を示します。
+
++
++ ログファイルを別の場所に移動する場合は、次の例に示すように、 log_file_name _convert パラメータを使用して、ログファイルのパスをカンマで区切って指定できます。
+
+. オプション：任意の SQL ステートメントを指定し、クローンがオンラインのときにそのステートメントを実行します。
++
+SQL ステートメントを使用すると、クローニングされたデータベース内で一時ファイルを再作成するなどのタスクを実行できます。
+
++
+
+NOTE: SQL ステートメントの最後にセミコロンが含まれていないことを確認してください。
+
++
+次に、クローニング処理の一環として実行する SQL ステートメントの例を示します。
+
++
+[listing]
+----
+<sql-statements>
+   <sql-statement>
+     ALTER TABLESPACE TEMP ADD
+     TEMPFILE 'E:\path\clonename\temp_user01.dbf'
+     SIZE 41943040 REUSE AUTOEXTEND ON NEXT 655360
+     MAXSIZE 32767M
+   </sql-statement>
+</sql-statements>
+----
+
+
+
+
+== クローン仕様の例
+
+Windows 環境の場合、ストレージとデータベースの両方の仕様コンポーネントを含む、クローン仕様の構造を次の例に示します。
+
+[listing]
+----
+<clone-specification xmlns="http://www.example.com>
+
+<storage-specification>
+    <storage-mapping>
+        <mountpoint>
+            <source>D:\oracle\<SOURCE SID>_sapdata</source>
+            <destination>D:\oracle\<TARGET SID>_sapdata</destination>
+        </mountpoint>
+    </storage-mapping>
+</storage-specification>
+
+<database-specification>
+    <controlfiles>
+        <file>D:\oracle\<TARGET SID>\origlogA\cntrl\cntrl<TARGET SID>.dbf</file>
+        <file>D:\oracle\<TARGET SID>\origlogB\cntrl\cntrl<TARGET SID>.dbf</file>
+        <file>D:\oracle\<TARGET SID>\sapdata1\cntrl\cntrl<TARGET SID>.dbf</file>
+     </controlfiles>
+
+     <redologs>
+        <redogroup>
+            <file>D:\oracle\<TARGET SID>\origlogA\log_g11m1.dbf</file>
+            <file>D:\oracle\<TARGET SID>\mirrlogA\log_g11m2.dbf</file>
+            <number>1</number>
+            <size unit="M">100</size>
+        </redogroup>
+        <redogroup>
+            <file>D:\oracle\<TARGET SID>\origlogB\log_g12m1.dbf</file>
+            <file>D:\oracle\<TARGET SID>\mirrlogB\log_g12m2.dbf</file>
+            <number>2</number>
+            <size unit="M">100</size>
+        </redogroup>
+        <redogroup>
+            <file>D:\oracle\<TARGET SID>\origlogA\log_g13m1.dbf</file>
+            <file>D:\oracle\<TARGET SID>\mirrlogA\log_g13m2.dbf</file>
+            <number>3</number>
+            <size unit="M">100</size>
+        </redogroup>
+        <redogroup>
+            <file>D:\oracle\<TARGET SID>\origlogB\log_g14m1.dbf</file>
+            <file>D:\oracle\<TARGET SID>\mirrlogB\log_g14m2.dbf</file>
+            <number>4</number>
+            <size unit="M">100</size>
+       </redogroup>
+    </redologs>
+
+    <parameters>
+        <parameter>
+            <name>log_archive_dest</name>
+            <value>LOCATION=>D:\oracle\<TARGET SID>\oraarch</value>
+        </parameter>
+        <parameter>
+            <name>background_dump_dest</name>
+            <value>D:\oracle\<TARGET SID>\saptrace\background</value>
+        </parameter>
+        <parameter>
+            <name>core_dump_dest</name>
+            <value>D:\oracle\<TARGET SID>\saptrace\background</value>
+        </parameter>
+        <parameter>
+            <name>user_dump_dest</name>
+            <value>D:\oracle\<TARGET SID>\saptrace\usertrace</value>
+        </parameter>
+    </parameters>
+  </database-specification>
+</clone-specification>
+----
+* 関連情報 *
+
+xref:task-cloning-databases-and-using-custom-plugin-scripts.adoc[データベースのクローニングおよびカスタムプラグインスクリプトの使用]
+
+xref:task-cloning-databases-from-backups.adoc[バックアップからデータベースをクローニングする]
+
+xref:task-cloning-databases-in-the-current-state.adoc[現在の状態のデータベースをクローニングしています]
+
+xref:concept-considerations-for-cloning-a-database-to-an-alternate-host.adoc[代替ホストにデータベースをクローニングする場合の考慮事項]

@@ -1,0 +1,203 @@
+---
+permalink: unix-administration/task-view-sample-plugin-scripts.html 
+sidebar: sidebar 
+keywords: snapmanager, include, script, example, basis, custom, view, sample, plug-in 
+summary: SnapManager には、独自のスクリプトを作成する方法、またはカスタムスクリプトのベースとして使用できるスクリプトが用意されています。 
+---
+= サンプルのプラグインスクリプトを表示する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager には、独自のスクリプトを作成する方法、またはカスタムスクリプトのベースとして使用できるスクリプトが用意されています。
+
+* このタスクについて *
+
+サンプルプラグインスクリプトは、次の場所にあります。
+
+* `<default_install_directory>/plugins/examples/backup/create
+* `<default_install_directory>/plugins/examples/clone/create
+* `<default_install_directory>/plugins/unix/examples/backup/create/post
+
+
+サンプルのプラグインスクリプトを含むディレクトリには、次のサブディレクトリがあります。
+
+* ’policy’:設定されている場合は常にクローン処理で実行されるスクリプトを格納します。
+* pre：クローン・オペレーションの前に実行されるスクリプトを設定した場合に格納します
+* post`:クローン操作の後に実行されるスクリプトを、構成されたときに含んでいます。
+
+
+次の表に、サンプルスクリプトを示します。
+
+[cols="1a,3a,1a"]
+|===
+| スクリプト名 | 説明 | スクリプトのタイプ 
+
+
+ a| 
+「VALIDATE_sid.sh」を参照してください
+ a| 
+ターゲットシステムで使用されている SID に対する追加のチェックが含まれます。スクリプトは、 SID に次の特性があるかどうかを確認します。
+
+* 3 つの英数字で構成されます
+* 先頭の文字はアルファベットにします
+* リザーブされているSAP SIDは含まれません
+
+ a| 
+ポリシー
+
+
+
+ a| 
+「cleanup.sh」を参照してください
+ a| 
+ターゲットシステムをクリーンアップして、新しく作成したクローンを格納できるようにします。必要に応じて、ファイルとディレクトリを保持または削除します。
+ a| 
+事前課題
+
+
+
+ a| 
+sap_follow up_activities .sh
+ a| 
+UNIXおよびNFSとNetAppストレージ上のOracleを使用するSAPで、_ SAPシステムコピーガイド_およびTR-3442に記載されたフォローアップアクティビティタスクを実行します。たとえば、次のスクリプトはSAPスキーマのテーブルエントリを削除または変更します。
+ a| 
+タスク後
+
+
+
+ a| 
+os_db_authentication.sh
+ a| 
+SAP Note 316641で推奨されているように、OPS$ユーザーのオペレーティングシステム認証を適用します。これは、外部SQLファイルを処理する方法の例です。
+ a| 
+タスク後
+
+
+
+ a| 
+Mirror_The _backup.sh
+ a| 
+Data ONTAP 7-Mode または clustered Data ONTAP を使用している場合、バックアップ処理の実行後にボリュームがミラーリングされます。
+ a| 
+タスク後
+
+
+
+ a| 
+'Vault_The _backup_cDOT .sh
+ a| 
+clustered Data ONTAP を使用している UNIX 環境では、バックアップ処理後にバックアップをバックアップします。
+ a| 
+タスク後
+
+|===
+SnapManager で提供されるスクリプトは、デフォルトで bash シェルを使用します。サンプルスクリプトを実行する前に、オペレーティングシステムに bash シェルのサポートがインストールされていることを確認する必要があります。
+
+.手順
+. bashシェルを使用していることを確認するには、コマンドプロンプトで次のコマンドを入力します。
++
+*bash *`
+
++
+エラーが表示されない場合は、 bash シェルは正常に動作しています。
+
++
+または、コマンドプロンプトで「which -bash」コマンドを入力することもできます。
+
+. 次のディレクトリでスクリプトを探します。
++
+`<installdir>/plugins/examples/clone/create
+
+. vi のようなスクリプトエディタでスクリプトを開きます。
+
+
+'''
+
+
+== サンプルスクリプト
+
+次のサンプルのカスタムスクリプトでは、データベースの SID 名を検証し、クローンデータベースで無効な名前が使用されないようにしています。このスクリプトには、スクリプトの実行後に呼び出される 3 つの操作（チェック、説明、実行）が含まれています。このスクリプトには、コード 0 、 4 、 4 のエラーメッセージ処理も含まれています。
+
+[listing]
+----
+EXIT=0
+name="Validate SID"
+description="Validate SID used on the target system"
+parameter=()
+
+# reserved system IDs
+INVALID_SIDS=("ADD" "ALL" "AND" "ANY" "ASC"
+              "COM" "DBA" "END" "EPS" "FOR"
+              "GID" "IBM" "INT" "KEY" "LOG"
+              "MON" "NIX" "NOT" "OFF" "OMS"
+              "RAW" "ROW" "SAP" "SET" "SGA"
+              "SHG" "SID" "SQL" "SYS" "TMP"
+              "UID" "USR" "VAR")
+function _exit {
+     rc=$1
+     echo "Command complete."
+    	return $rc}
+
+function usage {
+     echo "usage: $(basename $0) { -check | -describe | -execute }"
+     _exit 99}
+
+function describe {
+    	echo "SM_PI_NAME:$name"
+    	echo "SM_PI_DESCRIPTION:$description"
+    	_exit 0}
+
+function check {
+    	_exit 0}
+
+function execute {
+    	IFS=\$ myEnv=$(env)
+     for a in ${paramteter[@]}; do
+       		key=$(echo ${$a} | awk -F':' '{ print $1 }')
+         val=$(echo $myEnv | grep -i -w $key 2>/dev/null | awk -F'=' '{ print $2 }')
+
+       		if [ -n "$val" ] ; then
+              state="set to $val"
+       		else
+           			state="not set"
+           			#indicate a FATAL error, do not continue processing
+           			((EXIT=+4))
+		       fi
+         echo "parameter $key is $state"
+     done
+
+	######################################################################
+	# additional checks
+ # Use SnapManager environment variable of SM_TARGET_SID
+
+	if [ -n "$SM_TARGET_SID" ] ; then
+  		if [ ${#SM_TARGET_SID} -ne 3 ] ; then
+        echo "SID is defined as a 3 digit value, [$SM_TARGET_SID] is not valid."
+        EXIT=4
+    else
+        echo "${INVALID_SIDS[@]}" | grep -i -w $SM_TARGET_SID >/dev/null 2>&1
+     			if [ $? -eq 0 ] ; then
+            echo "The usage of SID [$SM_TARGET_SID] is not supported by SAP."
+        				((EXIT+=4))
+  		fi
+	fi
+	else
+   		echo "SM_TARGET_SID not set"
+     EXIT=4
+	fi  _exit $EXIT}
+
+# Include the 3 required operations for clone plugin
+case $(echo "$1" | tr [A-Z] [a-z]) in
+  -check )        check     ;;
+  -describe )     describe  ;;
+  -execute )      execute   ;;     	* )
+		 echo "unknown option $1"    usage 		;;
+esac
+----
+'''
+* 関連情報 *
+
+http://media.netapp.com/documents/tr-3442.pdf["UNIXおよびNFS上で稼働するSAPとネットアップストレージ：TR-3442"^]

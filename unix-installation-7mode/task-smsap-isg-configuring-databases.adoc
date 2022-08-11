@@ -1,0 +1,14 @@
+---
+permalink: unix-installation-7mode/task-smsap-isg-configure-databases.html 
+sidebar: sidebar 
+keywords: configure, database, target, back, up, snapmanager, repository, store, metadata, configuring 
+summary: 少なくとも2つのデータベースを設定する必要があります。SnapManager とリポジトリデータベースを使用してバックアップし、ターゲットデータベースのメタデータを格納するターゲットデータベース。SnapManager 処理を実行する前に、ターゲットデータベースと SnapManager リポジトリデータベースを設定してオンラインにする必要があります。 
+---
+= データベースを設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を使用してバックアップするターゲットデータベースと、ターゲットデータベースメタデータを保存するリポジトリデータベースの少なくとも2つのデータベースを設定する必要があります。SnapManager 処理を実行する前に、ターゲットデータベースと SnapManager リポジトリデータベースを設定してオンラインにする必要があります。

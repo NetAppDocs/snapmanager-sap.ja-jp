@@ -1,0 +1,86 @@
+---
+permalink: windows/reference-the-smosmsapbackup-delete-command.html 
+sidebar: sidebar 
+keywords: run, backup, delete, command, remove, automatic, create, clone, fail, retention, unlimited, basis, class, smsap 
+summary: backup delete コマンドを実行すると、クローン作成に使用したバックアップや失敗したバックアップなど、自動的に削除されないバックアップを削除できます。保持するバックアップは、保持クラスを変更することなく、無制限に削除できます。 
+---
+= SMSAPのbackup deleteコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+自動的に削除されないバックアップ（クローンの作成に使用されたバックアップや失敗したバックアップなど）を削除するには、backup deleteコマンドを実行します。保持するバックアップは、保持クラスを変更することなく、無制限に削除できます。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap backup delete
+-profile profile_name
+[-label label [-data | -archivelogs] | [-id guid | -all]
+-force
+[-dump]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+削除するバックアップに関連付けられたデータベースを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* *`-id_GUID_`*
++
+指定した GUID を持つバックアップを指定します。GUID はバックアップを作成するときに SnapManager によって生成されます。「SMSAP backup list」コマンドを使用して、各バックアップのGUIDを表示できます。
+
+* *`-label_label_`*
++
+指定したラベルを持つバックアップを指定します。必要に応じて、バックアップの範囲をデータファイルまたはアーカイブログとして指定します。
+
+* *`-data`*
++
+データファイルを指定します。
+
+* *`-archivelogs`*
++
+アーカイブログファイルを指定します。
+
+* *`-all`*
++
+すべてのバックアップを指定します。指定されたバックアップのみを削除するには'-idまたは-label'オプションを使用します
+
+* *`-dump`*
++
+バックアップの削除処理が成功したか失敗したあとにダンプファイルを収集します。
+
+* *`-force *
++
+バックアップを強制的に削除します。バックアップに関連付けられたリソースを解放する際に問題が発生した場合も、 SnapManager はバックアップを削除します。たとえば'バックアップがOracle Recovery Manager（RMAN）を使用してカタログ化されていても'-forceを含むRMANデータベースが存在しない場合は'RMANに接続できなくてもバックアップは削除されます
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== 例
+
+次の例は、バックアップを削除します。
+
+[listing]
+----
+smsap backup delete -profile SALES1 -label full_backup_sales_May
+Operation Id [8abc01ec0e79004b010e79006da60001] succeeded.
+----

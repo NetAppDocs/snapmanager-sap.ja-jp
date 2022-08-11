@@ -1,0 +1,33 @@
+---
+permalink: windows/task-verify-database-backups.html 
+sidebar: sidebar 
+keywords: backup, verify, command, block, database, corrupt, operation, invoke, oracle, utility, data, file, backup 
+summary: backup verify コマンドを使用して、データベースバックアップ内のブロックが破損していないかどうかを確認できます。検証処理では、バックアップ内の各データファイルに対して Oracle Database Verify ユーティリティが呼び出されます。 
+---
+= データベースのバックアップを検証する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「backup verify」コマンドを使用して、データベース・バックアップ内のブロックが破損していないかどうかを確認できます。検証処理では、バックアップ内の各データファイルに対して Oracle Database Verify ユーティリティが呼び出されます。
+
+
+
+== このタスクについて
+
+SnapManager を使用すると、ユーザやシステムのユーザの都合に合わせていつでも検証処理を実行できます。バックアップの作成後すぐに検証を実行できます。バックアップを含むプロファイル、および作成したバックアップのラベルまたは ID を指定する必要があります。
+
+
+NOTE: SnapManager 3.0 および Oracle データベース 11.1.0.7 を使用している場合は、 Windows 環境でバックアップ検証処理が失敗します。Oracle データベース 11.2.0.1 以降を使用する必要があります。
+
+
+NOTE: dump を指定すると、バックアップ検証処理のあとにダンプファイルを収集できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+'*SMSAP backup verify -profile_name_[-label_label_|-id_id_][-force ][-dump][-quiet |-verbose *'
+
+

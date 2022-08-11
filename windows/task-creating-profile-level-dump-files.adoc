@@ -1,0 +1,29 @@
+---
+permalink: windows/task-creating-profile-level-dump-files.html 
+sidebar: sidebar 
+keywords: find, log, information, particular, profile, smsap, dump, command, name, profile-level, creating, create 
+summary: 特定のプロファイルに関するログ情報は、SMSAPのprofile dumpコマンドを使用してプロファイルの名前で確認できます。 
+---
+= プロファイルレベルのダンプ・ファイルの作成
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+特定のプロファイルに関するログ情報は、SMSAPのprofile dumpコマンドを使用してプロファイルの名前で確認できます。
+
+. 次のコマンドを入力します。「smsapprofile dump-profile profileprofileprofile_name」
++
+ダンプファイルの場所：
+
++
+[listing]
+----
+Path:\<user-home>\Application Data\NetApp\smsap\3.3.0\smsap_dump_8abc01c814649ebd0114649ec69d0001.jar
+----
++
+
+NOTE: プロファイルの作成中にエラーが発生した場合は、smsapsystem dumpコマンドを使用します。プロファイルが正常に作成されたら、smsapoperation dumpコマンドとsmsapprofile dumpコマンドを使用します。
+
+

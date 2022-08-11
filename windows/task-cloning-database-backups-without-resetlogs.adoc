@@ -1,0 +1,60 @@
+---
+permalink: windows/task-cloning-database-backups-without-resetlogs.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, flexible, cloning, clone, recover, database, resetlog, data, guard, standby 
+summary: SnapManager では柔軟なクローニングを実行できるため、 resetlogs を使用してデータベースを開かなくても、クローンデータベースを希望の時点に手動でリカバリできます。クローニングされたデータベースを Data Guard Standby データベースとして手動で設定することもできます。 
+---
+= resetlogs を実行しないでデータベースバックアップをクローニングする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では柔軟なクローニングを実行できるため、 resetlogs を使用してデータベースを開かなくても、クローンデータベースを希望の時点に手動でリカバリできます。クローニングされたデータベースを Data Guard Standby データベースとして手動で設定することもできます。
+
+クローンの作成時に -no-resetlogs オプションを選択すると、 SnapManager はクローンデータベースを作成するために次の処理を実行します。
+
+. クローン処理を開始する前に、前処理タスクアクティビティを実行します（指定されている場合）
+. ユーザ指定の SID を持つクローンデータベースを作成します
+. クローニングされたデータベースに対して発行された SQL ステートメントを実行します。
++
+マウント状態で実行できる SQL ステートメントのみが正常に実行されます。
+
+. 指定されている場合は、後処理タスクアクティビティを実行します。
+
+
+* クローン・データベースを手動でリカバリするために必要な作業 *
+
+. マウントパスのアーカイブログファイルを使用して、アーカイブログバックアップをマウントし、クローンデータベースを手動でリカバリします。
+. 手動リカバリの実行後、 resetlogs オプションを指定してリカバリされたクローンデータベースを開きます。
+. 必要に応じて、一時表領域を作成します。
+. DBNEWID ユーティリティを実行します。
+. クローニングされたデータベースのクレデンシャルに sysdba 権限を付与します。
+
+
+no-resetlogs オプションを使用してデータベースバックアップをクローニングしている間、 SnapManager は手動リカバリのためにクローンデータベースをマウント状態のままにします。
+
+
+NOTE: no-resetlogs オプションで作成されたクローンデータベースは完全なデータベースではありません。したがって、このデータベースに対して SnapManager 処理を実行しないでください。ただし、 SnapManager では処理の実行が制限されません。
+
+no-resetlogs オプションを指定しないと、 SnapManager はアーカイブログファイルを適用し、 resetlogs でデータベースを開きます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+SMSAP clone create -profile profile_name [-backup-labelbackup_name|-backup-idbackup_id | current]-newsidnew_sid -clonespecfull_path_to_clonespecfile -no-resetlogs]を使用します
+
++
+no-resetlogsとrecovery-from-locationの両方のオプションを指定しようとすると、SnapManager で両方のオプションを一緒に指定できず、エラーメッセージSMSAP-04084が表示されます。-no-resetlogsまたは-recovery-from-locationのいずれかのオプションを指定する必要があります。
+
+
+
+
+
+== 例
+
+[listing]
+----
+smsap clone create -profile product -backup-label full_offline -newsid PROD_CLONE -clonespec prod_clonespec.xml -label prod_clone-reserve -no-reset-logs
+----

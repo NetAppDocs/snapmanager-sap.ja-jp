@@ -1,0 +1,77 @@
+---
+permalink: unix-administration/reference-the-smosmsapbackup-verify-command.html 
+sidebar: sidebar 
+keywords: run, backup, verify, command, oracle, smsap 
+summary: backup verify コマンドを実行して、バックアップが Oracle で有効な形式になっているかどうかを確認できます。 
+---
+= SMSAPのbackup verifyコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+backup verifyコマンドを実行して'バックアップがOracleの有効な形式であるかどうかを確認できます
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap backup verify
+-profile _profile_name_
+[-label _backup_name- | [-id _guid_\]
+[-retain {-hourly | -daily | -weekly | -monthly | -unlimited}\] [-force\]
+[-dump\] [-quiet | -verbose\]]
+----
+
+
+== パラメータ
+
+* ``*-profile_name_*``
++
+バックアップを検証するプロファイルを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* `*-id_GUID_*``
++
+指定した GUID を持つバックアップを検証します。GUID はバックアップを作成するときに SnapManager によって生成されます。SMSAPのbackup listコマンドを使用して、各バックアップのGUIDを表示できます。
+
+* `*-label_label_name_*``
++
+指定したラベルを持つバックアップを検証します。
+
+* `*-dump*``
++
+バックアップの検証処理が成功したか失敗した場合に、ダンプファイルを収集します。
+
+* `*-force *``
++
+検証処理を実行するために必要な状態にデータベースを強制的に移行します。
+
+* `*-quiet *``
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+'''
+
+
+== 例
+
+次に、バックアップ検証の例を示します。
+
+[listing]
+----
+smsap backup verify -profile SALES1 -label full_backup_sales_May -quiet
+----
+[listing]
+----
+DBVERIFY - Verification starting : FILE = +SMSAP_1_1161675083835/smsmsap/datafile/data.277.582482539 ...
+----
+'''

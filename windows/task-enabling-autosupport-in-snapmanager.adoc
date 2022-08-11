@@ -1,0 +1,29 @@
+---
+permalink: windows/task-enabling-autosupport-in-snapmanager.html 
+sidebar: sidebar 
+keywords: enable, autosupport, storage, system, receive, message, snapmanager, server, successful, backup, operation, enabling, enable 
+summary: バックアップ処理が成功するたびにストレージシステムが SnapManager サーバからメッセージを受信するように、 AutoSupport を有効にする必要があります。 
+---
+= SnapManager での AutoSupport の有効化
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップ処理が成功するたびにストレージシステムが SnapManager サーバからメッセージを受信するように、 AutoSupport を有効にする必要があります。
+
+AutoSupport を有効にする方法は 2 つあります。
+
+* デフォルトでは、SnapManager の新規インストール時にSMSAP_support.onパラメータがSMS.config設定ファイルに指定されていません。これは、 AutoSupport が有効になっていることを示します。
+* auto_support.on パラメータは手動で設定できます。
++
+.. SnapManager サーバを停止します。
+.. SMSAP_CONFIG設定ファイルで、AUTO_support.onパラメータの値をtrueに設定します。
++
+auto_support.on = true
+
+.. SnapManager サーバを再起動します。
+
+
+

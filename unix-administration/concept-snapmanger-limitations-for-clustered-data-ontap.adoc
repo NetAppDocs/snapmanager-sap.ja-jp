@@ -1,0 +1,22 @@
+---
+permalink: unix-administration/concept-snapmanger-limitations-for-clustered-data-ontap.html 
+sidebar: sidebar 
+keywords: limitation, functionality, functionalities, snapmanager, cluster, data, ontap 
+summary: clustered Data ONTAP を使用する場合は、一部の機能と SnapManager 処理の制限事項を理解しておく必要があります。 
+---
+= clustered Data ONTAP での SnapManager の制限事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+clustered Data ONTAP を使用する場合は、一部の機能と SnapManager 処理の制限事項を理解しておく必要があります。
+
+clustered Data ONTAP で SnapManager を使用している場合、次の機能はサポートされません。
+
+* SnapManager が OnCommand Unified Manager に統合されている場合のデータ保護機能
+* 1 つの LUN が Data ONTAP 7-Mode を実行するシステムに属し、もう 1 つの LUN が clustered Data ONTAP を実行するシステムに属しているデータベース
+* SnapManager for SAPでは、clustered Data ONTAP でサポートされていないSVMの移行はサポートされていません
+* SnapManager for SAPでは、ボリュームとqtreeに異なるエクスポートポリシーを指定できるclustered Data ONTAP 8.2.1の機能がサポートされていません
+

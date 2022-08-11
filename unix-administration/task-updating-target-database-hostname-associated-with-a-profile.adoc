@@ -1,0 +1,76 @@
+---
+permalink: unix-administration/task-update-target-database-hostname-associated-with-a-profile.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, ability, update, host, name, target, database, profile 
+summary: SnapManager （3.2以降）for SAPでは、SnapManager プロファイルのターゲット・データベースのホスト名を更新できます。 
+---
+= プロファイルに関連付けられたターゲット・データベースのホスト名を更新します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager （3.2以降）for SAPでは、SnapManager プロファイルのターゲット・データベースのホスト名を更新できます。
+
+* 必要なもの *
+
+* ローカルユーザのホームディレクトリには、プロファイルとリポジトリのマッピングが格納されている必要があります。
+* SnapManager のグラフィカルユーザインターフェイス（ GUI ）セッションを終了する必要があります。
+* Real Application Clusters （ RAC ）環境では、プロファイルで指定されたホストで使用可能なクローンまたはマウントされたバックアップを削除してアンマウントする必要があります。
+
+
+* このタスクについて *
+
+プロファイルを新しいホスト名で更新するには、 CLI を使用する必要があります。
+
+* プロファイル * でターゲット・データベースのホスト名を変更するシナリオはサポートされていません
+
+プロファイル内のターゲット・データベースのホスト名の変更では、次のシナリオはサポートされていません。
+
+* SnapManager GUI を使用してターゲット・データベースのホスト名を変更する方法
+* プロファイルのターゲットデータベースのホスト名を更新したあとに、リポジトリデータベースをロールバックする
+* 1 つのコマンドを実行して、新しいターゲットデータベースホスト名に対する複数のプロファイルを更新する
+* SnapManager 処理の実行中にターゲット・データベースのホスト名を変更する場合
+* SnapManager が Solaris にインストールされている場合のターゲットデータベースのホスト名の変更、および SVM スタックを含むホストマウントファイルシステムを使用してデータベースの論理ユニット番号（ LUN ）が作成されている場合。
+
+
+
+NOTE: プロファイル内のターゲット・データベースのホスト名を更新すると、ターゲット・データベースのホスト名だけが変更されます。プロファイルに設定されている他の設定パラメータはすべて保持されます。
+
+保護が有効なプロファイルで新しいターゲット・データベースのホスト名を更新すると、更新されたプロファイルでも同じデータセットと保護ポリシーが保持されます。
+
+ターゲットホストのホスト名を変更したら、新しい保護プロファイルを作成する前に、既存のすべての保護プロファイルのホスト名を更新する必要があります。プロファイルのホスト名を更新するには、「smsapprofile update」コマンドを実行します。
+
+ターゲット・データベースのホスト名を更新したあとで、クローンまたはマウントされたバックアップが新しいホストで使用できない場合、クローンを削除またはスプリットしたり、バックアップをアンマウントしたりすることはできません。その場合、新しいホストから SnapManager 処理を実行すると、障害が発生したり、古いホストのエントリが古いエントリになったりすることがあります。SnapManager 操作を実行するには'profile updateを使用して'以前のホスト名に戻す必要があります
+
+. 次のコマンドを入力します。
++
+`* SMSAPプロファイルupdate -profile update_profile_[-profile-password_profile_password_password_][-databname_db_dbname_host_host_[-sid_][-login-username db_username_db_password_db_password_db_password_port_host][{-rman_account_duration]/[{-sm-drman_password-drman_day]日間[RMANアカウント[RMANバージョン[RMANパスワード]-出力 持続時間}rman_CLIデータベース[RMANデータベース_管理継続時間}][RMANデータベース_グループ[RMANデータベース_持続時間][RMANパスワード[RMANパスワード[RMANパスワード[RMANデータベース_持続時間] [-duration_m_]][-comment_comment_][-snapname=pattery_pattery_pattery_pattery_][-[[-protect[-protection] policy_policy_policy_policy_policy_policy_policy_name][-notification][-notification][-notification[-email_email_email_address1]、email_address2_subject_email-subject_address-bject_email-day-email-day-bject_email-day-email-day-day-day-email-day-email-day-day-email-email-email-day-email-day-day-day-email-day-day-email-email-day-day-day-email-email-email-day-day-email-email-email-email-email-email-day-day-day-day-email-email-day-email-email-day-email-email-email-day-day-day-email-email-email-email-email-email-day-email-email-email-email-
+
++
+このコマンドの他のオプションは、次のとおりです。
+
++
+`[-force][-noprompt]``
+
++
+「[-quiet |-verbose ]」
+
++
+[cols="1a,2a"]
+|===
+| 状況 | 作業 
+
+
+ a| 
+* ターゲット・データベースのホスト名を変更します *
+ a| 
+'specify-host_new_db_host_`
+
+|===
+. プロファイルのターゲット・データベースのホスト名を表示するには、次のコマンドを入力します。
++
+「* SMSAP profile show *」と表示されます
+
+

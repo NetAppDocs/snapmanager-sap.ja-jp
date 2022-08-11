@@ -1,0 +1,65 @@
+---
+permalink: windows/reference-the-smosmsapclone-list-command.html 
+sidebar: sidebar 
+keywords: command, list, clone, database, profile, smsap 
+summary: このコマンドでは、指定したプロファイルに対応するデータベースのクローンを表示します。 
+---
+= SMSAPのclone listコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドでは、指定したプロファイルに対応するデータベースのクローンを表示します。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap clone list
+-profile profile_name
+-delimiter character
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+プロファイルに関連付けられたクローンのリストを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* *`- delimiter_character_`*
++
+このパラメータを指定すると、各行の属性が指定した文字で区切って表示されます。
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== コマンドの例
+
+次に、プロファイル SALES1 内のデータベース・クローンをリスト表示する例を示します。
+
+[listing]
+----
+smsap clone list -profile SALES1 -verbose
+----
+[listing]
+----
+ID Status SID Host Label Comment
+-------- ------- ----- ------- ---------- -------
+8ab...01 SUCCESS hsdbc server1 back1clone test comment
+----

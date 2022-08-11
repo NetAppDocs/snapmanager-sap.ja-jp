@@ -1,0 +1,21 @@
+---
+permalink: unix-administration/task-authorize-user-access-to-profiles.html 
+sidebar: sidebar 
+keywords: addition, role-based, access, control, snapmanager, enable, password, profile, prevent, unauthorized, authorize, authorizing 
+summary: SnapManager では、ロールベースアクセス制御（ RBAC ）に加えて、プロファイルにパスワードを設定して不正アクセスを防止することができます。 
+---
+= プロファイルへのアクセスを許可します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、ロールベースアクセス制御（ RBAC ）に加えて、プロファイルにパスワードを設定して不正アクセスを防止することができます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAPのクレデンシャルセット-profile-name_profile_[-password_password_]*`
+
+

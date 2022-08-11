@@ -1,0 +1,102 @@
+---
+permalink: unix-administration/task-customize-e-mail-subject-for-a-new-profile.html 
+sidebar: sidebar 
+keywords: customize, email, subject, profile, create, customizing 
+summary: 新しいプロファイルを作成するときに、そのプロファイルの電子メールの件名をカスタマイズできます。 
+---
+= 新しいプロファイルの電子メールの件名をカスタマイズします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+新しいプロファイルを作成するときに、そのプロファイルの電子メールの件名をカスタマイズできます。
+
+E メールの件名は、 \｛ profile ｝ _\ ｛ operation-name ｝ _\ ｛ db-sid ｝ _\ ｛ db-host｝ _\ ｛ start-date ｝ _\ ｛ end-date ｝ _\ ｛ status ｝ パターンを使用してカスタマイズするか、独自のテキストを入力してください。
+
+[cols="1a,3a,2a"]
+|===
+| 変数名 | 説明 | 値の例 
+
+
+ a| 
+`_profile_`
+ a| 
+データベース処理に使用するプロファイル名
+ a| 
+PROF1 （プロ F1 ）
+
+
+
+ a| 
+`_operation-name_`
+ a| 
+データベース処理の名前
+ a| 
+バックアップ、データバックアップ、データおよびアーカイブログのバックアップ
+
+
+
+ a| 
+`_db-sid_`
+ a| 
+データベースの SID
+ a| 
+DB1
+
+
+
+ a| 
+`_dbホスト_`
+ a| 
+ホスト・サーバの名前
+ a| 
+ホスト A
+
+
+
+ a| 
+`_start-date_`
+ a| 
+データベース操作の開始時刻を mmdd ： hh ： ss yyyy 形式で指定します
+ a| 
+2012 年 4 月 27 日 21 ： 00 ： 45 PST
+
+
+
+ a| 
+`_end-date_`
+ a| 
+データベース操作の終了時刻を mmdd ： hh ： ss yyyy 形式で指定します
+ a| 
+2012 年 4 月 27 日 21 ： 10 ： 45 （太平洋標準時
+
+
+
+ a| 
+`_status_`
+ a| 
+データベース処理のステータス
+ a| 
+成功
+
+|===
+変数に値を指定しないと、SnapManager に「Missing value (s)]-subject.」というエラーメッセージが表示されます
+
+. 次のコマンドを入力します。
++
+`* SMSAP profile create -profile create -profile profile_[-profile-password_profile_profile_password_]-repository -dbname_repo_repo_host_host_-portrepo_repo_repo_port_port-login-username_repo_db_dbname_dbname_host_db1_host_[-host_db1_db_host_host_][-sid_db_sid_host_db1_account] rman_password-drman_password-RMANパスワード[RMANパスワード[RMANパスワード[RMANパスワード[RMANパスワード[-drman_usrman_host_name]|rman_host_name_host_name]|rman_password-出力 データベースパスワード[-drman_host_name_host_db1_usrman_host_host_name]|rman_host_db1_account_host_host_name]|rman_host_host_host_host_host_host_host_host_host_host_host_host_host_host_dba_group]-RMANパスワード[-dr [-daily[-count_n_][-duration _m_]][-weekly[-count_n_][-duration_m_]][-monthly [-duration_n_m_]][-comment_m_]][-snapname=パターン_address_subject_email][-snapname=protect[-pattern_subject_address_address_email][-durs1_email_address_address_address_email
+
+
+
+'''
+次の例は、 E メールの件名のパターンを示しています。
+
+[listing]
+----
+
+smsap profile create -profile sales1 -profile-password admin1 -repository -dbname repo2 -host 10.72.197.133 -port 1521 -login -username admin2 -database -dbname DB1 -host 10.72.197.142 -sid DB1
+-osaccount oracle -osgroup dba -profile-notification -success -email admin@org.com -subject {profile}_{operation-name}_{db-sid}_{db-host}_{start-date}_{end-date}_{status}
+----
+'''

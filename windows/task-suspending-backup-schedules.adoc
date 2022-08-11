@@ -1,0 +1,22 @@
+---
+permalink: windows/task-suspending-backup-schedules.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, suspend, backup, schedule, resume 
+summary: SnapManager を使用すると、バックアップスケジュールを再開するまで一時停止できます。 
+---
+= バックアップスケジュールを一時停止する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を使用すると、バックアップスケジュールを再開するまで一時停止できます。
+
+アクティブスケジュールを一時停止できます。すでに中断されているバックアップスケジュールを一時停止しようとすると、「 Cannot suspend ： schedule <schedulename> already in suspend state 」というエラーメッセージが表示されることがあります。
+
+. バックアップスケジュールを一時的に中断するには、次のコマンドを入力します。
++
+「smsapschedule suspend-profile profile_name -schedule - nameschedulname [-quiet |-verbose」という形式になります
+
+

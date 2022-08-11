@@ -1,0 +1,26 @@
+---
+permalink: unix-administration/task-clone-databases-and-using-custom-plugin-scripts.html 
+sidebar: sidebar 
+keywords: snapmanager, method, custom, script, clone, operation, occur, database, sid, policy, plug-in, cloning 
+summary: SnapManager では、クローニング処理の前後にカスタムスクリプトを使用することができます。たとえば、クローンデータベースの SID を検証し、命名ポリシーで SID を許可するカスタムスクリプトを作成したとします。SnapManager のクローンプラグインを使用すると、カスタムスクリプトを含めることができ、 SnapManager のクローン処理の前後に自動的に実行されます。 
+---
+= データベースのクローニングやカスタムプラグインスクリプトの使用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、クローニング処理の前後にカスタムスクリプトを使用することができます。たとえば、クローンデータベースの SID を検証し、命名ポリシーで SID を許可するカスタムスクリプトを作成したとします。SnapManager のクローンプラグインを使用すると、カスタムスクリプトを含めることができ、 SnapManager のクローン処理の前後に自動的に実行されます。
+
+.手順
+. サンプルのプラグインスクリプトを表示する。
+. スクリプトを最初から作成するか、サンプルプラグインスクリプトの 1 つを変更します。
++
+SnapManager プラグインのスクリプトガイドラインに従ってカスタムスクリプトを作成します。
+
+. 指定したディレクトリにカスタムスクリプトを配置します。
+. クローン仕様 XML ファイルを更新し、クローニングプロセスで使用するカスタムスクリプトの情報を追加します。
+. SnapManager コマンドを使用して、カスタムスクリプトが動作していることを確認します。
+. クローニング処理を開始する際には、スクリプト名とオプションのパラメータを指定します。
+

@@ -1,0 +1,49 @@
+---
+permalink: unix-administration/task-use-protection-manager-to-provision-the-new-dataset.html 
+sidebar: sidebar 
+keywords: smsap_paydb, dataset, create, storage, administrator, protection, manager, assign, system, resource, provision, backup, node 
+summary: SMSAP_paydbデータセットの作成後、ストレージ管理者はProtection Managerを使用して、データセットのバックアップノードをプロビジョニングするストレージシステムリソースを割り当てます。 
+---
+= Protection Managerを使用して新しいデータセットをプロビジョニングします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SMSAP_paydbデータセットを作成したら、ストレージ管理者はProtection Managerを使用して、データセットのバックアップノードをプロビジョニングするストレージシステムリソースを割り当てます。
+
+* 必要なもの *
+
+新しく作成したデータセットをプロビジョニングする前に、ストレージ管理者は、プロファイルで指定したデータセット名について DBA パートナーに相談します。
+
+この場合、データセット名はsmsap_prod01.sample.com_P01です。
+
+.手順
+. Protection Manager の NetApp Management Console に移動します。
+. メニューバーで、 * データ * > * データセット * > * 概要 * をクリックします。
++
+[ データセット ] ウィンドウの [ データセット ] タブには、 SnapManager で作成したデータセットを含むデータセットのリストが表示されます。
+
+. smsap_prod01.sample.com_p01*データセットを探して選択します。
++
+このデータセットを選択すると、グラフ領域には、SMSAP_P01データセットとそのバックアップノードがプロビジョニングされていない状態が表示されます。適合性ステータスは、非適合と判断されます。
+
+. SMSAP_P01データセットが強調表示された状態で、* Edit *をクリックします。
++
+Protection ManagerのNetApp Management Consoleに、smsap_prod01.sample.com_p01*データセットのEdit Datasetウィンドウが表示されます。ウィンドウのナビゲーションペインには、データセットのプライマリノード、バックアップ接続、およびバックアップノードの設定オプションが表示されます。
+
+. ナビゲーションペインで、データセットのバックアップノードのオプションを探し、 * プロビジョニング / リソースプール * を選択します。
++
+Edit Dataset ウィンドウには、デフォルトのプロビジョニングポリシーの設定と、使用可能なリソースプールのリストが表示されます。
+
+. この例では、* P1_backup_resource *リソースプールを選択し、*>*をクリックします。
++
+選択したリソースプールが [ このノードのリソースプール ] フィールドに表示されます。
+
+. [ 完了 ] をクリックして変更を保存します。
+
+
+* 結果 *
+
+Protection Manager は、 padb_backup_resource リソースプールのリソースを使用して、セカンダリバックアップノードを自動的にプロビジョニングします。

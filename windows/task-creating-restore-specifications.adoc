@@ -1,0 +1,51 @@
+---
+permalink: windows/task-creating-restore-specifications.html 
+sidebar: sidebar 
+keywords: restore, specification, file, sml, contain, original, alternate, location, snapmanager, location, creating, create 
+summary: リストア仕様ファイルは、ファイルのリストア元となる元の場所および別の場所を含む XML ファイルです。SnapManager はこの仕様ファイルを使用して、指定した場所からファイルをリストアします。 
+---
+= リストア仕様を作成しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+リストア仕様ファイルは、ファイルのリストア元となる元の場所および別の場所を含む XML ファイルです。SnapManager はこの仕様ファイルを使用して、指定した場所からファイルをリストアします。
+
+リストア仕様ファイルは任意のテキスト・エディタを使用して作成できます。ファイルには、 .xml 拡張子を使用する必要があります。
+
+. テキストファイルを開きます。
+. 次のように入力します。`+<restore-specification xmlns="http://www.netapp.com">+`[]
+. 次の例に示す形式を使用して、ファイルマッピング情報を入力します。
++
+[listing]
+----
+<file-mapping>
+    <original-location>E:\disks\sysaux.dbf</original-location>
+    <alternate-location>E:\disks\sysaux.dbf</alternate-location>
+</file-mapping>
+----
++
+ファイルマッピングでは、ファイルのリストア元を指定します。元の場所は、バックアップ時にアクティブファイルシステム上にあるファイルの場所です。代替保存場所は、ファイルのリストア元の場所です。
+
+. マウントされたファイルシステムのマッピング情報を、次のような形式で入力します。
++
+[listing]
+----
+<mountpoint-mapping>
+     <original-location>E:\disks\sysaux.dbf</original-location>
+     <snapname>snapname</snapname>
+     <alternate-location>E:\disks\sysaux.dbf</alternate-location>
+</mountpoint-mapping>
+----
++
+mountpoint は、ディレクトリパス C ： \myfs を参照します。マウントポイント・マッピングでは、ファイルのリストア元となるマウントポイントを指定します。元の場所は、バックアップ時のアクティブ・ファイルシステム内のマウントポイントの場所です。代替保存場所は、元の場所にあるファイルのリストア元のマウントポイントです。snapname は、元のファイルがバックアップされている Snapshot コピーの名前です。
+
++
+
+NOTE: Snapshot コピー名は、 1 回のバックアップ処理で同じファイルシステムを複数回使用できるため（データファイル用とログ用など）、必須のコンポーネントです。
+
+. 「</restore-specification >`」と入力します
+. ファイルを .xml ファイルとして保存し、仕様を閉じます。
+

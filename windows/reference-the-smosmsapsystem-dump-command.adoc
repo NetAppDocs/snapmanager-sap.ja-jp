@@ -1,0 +1,50 @@
+---
+permalink: windows/reference-the-smosmsapsystem-dump-command.html 
+sidebar: sidebar 
+keywords: run, system, dump, command, create, jar, file, diagnostic, information, server, environment, smsap 
+summary: 'システムダンプコマンドを実行して " サーバ環境に関する診断情報を含む JAR ファイルを作成できます' 
+---
+= SMSAPのsystem dumpコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「system dump」コマンドを実行して、サーバ環境に関する診断情報を含むJARファイルを作成できます。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap system dump
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== system dump コマンドの例
+
+次に、「SMSAP system dump」コマンドを使用してJARファイルを作成する例を示します。
+
+[listing]
+----
+smsap system dump
+Path: C:\\userhomedirectory\\netapp\\smsap\\3.3.0\\smsap_dump_hostname.jar
+----

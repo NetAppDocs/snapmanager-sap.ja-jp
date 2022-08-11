@@ -1,0 +1,102 @@
+---
+permalink: windows/task-storing-the-task-scripts.html 
+sidebar: sidebar 
+keywords: store, pretask, post-task, policy, task, script, directory, target, server, backup, clone, create, restore, operation 
+summary: バックアップまたはクローンを作成するターゲットサーバ上の指定したディレクトリに、タスク実行前スクリプト、タスク実行後スクリプト、ポリシータスクスクリプトを保存する必要があります。リストア処理の場合、バックアップをリストアするターゲットサーバ上の指定したディレクトリにスクリプトが配置されている必要があります。 
+---
+= タスクスクリプトの保存
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップまたはクローンを作成するターゲットサーバ上の指定したディレクトリに、タスク実行前スクリプト、タスク実行後スクリプト、ポリシータスクスクリプトを保存する必要があります。リストア処理の場合、バックアップをリストアするターゲットサーバ上の指定したディレクトリにスクリプトが配置されている必要があります。
+
+. スクリプトを作成します。
+. スクリプトを次のいずれかの場所に保存します。
++
+* バックアップ操作の場合 *
+
++
+|===
+| ディレクトリ | 説明 
+
+
+ a| 
+* <default_install_directory>\plugins\backup\create\policy*
+ a| 
+ポリシースクリプトはバックアップ処理の前に実行されます。
+
+
+
+ a| 
+* <default_install_directory>\plugins\backup\create\pre *
+ a| 
+前処理スクリプトでは、バックアップ前処理が実行されます。
+
+
+
+ a| 
+* <default_install_directory>\plugins\backup\create\pre *
+ a| 
+ポストプロセススクリプトはバックアップ処理のあとに実行されます。
+
+|===
++
+* リストア処理の場合 *
+
++
+|===
+| ディレクトリ | 説明 
+
+
+ a| 
+* <default_install_directory>\plugins\restore\create\policy*
+ a| 
+ポリシースクリプトはリストア処理の前に実行されます。
+
+
+
+ a| 
+* <default_install_directory>\plugins\restore\create\pre *
+ a| 
+前処理スクリプトはリストア処理の前に実行されます。
+
+
+
+ a| 
+* <default_install_directory>\plugins\restore\create\post *
+ a| 
+ポストプロセススクリプトはリストア処理のあとに実行されます。
+
+|===
++
+* クローニング処理の場合 *
+
++
+|===
+| ディレクトリ | 説明 
+
+
+ a| 
+* <default_install_directory>\plugins\clone\create\policy*
+ a| 
+ポリシースクリプトはクローニング処理の前に実行されます。
+
+
+
+ a| 
+* <default_install_directory>\plugins\clone\create\pre *
+ a| 
+前処理スクリプトはクローン処理の前に実行されます。
+
+
+
+ a| 
+* <default_install_directory>\plugins\clone\create\post *
+ a| 
+ポストプロセススクリプトはクローン処理のあとに実行されます。
+
+|===
+

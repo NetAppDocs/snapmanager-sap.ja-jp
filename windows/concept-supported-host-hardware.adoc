@@ -1,0 +1,45 @@
+---
+permalink: windows/concept-supported-host-hardware.html 
+sidebar: sidebar 
+keywords: memory, disk, space, cpu, requirement, support, host, hardware 
+summary: メモリ、ディスクスペース、 CPU の要件を考慮してください。 
+---
+= サポートされているホストハードウェア
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+メモリ、ディスクスペース、 CPU の要件を考慮してください。
+
+SnapManager では、次の設定が必要です。
+
+|===
+| ハードウェア機能 | ハードウェア要件 
+
+
+ a| 
+メモリ
+ a| 
+SnapManager サーバには 128 MB のメモリが必要です。
+
+グラフィカルユーザインターフェイスを実行するには、最低 512 MB の RAM が必要です。
+
+SnapManager サーバの実行中は、動作ごとに 48 MB の追加メモリが必要です。
+
+
+
+ a| 
+ディスクスペース
+ a| 
+128 MB のディスク空き容量 ( 最小 )
+
+
+
+ a| 
+CPU 速度
+ a| 
+1.0 GHz 以上のプロセッサ速度。
+
+|===

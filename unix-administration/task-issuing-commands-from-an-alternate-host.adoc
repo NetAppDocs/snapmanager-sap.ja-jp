@@ -1,0 +1,25 @@
+---
+permalink: unix-administration/task-issue-commands-from-an-alternate-host.html 
+sidebar: sidebar 
+keywords: issue, cli, command, host, database, snapmanager, route, issuing, alternate 
+summary: データベース・ホスト以外のホストから問題 CLI コマンドを実行すると、入力したコマンドが SnapManager によって適切なホストにルーティングされます。 
+---
+= 代替ホストからの問題 コマンド
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データベース・ホスト以外のホストから問題 CLI コマンドを実行すると、入力したコマンドが SnapManager によって適切なホストにルーティングされます。
+
+* このタスクについて *
+
+システムから正しいホストに処理がディスパッチされるようにするには、まず、その処理に対応するプロファイルの場所を確認する必要があります。この手順では、プロファイルとリポジトリのマッピング情報が、ローカル・ホスト上のユーザのホーム・ディレクトリにあるファイルとして保管されます。
+
+.ステップ
+. ローカル・ユーザのホーム・ディレクトリにプロファイル/リポジトリ間のマッピング情報を送信し、処理要求の転送を可能にするには、次のコマンドを入力します。
++
+「* SMSAP profile sync -repository -dbdbname_repo_dbname」-host_repo_repo_repo_repo_port_-login -username repo_repo_username _[-quiet |-verbose」*
+
+

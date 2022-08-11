@@ -1,0 +1,24 @@
+---
+permalink: unix-administration/concept-clone-database-backups.html 
+sidebar: sidebar 
+keywords: snapmanager, flexclone, technology, writable, space-efficient, clone, database, modify, backup, clone 
+summary: SnapManager では、 FlexClone テクノロジを使用して、データベースバックアップの書き込み可能でスペース効率に優れたクローンを作成します。バックアップソースを変更せずにクローンを変更することもできます。 
+---
+= データベースバックアップクローン
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、 FlexClone テクノロジを使用して、データベースバックアップの書き込み可能でスペース効率に優れたクローンを作成します。バックアップソースを変更せずにクローンを変更することもできます。
+
+非本番環境では、データベースをクローニングしてテストやアップグレードを行うことができます。プライマリストレージにあるデータベースのクローニングは、プライマリストレージのクローニングも可能です。クローンは、データベースと同じホスト上に配置することも、別のホスト上に配置することもできます。
+
+FlexClone テクノロジを使用すると、 SnapManager でデータベースの Snapshot コピーを使用できるため、ディスク間で物理的にコピーが作成されることはありません。Snapshot コピーは物理コピーよりも短時間で作成でき、所要スペースも大幅に削減されます。
+
+FlexClone テクノロジの詳細については、 Data ONTAP のドキュメントを参照してください。
+
+* 関連情報 *
+
+http://support.netapp.com/documentation/productsatoz/index.html["Data ONTAP のドキュメント"^]

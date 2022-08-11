@@ -1,0 +1,62 @@
+---
+permalink: windows/concept-integration-with-other-netapp-applications-and-technologies.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, stand-alone, product, integrate, feature, netapp, enable, backup, amount, space, integration, application, technology, technologies 
+summary: SnapManager for SAPは、他のネットアップ製品の機能を統合したスタンドアロン製品で、ごく少量のスペースを必要とする高速なバックアップを実現します。 
+---
+= 他のネットアップのアプリケーションやテクノロジとの統合
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPは、他のネットアップ製品の機能を統合したスタンドアロン製品で、ごく少量のスペースを必要とする高速なバックアップを実現します。
+
+SnapManager は、次のネットアップのアプリケーションやテクノロジと統合されます。
+
+|===
+| アプリケーションとテクノロジ | 説明 
+
+
+ a| 
+SnapDrive
+ a| 
+SnapManager は、 SnapDrive を使用してストレージの Snapshot コピーを作成します。Snapshot コピーにより、ディスク間バックアップよりもバックアップのスペース効率と作成時間を短縮できます。
+
+
+
+ a| 
+FlexClone （ Data ONTAP のライセンス機能）
+ a| 
+SnapManager では、 FlexClone 機能を使用して、スペース効率に優れたバックアップのクローンを短時間で作成します。
+
+
+
+ a| 
+Snapshot （ Data ONTAP の機能）
+ a| 
+Snapshot テクノロジは、データベースのポイントインタイムコピーを作成します。
+
+
+
+ a| 
+SnapRestore （ Data ONTAP のライセンス機能）
+ a| 
+SnapManager では、 SnapRestore を使用してデータベースの平均リカバリ時間を短縮できます。SnapRestore では、個々のファイルを数テラバイトのボリュームにリカバリできるため、運用を迅速に再開できます。
+
+
+
+ a| 
+SnapVault （ Data ONTAP のライセンス機能）
+ a| 
+SnapVault は、ディスクベースのバックアップを活用して、信頼性の高い低オーバーヘッドのデータベースのバックアップとリカバリを実現します。
+
+
+
+ a| 
+SnapMirror （ Data ONTAP のライセンス機能）
+ a| 
+SnapMirror は、シンプルかつ信頼性とコスト効率に優れた方法で、グローバルネットワーク全体にデータベースデータを高速でレプリケートします。
+
+|===

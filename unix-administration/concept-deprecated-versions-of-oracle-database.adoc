@@ -1,0 +1,32 @@
+---
+permalink: unix-administration/concept-deprecated-versions-of-oracle-database.html 
+sidebar: sidebar 
+keywords: oracle, database, 9i, snapmanager, 10gr2, deprecate 
+summary: Oracle データベース 9i は、 SnapManager 3.2 以降ではサポートされません。また、 SnapManager 3.3.1 以降では、 Oracle データベース 10gR2 （ 10.2.0.4 より前）はサポートされません。 
+---
+= Oracle データベースの廃止されたバージョン
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Oracle データベース 9i は、 SnapManager 3.2 以降ではサポートされません。また、 SnapManager 3.3.1 以降では、 Oracle データベース 10gR2 （ 10.2.0.4 より前）はサポートされません。
+
+Oracle 9i または 10gR2 (10.2.0.4 より前 ) のデータベースを使用していて、 SnapManager 3.2 以降にアップグレードする場合は、新しいプロファイルを作成できません。警告メッセージが表示されます。
+
+Oracle 9i または 10gR2 (10.2.0.4 より前 ) データベースを使用していて、 SnapManager 3.2 以降にアップグレードする場合は、次のいずれかを実行する必要があります。
+
+* Oracle 9i または 10gR2 (10.2.0.4 より前 ) のデータベースを Oracle 10gR2 (10.2.0.5) 、 11gR1 、または 11gR2 のいずれかのデータベースにアップグレードし、 SnapManager 3.2 または 3.3 にアップグレードします。
++
+Oracle 12_c__ にアップグレードする場合は、 SnapManager 3.3.1 以降にアップグレードする必要があります。
+
++
+
+NOTE: Oracle データベース 12_c__ は、 SnapManager 3.3.1 からのみサポートされます。
+
+* SnapManager 3.1 のパッチ・バージョンを使用して 'Oracle 9i データベースを管理します
++
+Oracle 10gR2 、 11gR1 、 11gR2 のいずれかのデータベースを管理し、 SnapManager 3.3.1 以降を使用する場合は、 SnapManager 3.2 または 3.3 を使用して、 Oracle 12_c_c__databases とサポートされている他のデータベースを管理できます。
+
+

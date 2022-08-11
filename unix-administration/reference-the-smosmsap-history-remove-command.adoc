@@ -1,0 +1,87 @@
+---
+permalink: unix-administration/reference-the-smosmsap-history-remove-command.html 
+sidebar: sidebar 
+keywords: command, enable, remove, history, snapmanager, operation, single, multiple, profile, repository, smsap 
+summary: このコマンドを使用すると、単一のプロファイル、複数のプロファイル、またはリポジトリ内のすべてのプロファイルに関連付けられている SnapManager 処理の履歴を削除できます。 
+---
+= SMSAPのhistory removeコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドを使用すると、単一のプロファイル、複数のプロファイル、またはリポジトリ内のすべてのプロファイルに関連付けられている SnapManager 処理の履歴を削除できます。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap history remove
+-profile {-name _profile_name_ [_profile_name1, profile_name2_\] | -all
+-repository -login [-password _repo_password_\] -username _repo_username_
+-host _repo_host_
+-dbname _repo_dbname_
+-port _repo_port_}
+-operation {-operations operation_name [_operation_name_, _operation_name2_\] | -all}
+[-quiet | -verbose\]]
+----
+
+
+== パラメータ
+
+* `*-profile profile *`
++
+プロファイルの名前を指定します。この名前には 30 文字まで使用でき、ホスト内で一意である必要があります。
+
+* `*-repository*`
++
+repository のあとに続くオプションは、プロファイルが格納されるデータベースの詳細を指定します。
+
+* *-dbdbname_repo_dbname_*`
++
+プロファイルが格納されたデータベースの名前を指定します。グローバル名または SID を使用します。
+
+* `*-host_repo_host_*`
++
+リポジトリ・データベースが稼働しているホスト・コンピュータの名前または IP アドレスを指定します。
+
+* '*-login*
++
+リポジトリ・ログインの詳細設定を開始します。
+
+* `*-username_repo_username_*`
++
+リポジトリが格納されたデータベースにアクセスするために必要なユーザ名を指定します。
+
+* '*-port_repo_port_*'と入力します
++
+リポジトリが格納されたデータベースへのアクセスに使用する TCP ポート番号を指定します。
+
+* `*-operation {-operation_operation_name_[_operation_name1、operation_name2_]|-all *`
++
+履歴を設定する SnapManager 処理を指定します。
+
+* 「*- quiet *」と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+'''
+
+
+== コマンドの例
+
+[listing]
+----
+ smsap history purge -profile -name PROFILE1 -operation -operations backup
+ -verbose
+----
+'''

@@ -1,0 +1,22 @@
+---
+permalink: unix-administration/concept-requirements-for-using-rac-databases-with-snapmanager.html 
+sidebar: sidebar 
+keywords: recommendation, real, application, cluster, rac, database, snapmanager, number, password, authentication, mode, requirement 
+summary: SnapManager で Real Application Clusters （ RAC ）データベースを使用する際の推奨事項を確認しておく必要があります。推奨事項には、ポート番号、パスワード、認証モードなどがあります。 
+---
+= SnapManager で RAC データベースを使用するための要件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager で Real Application Clusters （ RAC ）データベースを使用する際の推奨事項を確認しておく必要があります。推奨事項には、ポート番号、パスワード、認証モードなどがあります。
+
+* データベース認証モードでは、 RAC データベースのインスタンスと通信する各ノード上のリスナーを、同じポート番号を使用するように設定する必要があります。
++
+バックアップを開始する前に、プライマリ・データベース・インスタンスと通信するリスナーを起動する必要があります。
+
+* オペレーティングシステムの認証モードでは、RAC環境の各ノードにSnapManager サーバがインストールされ、実行されている必要があります。
+* データベースユーザのパスワード（システム管理者や sysdba 権限を持つユーザなど）は、 RAC 環境内のすべての Oracle データベースインスタンスで同じである必要があります。
+

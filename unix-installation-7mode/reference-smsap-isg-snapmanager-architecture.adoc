@@ -1,0 +1,85 @@
+---
+permalink: unix-installation-7mode/reference-smsap-isg-snapmanager-architecture.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, component, comprehensive, powerful, backup, restore, recovery, cloning, clone, solution, oracle, database 
+summary: SnapManager for SAPには解決策 、Oracleデータベース向けの包括的で強力なバックアップ、リストア、リカバリ、クローニングを実行するためのコンポーネントが含まれています。 
+---
+= SnapManager アーキテクチャ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPには解決策 、Oracleデータベース向けの包括的で強力なバックアップ、リストア、リカバリ、クローニングを実行するためのコンポーネントが含まれています。
+
+image::../media/smsap_architecture_7mode.gif[SMSAPの7-Modeアーキテクチャの図]
+
+
+
+== SnapDrive for UNIX の略
+
+SnapManager でストレージシステムとの接続を確立するには、 SnapDrive が必要です。SnapManager をインストールする前に、すべてのターゲットデータベースホストに SnapDrive for UNIX をインストールする必要があります。
+
+
+
+== SnapManager for SAPの略
+
+すべてのターゲットデータベースホストにSnapManager for SAPをインストールする必要があります。
+
+SnapManager for SAPがインストールされているデータベースホストで、コマンドラインインターフェイス（CLI）またはUIを使用できます。SnapManager がサポートするオペレーティングシステムで実行されている任意のシステムから Web ブラウザを使用して、 SnapManager UI をリモートから使用することもできます。
+
+
+NOTE: サポートされるJREバージョンは1.8です。
+
+
+
+== ターゲットデータベース
+
+ターゲットデータベースは、バックアップ、リストア、リカバリ、クローニングの各処理を実行して SnapManager で管理する Oracle データベースです。
+
+ターゲットデータベースは、スタンドアロン、 Real Application Clusters （ RAC ）、または Oracle Automatic Storage Management （ ASM ）ボリューム上に配置できます。サポート対象の Oracle データベースのバージョン、構成、オペレーティングシステム、プロトコルの詳細については、 NetApp Interoperability Matrix Tool を参照してください。
+
+
+
+== SnapManager リポジトリ
+
+SnapManager リポジトリは、 Oracle データベースに格納され、プロファイル、バックアップ、リストア、リカバリ、およびクローンに関するメタデータを格納します。1 つのリポジトリには、複数のデータベースプロファイルに対して実行された処理に関する情報を格納できます。
+
+SnapManager リポジトリは、ターゲットデータベースに格納できません。SnapManager の処理を実行する前に、 SnapManager リポジトリデータベースとターゲットデータベースがオンラインになっている必要があります。
+
+
+
+== OnCommand Unified Manager コアパッケージ
+
+OnCommand Unified Manager のコアパッケージには、 Operations Manager 、 Protection Manager 、および Provisioning Manager の機能が統合されています。プロビジョニング、クローニング、バックアップとリカバリ、ディザスタリカバリ（ DR ）のポリシーを一元化します。これらの機能をすべて統合することで、 1 つのツールから多くの管理機能を実行できます。
+
+
+
+== Operations Manager の略
+
+Operations Manager は、 OnCommand Unified Manager コアパッケージの Web ベースのユーザインターフェイス（ UI ）です。ストレージやストレージシステムのインフラに関する日常的なストレージ監視、問題アラート、およびレポートに使用されます。SnapManager の統合では、 Operations Manager の RBAC 機能を利用します。
+
+
+
+== Protection Manager の略
+
+Protection Manager の使いやすい管理コンソールを使用すると、 SnapMirror および SnapVault のすべての処理をすばやく設定および制御できます。アプリケーションを使用することで、管理者は一貫したデータ保護ポリシーを適用したり、複雑なデータ保護プロセスを自動化したり、バックアップとレプリケーションのリソースをプールして利用率を高めることができます。
+
+Protection Manager のインターフェイスは、ネットアップ管理ソフトウェアアプリケーションのクライアントプラットフォームである NetApp Management Console です。NetApp Management Console は、 OnCommand サーバがインストールされているサーバとは別の Windows システムまたは Linux システムで実行されます。ストレージ管理者、アプリケーション管理者、サーバ管理者は、異なる UI 間で切り替えなくても、日常的なタスクを実行できます。NetApp Management Console で実行されるアプリケーションは、 Protection Manager 、 Provisioning Manager 、および Performance Advisor です。
+
+
+
+== プライマリストレージシステム
+
+SnapManager は、プライマリネットアップストレージシステム上のターゲットデータベースをバックアップします。
+
+
+
+== セカンダリストレージシステム
+
+データベースプロファイルでデータ保護を有効にすると、 SnapManager でプライマリストレージシステムに作成されたバックアップが、 SnapVault テクノロジと SnapMirror テクノロジを使用してセカンダリネットアップストレージシステムにレプリケートされます。
+
+* 関連情報 *
+
+http://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]

@@ -1,0 +1,21 @@
+---
+permalink: windows/task-verify-profiles.html 
+sidebar: sidebar 
+keywords: verify, exist, profile, set, up, correct, snapmanager, environment, verifies, database, accessible 
+summary: 既存のプロファイルが正しく設定されていることを確認できます。プロファイルを検証すると、 SnapManager は指定されたプロファイルの環境をチェックし、プロファイルが設定されていて、このプロファイルのデータベースにアクセスできることを検証します。 
+---
+= プロファイルを確認します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+既存のプロファイルが正しく設定されていることを確認できます。プロファイルを検証すると、 SnapManager は指定されたプロファイルの環境をチェックし、プロファイルが設定されていて、このプロファイルのデータベースにアクセスできることを検証します。
+
+.ステップ
+. プロファイルが正しく設定されているかどうかを確認するには、次のコマンドを入力します。
++
+`*SMSAP profile verify-profile_name_*`
+
+

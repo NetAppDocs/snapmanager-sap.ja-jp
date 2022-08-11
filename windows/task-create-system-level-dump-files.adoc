@@ -1,0 +1,29 @@
+---
+permalink: windows/task-create-system-level-dump-files.html 
+sidebar: sidebar 
+keywords: smsap, system, dump, command, log, information, snapmanager, environment, log, operation, profile, host, system-level, create 
+summary: SMSAPのsystem dumpコマンドを使用して、SnapManager のホストおよび環境に関するログ情報を取得できます。さまざまなログレベルを指定して、特定の処理、プロファイル、またはホストと環境に関する情報を収集できます。 
+---
+= システムレベルのダンプファイルを作成
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「SMSAP system dump」コマンドを使用すると、SnapManager ホストおよび環境に関するログ情報を取得できます。さまざまなログレベルを指定して、特定の処理、プロファイル、またはホストと環境に関する情報を収集できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+SMSAPのシステム・ダンプ
+
++
+作成されたダンプ
+
++
+[listing]
+----
+Path:\<user-home>\Application Data\NetApp\smsap\3.3.0\smsap_dump_server_host.jar
+----
+

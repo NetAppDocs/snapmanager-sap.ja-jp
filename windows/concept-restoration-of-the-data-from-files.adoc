@@ -1,0 +1,18 @@
+---
+permalink: windows/concept-restoration-of-the-data-from-files.html 
+sidebar: sidebar 
+keywords: restore, alternate, location, file, storage, media, application, snapvault, snapmirror, system, local, host 
+summary: 別の場所からリストアする場合は、ストレージ・メディアから必要なファイルをリストアし、 SnapVault や SnapMirror などのアプリケーションからローカル・ホストにマウントされたファイルシステムにファイルをリストアする必要があります。 
+---
+= ファイルからのデータのリストア
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+別の場所からリストアする場合は、ストレージ・メディアから必要なファイルをリストアし、 SnapVault や SnapMirror などのアプリケーションからローカル・ホストにマウントされたファイルシステムにファイルをリストアする必要があります。
+
+代替保存場所からのリストアを使用すると、代替ファイルシステムからアクティブ・ファイルシステムにファイルを複製できます。
+
+リストア仕様を作成して、オリジナルのファイルのリストア元となる代替保存場所を指定する必要があります。

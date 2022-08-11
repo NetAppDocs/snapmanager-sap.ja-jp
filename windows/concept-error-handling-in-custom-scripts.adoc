@@ -1,0 +1,63 @@
+---
+permalink: windows/concept-error-handling-in-custom-scripts.html 
+sidebar: sidebar 
+keywords: snapmanager, custom, script, return, code, clone, process, influence, standard, output, execution, error, handle 
+summary: SnapManager は、特定の戻りコードに基づいてカスタムスクリプトを処理します。たとえば、カスタムスクリプトから値 0 、 1 、 2 、または 3 が返された場合、 SnapManager はクローンプロセスを続行します。また、リターンコードは、 SnapManager によるスクリプト実行の処理方法と標準出力の返し方にも影響を与えます。 
+---
+= カスタムスクリプトでのエラー処理
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager は、特定の戻りコードに基づいてカスタムスクリプトを処理します。たとえば、カスタムスクリプトから値 0 、 1 、 2 、または 3 が返された場合、 SnapManager はクローンプロセスを続行します。また、リターンコードは、 SnapManager によるスクリプト実行の処理方法と標準出力の返し方にも影響を与えます。
+
+|===
+| リターンコード | 説明 | 処理を続行します 
+
+
+ a| 
+0
+ a| 
+スクリプトは正常に完了しました。
+ a| 
+はい。
+
+
+
+ a| 
+1.
+ a| 
+スクリプトが正常に完了し、情報メッセージが表示されました。
+ a| 
+はい。
+
+
+
+ a| 
+2.
+ a| 
+スクリプトは完了しましたが、警告が含まれています
+ a| 
+はい。
+
+
+
+ a| 
+3.
+ a| 
+スクリプトは失敗しますが、処理は続行されます。
+ a| 
+はい。
+
+
+
+ a| 
+4 または > 4
+ a| 
+スクリプトが失敗し、処理が停止します。
+ a| 
+いいえ
+
+|===

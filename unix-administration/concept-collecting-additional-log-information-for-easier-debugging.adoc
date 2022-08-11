@@ -1,0 +1,43 @@
+---
+permalink: unix-administration/concept-collecting-additional-log-information-for-easier-debugging.html 
+sidebar: sidebar 
+keywords: log, debug, snapmanager, fail, operation, external, environment, variable, server 
+summary: 失敗した SnapManager 処理をデバッグするために追加のログが必要な場合は、外部環境変数 server.log.level を設定する必要があります。この変数は、デフォルトのログレベルを上書きし、ログファイル内のすべてのログメッセージをダンプします。たとえば、ログレベルを DEBUG に変更できます。これにより、追加のメッセージが記録され、問題のデバッグに役立ちます。 
+---
+= デバッグを容易にするために追加のログ情報を収集する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+失敗した SnapManager 処理をデバッグするために追加のログが必要な場合は、外部環境変数 server.log.level を設定する必要があります。この変数は、デフォルトのログレベルを上書きし、ログファイル内のすべてのログメッセージをダンプします。たとえば、ログレベルを DEBUG に変更できます。これにより、追加のメッセージが記録され、問題のデバッグに役立ちます。
+
+SnapManager ログは、次の場所にあります。
+
+* /var/log/smsap
+
+
+デフォルトのログレベルを上書きするには、次の手順を実行する必要があります。
+
+. SnapManager インストール・ディレクトリに'platform.override'テキストファイルを作成します
+. 'platform.override'テキストファイルに'server.log.level'パラメータを追加します
+. 値（_trace、debug、Info、warn、error、 致命的またはprogress_)を'server.log.levelパラメータに指定します
++
+たとえば'ログ・レベルを_ERROR_ERRORに変更するには'server.log.levelの値を_ERROR_ERROR_ERRORに設定します
+
++
+`*server.log.level=error*`
+
+. SnapManager サーバを再起動します。
+
+
+
+NOTE: 追加のログ情報が不要な場合は'platform.override'テキストファイルから'server.log.level'パラメータを削除できます
+
+SnapManager は'smsap.config'ファイル内の次のパラメータのユーザ定義値に基づいて'サーバ・ログ・ファイルのボリュームを管理します
+
+* 「log.max_log_files」という形式で指定します
+* 'log.max_log_file_size
+* 'log.max_roling_operation_ffactor_logs'
+

@@ -1,0 +1,85 @@
+---
+permalink: unix-installation-cmode/reference-smsap-isg-snapmanager-licensing.html 
+sidebar: sidebar 
+keywords: snapmanager, license, storage, system, license, require, enable, operation, license, per-server, database, per-storage 
+summary: SnapManager の処理を実行するには、 SnapManager ライセンスといくつかのストレージシステムライセンスが必要です。SnapManager ライセンスには 2 つのライセンスモデルがあります。サーバ単位のライセンスの場合は SnapManager ライセンスを各データベースホストに設定し、ストレージシステム単位のライセンスの場合は SnapManager ライセンスをストレージシステムに設定します。 
+---
+= SnapManager ライセンス
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager の処理を実行するには、 SnapManager ライセンスといくつかのストレージシステムライセンスが必要です。SnapManager ライセンスには2つのライセンスモデルがあります。SnapManager ライセンスを各データベースホストにインストールするサーバ単位のライセンス_と、SnapManager ライセンスをストレージシステムにインストールするストレージシステム単位のライセンス_です。
+
+SnapManager のライセンス要件は次のとおりです。
+
+|===
+| 使用許諾 | 説明 | 必要に応じて 
+
+
+ a| 
+SnapManager ：サーバ単位
+ a| 
+特定のデータベースホスト用のホスト側ライセンスです。SnapManager がインストールされているデータベースホストについてのみ必要です。ストレージシステムに SnapManager ライセンスは不要です。
+ a| 
+SnapManager ホスト。サーバ単位のライセンスを使用する場合、プライマリストレージシステムとセカンダリストレージシステムには SnapManager ライセンスは必要ありません。
+
+
+
+ a| 
+SnapManager ：ストレージシステム単位
+ a| 
+任意の数のデータベース・ホストをサポートする、ストレージ側のライセンス。データベースホストでサーバ単位のライセンスを使用しない場合にのみ必要です。
+ a| 
+プライマリストレージシステムおよびセカンダリストレージシステム。
+
+
+
+ a| 
+SnapRestore
+ a| 
+SnapManager でデータベースをリストアする場合に必要になるライセンスです。
+ a| 
+プライマリおよびセカンダリのストレージシステム。リモート検証を実行する場合は、 SnapMirror デスティネーションシステムに必要です。
+
+リモート検証に加えてバックアップからのリストアを実行するには、 SnapVault デスティネーションシステムに必要です。
+
+
+
+ a| 
+FlexClone
+ a| 
+データベースのクローニングを行うためのオプションのライセンスです。
+ a| 
+プライマリおよびセカンダリストレージシステム。バックアップからクローンを作成する場合、 SnapVault デスティネーションシステムに必要です。
+
+
+
+ a| 
+SnapMirror
+ a| 
+バックアップをデスティネーションストレージシステムにミラーリングするためのオプションのライセンスです。
+ a| 
+プライマリストレージシステムおよびセカンダリストレージシステム。
+
+
+
+ a| 
+SnapVault
+ a| 
+バックアップをデスティネーションストレージシステムにアーカイブするためのオプションのライセンスです。
+ a| 
+プライマリストレージシステムおよびセカンダリストレージシステム。
+
+
+
+ a| 
+プロトコル
+ a| 
+使用するプロトコルに応じて、 NFS 、 iSCSI 、または FC のライセンスが必要です。
+ a| 
+プライマリストレージシステムおよびセカンダリストレージシステム。ソースボリュームを利用できない場合に SnapMirror デスティネーションシステムからデータを提供するには、 SnapMirror デスティネーションシステムに必要です。
+
+|===

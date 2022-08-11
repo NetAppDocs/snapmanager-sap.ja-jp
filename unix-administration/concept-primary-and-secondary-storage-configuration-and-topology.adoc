@@ -1,0 +1,188 @@
+---
+permalink: unix-administration/concept-primary-and-secondary-storage-configuration-and-topology.html 
+sidebar: sidebar 
+keywords: techco, corportation, payroll, database, server, snapmanager, sap, host, fifty, mile, primary, secondary, storage, configuration, topology 
+summary: 'この例では"TechCo社が給与データベースをSAPホスト用のSnapManager であるデータベース・サーバ上で実行し"本社のプライマリ・ストレージ・システムに給与データベースのデータと構成ファイルを保存しています企業の要件は、ローカル・ストレージへの日単位および週単位のバックアップ、およびセカンダリ・ストレージ・サイトにあるストレージ・システムへのバックアップにより、データベースを保護することです。' 
+---
+= プライマリストレージとセカンダリストレージの構成とトポロジ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+この例では'TechCo社が給与データベースをSAPホスト用のSnapManager であるデータベース・サーバ上で実行し'本社のプライマリ・ストレージ・システムに給与データベースのデータと構成ファイルを保存しています企業の要件は、ローカル・ストレージへの日単位および週単位のバックアップ、およびセカンダリ・ストレージ・サイトにあるストレージ・システムへのバックアップにより、データベースを保護することです。
+
+次の図は、SnapManager for SAP、およびローカルとセカンダリのバックアップ保護に必要なNetApp Management Consoleデータ保護機能コンポーネントを示しています。
+
+image::../media/scrn_en_drw_smsap_architecture.gif[次の図は、SnapManager for SAPとManagement Consoleデータベースの保護アーキテクチャを組み合わせた構成要素を示しています]
+
+前の図に示すように、給与データベースを管理し、ローカルおよびセカンダリのバックアップ保護をサポートするには、次の配置を使用します。
+
+* * SnapManager ホスト *
++
+SnapManager ホスト payroll.techco.com は、本社にあり、 UNIX サーバ上で実行されます。 UNIX サーバでは、給与データベースを生成および管理するデータベースプログラムも実行されます。
+
++
+** * 接続 *
++
+ローカルバックアップおよびセカンダリバックアップ保護をサポートするために、 SnapManager ホストは次のコンポーネントにネットワーク接続されています。
+
++
+*** SnapManager for SAP Clientの略
+*** SnapDrive リポジトリ。データベースプログラム、 SnapManager for UNIX 、および SnapManager を実行します
+*** プライマリストレージシステム
+*** セカンダリストレージシステム
+*** DataFabric Manager サーバ
+
+
+** * インストール済み製品 *
++
+この例では、 SnapManager ホストに次の製品がインストールされています。
+
++
+*** SnapManager サーバ
+*** SnapDrive for UNIX の略
+*** Host Utilities のことです
+
+
+
+
+* * TechCo プライマリ・ストレージ・システム *
++
+関連するデータ・ファイル ' ログ・ファイル ' 制御ファイルなどの給与データベースは ' プライマリ・ストレージ・システムに存在しますこれらは、 TechCo 社の本社にあり、 SnapManager ホストと、プライマリストレージと SnapManager ホストを接続するネットワークとともに設置されています。最新の給与計算データベースのトランザクションと更新は、プライマリストレージシステムに書き込まれます。給与データベースのローカルバックアップ保護を提供する Snapshot コピーは、プライマリストレージシステムにも存在します。
+
++
+** * 接続 *
++
+セカンダリバックアップ保護をサポートするために、プライマリストレージシステムは次のコンポーネントにネットワーク接続されます。
+
++
+*** データベースプログラム、 SnapDrive for UNIX 、および SnapManager を実行している SnapManager ホスト
+*** セカンダリストレージシステム
+*** DataFabric Manager サーバ
+
+
+** * インストール済み製品 *
++
+この例では、これらのシステムで次のライセンスを有効にする必要があります。
+
++
+*** Data ONTAP 7.3.1 以降
+*** SnapVault データ ONTAP プライマリ
+*** FlexVol （ NFS に必要）
+*** SnapRestore
+*** NFS プロトコル
+
+
+
+
+* * TechCo のセカンダリ・ストレージ・システム *
++
+ネットワークに接続されたセカンダリストレージサイトにあるセカンダリストレージシステムは、 50 マイル離れた場所にあり、給与データベースのセカンダリバックアップを保存するために使用されます。
+
++
+** * 接続 *
++
+セカンダリバックアップ保護をサポートするために、セカンダリストレージシステムは次のコンポーネントにネットワーク接続されています。
+
++
+*** プライマリストレージシステム
+*** DataFabric Manager サーバ
+
+
+** * インストール済み製品 *
++
+この例では、セカンダリストレージシステムで次のライセンスを有効にする必要があります。
+
++
+*** データ ONTAP
+*** SnapVault データ ONTAP セカンダリ
+*** SnapRestore
+*** FlexVol （ NFS に必要）
+*** NFS プロトコル
+
+
+
+
+* * DataFabric Manager サーバ *
++
+DataFabric Manager サーバ TechCo_DFM は、ストレージ管理者がアクセスできる企業の本社にあります。DataFabric Manager サーバは、特にプライマリストレージとセカンダリストレージの間のバックアップタスクを調整します。
+
++
+** * 接続 *
++
+セカンダリバックアップ保護をサポートするために、 DataFabric Manager サーバでは次のコンポーネントへのネットワーク接続が維持されます。
+
++
+*** NetApp Management Console の略
+*** プライマリストレージシステム
+*** セカンダリストレージシステム
+
+
+** * インストール済み製品 *
++
+この例では、 DataFabric Manager サーバに次のサーバ製品のライセンスが設定されています。
+
++
+*** DataFabric Manager の略
+
+
+
+
+* * SnapManager リポジトリ *
++
+専用サーバにある SnapManager リポジトリには、バックアップ時刻、表領域とデータファイルのバックアップ時刻、使用されているストレージシステム、作成されたクローン、 Snapshot コピーなど、 SnapManager で実行された処理に関するデータが格納されます。データベース管理者がフルリストアまたはパーシャルリストアを試みると、SnapManager はリストア用にSnapManager for SAPによって作成されたバックアップをリポジトリに照会します。
+
++
+** * 接続 *
++
+セカンダリバックアップ保護をサポートするために、セカンダリストレージシステムは次のコンポーネントにネットワーク接続されています。
+
++
+*** SnapManager ホスト
+*** SnapManager for SAP Clientの略
+
+
+
+
+* * NetApp Management Console *
++
+NetApp Management Console は、グラフィカルユーザインターフェイスコンソールです。ストレージ管理者が使用して、スケジュール、ポリシー、データセット、リソースプールの割り当てを設定し、セカンダリストレージシステムへのバックアップを有効にします。セカンダリストレージシステムには、ストレージ管理者がアクセスできます。
+
++
+** * 接続 *
++
+セカンダリバックアップ保護をサポートするために、 NetApp Management Console には次のコンポーネントへのネットワーク接続が確立されています。
+
++
+*** プライマリストレージシステム
+*** セカンダリストレージシステム
+*** DataFabric Manager サーバ
+
+
+
+
+* * SnapManager for SAPクライアント*
++
+SnapManager for SAPクライアントは'ローカル・バックアップとセカンダリ・ストレージへのバックアップを構成して実行するために'DBAが給与データベースに使用するグラフィカル・ユーザー・インタフェースとコマンド・ライン・コンソールです
+
++
+** * 接続 *
++
+ローカルバックアップおよびセカンダリバックアップ保護をサポートするために、SnapManager for SAP Clientは次のコンポーネントにネットワーク接続されています。
+
++
+*** SnapManager ホスト
+*** データベースプログラム、 SnapDrive for UNIX 、および SnapManager を実行する SnapManager リポジトリ
+*** データベース・ホスト（ SnapManager を実行しているホストとは別の場合）
+*** DataFabric Manager サーバ
+
+
+** * インストール済み製品 *
++
+ローカルバックアップおよびセカンダリバックアップ保護をサポートするには、このコンポーネントにSnapManager for SAP Clientソフトウェアをインストールする必要があります。
+
+
+
+

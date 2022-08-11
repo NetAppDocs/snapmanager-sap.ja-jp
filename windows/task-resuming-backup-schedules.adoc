@@ -1,0 +1,23 @@
+---
+permalink: windows/task-resuming-backup-schedules.html 
+sidebar: sidebar 
+keywords: administrator, option, resume, suspend, backup, schedule, resuming 
+summary: 管理者は、中断したバックアップ・スケジュールを再開できます。 
+---
+= バックアップスケジュールを再開しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+管理者は、中断したバックアップ・スケジュールを再開できます。
+
+アクティブなスケジュールを再開しようとすると、「 Cannot resume ： schedule <schedulename> already in resume state 」というエラーメッセージが表示される場合があります。
+
+.ステップ
+. 中断されていたバックアップスケジュールを再開するには、次のコマンドを入力します。
++
+「smsapschedule resume -profile profile_name -schedule - nameschedulename [-quiet |-verbose」
+
+

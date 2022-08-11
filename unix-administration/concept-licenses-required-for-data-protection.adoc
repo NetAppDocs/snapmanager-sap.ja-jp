@@ -1,0 +1,34 @@
+---
+permalink: unix-administration/concept-licenses-required-for-data-protection.html 
+sidebar: sidebar 
+keywords: ensure, license, require, data, protection, install, enable, primary, secondary, storage, system 
+summary: データ保護に必要なライセンスがプライマリストレージシステムとセカンダリストレージシステムにインストールされ、有効になっていることを確認する必要があります。 
+---
+= SnapManager でのデータ保護に必要なライセンス
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データ保護に必要なライセンスがプライマリストレージシステムとセカンダリストレージシステムにインストールされ、有効になっていることを確認する必要があります。
+
+プライマリストレージシステムは、 Oracle データベースの最新のトランザクションの更新を受け取り、データを格納し、データベースのローカルバックアップ保護を提供します。プライマリストレージシステムでは、データベースのデータファイル、ログファイル、制御ファイルも保持されます。セカンダリストレージシステムは、保護されたバックアップのリモートストレージとして機能します。
+
+データ保護を行うには、プライマリストレージシステムに次のライセンスをインストールし、有効にする必要があります。
+
+
+NOTE: セカンダリストレージシステムでデータ保護を有効にする場合は、セカンダリストレージシステムでもライセンスをインストールして有効にする必要があります。
+
+* Data ONTAP 7-Mode （ 7.3.1 以降）または clustered Data ONTAP （ 8.2 以降）
+* SnapVault （保護ポリシーに応じて）
+* SnapRestore
+* SnapMirror （保護ポリシーに応じて）
+* FlexClone は、 Network File System （ NFS ；ネットワークファイルシステム）およびクローニングに必要です。
++
+また、 FlexClone は、 SAN 環境で FlexClone を使用するように SnapDrive が設定されている場合にのみ、 Storage Area Network （ SAN ；ストレージエリアネットワーク）に必要です。
+
+* NFS 、 Internet Small Computer System Interface （ iSCSI ）、 Fibre Channel （ FC ；ファイバチャネル）など、適切なプロトコル
+
+
+使用する保護ポリシーに基づいて、プライマリストレージシステムとセカンダリストレージシステムに SnapVault または SnapMirror を配置する必要があります。基本的なバックアップ保護ポリシーでは、サポート対象システムに SnapVault のみをインストールする必要があります。ミラー保護を含むポリシーでは、 SnapMirror をサポートするシステムにインストールする必要があります。バックアップおよびミラーのディザスタリカバリポリシーを使用するには、 SnapMirror をサポートするシステムにインストールする必要があります。

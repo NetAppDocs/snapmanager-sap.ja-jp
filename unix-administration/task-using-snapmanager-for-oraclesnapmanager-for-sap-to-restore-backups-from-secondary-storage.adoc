@@ -1,0 +1,41 @@
+---
+permalink: unix-administration/task-use-snapmanager-for-oraclesnapmanager-for-sap-to-restore-backups-from-secondary-storage.html 
+sidebar: sidebar 
+keywords: administrator, restore, protect, backup, secondary, storage, copy, data, back, primary, snapmanager 
+summary: 保護されたバックアップをセカンダリストレージからリストアしたり、データをプライマリストレージにコピーする方法を選択したりできます。 
+---
+= SnapManager for SAPを使用してセカンダリストレージからバックアップをリストアする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+保護されたバックアップをセカンダリストレージからリストアしたり、データをプライマリストレージにコピーする方法を選択したりできます。
+
+* 必要なもの *
+
+バックアップをリストアする前に、バックアップのプロパティを確認し、プライマリストレージシステムでバックアップが解放され、セカンダリストレージで保護されていることを確認してください。
+
+.手順
+. SnapManager for SAPリポジトリ・ツリーで、リストアするバックアップを右クリックし、*リストア*を選択します。
+. [ リストアとリカバリウィザード ] の [ ようこそ ] ページで、 [ 次へ ] をクリックします。
+. [ 構成情報の復元 ] ページで、 [ 完全なデータファイル / テーブルスペースの復元と制御ファイル * ] をクリックします。
+. 必要に応じてデータベースのシャットダウンを許可する * をクリックし、 * 次へ * をクリックします。
++
+SnapManager は、必要に応じてデータベースの状態を変更します。たとえば、データベースがオフラインでオンラインにする必要がある場合、 SnapManager によってデータベースが強制的にオンラインに切り替えられます。
+
+. Recovery Configuration Information ページで、 * All Logs* をクリックします。次に、 [ * 次へ * ] をクリックします。
++
+SnapManager は、データベースを最後のトランザクションまでリストアおよびリカバリし、必要なすべてのログを適用します。
+
+. [Restore Source Location Configuration] ページで、保護されたバックアップソースの ID を選択し、 [Next] をクリックします。
+. Volume Restore Configuration Information （ボリューム復元設定情報）ページで、 * Attempt volume restore （ボリューム復元の試行） * をクリックして、ボリューム復元を試みます。
+. [ ファイルベースの復元へのフォールバック * ] をクリックします。
++
+これにより、ボリュームのリストア方式を完了できない場合でも、 SnapManager でファイルベースのリストア方式を使用できます。
+
+. 高速リストアの資格チェックと、必須およびオーバーライド可能なチェックに関する情報を表示するには、 * Preview * をクリックします。
+. [ 操作の実行 ] ページで、入力した情報を確認し、 [* リストア * ] をクリックします。
+. プロセスの詳細を表示するには、 [* 操作の詳細 * ] をクリックします。
+

@@ -1,0 +1,212 @@
+---
+permalink: unix-administration/concept-what-br-tools-are.html 
+sidebar: sidebar 
+keywords: information, sap, storage, system, br, tools 
+summary: SAPをストレージシステムで使用する際に必要な情報について説明します。 
+---
+= BR * Toolsとは
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SAPをストレージシステムで使用する際に必要な情報について説明します。
+
+BR * Toolsの使用に関するコマンド構文などの一般的な情報については、オンラインのBR * Tools for Oracle Database AdministrationなどのSAPドキュメントを参照してください。
+
+
+
+== プロファイル要件
+
+BR * Toolsを使用するには、SnapManager for SAPプロファイルに適切な名前を付ける必要があります。backintでは'デフォルトで'BR * Toolsコマンドを発行するユーザーIDによって決定されたリポジトリから'SAP SIDと同じ名前のプロファイルが使用されます
+
+SAP SIDが環境内で一意でない場合は、別のプロファイル名を使用する必要があります。詳細については、「BR * Tools backups_.のプロファイルの使用」を参照してください。
+
+BR * ToolsディレクトリからSnapManager for SAPによってインストールされた「/opt/NetApp/smsap/bin/backint」ファイルへのリンクが必要です。リンク作成の詳細については、「SAP BR * Toolsとの統合」を参照してください。
+
+BR * Tools 7.00より前のバージョンで作成されたバックアップは検証できません。検証を完了するには、表領域またはデータ・ファイルのブロック・サイズが必要です。ただし、BR * Tools 7.00より前のバージョンでは、この機能は提供されません。
+
+
+
+== SAPインターフェイスでのBR * ToolsとSnapManager の組み合わせについて
+
+BR * ToolsとSnapManager for SAPのグラフィカルユーザインターフェイス（GUI）またはコマンドラインインターフェイス（CLI）を組み合わせて使用すると、次の処理を実行できます。
+
+[cols="1a,1a"]
+|===
+| 操作 | 使用できるインターフェイス 
+
+
+ a| 
+BRBACKUPを使用して作成したデータベース・バックアップ（データ・ファイル'制御ファイル'オンラインREDOログ・ファイルを含むバックアップ）の一覧表示'リストア'リカバリ'および削除
+ a| 
+SnapManager for SAPのCLIおよびGUI
+
+
+NOTE: BR * Toolsでは、BR * Toolsを使用して作成されたバックアップのみを表示およびリストアできます。
+
+
+
+ a| 
+BRBACKUPで作成した他のファイルセットのバックアップを一覧表示および削除します
+ a| 
+SnapManager for SAPのCLIおよびGUI
+
+
+
+ a| 
+BRBACKUPで作成した他のファイル・セットのクローン・バックアップ
+ a| 
+BRBACKUPコマンドを使用して作成したフル・オンラインまたはオフライン・バックアップは、SnapManager for SAP CLIまたはGUIを使用してクローニングできます。
+
+|===
+
+
+== BR * Tools CLI with SnapManager for SAPで利用できるオプション
+
+BR * Tools CLIでは次のオプションを使用できます。
+
+[cols="1a,2a"]
+|===
+| オプション | 実行可能なタスク 
+
+
+ a| 
+インスタンス管理
+ a| 
+すべての操作をファイルシステムテーブルとデータベーステーブルに記録し、バックアップログとプロファイルをバックアップメディアに保存する。
+
+
+
+ a| 
+スペース管理
+ a| 
+ボリュームを包括的に管理できます。スペース管理に含まれる機能を使用するには、BRBACKUPまたはBRARCHIVEを使用してボリュームを初期化し、SAP固有のラベルを含めるようにする必要があります。
+
+
+
+ a| 
+バックアップとデータベースコピー
+ a| 
+データベースのバックアップの作成、オフラインREDOログ（アーカイブログ）の実行、およびバックアップの検証を行います。
+
+
+
+ a| 
+リストアとリカバリ
+ a| 
+バックアップをリストアおよびリカバリする。
+
+
+
+ a| 
+データベース統計
+ a| 
+テーブルとインデックスの統計情報を維持します。
+
+|===
+
+
+== BR * Tools GUIで使用できる同様の機能
+
+BR * Tools GUIでは次の操作を実行できます。
+
+[cols="1a,1a"]
+|===
+| ウィザードのタイプ | 実行可能なタスク 
+
+
+ a| 
+リポジトリの作成ウィザード
+ a| 
+データベースにリポジトリを作成します。
+
+
+
+ a| 
+プロファイルウィザード
+ a| 
+リポジトリ内にプロファイルを作成します。
+
+
+
+ a| 
+バックアップウィザード
+ a| 
+プロファイルのバックアップを作成します。
+
+
+
+ a| 
+リストアとリカバリウィザード
+ a| 
+プロファイルのバックアップをリストアおよびリカバリする
+
+
+
+ a| 
+SnapManager クローンの削除ウィザード
+ a| 
+バックアップのクローンを削除します。
+
+
+
+ a| 
+SnapManager バックアップ削除ウィザード
+ a| 
+プロファイルのバックアップを削除する
+
+|===
+
+
+== BR * Toolsで作成されたバックアップのクローニングについて
+
+BRBACKUPコマンドを使用して作成したフル・オンラインまたはオフライン・バックアップは、SnapManager for SAP CLIまたはGUIを使用してクローニングできます。
+
+BRBACKUPコマンドを使用して作成したデータベースバックアップのクローンを作成するには、SMSAP_CONFIGファイルで設定パラメータbrbackup .enable .clonable-backupをtrueに設定し、SnapManager for SAPサーバを再起動します。次のコマンドを入力しますbrbackup .enable.clonable.backups=true
+
+BRBACKUPコマンドSnapManager で作成したオンライン・バックアップの場合、SnapManager for SAPのCLIまたはGUIから変更を行うことなく、バックアップをクローニングできます。
+
+オフライン・バックアップではBRBACKUPコマンドでSnapManager for SAPを使用すると'次の手順の実行後にSnapManager for SAPのCLIまたはGUIからバックアップをクローニングできます
+
+. SMSAP_CONFIGファイルに次の設定変数を追加します。
++
+以下に示す変数の値はデフォルト値です。これらの値をデフォルトに設定する場合は、値をそのまま使用できます。
+
++
+** brbackup .oracle.maxdatafiles=254
+** brbackup .oracle.maxloghistory=1168
+** brbackup .oracle.maxinstances = 50
+** brbackup .oracle.maxlogfiles = 255
+** brbackup .oracle.maxlogmembers = 3
+** brbackup.oracle.character_set=UTF8
+
+
+. SMSAP_configファイルでこれらのデフォルト設定パラメータの値を変更するには、SQLコマンドプロンプトで次のコマンドを実行します。
++
+「alter database backup controlfile」を「file」としてトレースします
+
++
+ファイルは任意のユーザ定義名にすることができ、SQL*Plusが呼び出されたディレクトリと同じディレクトリに作成されます。
+
+. ファイルを開き、SMSAP_CONFIGファイル内の対応する設定変数にこれらの値を設定します。
+. SnapManager サーバを再起動します。
+
+
+
+
+== BR * Toolsで作成されたバックアップの削除について
+
+BR * Toolsではバックアップは削除されません。SnapManager for SAPのバックアップはSnapshotコピーに基づいているため、保持できるバックアップの数には制限があります。不要になったバックアップは、確実に削除する必要があります。
+
+ネットアップストレージシステムでは、各ボリュームに最大255個のSnapshotコピーを作成できます。ボリュームが制限値に達すると、バックアップは失敗します。BRBACKUPで作成したバックアップでは、通常、影響を受けた各ボリュームのSnapshotコピーを2つ作成します。
+
+Snapshotコピーの最大数255に到達しないようにするために、次の方法でバックアップを管理できます。
+
+* BR * Toolsの操作に使用するプロファイルで保持オプションを設定できます。
++
+SnapManager for SAPは、必要に応じて古いバックアップを自動的に削除します。
+
+* 不要になったバックアップは、SnapManager for SAPのCLIまたはGUIを使用して手動で削除できます。
+

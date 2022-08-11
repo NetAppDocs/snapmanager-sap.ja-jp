@@ -1,0 +1,21 @@
+---
+permalink: unix-administration/task-delete-backup-schedules.html 
+sidebar: sidebar 
+keywords: delete, backup, schedule, deleting 
+summary: 不要になったバックアップスケジュールを削除できます。 
+---
+= バックアップスケジュールを削除
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+不要になったバックアップスケジュールを削除できます。
+
+.ステップ
+. バックアップスケジュールを削除するには、次のコマンドを入力します。
++
+`*SMSAP schedule delete -profile profile_name__-scheduled-name_scheduleName _[-quiet |-verbose *`
+
+

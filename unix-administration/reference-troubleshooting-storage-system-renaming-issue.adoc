@@ -1,0 +1,93 @@
+---
+permalink: unix-administration/reference-troubleshooting-storage-system-renaming-issue.html 
+sidebar: sidebar 
+keywords: face, issue, renaming, rename, storage, system, successful, troubleshooting 
+summary: ストレージシステムの名前変更時や、ストレージシステムの名前変更後に問題が発生することがあります。 
+---
+= ストレージ・システムで問題名が変更された場合の
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ストレージシステムの名前変更時や、ストレージシステムの名前変更後に問題が発生することがあります。
+
+ストレージシステムの名前を変更しようとすると、「SMSAP-05085 No storage controller "FAS3020 -rtp07New" is found to be associated with the profile`」というエラーメッセージが表示されて、処理が失敗する場合があります
+
+「smsapstorage list」コマンドを実行するときに表示されるストレージシステムのIPアドレスまたは名前を入力する必要があります。
+
+ストレージシステムの名前を変更したあとに、 SnapManager がストレージシステムを認識できない場合、 SnapManager 処理が失敗することがあります。この問題を解決するには、 DataFabric Manager サーバホストおよび SnapManager サーバホストでいくつかの追加手順を実行する必要があります。
+
+DataFabric Manager サーバホストで次の手順を実行します。
+
+. DataFabric Managerサーバ・ホストの「/etc/hosts」にあるホスト・ファイル内の、以前のストレージ・システムのIPアドレスおよびホストを削除します。
+. DataFabric Managerサーバ・ホストの「/etc/hosts」にあるホスト・ファイルに、新しいストレージ・システムの新しいIPアドレスおよびホストを追加します。
+. 次のコマンドを入力して、ストレージホスト名を変更します。
++
+`*dfm host rename -a_old_host_namenew_host_name_*`
+
+. 次のコマンドを入力して、ホストに新しいIPアドレスを設定します。
++
+'*dfm host set_old_host_name_or_Objid_hostPrimaryAddress=_new_storage_controller_IP_address_*
+
++
+
+NOTE: この手順は、 IP アドレスを新しいストレージシステム名として指定した場合にのみ実行する必要があります。
+
+. 次のコマンドを入力して、DataFabric Managerサーバホストで新しいストレージシステム名を更新します。
++
+'*dfm host diag_old_storage_name_*'と入力します
+
++
+次のコマンドを入力して、以前のストレージコントローラ名が新しいストレージコントローラ名に置き換えられたことを確認します。
+
++
+'*dfm host discover new_storage_name *
+
+
+
+SnapManager サーバホストで、 root ユーザとして次の手順を実行します。
+
+
+NOTE: 新しいストレージコントローラ名を入力するときは、完全修飾ドメイン名（ FQDN ）ではなく、システムエイリアス名を使用してください。
+
+. 次のコマンドを入力して、以前のストレージ・システム名を削除します。
++
+SnapDrive config delete_old_storage_name_*'
+
++
+
+NOTE: 以前のストレージシステム名を削除しないと、すべての SnapManager 処理が失敗します。
+
+. ターゲット・データベース・ホストの/etc/hostsにあるホスト・ファイル内の'以前のストレージ・システムのIPアドレスとホストを削除します
+. ターゲット・データベース・ホストの/etc/hostsにあるホスト・ファイルに'新しいストレージ・システムの新しいIPアドレスとホストを追加します
+. 次のコマンドを入力して、新しいストレージシステム名を追加します。
++
+SnapDrive config set root_new_storage_name_*
+
+. 次のコマンドを入力して、以前のストレージ・システム名およびあとのストレージ・システム名をマッピングします。
++
+SnapDrive config migrate set_old_storage_namenew_storage_name_*
+
+. 次のコマンドを入力して、以前のストレージシステムの管理パスを削除します。
++
+SnapDrive config delete -mgmtpath_old_storage_name_*``
+
+. 次のコマンドを入力して、新しいストレージシステムの管理パスを追加します。
++
+SnapDrive config set -mgmtpath_new_storage_name_*'
+
+. 次のコマンドを入力して、データファイルとアーカイブログファイルの両方のデータセットを新しいストレージシステム名で更新します。
++
+SnapDrive データセットchangehostname dn_dataset_name __-oldname_old_storage_name -- newname_new_storage_name_*
+
+. 次のコマンドを入力して、新しいストレージ・システム名に対応するプロファイルを更新します。
++
+'*SMSAP storage rename - profile_profile_name__-oldname_old_storage_name -- newname_new_storage_name_*
+
+. 次のコマンドを入力して、プロファイルに関連付けられたストレージ・システムを確認します。
++
+'*SMSAP storage list -profile_name_*
+
+

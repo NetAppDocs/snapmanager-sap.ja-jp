@@ -1,0 +1,72 @@
+---
+permalink: windows/task-scheduling-archive-log-file-pruning.html 
+sidebar: sidebar 
+keywords: create, backup, schedule, pruning, prune, archive, log, file, scheduling 
+summary: バックアップを作成する場合、指定した時間にアーカイブ・ログ・ファイルが削除されるようにスケジュールを設定できます。 
+---
+= アーカイブ・ログ・ファイルの削除のスケジュール設定
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップを作成する場合、指定した時間にアーカイブ・ログ・ファイルが削除されるようにスケジュールを設定できます。
+
+SnapManager を使用すると、アクティブファイルシステムからアーカイブログファイルを定期的に削除できます。
+
+. 次のコマンドを入力します。
++
+'smsapschedule create -profile profile_name {[-full { online |-offline-offline|-auto}[-retain [-hourly |-daily |-weekly|-unlimited ][-verify]]|[-data [files]|[-eslog-files[files]|[-desttablespaces [-pathunlimited |-retain]-destpath-retain-destpath|-retain-destres][毎日] [-prunelogs {-all|-untilSCNuntilscn|-before {-ddateyyyyy-md HH:mm:ss|-monthsmonthsmonths|-weeksweeksweekswe|-dayays|-hoursh}}-prune dest_dest1、prune dest2_dest2、-nameschedule-nade-schedule-nad-nad-time}-time}-time}-time}-user-day-time|-time}-time}-time}-time}-time}-user-dayoftesday-time}-user|-time}-time}-time}-time}-time}-time}-time}-time}-time}-user|-time}-time}-time}-time}-time}-
+
++
+|===
+| 状況 | 作業 
+
+
+ a| 
+* アーカイブ・ログ・ファイルの削除をスケジュール *
+ a| 
+次のオプションを指定します。
+
+** -prunelogs ：アーカイブログファイルのプルーニングをスケジュールする場合
+** -prune-dest ：アーカイブ・ログ・デスティネーションからアーカイブ・ログ・ファイルをプルーニングします
+
+
+
+
+ a| 
+* スケジュール名を入力 *
+ a| 
+schedule-name オプションを指定します。
+
+
+
+ a| 
+* 特定の時間間隔でアーカイブ・ログ・ファイルを削除するようにスケジュールします *
+ a| 
+interval オプションを指定し、次の間隔クラスに基づいて、アーカイブログファイルを削除するかどうかを指定します。
+
+** 毎時
+** 毎日
+** 毎週
+** 毎月
+** - onetimeonly
+
+
+
+
+ a| 
+* スケジュール操作に関するコメントを追加します。 *
+ a| 
+schedule-comment オプションのあとに、概要文字列を指定します。
+
+
+
+ a| 
+* スケジュール操作の開始時刻 * を指定します
+ a| 
+yyyy-mm-dd hh:mm 形式で -start-time オプションを指定します。
+
+|===
+

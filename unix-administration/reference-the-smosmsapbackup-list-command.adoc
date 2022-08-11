@@ -1,0 +1,77 @@
+---
+permalink: unix-administration/reference-the-smosmsapbackup-list-command.html 
+sidebar: sidebar 
+keywords: run, backup, list, command, display, information, profile, information, status, retention, class, smsap 
+summary: backup list コマンドを実行すると、保持クラスや保護ステータスに関する情報など、プロファイル内のバックアップに関する情報を表示できます。 
+---
+= SMSAPのbackup listコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+backup listコマンドを実行すると'保存クラスや保護ステータスに関する情報など'プロファイル内のバックアップに関する情報を表示できます
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap backup list
+-profile _profile_name_
+-delimiter _character_
+[-data | -archivelogs | -all]]
+[-quiet | -verbose]]
+----
+
+
+== パラメータ
+
+* `*-profile_name_*`
++
+バックアップをリスト表示するプロファイルを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* `*-区切り文字*`
++
+各行を別々の行に表示します。行の属性は、指定された文字で区切られます。
+
+* 「*-data*」
++
+データファイルを指定します。
+
+* `*-archivelogs*`
++
+アーカイブログファイルを指定します。
+
+* 「*- quiet *」と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。バックアップIDを表示するには'-verboseオプションを含めます- - -
+
+
+
+
+
+== 例
+
+次に、プロファイル SALES1 のバックアップをリスト表示する例を示します。
+
+[listing]
+----
+smsap backup list -profile SALES1 -verbose
+Start Date          Status  Scope  Mode    Primary  Label      Retention   Protection
+------------------- ------- ------ ------- -------- -----      --------    ----------
+2007-08-10 14:31:27 SUCCESS FULL   ONLINE  EXISTS   backup1    DAILY       PROTECTED
+2007-08-10 14:12:31 SUCCESS FULL   ONLINE  EXISTS   backup2    HOURLY      NOT PROTECTED
+2007-08-10 10:52:06 SUCCESS FULL   ONLINE  EXISTS   backup3    HOURLY      PROTECTED
+2007-08-05 12:08:37 SUCCESS FULL   ONLINE  EXISTS   backup4    UNLIMITED   NOT PROTECTED
+2007-08-05 09:22:08 SUCCESS FULL   OFFLINE EXISTS   backup5    HOURLY      PROTECTED
+2007-08-04 22:03:09 SUCCESS FULL   ONLINE  EXISTS   backup6    UNLIMITED   NOT REQUESTED
+2007-07-30 18:31:05 SUCCESS FULL   OFFLINE EXISTS   backup7    HOURLY      PROTECTED
+----
+'''

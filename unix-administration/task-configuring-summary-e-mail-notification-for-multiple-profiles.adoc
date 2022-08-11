@@ -1,0 +1,64 @@
+---
+permalink: unix-administration/task-configure-summary-e-mail-notification-for-multiple-profiles.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, configure, summary, email, notification, multiple, profile, repository, database, configuring 
+summary: SnapManager では、リポジトリデータベースの複数のプロファイルについて、サマリー E メール通知を設定できます。 
+---
+= 複数のプロファイルのサマリーEメール通知を設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、リポジトリデータベースの複数のプロファイルについて、サマリー E メール通知を設定できます。
+
+* このタスクについて *
+
+SnapManager サーバホストを通知ホストとして設定し、そこから受信者に概要通知 E メールを送信できます。SnapManager サーバのホスト名または IP アドレスが変更された場合は、通知ホストも更新できます。
+
+E メール通知が必要なスケジュール時間はどれでも選択できます。
+
+* Hourly ： 1 時間ごとに E メール通知を受信します
+* Daily ：毎日 E メール通知を受信します
+* 毎週： E メール通知を毎週受信します
+* Monthly ： E メール通知を毎月受信します
+
+
+プロファイルを使用して実行した処理に関する通知を受け取るには、 1 つの E メールアドレスまたはカンマで区切った E メールアドレスのリストを入力する必要があります。複数の E メールアドレスを入力する場合は、カンマと次の E メールアドレスの間にスペースを入れないようにしてください。
+
+SnapManager では、次の変数を使用して、カスタマイズした E メールの件名を追加できます。
+
+* データベース処理に使用するプロファイル名。
+* データベース名
+* データベースの SID
+* ホスト・サーバの名前
+* yyyymmdd ： hh ： ss 形式のデータベース処理の開始時間です
+* yyyymmdd ： hh ： ss 形式のデータベース処理の終了時間
+* データベース処理のステータス
+
+
+カスタマイズされた件名を追加しない場合、SnapManager に「Missing value-subject'」というエラーメッセージが表示されます。
+
+. 次のコマンドを入力します。
++
+`* SMSAP通知update -summary-notification-repository-port_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_host_-login-username_repo_username、email_address1、email_address2_-subject_subject-pattern -frequency｛-daily-time_daily_ day_time_file1|-weekly_notification|-profile2|-day_time*|weekly-time*|アツ ウチ|7|アツ フロシー|アツ ウチ|アツ フロシー|7|アツ ウチ|アツ フロシー|アツ フロシー|アツ フロシー|7|アツ フ|アツ フ|ウチ|カイ ト・ホスト|アツ フロシー|アツ フ|アツ フ|7|file2|file2|file2|カイ ト・ホスト|file2|カイ ト・ホスト
+
++
+このコマンドの他のオプションは、次のとおりです。
+
++
+`[-force][-noprompt]``
+
++
+「[-quiet |-verbose ]」
+
+
+
+'''
+[listing]
+----
+
+smsap notification update-summary-notification –repository –port 1521 –dbname repo2 –host 10.72.197.133 –login –username oba5 –email-address admin@org.com –subject success –frequency -daily -time 19:30:45 –profiles sales1 -notification-host wales
+----
+'''

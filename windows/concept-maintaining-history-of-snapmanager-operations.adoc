@@ -1,0 +1,37 @@
+---
+permalink: windows/concept-maintaining-history-of-snapmanager-operations.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, enable, maintain, history, operation, associate, single, multiple, profile, command-line, interface, cli, graphical, user, interface, gui, report, audit, compliance, purpose 
+summary: SnapManager for SAPでは、1つまたは複数のプロファイルに関連付けられたSnapManager 処理の履歴を保持できます。履歴は、 SnapManager のコマンドラインインターフェイス（ CLI ）またはグラフィカルユーザインターフェイス（ GUI ）で管理できます。処理の履歴をレポートとして表示し、このレポートを監査コンプライアンスの目的で使用できます。 
+---
+= SnapManager 操作の履歴を保持する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPでは、1つまたは複数のプロファイルに関連付けられたSnapManager 処理の履歴を保持できます。履歴は、 SnapManager のコマンドラインインターフェイス（ CLI ）またはグラフィカルユーザインターフェイス（ GUI ）で管理できます。処理の履歴をレポートとして表示し、このレポートを監査コンプライアンスの目的で使用できます。
+
+次の SnapManager 処理の履歴を保持できます。
+
+* Backup create をクリックします
+* バックアップの検証
+* バックアップのリストア
+* クローンの作成
+
+
+SnapManager 処理の履歴情報は保持に基づいて保持されます。サポートされる SnapManager 処理ごとに異なる保持クラスを設定できます。
+
+割り当て可能な保持クラスには、次のものがあります。
+
+* 日数
+* 週数
+* 月数
+* 処理数
+
+
+保持設定に基づいて、 SnapManager は履歴を自動的にパージします。SnapManager 処理の履歴を手動でパージすることもできます。プロファイルを削除または削除すると、そのプロファイルに関連付けられているすべての履歴情報が削除されます。
+
+
+NOTE: ホストのロールバック後は、履歴の詳細を表示したり、履歴メンテナンス用に設定されたプロファイルに関連付けられた履歴関連の操作を実行したりすることはできません。

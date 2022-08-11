@@ -1,0 +1,21 @@
+---
+permalink: windows/task-updating-a-backup-schedule.html 
+sidebar: sidebar 
+keywords: list, schedule, operation, update, scheduling, frequency, cronstring, expression, user, backup, updating 
+summary: スケジュールされた処理のリストを表示し、必要に応じて更新できます。スケジューリング頻度、スケジュールの開始時刻、 cronstring 式、バックアップをスケジュールしたユーザを更新できます。 
+---
+= バックアップスケジュールを更新しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スケジュールされた処理のリストを表示し、必要に応じて更新できます。スケジューリング頻度、スケジュールの開始時刻、 cronstring 式、バックアップをスケジュールしたユーザを更新できます。
+
+.ステップ
+. バックアップのスケジュールを更新するには、次のコマンドを入力します。
++
+「smsapschedule update -profile profile_name -schedule -nameschedulename [-schedule-commentschedule comment]-interval｛-hourly |-daily |-weekly |-onetimeonly｝-start -timestarttime -cronstringstring-runasuserrunasuserrunasuser [-verbose]
+
+

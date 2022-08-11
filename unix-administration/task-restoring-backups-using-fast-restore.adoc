@@ -1,0 +1,61 @@
+---
+permalink: unix-administration/task-restore-backups-using-fast-restore.html 
+sidebar: sidebar 
+keywords: force, snapmanager, sap, volume-based, snaprestore, condition, restore, eligibility, restoring 
+summary: SnapManager for SAPでは、必須の高速リストアがすべて満たされていれば、他のリストアプロセスではなくボリュームベースのSnapRestore プロセスを強制的に使用できます。 
+---
+= 高速リストアを使用してバックアップをリストアする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPでは、必須の高速リストアがすべて満たされていれば、他のリストアプロセスではなくボリュームベースのSnapRestore プロセスを強制的に使用できます。
+
+* このタスクについて *
+
+バックアップ・リストア・コマンドは'-ffast'を指定して使用できます
+
+*backup restore -fFAST [require|override|fallback|off]*`
+
+-fast'オプションは'フル・バックアップの完全なリストアを実行する場合にのみ使用できます--fast'オプションには'次のパラメータが含まれます
+
+* 'require`：すべての必須リストア条件が満たされ、オーバーライド可能なチェックが見つからない場合に、ボリュームのリストアを実行できます。
++
+--fast'オプションを指定しても'-ffast'のパラメータを指定しない場合、SnapManager はデフォルトとして-require`パラメータを使用します。
+
+* `override`：必須でない適格性チェックをオーバーライドし、ボリュームベースの高速リストアを実行できます。
+* fallback`：SnapManager が決定した任意の方法を使用してデータベースをリストアできます。
++
+「-ffast」を指定しない場合、SnapManager はデフォルトとして「-fallback」パラメータを使用します。
+
+* off`：高速リストア・プロセスではなく'ファイル・ベースのリストア・プロセスを実行するために'すべての適格性チェックを実行する時間を避けることができます
+
+
+バックアップが必須の適格性チェックに合格しなかった場合、高速リストアは正常に完了できません。
+
+SnapManager では、 UNIX ベースの環境でのみボリューム・ベースの高速リストアが実行されます。 Windows 環境では、高速リストアは実行されません。 SnapManager
+
+VBSR でデータファイルのバックアップを実行する際には、データファイルとアーカイブログファイルが同じボリュームに存在し、アクティブファイルシステムにアーカイブログファイルが存在しない場合は、データベースのリストアとリカバリが成功します。ただし、 VBSR では今後のアーカイブログの Snapshot が削除され、リポジトリ内のアーカイブログバックアップのエントリが古くなります。
+
+.手順
+. 次のコマンドを入力します。
++
+'*SMSAP backup restore -profile_name'-label_label_-complete -frequire -verbose *
+
++
+* 例 *
+
++
+[listing]
+----
+smsap backup restore -profile targetdb1_prof1
+      -label full_bkup_sales_nov_08  -complete -fast require -verbose
+----
+. 高速リストアの適格性チェックを確認します。
+. 資格チェックで、必須チェックが失敗していないことが確認された場合、特定の条件を無視して、リストアプロセスを続行する場合は、次のコマンドを入力します。
++
+'*backup restore - fast override*
+
+

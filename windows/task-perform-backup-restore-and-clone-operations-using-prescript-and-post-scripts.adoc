@@ -1,0 +1,72 @@
+---
+permalink: windows/task-perform-backup-restore-and-clone-operations-using-prescript-and-post-scripts.html 
+sidebar: sidebar 
+keywords: script, initiate, backup, restore, clone, operation, snapmanager, task-enable, page, create, wizard, restore, recover, create, parameter, prescript, post-script 
+summary: 独自のスクリプトを使用して、バックアップ、リストア、またはクローニングの処理を開始できます。SnapManager では、バックアップ作成ウィザード、リストアウィザード、リカバリウィザード、またはクローン作成ウィザードのタスク有効化ページが表示されます。このページで、スクリプトを選択し、スクリプトに必要なパラメータの値を指定できます。 
+---
+= プリスクリプトとポストスクリプトを使用して、バックアップ、リストア、クローニングの処理を実行する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+独自のスクリプトを使用して、バックアップ、リストア、またはクローニングの処理を開始できます。SnapManager では、バックアップ作成ウィザード、リストアウィザード、リカバリウィザード、またはクローン作成ウィザードのタスク有効化ページが表示されます。このページで、スクリプトを選択し、スクリプトに必要なパラメータの値を指定できます。
+
+
+
+== 必要なもの
+
+* プラグインスクリプトを、正しい SnapManager のインストール場所にインストールします。
+* 「smsapplugin check」コマンドを使用して、プラグインが正しくインストールされていることを確認します。
+* bash シェルを使用していることを確認します。
+
+
+
+
+== このタスクについて
+
+コマンドラインインターフェイス（ CLI ）で、スクリプト名をリストし、パラメータを選択して値を設定します。
+
+.手順
+. bashシェルを使用していることを確認するには、コマンドプロンプトで次のコマンドを入力します。
++
+*bash *`
+
++
+または、プロンプトで「which -bash」コマンドを入力し、スクリプトの開始パラメータとしてコマンド出力を使用することもできます。
+
++
+bash シェルは、エラーが表示されなければ正常に動作しています。
+
+. バックアップ・オペレーションの場合は'-taskspec'オプションを入力し'バックアップ・オペレーションの前または後に発生する前処理または後処理アクティビティを実行するためのタスク仕様XMLファイルの絶対パスを指定します
++
+`* SMSAP backup create -profile profile_profile_name_{[-full｛-online |-offline |-auto｝[-retain｛-hourly |[-daily |-weekly |-unlimited｝][-verify]|[-data [[-files_files_[files]]|[-tablespaces _-tablespaces _-unlimited |-retain-ab]-daily. [-archivelogs [-label_label_][-comment_comment_][-backup-dest_path1_[,[_path2_]][-exclude-dest_path1_][,_path2_]][-prunelogs {-all|-untilscn _ untilscn _ un_untscn _|-before }]-dest-dump-dest-dest -dest-dest -dest-des|-dest-de|-date-dest-dest -dest-de|-dest-de|-date-dest-de|-dest-de|-date-months [週-date]-dest-dest -date]-dest-dest -dest-des|-dest-dest -dest-dest -dest-dest -dest-dest -date]-dest-dest -date]-dest-dest -date]-dest-dest -dest-dest -dest-dest -dest-dest
+
++
+バックアッププラグイン処理に失敗した場合は、プラグイン名と戻りコードのみが表示されます。プラグインスクリプトにログメッセージを含め、ユーザ定義のログファイルにメッセージをリダイレクトする必要があります。
+
+. バックアップ・リストア操作の場合は'-taskspec'オプションを入力し'前処理またはリストア処理の前後に実行する後処理アクティビティを実行するためのタスク仕様XMLファイルの絶対パスを指定します
++
+`* SMSAP backup restore -profile profile_name_{-label_<label>_|-id_<id>_ files>_|-tablespaces _<tablespaces >_|-complete |-controlfiles｝[-recover｛_alllogs_|__-nologs_|-until _<untolt$tfall_dump|task]-restorespecle\te-spec\te-preview\task[task]<preview\t\te-preview\t\t\task\t\task\tf\task\tf\<files\task\t\t\<pre\task\t\task\-spec><preview\t\t\<pre\-spec\-restorespecf\-spec\
+
++
+リストアプラグインの処理に失敗した場合は、プラグイン名と戻りコードのみが表示されます。プラグインスクリプトにログメッセージを含め、ユーザ定義のログファイルにメッセージをリダイレクトする必要があります。
+
+. クローン作成操作の場合'-taskspec'オプションを入力し'前処理またはクローン操作の前後に実行する後処理アクティビティを実行するためのタスク仕様XMLファイルの絶対パスを指定します
++
+`* SMSAP clone create -profile _profile_name_{-backup-label_backup_name_|-backup-id_<backup-id>_<backup-id>_|-current｝-newsid_new_sid -clonespecfile_[-reserve_<yes、inherite_][-host_dask_comment]-spec<task_label><spec><spec>
+
++
+クローンプラグイン処理に失敗した場合は、プラグイン名と戻りコードのみが表示されます。プラグインスクリプトにログメッセージを含め、ユーザ定義のログファイルにメッセージをリダイレクトする必要があります。
+
+
+
+
+
+== タスク仕様 XML ファイルを使用したバックアップの作成例
+
+[listing]
+----
+smsap backup create -profile SALES1 -full -online -taskspec sales1_taskspec.xml -force -verify
+----

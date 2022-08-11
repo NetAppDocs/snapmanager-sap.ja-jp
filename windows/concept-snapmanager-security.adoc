@@ -1,0 +1,64 @@
+---
+permalink: windows/concept-snapmanager-security.html 
+sidebar: sidebar 
+keywords: perform, snapmanager, operation, credential, govern, authentication, maintain, security 
+summary: SnapManager 処理は、適切なクレデンシャルがある場合にのみ実行できます。SnapManager のセキュリティは、ユーザ認証によって管理されます。 
+---
+= SnapManager によるセキュリティの維持方法
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager 処理は、適切なクレデンシャルがある場合にのみ実行できます。SnapManager のセキュリティは、ユーザ認証によって管理されます。
+
+SnapManager では、パスワードのプロンプトまたはユーザクレデンシャルの設定を通じてユーザ認証を要求することで、セキュリティが維持されます。有効なユーザが SnapManager サーバで認証および許可されている。
+
+SnapManager のクレデンシャルとユーザ認証は、 SnapManager 3.0 とは大きく異なります。
+
+* SnapManager 3.0 より前のバージョンでは、 SnapManager のインストール時に任意のサーバパスワードを設定していました。SnapManager サーバを使用する場合は、 SnapManager サーバのパスワードが必要です。SnapManager サーバのパスワードは、「smsap-credential set -host」コマンドを使用してユーザクレデンシャルに追加する必要があります。
+* SnapManager （ 3.0 以降）では、 SnapManager サーバのパスワードが個々のユーザオペレーティングシステム（ OS ）認証に置き換えられています。ホストと同じサーバからクライアントを実行しない場合、 SnapManager サーバは OS のユーザ名とパスワードを使用して認証を実行します。OSパスワードの入力を求められない場合は、「smsaps credential set -host」コマンドを使用してSnapManager ユーザクレデンシャルキャッシュにデータを保存できます。
++
+
+NOTE: 「smsap.config」ファイルの「host.credentials.Persist`」プロパティが「*true*」に設定されている場合、「smsapcredential set -host`コマンドはユーザのクレデンシャルを記憶します。
+
+
+
+* 例 *
+
+user1 と User2 は、 Prof2 というプロファイルを共有しています。このとき、 User2 は、 Host1 へのアクセスが許可されていないと、 Host1 の Database1 のバックアップを実行できません。User1 は、 Host3 へのアクセスが許可されていない Host3 にデータベースのクローンを作成することはできません。
+
+次の表に、ユーザに割り当てられているさまざまな権限を示します。
+
+|===
+| 権限のタイプ | ユーザ 1 | ユーザ 2 
+
+
+ a| 
+ホストパスワード
+ a| 
+ホスト 1 、ホスト 2
+ a| 
+Host2 、 Host3
+
+
+
+ a| 
+リポジトリパスワード
+ a| 
+リポ 1.
+ a| 
+リポ 1.
+
+
+
+ a| 
+プロファイルパスワード
+ a| 
+Prof1 、 Prof2
+ a| 
+PROF2
+
+|===
+User1 と User2 に共有プロファイルがなく、 User1 には Host1 と Host2 へのアクセスが許可されており、 User2 には Host2 へのアクセスが許可されているとします。user2は'dump'や'system verify'などのプロファイル以外のコマンドもHost1上で実行できません

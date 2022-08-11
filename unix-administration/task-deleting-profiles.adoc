@@ -1,0 +1,21 @@
+---
+permalink: unix-administration/task-delete-profiles.html 
+sidebar: sidebar 
+keywords: delete, profile, successful, incomplete, deleting, backup 
+summary: 成功したバックアップまたは未完了のバックアップが含まれていないかぎり、プロファイルはいつでも削除できます。解放または削除されたバックアップを含むプロファイルを削除できます。 
+---
+= プロファイルを削除します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+成功したバックアップまたは未完了のバックアップが含まれていないかぎり、プロファイルはいつでも削除できます。解放または削除されたバックアップを含むプロファイルを削除できます。
+
+.ステップ
+. プロファイルを削除するには、次のコマンドを入力します。
++
+`*SMSAP profile delete -profile profile_profile_name_*`
+
+

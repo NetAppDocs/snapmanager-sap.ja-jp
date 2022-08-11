@@ -1,0 +1,51 @@
+---
+permalink: windows/reference-the-smosmsap-server-status-command.html 
+sidebar: sidebar 
+keywords: run, smsap_server, smsap, server, status, command, snapmanager, host 
+summary: smsap_server statusコマンドを実行して、SnapManager ホストサーバのステータスを表示できます。 
+---
+= smsap_server statusコマンド
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「smsap_server status」コマンドを実行すると、SnapManager ホストサーバのステータスを表示できます。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap_server status
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-quiet `*
++
+エラー・メッセージのみがコンソールに表示されるように指定します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されるように指定します。
+
+
+
+
+
+== 例
+
+次の例は、ホストサーバのステータスを表示します。
+
+[listing]
+----
+smsap_server status
+SMSAP-17104: SnapManager Server version 3.3.1 is running on secure port 25204 with PID 11250
+and has 0 operations in progress.
+----

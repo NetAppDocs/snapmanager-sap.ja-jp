@@ -1,0 +1,71 @@
+---
+permalink: windows/concept-operations-in-task-scripts.html 
+sidebar: sidebar 
+keywords: pretask, post-task, script, create, standard, snapmanager, sap, plug-in, structure 
+summary: 作成するプリタスクスクリプトまたはポストタスクスクリプトは、標準のSnapManager for SAPプラグイン構造に従う必要があります。 
+---
+= タスクスクリプト内の操作
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+作成するプリタスクスクリプトまたはポストタスクスクリプトは、標準のSnapManager for SAPプラグイン構造に従う必要があります。
+
+プリタスクスクリプトとポストタスクスクリプトには、次の処理が含まれている必要があります。
+
+* チェックしてください
+* 説明してください
+* 実行
+
+
+プリタスクスクリプトまたはポストタスクスクリプトでこれらの操作のいずれかが指定されていない場合、スクリプトは無効になります。
+
+プリタスクスクリプトまたはポストタスクスクリプトに対して「SMSAP plugin check」コマンドを実行すると、返されるスクリプトのステータスにエラーが表示されます（返されるステータス値がゼロではないため）。
+
+|===
+| 操作 | 説明 
+
+
+ a| 
+チェックしてください
+ a| 
+SnapManager サーバは'plugin.sh -check'コマンドを実行して'システムがプラグイン・スクリプトに対して実行権限を持っていることを確認しますリモートシステムのファイル権限チェックも含めることができます。
+
+
+
+ a| 
+説明してください
+ a| 
+SnapManager サーバは「plugin.sh -describe」コマンドを実行して、スクリプトに関する情報を取得し、仕様ファイルから提供された要素と一致させます。プラグインスクリプトには、次の概要情報が含まれている必要があります。
+
+* 'SM_PI_name':スクリプト名。このパラメータには値を指定する必要があります。
+* 'SM_PI_DESCRIPTION ':スクリプトの目的の概要このパラメータには値を指定する必要があります。
+* 'SM_PI_context':スクリプトを実行するコンテキスト。たとえば、rootまたはorasidです。このパラメータには値を指定する必要があります。
+* `SM_PI_TIMEOUT `：SnapManager がスクリプトの処理を完了して実行を終了するまで待機する最大時間（ミリ秒単位）。このパラメータには値を指定する必要があります。
+* `SM_PI_PARAMETER`：プラグインスクリプトが処理を実行するために必要なカスタムパラメータ。各パラメータを新しい出力行に表示し、パラメータ名と概要を指定する必要があります。スクリプトの処理が完了すると、パラメータ値が環境変数によってスクリプトに提供されます。
+
+
+Followup_activities スクリプトの出力例を次に示します。
+
+[listing]
+----
+plugin.sh - describe
+
+SM_PI_NAME:Followup_activities
+SM_PI_DESCRIPTION:this script contains follow-up activities to be executed after the clone create
+operation.
+SM_PI_CONTEXT:root
+SM_PI_TIMEOUT:60000
+SM_PI_PARAMETER:SCHEMAOWNER:Name of the database schema owner.
+Command complete.
+----
+
+
+ a| 
+実行
+ a| 
+SnapManager サーバは'plugin.sh -execute'コマンドを実行して'スクリプトを実行するためのスクリプトを開始します
+
+|===

@@ -1,0 +1,20 @@
+---
+permalink: windows/task-changing-the-backup-retention-policy.html 
+sidebar: sidebar 
+keywords: change, property, properties, eligible, ineligible, deletion, retention, policy, changing, backup 
+summary: 保持ポリシーに従ってバックアップを削除できるようにするか、または削除しないように、バックアップのプロパティを変更できます。 
+---
+= バックアップ保持ポリシーを変更する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+保持ポリシーに従ってバックアップを削除できるようにするか、または削除しないように、バックアップのプロパティを変更できます。
+
+作成されたバックアップには、保持ポリシーを設定できます。あとで、保持ポリシーで許可されているよりも長期間バックアップを保持するか、バックアップを不要にして保持ポリシーで管理するように指定することができます。
+
+* 関連情報 *
+
+xref:reference-the-smosmsapbackup-update-command.adoc[SMSAPのbackup updateコマンドを使用します]

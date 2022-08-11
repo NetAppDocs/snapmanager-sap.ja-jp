@@ -1,0 +1,26 @@
+---
+permalink: unix-administration/concept-what-autosupport-is.html 
+sidebar: sidebar 
+keywords: autosupport, enable, feature, snapmanager, server, storage, system, operation 
+summary: AutoSupport 機能を使用すると、バックアップ処理の完了後に、 SnapManager サーバからストレージシステムに AutoSupport メッセージを送信できます。 
+---
+= AutoSupport とは
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AutoSupport 機能を使用すると、バックアップ処理の完了後に、 SnapManager サーバからストレージシステムに AutoSupport メッセージを送信できます。
+
+
+NOTE: SnapManager は、バックアップ処理が成功した場合にのみ AutoSupport メッセージを送信します。
+
+AutoSupport を有効または無効にするには'smsap.config'コンフィギュレーションファイルのコンフィギュレーションパラメータauto_support.onに次の値を割り当てます
+
+* `*true*`- AutoSupport を有効にします
+* '*FALSE*'- AutoSupport を無効にします
+
+
+
+NOTE: SnapManager では、デフォルトで AutoSupport が有効になっています。

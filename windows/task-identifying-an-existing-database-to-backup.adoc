@@ -1,0 +1,23 @@
+---
+permalink: windows/task-identifying-an-existing-database-to-backup.html 
+sidebar: sidebar 
+keywords: identify, system, identify, identifier, sid, snapmanager, database, profile, exist, backup 
+summary: プロファイルの作成に使用されるSnapManager データベースのシステム識別子\（SID \）を指定できます。 
+---
+= バックアップする既存データベースを特定しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルの作成に使用される SnapManager データベースのシステム識別子（ SID ）を特定できます。
+
+SAPシステムの標準のOracleユーザIDはorasidです。sidは3文字の英数字の値です。たとえば、prd、pr1などです。 dev、またはQA3。
+
+. [ * スタート * > * コントロールパネル * > * 管理ツール * > * サービス * ] をクリックします。
+. Oracle サービスの OracleServiceSID を確認します。
++
+サービスが OracleServiceFASDB の場合、データベース SID は FASDB です。
+
+

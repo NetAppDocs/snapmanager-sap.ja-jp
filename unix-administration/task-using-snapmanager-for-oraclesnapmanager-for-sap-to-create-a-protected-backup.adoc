@@ -1,0 +1,51 @@
+---
+permalink: unix-administration/task-use-snapmanager-for-oraclesnapmanager-for-sap-to-create-a-protected-backup.html 
+sidebar: sidebar 
+keywords: create, creating, backup, example, dba, select, full, set, secondary, storage, local, protection-enabled, profile, transfer, protection, policy 
+summary: たとえば、データベース管理者は、バックアップを作成する際に、フルバックアップを作成し、バックアップオプションを設定して、セカンダリストレージに対する保護を選択します。バックアップは最初はローカルストレージ上に作成されますが、このバックアップは保護が有効なプロファイルに基づいているため、 Protection Manager で定義されている保護ポリシーのスケジュールに従ってセカンダリストレージに転送されます。 
+---
+= SnapManager for SAPを使用して、保護されたバックアップを作成します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+たとえば、データベース管理者は、バックアップを作成する際に、フルバックアップを作成し、バックアップオプションを設定して、セカンダリストレージに対する保護を選択します。最初はローカルストレージに作成されますが、このバックアップは保護有効プロファイルに基づいているため、 Protection Manager で定義された保護ポリシーのスケジュールに従ってセカンダリストレージに転送されます。
+
+.手順
+. SnapManager for SAP Clientにアクセスします。
+. SnapManager リポジトリ・ツリーで、バックアップするデータベースを含むプロファイルを右クリックし、 * バックアップ * を選択します。
++
+SnapManager for SAPバックアップウィザードが起動します。
+
+. 入力するコマンド
++
+'*Production_payroll*'
+
++
+をラベルとして使用します。
+
+. 入力するコマンド
++
+'*Production payroll Jan 19 backup*'
+
++
+コメントとして。
+
+. 作成するバックアップのタイプとして「 * Auto * 」を選択します。
++
+これにより、 SnapManager はオンラインバックアップとオフラインバックアップのどちらを実行するかを判断できます。
+
+. バックアップを実行する頻度として、「 * Daily 」または「 * Weekly 」を選択します。
+. バックアップのフォーマットが Oracle で有効であることを確認するには、 * Verify backup * の横のボックスをオンにします。
++
+この処理では、 Oracle DBVerify を使用してブロック形式と構造をチェックします。
+
+. データベースの状態を適切なモード（たとえば、 OPEN から MOUNTED ）に強制するには、 * 必要に応じてデータベースの起動またはシャットダウンを許可する * を選択し、 * 次へ * をクリックします。
+. [ バックアップするデータベース、表領域、またはデータファイル ] ページで、 [* フル・バックアップ * ] を選択し、 [ 次へ * ] をクリックします。
+. セカンダリ・ストレージ上のバックアップを保護するには '[* バックアップの保護 *] をオンにし '[ 次へ ] をクリックします
+. [ 操作の実行 ] ページで、入力した情報を確認し、 [* バックアップ * ] をクリックします。
+. 進行状況ページで、バックアップ作成の進捗状況と結果を表示します。
+. 処理の詳細を表示するには、 * 処理の詳細 * をクリックします。
+

@@ -1,0 +1,31 @@
+---
+permalink: windows/task-changing-the-retention-policy-default-behavior.html 
+sidebar: sidebar 
+keywords: backup, expire, retention, policy, snapmanager, delete, setting 
+summary: 保持ポリシーに基づいてバックアップが期限切れになると、 SnapManager は保持設定に基づいてバックアップを削除するかどうかを決定します。デフォルトでは、バックアップの削除が実行されます。このデフォルトの動作を変更して、保護されていないバックアップを解放するように選択できます。 
+---
+= 保持ポリシーのデフォルト動作を変更する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+保持ポリシーに基づいてバックアップが期限切れになると、 SnapManager は保持設定に基づいてバックアップを削除するかどうかを決定します。デフォルトでは、バックアップの削除が実行されます。このデフォルトの動作を変更して、保護されていないバックアップを解放するように選択できます。
+
+デフォルトでは、 SnapManager は有効期限が切れたバックアップを削除します。
+
+. 次のデフォルトの場所にアクセスします。
++
+SMSAPのデフォルトのインストール場所\properties\smsap.configを指定します
+
+. SMSAP_CONFIGファイルを編集します。
+. SMS3.configファイルのretain.alwaysFreeExpiredBackupsプロパティをtrueに設定します。
++
+たとえば'retain.alwaysFreeExpiredBackups=true'のようになります
+
+
+
+* 関連情報 *
+
+xref:reference-the-smosmsapbackup-update-command.adoc[SMSAPのbackup updateコマンドを使用します]

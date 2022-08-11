@@ -1,0 +1,33 @@
+---
+permalink: unix-administration/concept-prerequisites-for-data-protection.html 
+sidebar: sidebar 
+keywords: aware, certain, consideration, perform, data, protection 
+summary: データ保護を実行する際の考慮事項は次のとおりです。 
+---
+= データ保護を実行する場合の考慮事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データ保護を実行する際の考慮事項は次のとおりです。
+
+* セカンダリシステムからのクローニング処理やリストア処理を実行するには、ネームスペース内のデスティネーションボリュームをマウントし、適切にエクスポートする必要があります。
+* 値を「* off *」に設定して、SnapDrive 構成パラメータ「check-export-permission-nfs-clone」を無効にする必要があります。
++
+ネットアップサポートサイトのSnapDrive for UNIXマニュアルには、「check-export-permission-nfs-clone」パラメータに関する追加情報 が含まれています。
+
+* 要求されたセカンダリストレージボリュームの SnapMirror 関係はセカンダリストレージシステムで設定する必要があります。
+* Data ONTAP 7-Mode のセカンダリストレージシステムで、要求されたセカンダリストレージ qtree の SnapVault 関係を設定する必要があります。
+* clustered Data ONTAP でスクリプト後に SnapVault を使用する場合は、ユーザ定義の SnapMirror ラベル用のポリシーとルールを定義する必要があります。
++
+SnapVault ポストスクリプトでは、 clustered Data ONTAP ボリュームと SnapMirror 関係のタイプとして DP および XDP がサポートされます。SnapMirror および SnapVault の設定については、ネットアップサポートサイトの ONTAP のドキュメントを参照してください。
+
+* NAS環境では、「SnapDrive config set -mgmtpath_management_path MANAGEMENT _ path management _path management _path datapath_path_」コマンドを使用して、プライマリおよびセカンダリNASデータパスを設定する必要があります。
++
+たとえば、「* SnapDrive config set-mgmtpath f3050-197-91 f3050 -197-91 f3050 -197-91 f3050 -220-91 *」のように入力します。「f3050 -197-91」は管理パス、「f3050 -220-91」はデータパスです。
+
+
+
+http://mysupport.netapp.com/["のドキュメントについては、ネットアップサポートサイトを参照してください"^]

@@ -1,0 +1,18 @@
+---
+permalink: unix-administration/task-change-the-backup-retention-policy.html 
+sidebar: sidebar 
+keywords: change, properties, backup, eligible, ineligible, deletion, retention, policy, changing 
+summary: 保持ポリシーに従ってバックアップを削除できるようにするか、または削除しないように、バックアップのプロパティを変更できます。 
+---
+= バックアップ保持ポリシーを変更します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+保持ポリシーに従ってバックアップを削除できるようにするか、または削除しないように、バックアップのプロパティを変更できます。
+
+* このタスクについて *
+
+作成されたバックアップには、保持ポリシーを設定できます。あとで、保持ポリシーで許可されているよりも長期間バックアップを保持するか、バックアップを不要にして保持ポリシーで管理するように指定することができます。

@@ -1,0 +1,95 @@
+---
+permalink: windows/task-customize-e-mail-subject-for-a-new-profile.html 
+sidebar: sidebar 
+keywords: customize, email, subject, profile, create, cusomtizing 
+summary: 新しいプロファイルを作成するときに、そのプロファイルの電子メールの件名をカスタマイズできます。 
+---
+= 新しいプロファイルの電子メールの件名をカスタマイズします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+新しいプロファイルを作成するときに、そのプロファイルの電子メールの件名をカスタマイズできます。
+
+
+
+== このタスクについて
+
+E メールの件名は、 \｛ profile ｝ _\ ｛ operation-name ｝ _\ ｛ db-sid ｝ _\ ｛ db-host｝ _\ ｛ start-date ｝ _\ ｛ end-date ｝ _\ ｛ status ｝ パターンを使用してカスタマイズするか、独自のテキストを入力してください。
+
+|===
+| 変数名 | 説明 | 値の例 
+
+
+ a| 
+「プロファイル」
+ a| 
+データベース処理に使用するプロファイル名
+ a| 
+PROF1 （プロ F1 ）
+
+
+
+ a| 
+'operator-name'
+ a| 
+データベース処理の名前
+ a| 
+バックアップ、データバックアップ、データおよびアーカイブログのバックアップ
+
+
+
+ a| 
+db-sid`
+ a| 
+データベースの SID
+ a| 
+DB1
+
+
+
+ a| 
+「db-host`」
+ a| 
+ホスト・サーバの名前
+ a| 
+ホスト A
+
+
+
+ a| 
+「開始日」
+ a| 
+データベース操作の開始時刻を mmdd ： hh ： ss yyyy 形式で指定します
+ a| 
+2012 年 4 月 27 日 21 ： 00 ： 45 PST
+
+
+
+ a| 
+「終了日」
+ a| 
+データベース操作の終了時刻を mmdd ： hh ： ss yyyy 形式で指定します
+ a| 
+2012 年 4 月 27 日 21 ： 10 ： 45 （太平洋標準時
+
+
+
+ a| 
+ステータス
+ a| 
+データベース処理のステータス
+ a| 
+成功
+
+|===
+変数に値を指定しないと、SnapManager に「Missing value (s)-subject'」というエラーメッセージが表示されます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAP profile create -profile create -profile _profile_[-profile_profile_password_]-repository -dbname_repo_repo_repo_host_name_host_host_port_-port_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_username -host_db1_db_host_db1_host_db1_host_db1_host_db1_host_db1_[-drd_db_sid_drman_host_password]-retura[RMANパスワード[-drman [-drman_password-drman [-drman_drman_user_name]_tmp_password_tmp_host_name]_password-drman [-drman [-dry_username }rman_password-drman_password-drman_db_ host_name]日間[-drman_db_host_name]日間[-drman_host_name]_host_name}rman [-drman_password-drman_db1_db_rman_db1_db_rman_db_ _n_][-duration _m_]][-weekly [-count_n_][-duration _m_]][-monthly [-duration_n_m_][-duration _m_]][-comment _comment_][-snapname=][-notification[-durse-subject_email_address1_email_address*
+
+

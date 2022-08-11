@@ -1,0 +1,166 @@
+---
+permalink: windows/reference-the-smosmsapclone-create-command.html 
+sidebar: sidebar 
+keywords: run, clone, create, command, backed-up, back, up, database, backup, primary, secondary, storage, smsap 
+summary: clone create コマンドを実行して、バックアップされたデータベースのクローンを作成できます。バックアップはプライマリストレージまたはセカンダリストレージからクローニングできます。 
+---
+= SMSAPのclone createコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「clone create」コマンドを実行して、バックアップされたデータベースのクローンを作成できます。バックアップはプライマリストレージまたはセカンダリストレージからクローニングできます。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap clone create
+-profile profile_name
+[-backup-id backup_guid | -backup-label backup_label_name | -current]
+-newsid new_sid
+[-host target_host]
+[-label clone_label]
+[-comment string]
+-clonespec full_path_to_clonespec_file
+]
+[-syspassword syspassword]
+[-reserve {yes | no | inherit}]
+
+[-no-resetlogs | -recover-from-location path1 [, path2]][-taskspec taskspec]
+[-dump]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+クローニングするデータベースを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* *`-backup-id_GUID_`*
++
+指定した GUID を持つバックアップをクローニングします。GUID はバックアップを作成するときに SnapManager によって生成されます。「smsapbackup list -verbose」コマンドを使用すると、各バックアップのGUIDを表示できます。
+
+* *`-backup-label_backup_label_name_`*
++
+指定したラベル名を持つバックアップをクローニングするように指定します。
+
+* *`-current`*
++
+データベースの現在の状態からバックアップおよびクローンを作成するように指定します。
+
++
+
+NOTE: データベースがNOARCHIVELOGモードになっている場合、SnapManager はオフライン・バックアップを作成します。
+
+* *`-newsid_new_sid_`*
++
+クローニングされたデータベースに新しい一意の Oracle システム識別子を指定します。システム ID の値は 8 文字以内で指定します。Oracle では、同じホスト上で同じシステム識別子を持つ 2 つのデータベースを同時に実行することはできません。
+
+* *`-host_target_host_`*
++
+クローンを作成するホストを指定します。
+
+* *`-label_clone_label_`*
++
+クローンのラベルを指定します。
+
+* *`-comment_string_`*
++
+このクローンについて説明するオプションのコメントを指定します。文字列は一重引用符で囲む必要があります。
+
++
+
+NOTE: 一部のシェルでは引用符が削除されます。ご使用のシェルに当てはまる場合は、引用符をバックスラッシュ（ \ ）でエスケープする必要があります。たとえば、「*\」と入力する必要があります。これはコメント\'*です
+
+* *`-clonespec_full_path_to_clonespec_file_`*
++
+クローン仕様 XML ファイルのパスを指定します。相対パス名または絶対パス名を指定できます。
+
+* *`-syspassword_syspassword_`*
++
+sys 特権ユーザのパスワードを指定します。
+
++
+
+NOTE: 指定されたデータベースクレデンシャルが sys 特権ユーザに対して同じでない場合は、 sys 特権ユーザのパスワードを指定する必要があります。
+
+* *`-reserve`*
++
+-reserveオプションをyesに設定すると、新しいクローン・ボリュームのボリューム・ギャランティ・スペース・リザベーションがオンになります。-reserveオプションをnoに設定すると、新しいクローン・ボリュームのボリューム・ギャランティ・スペース・リザベーションがオフになります。-reserveオプションをinheritに設定すると、新しいクローンは親Snapshotコピーのスペース・リザベーション特性を継承します。デフォルト設定は no です
+
++
+次の表に'クローン作成操作とその-reserveオプションに対するクローン作成方法とその影響を示しますLUN は、どちらの方法でもクローニングできます。
+
++
+|===
+
+
+| クローニング方法 | 説明 | 結果 
+
+
+ a| 
+LUN のクローニング
+ a| 
+同じボリューム内に新しいクローン LUN が作成されます。
+ a| 
+LUNの-reserveオプションをyesに設定すると、ボリューム内の全LUNサイズ用にスペースがリザーブされます。
+
+
+
+ a| 
+ボリュームクローニング
+ a| 
+新しいFlexCloneが作成され、クローンLUNが新しいクローンボリューム内に存在するようになります。FlexCloneテクノロジを使用します。
+ a| 
+ボリュームの-reserveオプションをyesに設定すると、アグリゲート内のフル・ボリューム・サイズ用にスペースがリザーブされます。
+
+|===
+* *`-no-resetlogs*
++
+クローン作成時に resetlogs でデータベースを開かずに、 DBNEWID ユーティリティを実行してデータベースのリカバリをスキップするように指定します。
+
+* *`-recovery-from-location`*
++
+アーカイブログバックアップの外部アーカイブログの場所を指定します。 SnapManager は外部の場所からアーカイブログファイルを取得し、クローニングに使用します。
+
+* *`-taskspec`*
++
+クローン処理の前処理アクティビティまたは後処理アクティビティのタスク仕様 XML ファイルを指定します。タスク仕様 XML ファイルの完全なパスを指定する必要があります。
+
+* *`-dump`*
++
+クローン作成処理のあとにダンプファイルを収集するように指定します。
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルト設定では、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== 例
+
+次に、このクローン用に作成されたクローン仕様を使用して、バックアップをクローニングする例を示します。
+
+[listing]
+----
+smsap clone create -profile SALES1 -backup-label full_backup_sales_May -newsid
+CLONE -label sales1_clone -clonespec E:\\spec\\clonespec.xml
+----
+[listing]
+----
+Operation Id [8abc01ec0e794e3f010e794e6e9b0001] succeeded.
+----

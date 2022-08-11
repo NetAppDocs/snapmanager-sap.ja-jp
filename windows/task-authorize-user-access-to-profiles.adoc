@@ -1,0 +1,21 @@
+---
+permalink: windows/task-authorize-user-access-to-profiles.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, set, password, unauthorized, access, authorize, profile 
+summary: SnapManager では、プロファイルのパスワードを設定して、不正なアクセスを防止できます。 
+---
+= プロファイルへのアクセスを許可します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、プロファイルのパスワードを設定して、不正なアクセスを防止できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAPのクレデンシャルセット-profile-name_profile_[-password_password_]*`
+
+

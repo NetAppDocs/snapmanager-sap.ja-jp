@@ -1,0 +1,50 @@
+---
+permalink: windows/reference-the-smosmsaphelp-command.html 
+sidebar: sidebar 
+keywords: run, help, command, display, information, snapmanager, option, name, syntax, smsap 
+summary: help コマンドを実行すると、 SnapManager コマンドとそのオプションに関する情報を表示できます。コマンド名を指定しない場合は、有効なコマンドのリストが表示されます。コマンド名を指定すると、そのコマンドの構文が表示されます。 
+---
+= SMSAPのヘルプコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「help」コマンドを実行すると、SnapManager コマンドとそのオプションに関する情報を表示できます。コマンド名を指定しない場合は、有効なコマンドのリストが表示されます。コマンド名を指定すると、そのコマンドの構文が表示されます。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap help
+[][backup|cmdfile|clone|credential|help|operation|profile|repository|system|version|plugin|diag|history|schedule|notification|storage|get]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+このコマンドで使用できるコマンド名の一部を次に示します。
+
+* 「バックアップ」
+* 「clone」と入力します
+* 「cmdfile」
+* クレデンシャル
+* 「diag」
+* 「GET」
+* 「通知」
+* 「help」と入力します
+* 「歴史」
+* 「オペレーション」
+* 「plugin」
+* 「プロファイル」
+* 「repository」のようになります
+* 「スケジュール」
+* 「ストレージ」
+* 「システム」
+* 「バージョン」
+

@@ -1,0 +1,30 @@
+---
+permalink: unix-administration/concept-create-backups-using-snapshot-copies.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, primary, local, storage, secondary, remote, protection, policies, policy, postprocessing, script, create, backup, snapshot, copies, copy 
+summary: SnapManager では、保護ポリシーまたはポストプロセススクリプトを使用して、プライマリ（ローカル）ストレージおよびセカンダリ（リモート）ストレージにバックアップを作成できます。 
+---
+= Snapshot コピーを使用してバックアップを作成する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、保護ポリシーまたはポストプロセススクリプトを使用して、プライマリ（ローカル）ストレージおよびセカンダリ（リモート）ストレージにバックアップを作成できます。
+
+Snapshot コピーとして作成されるバックアップはデータベースの仮想コピーであり、データベースと同じ物理メディアに格納されます。そのため、バックアップ処理にかかる時間が短縮され、ディスク間のフルバックアップに比べて必要なスペースも大幅に削減されます。SnapManager でバックアップできる項目は次のとおりです。
+
+* すべてのデータ・ファイル、アーカイブ・ログ・ファイル、および制御ファイル
+* 選択したデータ・ファイルまたは表領域、すべてのアーカイブ・ログ・ファイル、および制御ファイル
+
+
+SnapManager 3.2 以降では、必要に応じて次のバックアップを作成できます。
+
+* すべてのデータファイルと制御ファイル
+* 選択したデータ・ファイルまたは表領域、および制御ファイル
+* アーカイブログファイル
+
+
+
+NOTE: データ・ファイル、アーカイブ・ログ・ファイル、および制御ファイルは、異なるストレージ・システム、ストレージ・システム・ボリューム、または Logical Unit Number （ LUN ；論理ユニット番号）に配置できます。同じボリュームまたは LUN 上に複数のデータベースがある場合でも、 SnapManager を使用してデータベースをバックアップできます。

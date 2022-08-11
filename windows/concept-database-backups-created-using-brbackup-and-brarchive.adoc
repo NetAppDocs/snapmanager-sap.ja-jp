@@ -1,0 +1,49 @@
+---
+permalink: windows/concept-database-backups-created-using-brbackup-and-brarchive.html 
+sidebar: sidebar 
+keywords: brbackup, command, create, backup, database, snapshot, copy, storage, system, host, command-line, interface, cli, graphical, user, interface, gui, offline, redo, log, file, brarchive 
+summary: 'BRBACKUPコマンドは、ストレージシステム上のSnapshotコピーを使用してSAPデータベースのバックアップを作成します。BRBACKUPコマンドは"SAPホストのCLI（コマンド・ライン・インタフェース）"BR * ToolsのCLIまたはGUI（グラフィカル・ユーザー・インタフェース）から実行できますオフラインREDOログファイルをバックアップするには、BRARCHIVEコマンドを使用できます。' 
+---
+= BRBACKUPおよびBRARCHIVEを使用して作成したデータベースバックアップ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+BRBACKUPコマンドでは'ストレージ・システム上のSnapshotコピーを使用して'SAPデータベースのバックアップを作成します「BRBACKUP」コマンドは、SAPホストのCLI（コマンド・ライン・インターフェイス）またはBR * ToolsのCLIまたはGUI（グラフィカル・ユーザ・インターフェイス）から実行できます。オフラインREDOログファイルをバックアップするには、「BRARCHIVE」コマンドを使用できます。
+
+BRBACKUPは'SAPデータベースのデータ・ファイル'制御ファイル'オンラインREDOログ・ファイルをバックアップしますSAPのログ・ファイル'カーネル・ファイル'トランスポート・リクエストなど'その他のSAP構成ファイルは'sap_DIR'オプションを指定してBRBACKUP'を使用してバックアップし'BRRESTOREを使用してリストアする必要があります
+
+sqlnet.ora'の`_SQLNET.authentication_services_パラメータの値が*none*に設定されている場合'Oracleデータベース・ユーザー(システム)にsysoper権限があることを確認してくださいOracleデータベースの作成時に作成されるデフォルトのユーザがシステムになります。SYSOPER権限を有効にするには'次のコマンドを実行しますgrant sysoper to system;
+
+アーカイブ・ログ・ファイルの管理には、BR * ToolsコマンドまたはSnapManager コマンドのいずれかを使用する必要があります。
+
+次の操作に関しては、アーカイブ・ログのバックアップ管理にSnapManager プロファイルとBR * Toolsコマンドを組み合わせないでください。
+
+* 「BRBACKUP」コマンドとSnapManager 「BRARCHIVE」コマンドを使用して、データ・ファイルとアーカイブ・ログ・ファイルの個別のバックアップを作成する（アーカイブ・ログのバックアップを分離するオプションを使用して作成）
+* SnapManager プロファイルを使用してバックアップを作成する際に、アーカイブ・ログ・ファイルを削除する
+
+
+
+NOTE: SnapManager for SAPプロファイルとBR * Toolsコマンドを組み合わせてアーカイブログファイルを管理している場合、SnapManager に警告メッセージやエラーメッセージは表示されません。
+
+オプションを使用しないでプロファイルを作成し、アーカイブ・ログのバックアップを分離して、このプロファイルを通常のBR * Tools処理に使用する必要があります。
+
+BRRESTOREを使用してバックアップをリストアできますBRBACKUPで作成したデータベース・バックアップ（バックアップには'データ・ファイル'制御ファイル'オンラインREDOログ・ファイルを含む）で'-m allまたはm fullオプションを指定した場合は' SnapManager CLIまたはGUIを使用してバックアップをリストアすることもできます
+
+SnapManager によるバックアップ処理の詳細については、「データベースのバックアップ」を参照してください。
+
+「BRBACKUP」コマンドと「BRARCHIVE」コマンドの具体的な手順と構文については、SAPのマニュアルを参照してください。ストレージシステムでBRBACKUPコマンドとBRARCHIVEコマンドを使用する前に、次の条件を満たしていることを確認します。
+
+* SnapManager プロファイル名がSAPデータベースのシステム識別子と異なる場合は、SnapManager プロファイル名を含むパラメータファイルの名前を指定します。
++
+次のいずれかの方法で実行できます。
+
++
+** バックアップ・ユーティリティのパラメータ・ファイル（initSID.utl`）を指定するには'RBACKUP'コマンドで-rオプションを使用します
+** 初期化ファイル(initSID.sap')にパラメータ・ファイルを指定します詳細については、BR * Tools backups_.のプロファイルの指定を参照してください。
+
+
+* 環境に適している場合は、テープなどの別のメディアを使用してSAPデータのバックアップを追加で作成します。Snapshotコピーは、高速なバックアップとリストアを実現するためのものです。バックアップ対象のデータと同じ物理メディアに保存され、他のストレージデバイスにコピーされないかぎり、ディザスタリカバリを目的としたものではありません。
+

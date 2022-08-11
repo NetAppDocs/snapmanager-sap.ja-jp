@@ -1,0 +1,16 @@
+---
+permalink: unix-installation-7mode/reference-prepare-storage-systems-for-snapmirror-and-snapvault-replication.html 
+sidebar: sidebar 
+keywords: snapmanager, snapmirror, ontap, technology, create, mirror, copies, copy, backup, volume, snapvault, disk-to-disk, replication, compliance, governance-related, purpose, task, data-protection, relationship, source, destination, volume, relationship 
+summary: SnapManager とONTAP のSnapMirrorテクノロジを併用すると、バックアップセットのミラーコピーを別のボリュームに作成できます。また、ONTAP SnapVault テクノロジを使用すると、標準への準拠およびその他のガバナンス関連の目的でディスクツーディスクのバックアップレプリケーションを実行できます。これらのタスクを実行する前に、ソースボリュームとデスティネーションボリュームの間にデータ保護関係を設定し、その関係を初期化する必要があります。 
+---
+= SnapMirror レプリケーションと SnapVault レプリケーションのためのストレージシステムの準備
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager とONTAP のSnapMirrorテクノロジを併用すると、バックアップセットのミラーコピーを別のボリュームに作成できます。また、ONTAP SnapVault テクノロジを使用すると、標準への準拠およびその他のガバナンス関連の目的でディスクツーディスクのバックアップレプリケーションを実行できます。これらのタスクを実行する前に、ソースボリュームとデスティネーションボリュームの間に_data-protection relationship_を設定し、_initialize_the関係を設定する必要があります。
+
+データ保護関係では、プライマリストレージ（ソースボリューム）上のデータがセカンダリストレージ（デスティネーションボリューム）にレプリケートされます。この関係を初期化すると、 ONTAP はソースボリュームで参照されるデータブロックをデスティネーションボリュームに転送します。

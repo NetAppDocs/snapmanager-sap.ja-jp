@@ -1,0 +1,30 @@
+---
+permalink: windows/task-add-new-profile-to-summary-notification.html 
+sidebar: sidebar 
+keywords: configure, summary, email, notification, repository, database, profile, command, add 
+summary: リポジトリデータベースのサマリー E メール通知を設定したら、 summary notification コマンドを使用して、新しいプロファイルをサマリー通知に追加できます。 
+---
+= 概要Eメール通知に新しいプロファイルを追加します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+リポジトリ・データベースのサマリー・メール通知を設定した後'サマリー通知に新しいプロファイルを追加するには'summary notification'コマンドを使用します
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAP profile create -profile profile_profile_name_[-profile-password-password_profile_profile_name_host-repository_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_port_repo_repo_repo_repo_repo_repo_repo_repo_repo_username -port_repo_repo_repo_repo_repo_db_host_domainname_host_db1_host_db1_db_host_db1_db_dba_host_db1_db_dba_login]-admin_db1_db_<-srman_password-drman [-drman_dm_login_password-drman_drman_drman_password-drman_drman_domain_password-drman_drman [-drman_password-drman_dm_domain_domain_password-drman_dm_domain_password-drman_password-drman_drman_password-drman_drman [-drmanパスワード[-drmanパスワード[-drmanパスワード[-drman_password-drman_ -count _n_][-duration _m_]][-weekly-count_n_][-duration _m_]][-monthly-count_n_][-duration _m_]][-duration_m_]][-comment_]][-snapname=-pattern_pattern_pattern_][][][][][][-summary-notification]*```
+
++
+このコマンドの他のオプションは、次のとおりです。
+
++
+[`-force `]
+
++
+[`quiet `|`-verbose ]
+
+

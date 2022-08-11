@@ -1,0 +1,82 @@
+---
+permalink: windows/reference-the-smosmsapbackup-update-command.html 
+sidebar: sidebar 
+keywords: run, backup, update, command, retention, policy, smsap 
+summary: バックアップ保持ポリシーは、 backup update コマンドを実行して更新できます。 
+---
+= SMSAPのbackup updateコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップ保持ポリシーを更新するには'backup updateコマンドを実行します
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap backup update
+-profile profile_name
+[-label label [-data | -archivelogs] | [-id guid]
+[-retain {-hourly | -daily | -weekly | -monthly | -unlimited}]
+[-comment comment_text]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+バックアップを更新するプロファイルを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* *`-id_GUID_`*
++
+指定した GUID を持つバックアップを検証します。GUID はバックアップを作成するときに SnapManager によって生成されます。「SMSAP backup list」コマンドを使用して、各バックアップのGUIDを表示できます。
+
+* *`-label_label_`*
++
+バックアップのラベルと範囲をデータファイルまたはアーカイブログとして指定します。
+
+* *`-data`*
++
+データファイルを指定します。
+
+* *`-archivelogs`*
++
+アーカイブログファイルを指定します。
+
+* *`-comment_comment_text_`*
++
+バックアップの更新に関するテキスト（最大 200 文字）を入力します。スペースを含めることができます。
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+* *`-retain {-hourly|-daily|-weekly|-monthly|-unlimited }`*
++
+バックアップを時間単位、日単位、週単位、月単位、または無制限単位で保持するかどうかを指定します。-retainが指定されていない場合'保存クラスはデフォルトで-hourlyに設定されますバックアップを無期限に保持するには、「無制限」オプションを使用します。-unlimitedオプションを使用すると'バックアップは削除できなくなります
+
+
+
+
+
+== 例
+
+次の例では、バックアップを更新して保持ポリシーを unlimited に設定しています。
+
+[listing]
+----
+smsap backup update -profile SALES1 -label full_backup_sales_May
+-retain -unlimited -comment save_forever_monthly_backup
+----

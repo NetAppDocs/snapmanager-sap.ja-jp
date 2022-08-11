@@ -1,0 +1,95 @@
+---
+permalink: windows/task-performing-rolling-upgrade-on-a-single-host-or-multiple-hosts.html 
+sidebar: sidebar 
+keywords: perform, roll, upgrade, single, multiple, snapmanager, server, host, command-line, interface, cli 
+summary: コマンドラインインターフェイス \ （ CLI\ ）を使用して、 1 つまたは複数の SnapManager サーバホストでローリングアップグレードを実行できます。アップグレードした SnapManager サーバホストは、新しいバージョンの SnapManager でのみ管理されます。 
+---
+= 単一のホストまたは複数のホストでローリングアップグレードを実行する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+コマンドラインインターフェイス（ CLI ）を使用して、 1 つまたは複数の SnapManager サーバホストでローリングアップグレードを実行できます。アップグレードした SnapManager サーバホストは、新しいバージョンの SnapManager でのみ管理されます。
+
+ローリングアップグレードを実行するための前提条件をすべて満たしていることを確認する必要があります。
+
+. 単一のホストでローリングアップグレードを実行するには、次のコマンドを入力します。
++
+「smsaprepository rolling-upgrade repository -dbnamerepo_service_name -hostrepo_host -login -usernamerepo_username -portrepo_port -upgradehosthost_with_target_database -force [-quiet |-verbose」という形式で指定します
+
++
+次のコマンドでは、 hostA にマウントされたすべてのターゲットデータベース、および repo_host に格納されている repoA という名前のリポジトリデータベースの、ローリングアップグレードが実行されます。
+
++
+[listing]
+----
+
+smsap repository rollingupgrade
+    -repository
+      -dbname repoA
+      -host repo_host
+      -login
+       -username repouser
+       -port 1521
+     -upgradehost hostA
+----
+. 複数のホストでローリングアップグレードを実行するには、次のコマンドを入力します。「smsaprepository rollingupgrade-repository -dberepo_service_name -hostreppo_host-login -usernamerepo_username -portrepo_database1、host_with_target_database2 -force」-verbose
++
+
+NOTE: 複数のホストの場合は、ホスト名をカンマで区切って入力し、カンマと次のホスト名の間にスペースを入れないようにします。また、すべてのホスト名を二重引用符で囲んで入力してください。
+
++
+次のコマンドでは、 repo_host に格納された、 hostA および hostB にマウントされているすべてのターゲット・データベース、および repoA というリポジトリ・データベースのローリング・アップグレードが実行されます。
+
++
+[listing]
+----
+
+smsap repository rollingupgrade
+    -repository
+      -dbname repoA
+      -host repo_host
+      -login
+       -username repouser
+       -port 1521
+     -upgradehost hostA,hostB
+----
+. リポジトリデータベース上のすべてのホストでローリングアップグレードを実行するには、次のコマンドを入力します。「smsaprepository rollingupgrade-repository -dbnamerepo_service_name -hostrepo_host -login -usernamerepo_username -portrepo_port -allhosts -force [-quiet |-verbose
++
+リポジトリデータベースのアップグレードが完了したら、ターゲットデータベースに対してすべての SnapManager 処理を実行できます。
+
++
+次のコマンドでは、 repo_host に格納された repoA という名前のリポジトリ・データベース上にあるすべてのターゲット・データベースのローリング・アップグレードが実行されます。
+
++
+[listing]
+----
+
+smsap repository rollingupgrade
+    -repository
+      -dbname repoA
+      -host repo_host
+      -login
+       -username repouser
+       -port 1521
+      -allhosts
+----
++
+** SnapManager サーバが自動的に起動した場合は、スケジュールを表示できるようにサーバを再起動する必要があります。
+** 関連する 2 つのホストのいずれかをアップグレードする場合は、 1 つ目のホストをアップグレードしたあとに 2 つ目のホストをアップグレードする必要があります。
++
+たとえば、ホスト A からホスト B へのクローンを作成した場合や、ホスト A からホスト B へのバックアップのマウントを行った場合は、ホスト A とホスト B が相互に関連付けられます。ホスト A をアップグレードするときに、ホスト A のアップグレード後すぐにホスト B をアップグレードするよう求める警告メッセージが表示されます
+
++
+
+NOTE: ホスト A のローリングアップグレードでは、クローンが削除された場合、またはホスト B からバックアップがアンマウントされた場合でも、警告メッセージが表示されますこれは、リモートホストで実行される処理のメタデータがリポジトリに存在するためです。
+
+
+
+
+
+* 関連情報 *
+
+xref:concept-prerequisites-for-performing-rolling-upgrade.adoc[ローリングアップグレードを実行するための前提条件]

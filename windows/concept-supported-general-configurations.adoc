@@ -1,0 +1,22 @@
+---
+permalink: windows/concept-supported-general-configurations.html 
+sidebar: sidebar 
+keywords: install, snapmanager, general, configuration, requirement, support 
+summary: SnapManager をインストールする前に、一般的な設定要件を確認しておく必要があります。 
+---
+= サポートされている一般的な構成
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager をインストールする前に、一般的な設定要件を確認しておく必要があります。
+
+SnapManager は、次の一般的な構成をサポートしています
+
+* 単一のホストを単一のストレージシステムに接続する非クラスタ構成
+* ホストごとに 1 つの SnapManager サーバインスタンス
+
+
+SnapManager でサポートされるすべてのストレージタイプとバージョンについては、『 SnapManager and SnapDrive Compatibility Matrix 』を参照してください。

@@ -1,0 +1,17 @@
+---
+permalink: windows/task-deleting-backup-schedules.html 
+sidebar: sidebar 
+keywords: delete, backup, schedule, deleting 
+summary: 不要になったバックアップスケジュールを削除できます。 
+---
+= バックアップスケジュールを削除しています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+不要になったバックアップスケジュールを削除できます。
+
+. バックアップスケジュールを削除するには、次のコマンドを入力します。「smsapschedule delete -profile profile_name -schedule - nameschedulename [-quiet |-verbose」
+

@@ -1,0 +1,35 @@
+---
+permalink: unix-administration/task-unmount-backups.html 
+sidebar: sidebar 
+keywords: snapmanager, automatic, unmount, backup, unavailable, host, server, unmount, external, tool, oracle, recovery, manager, rman, file, backup, state, remove, access 
+summary: SnapManager は、バックアップを自動的にアンマウントして、ホストサーバで使用できないようにします。SnapManager では、 Oracle Recovery Manager （ RMAN ）などの外部ツールを使用してバックアップ内のファイルにアクセスしたり、バックアップの状態を変更してアクセスを切断したりすることもできます。 
+---
+= バックアップをアンマウント
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager は、バックアップを自動的にアンマウントして、ホストサーバで使用できないようにします。SnapManager では、 Oracle Recovery Manager （ RMAN ）などの外部ツールを使用してバックアップ内のファイルにアクセスしたり、バックアップの状態を変更してアクセスを切断したりすることもできます。
+
+* このタスクについて *
+
+リモートホストからデータベースバックアップをアンマウントする場合は、両方のホストで Automatic Storage Management （ ASM ）クレデンシャルが同じであることを確認する必要があります。
+
+バックアップのアンマウント処理が成功した場合や失敗した場合に、ダンプファイルを収集することもできます。
+
+マウントポイントがビジー状態の場合、マウントポイントが「--[error] flow-11019: Failure in Disconnect:SD-10046：マウントポイントがビジー状態のため、バックアップをアンマウントできません。マウントポイントは次のマウントパスとPIDでビジーです：/opt/NetApp/smsap/mnt/-mnt-neuse _vrnfsdb_arch-20120427052319903_id`98 PIDがあります
+
+アンマウント操作の失敗につながるセッションの PID を特定する必要があります。次のコマンドを実行して、セッションを停止します。
+
+'*kill_pid_*
+
+これで、アンマウント処理を正常に実行できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+'*SMSAP backup unmount -profile_name_{label_[data|-archivelogs ]|-id_id_}[-quiet |-verbose *
+
+

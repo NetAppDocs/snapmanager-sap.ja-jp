@@ -1,0 +1,57 @@
+---
+permalink: windows/task-creating-task-scripts.html 
+sidebar: sidebar 
+keywords: pretask, post-task, policy, task, script, backup, restore, clone, operation, environment, variable, parameter, snapmanager, sample, creating, create 
+summary: バックアップ、リストア、クローニングの各処理の実行前タスク、タスク後のスクリプト、およびポリシータスクスクリプトを作成し、定義済みの環境変数をパラメータに含めることができます。新しいスクリプトを作成するか、 SnapManager サンプルスクリプトのいずれかを変更できます。 
+---
+= タスクスクリプトの作成
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップ、リストア、クローニングの各処理の実行前タスク、タスク後のスクリプト、およびポリシータスクスクリプトを作成し、定義済みの環境変数をパラメータに含めることができます。新しいスクリプトを作成するか、 SnapManager サンプルスクリプトのいずれかを変更できます。
+
+スクリプトの作成を開始する前に、次の点を確認してください。
+
+* スクリプトを SnapManager 処理のコンテキストで実行するには、特定の方法で構造化する必要があります。
+* 想定される処理、使用可能な入力パラメータ、および戻りコードの表記規則に基づいてスクリプトを作成する必要があります。
+* ログ・メッセージを含める必要があります。また、ユーザ定義のログ・ファイルにメッセージをリダイレクトする必要があります。
++
+.. サンプルスクリプトをカスタマイズしてタスクスクリプトを作成します。
++
+次の手順を実行します。
+
++
+... 次のインストールディレクトリでサンプルスクリプトを探します。
++
+<default_install_directory>\plugins\examples\backup\create に設定します
+
++
+<default_install_directory>\plugins\examples\clone\create
+
+... スクリプトエディタでスクリプトを開きます。
+... スクリプトを別の名前で保存します。
+
+
+.. 必要に応じて、関数、変数、およびパラメータを変更します。
+.. スクリプトを次のいずれかのディレクトリに保存します。
++
+* バックアップ操作スクリプト *
+
++
+*** <default_install_directory>\plugins\backup\create\pre ：バックアップ操作の実行前にスクリプトを実行します。バックアップの作成を指定する場合は、オプションでこのオプションを使用します。
+*** <default_install_directory>\plugins\backup\create\post ：バックアップ操作の実行後にスクリプトを実行します。バックアップの作成を指定する場合は、オプションでこのオプションを使用します。
+*** <default_install_directory>\plugins\backup\create\policy ：常にバックアップ操作の前にスクリプトを実行します。SnapManager では、リポジトリ内のすべてのバックアップに対して常にこのスクリプトを使用します。* リストア操作スクリプト *
+*** <default_install_directory>\plugins\restore\create\pre ：バックアップ操作が実行される前にスクリプトを実行します。バックアップの作成を指定する場合は、オプションでこのオプションを使用します。
+*** <default_install_directory>\plugins\restore\create\post ：バックアップ操作の実行後にスクリプトを実行します。バックアップの作成を指定する場合は、オプションでこのオプションを使用します。
+*** <default_install_directory>\plugins\restore\create\policy ：常にバックアップ操作の前にスクリプトを実行します。SnapManager では、リポジトリ内のすべてのバックアップに対して常にこのスクリプトを使用します。* クローン操作スクリプト *
+*** <default_install_directory>\plugins\clone\create\pre ：バックアップ操作が実行される前にスクリプトを実行します。バックアップの作成を指定する場合は、オプションでこのオプションを使用します。
+*** <default_install_directory>\plugins\clone\create\post ：バックアップ操作の実行後にスクリプトを実行します。バックアップの作成を指定する場合は、オプションでこのオプションを使用します。
+*** <default_install_directory>\plugins\clone\create\policy ：常にバックアップ操作の前にスクリプトを実行します。SnapManager では、リポジトリ内のすべてのバックアップに対して常にこのスクリプトを使用します。
+
+
+
+
+

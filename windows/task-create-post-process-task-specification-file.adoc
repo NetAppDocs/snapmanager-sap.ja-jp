@@ -1,0 +1,23 @@
+---
+permalink: windows/task-create-post-process-task-specification-file.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, create, post-process, task-specification, xml, file, operation, snapmirror, snapvault, post-script, backup, secondary, storage 
+summary: SnapManager を使用すると、 SnapMirror または SnapVault ポストスクリプトを含むバックアップ処理用のポストプロセスタスク仕様 XML ファイルを作成できます。スクリプトを使用して、バックアップをセカンダリストレージにミラーリングまたはバックアップできます。 
+---
+= ポストプロセスのタスク仕様ファイルを作成します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を使用すると、 SnapMirror または SnapVault ポストスクリプトを含むバックアップ処理用のポストプロセスタスク仕様 XML ファイルを作成できます。スクリプトを使用して、バックアップをセカンダリストレージにミラーリングまたはバックアップできます。
+
+.手順
+. 新しい XML ファイルを開きます。
++
+サンプルのタスク仕様XMLファイルは'default_install_directory>\plugins\examplesにあります
+
+. スクリプト名を入力パラメータとして追加します。
+. タスク仕様 XML ファイルを保存します。
+

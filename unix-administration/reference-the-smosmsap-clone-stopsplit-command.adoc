@@ -1,0 +1,56 @@
+---
+permalink: unix-administration/reference-the-smosmsap-clone-stopsplit-command.html 
+sidebar: sidebar 
+keywords: command, stop, run, clone, split, process, split-stop, smsap 
+summary: このコマンドは、実行中のクローンスプリットプロセスを停止します。 
+---
+= SMSAPのclone split -stopコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、実行中のクローンスプリットプロセスを停止します。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap clone split-stop
+-profile _profile_
+[-host _hostname_\]
+[-label _split-label_ | -id _split-id_\]
+[-quiet | -verbose\]]
+----
+
+
+== パラメータ
+
+* `*-profile_profile_*`
++
+クローンのプロファイル名を指定します。
+
+* `*-host_hostname_*`
++
+クローンが存在するホスト名を指定します。
+
+* '*-label_split-label_*
++
+クローニングプロセスで生成されるラベル名を示します。
+
+* `*-id_split-id_*`
++
+クローンプロセスによって生成される一意の ID です。
+
+* 「*- quiet *」と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+

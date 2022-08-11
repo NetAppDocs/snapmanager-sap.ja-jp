@@ -1,0 +1,55 @@
+---
+permalink: unix-administration/task-define-the-database-home-with-the-oratab-file.html 
+sidebar: sidebar 
+keywords: snapmanager, oratab, file, operation, determine, oracle, database, home, directory, software, installation, defining, define 
+summary: SnapManager は、処理中に oratab ファイルを使用して、 Oracle データベースのホームディレクトリを判別します。SnapManager が正常に動作するには、 Oracle データベースのエントリが oratab ファイル内に存在する必要があります。oratab ファイルは、 Oracle ソフトウェアのインストール中に作成されます。 
+---
+= oratabファイルを使用して、データベースのホームを定義します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager は'オペレーション中にoratabファイルを使用して'Oracleデータベースのホーム・ディレクトリを判別しますSnapManager が正常に動作するには'Oracleデータベースのエントリーがoratabファイル内に存在する必要がありますOracleソフトウェアのインストール中に'oratabファイルが作成されます
+
+
+NOTE: Oracleホーム・ディレクトリは'Oracle専用システムの場合と同様に'SAPシステム用のoratabファイル内に設定されますSAPシステムにはデータベース・ホーム・ディレクトリもありますこれは通常'/oracle/SID/_xxx_yy_'xxxはデータベース・バージョンを表し'yyは32または64です
+
+「oratab」ファイルは、次の表に示すように、ホスト・オペレーティング・システムに基づいて異なる場所に格納されます。
+
+|===
+| ホストオペレーティングシステム | ファイルの場所 
+
+
+ a| 
+Linux の場合
+ a| 
+/etc/oratab
+
+
+
+ a| 
+Solaris の場合
+ a| 
+/var/opt/oracle/oratab
+
+
+
+ a| 
+IBM AIX
+ a| 
+/etc/oratab
+
+|===
+サンプルのoratabファイルには、次の情報が含まれています。
+
+[listing]
+----
++ASM1:/u01/app/11.2.0/grid:N   # line added by Agent
+oelpro:/u01/app/11.2.0/oracle:N         # line added by Agent
+# SnapManager generated entry          (DO NOT REMOVE THIS LINE)
+smsapclone:/u01/app/11.2.0/oracle:N
+----
+
+NOTE: Oracleをインストールした後は、「oratab」ファイルが、前の表で指定された場所に存在することを確認する必要があります。「oratab」ファイルがオペレーティング・システムに対応した正しい場所にない場合は、テクニカル・サポートに連絡してください。

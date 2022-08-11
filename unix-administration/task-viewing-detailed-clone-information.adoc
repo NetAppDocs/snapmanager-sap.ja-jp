@@ -1,0 +1,39 @@
+---
+permalink: unix-administration/task-view-detailed-clone-information.html 
+sidebar: sidebar 
+keywords: view, detail, information, clone, show, command 
+summary: 特定のクローンに関する詳細情報を表示するには、 clone show コマンドを使用します。 
+---
+= クローンの詳細情報を表示します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+clone showコマンドを使用すると'特定のクローンに関する詳細情報を表示できます
+
+* このタスクについて *
+
+clone showコマンドは'次の情報を表示します
+
+* システム ID とクローン ID をクローニングする
+* クローン処理のステータス
+* クローンの作成開始日時と終了日時
+* クローンのラベル
+* クローンのコメント
+* バックアップのラベルと ID
+* ソースデータベース
+* バックアップの開始時刻と終了時刻
+* データベース名、表領域、およびデータ・ファイル
+* データ・ファイルが格納されているホスト名およびファイル・システム
+* クローン作成に使用したストレージ・システムのボリュームおよび Snapshot コピー
+* プライマリストレージとセカンダリストレージのどちらのバックアップを使用してクローンが作成されたか
+
+
+.ステップ
+. 次のコマンドを入力します。
++
+'*SMSAP clone show -profile_name_[-label_label_|-id_GUID_]*`
+
+

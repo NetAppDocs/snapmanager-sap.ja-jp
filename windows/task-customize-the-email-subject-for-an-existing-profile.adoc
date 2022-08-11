@@ -1,0 +1,21 @@
+---
+permalink: windows/task-customize-the-email-subject-for-an-existing-profile.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, customize, email, subject, pattern, exist, profile, applicable, update 
+summary: SnapManager では、既存のプロファイルを更新することで、そのプロファイルの E メールの件名のパターンをカスタマイズできます。このカスタマイズされた件名パターンは、更新されたプロファイルにのみ適用されます。 
+---
+= 既存のプロファイルのEメールの件名をカスタマイズします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、既存のプロファイルを更新することで、そのプロファイルの E メールの件名のパターンをカスタマイズできます。このカスタマイズされた件名パターンは、更新されたプロファイルにのみ適用されます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAP profile update -profile update_profile_[-profile-password_profile_password_][-databname_db_dbname_host_host_[-sid_][-login-username db_username_db_password_db_password_db_password_port_host][{-rman_duration]/[{-sm-drman_duration]_trman-day] password-drman [-day][日間[RMANパスワード[RMANパスワード[RMANパスワード[RMANパスワード[RMANパスワード[RMANパスワード]月間持続時間 _n_][-duration _m_]][-comment_comment_][-snapname -pattern_][[-protect [-policy_policy_policy_policy_policy_policy_name_]]|[-noprotect]][-notification[-email_email_address1_address1_,_email_address2_subject_address_email_address_email_address_email_address_email_address_email_address*]-email_address_email_email_email_address_email_address_email_email_email_address_address_email_email_address_email_email_address_address_email_email_email_address_email_address_address_address_
+
+

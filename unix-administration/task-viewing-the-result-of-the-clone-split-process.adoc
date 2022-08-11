@@ -1,0 +1,28 @@
+---
+permalink: unix-administration/task-view-the-result-of-the-clone-split-process.html 
+sidebar: sidebar 
+keywords: view, result, clone, split, process 
+summary: 開始したクローンスプリットプロセスの結果を表示できます。 
+---
+= クローンスプリットプロセスの結果を表示します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+開始したクローンスプリットプロセスの結果を表示できます。
+
+.ステップ
+. クローンスプリットプロセスの結果を表示するには、次のコマンドを入力します。
++
+`* SMSAP clone split -result -profile_[-host_hostname_][-label_split-label_|-id_split-id_][-quiet |-verbose *`
+
+
+
+'''
+[listing]
+----
+smsap clone split-result -profile p1 -id 8abc01ec0e78f3e2010e78f3fdd00001
+----
+'''

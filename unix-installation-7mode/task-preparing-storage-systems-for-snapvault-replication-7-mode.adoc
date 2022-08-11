@@ -1,0 +1,106 @@
+---
+permalink: unix-installation-7mode/task-prepare-storage-systems-for-snapvault-replication-7-mode.html 
+sidebar: sidebar 
+keywords: snapmanager, integrate, snapvault, technology, archive, snapshot, copies, copy, disk, configure, intialize, data-protection, relationship, source, volume, destination, volume, initialization, data, block, preparing, prepare, storage, system, replication 
+summary: SnapManagerの統合SnapVault テクノロジを使用してSnapshotコピーをディスクにアーカイブするには、ソースボリュームとデスティネーションボリューム間のデータ保護関係を設定して初期化する必要があります。初期化の際に、 SnapVault はソースボリュームの Snapshot コピーを作成して、そのコピーおよびコピーが参照するすべてのデータブロックをデスティネーションボリュームに転送します。 
+---
+= SnapVault レプリケーションのストレージシステムを準備
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManagerの統合されたSnapVault テクノロジを使用してSnapshotコピーをディスクにアーカイブするには、ソースボリュームとデスティネーションボリューム間のデータ通信保護関係_を設定して初期化する必要があります。初期化の際に、 SnapVault はソースボリュームの Snapshot コピーを作成して、そのコピーおよびコピーが参照するすべてのデータブロックをデスティネーションボリュームに転送します。
+
+* 必要なもの *
+
+* SnapManager 設定ウィザードで、プライマリストレージ用のデータセットを設定しておく必要があります。
+* すべてのLUNをqtreeに配置し、qtreeごとに1つのLUNを配置する必要があります。
+
+
+
+IMPORTANT: データベースファイルとトランザクションログを別々のボリュームに格納する場合は、データベースファイルのソースボリュームとデスティネーションボリュームの間、およびトランザクションログのソースボリュームとデスティネーションボリュームの間に関係を作成する必要があります。
+
+.手順
+. ソースシステムとデスティネーションシステムの両方のコンソールで、SnapVault を有効にします。
++
+* 例 *
+
++
+[listing]
+----
+options snapvault.enable on
+----
+. ソース・システムのコンソールで、options snapvault.accessコマンドを使用して、ソース・システムからデータを直接コピーすることを許可するシステムのホスト名を指定します。
++
+* 例 *
+
++
+次のコマンドでは、destination_systemBへのレプリケーションを許可します。
+
++
+[listing]
+----
+options snapvault.access host=destination_systemB
+----
+. デスティネーション・システムのコンソールで、「options snapvault.access」コマンドを使用して、コピーしたデータのリストア先のシステムのホスト名を指定します。
++
+* 例 *
+
++
+次のコマンドでは、コピーしたデータをsource_systemAにリストアできます。
+
++
+[listing]
+----
+options snapvault.access host=destination_systemA
+----
+. ソース・システムのコンソールで'ndmpd onコマンドを使用して'NDMPを有効にします
++
+* 例 *
+
++
+次のコマンドでは、NDMPを有効にします。
+
++
+[listing]
+----
+ndmpd on
+----
+. デスティネーション・システムのコンソールで、「vol create」コマンドを使用して、ソース・ボリュームと同じサイズ以上のSnapMirrorデスティネーション・ボリュームを作成します。
++
+* 例 *
+
++
+次のコマンドでは、アグリゲートaggr1に、vol2という名前の2GBのデスティネーションボリュームを作成します。
+
++
+[listing]
+----
+vol create vol2 aggr1 2g
+----
+. OnCommand Unified Manager（UM）のNetApp Management Consoleで、デスティネーションボリューム用のリソースプールを追加します。
++
+.. [*データ*>*リソース・プール*]をクリックして、[*リソース・プール*]ページを開きます。
+.. [リソースプール]ページで、[*追加]をクリックして、*リソースプールの追加*ウィザードを開始します。
+.. ウィザード内のプロンプトに従って、デスティネーションボリューム用のアグリゲートを指定します。
+.. 「完了」をクリックしてウィザードを終了します。
+
+
+. UM NetApp Management Consoleで、SnapManager 設定ウィザードで作成したデータセットにリソースプールを割り当てます。
++
+.. [*Data*>*Datasets*]をクリックして、[Datasets（データセット）]ページを開きます。
+.. [*データセット*]ページで、作成したデータセットを選択し、[*Edit*]をクリックします。
+.. ［*データセットの編集*］ページで、［*バックアップ*］>［*プロビジョニング/リソースプール*］をクリックして、［*データセットノードの設定*］ウィザードを開きます。
+.. ウィザードの指示に従って、データセットにリソースプールを割り当てます。
++
+リソースプールの割り当てによって、ソースボリュームとデスティネーションボリューム間のデータ保護関係が指定されます。
+
+.. [完了]をクリックしてウィザードを終了し、データ保護関係を初期化します。
++
+初期化プロセスでは、デスティネーションボリュームへの _ ベースライン転送 _ が実行されます。SnapVault はソースボリュームのSnapshotコピーを作成して、そのコピーおよびコピーが参照するすべてのデータブロックをデスティネーションボリュームに転送します。
+
+
+
+

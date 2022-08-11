@@ -1,0 +1,47 @@
+---
+permalink: unix-administration/task-use-protection-manager-to-configure-a-secondary-resource-pool.html 
+sidebar: sidebar 
+keywords: support, backup, database, secondary, storage, administrator, protection, manager, organize, snapvault, license, resource, pool 
+summary: ストレージ管理者は、セカンダリストレージへのデータベースのバックアップをサポートするために、 Protection Manager を使用して、 SnapVault セカンダリライセンスで有効になっているセカンダリストレージシステムをバックアップ用のリソースプールに編成します。 
+---
+= Protection Managerを使用して、セカンダリリソースプールを設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ストレージ管理者は、セカンダリストレージへのデータベースのバックアップをサポートするために、 Protection Manager を使用して、 SnapVault セカンダリライセンスで有効になっているセカンダリストレージシステムをバックアップ用のリソースプールに編成します。
+
+* 必要なもの *
+
+リソースプール内のストレージシステムは、妥当性という観点から、バックアップ先として互換性があることが理想的です。たとえば、給与データベースの保護戦略を作成する場合、ストレージ管理者は、同じリソースプールの適切なメンバーとなる同様のパフォーマンスとサービス品質レベルを持つセカンダリストレージシステムを特定しました。
+
+リソースプールに割り当てるストレージシステム上に、未使用スペースのアグリゲートを作成済みである。これにより、バックアップを格納できるだけの十分なスペースが確保されます。
+
+.手順
+. Protection Manager の NetApp Management Console に移動します。
+. メニューバーで、 * Data * > * Resource Pools * をクリックします。
++
+[Resource Pools] ウィンドウが表示されます。
+
+. [ 追加（ Add ） ] をクリックします。
++
+Add Resource Pool ウィザードが起動します。
+
+. ウィザードの手順に従って、 * paydb_backup_resource * リソースプールを作成します。
++
+次の設定を使用します。
+
++
+** 名前：「 * paydb-backup_resource * 」と入力します
+** スペースのしきい値（デフォルトを使用）：
++
+*** スペース使用率のしきい値：有効
+*** 「ほぼフル」のしきい値（リソースプール用）： 80%
+*** フルのしきい値（リソースプール）： 90%
+
+
+
+
+

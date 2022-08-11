@@ -1,0 +1,21 @@
+---
+permalink: windows/task-view-a-list-of-backups.html 
+sidebar: sidebar 
+keywords: check, backup, create, profile, state, smsap, backup, command, display, information, view, list 
+summary: SMSAPのbackup listコマンドを使用して、プロファイルに対して作成されたバックアップとバックアップの状態を確認できます。各プロファイルについて、最新のバックアップの情報が表示され、すべてのバックアップの情報が表示されるまで処理が続行されます。 
+---
+= バックアップのリストを表示します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「smsapbackup list」コマンドを使用すると、プロファイルに対して作成されたバックアップとバックアップ状態を確認できます。各プロファイルについて、最新のバックアップの情報が表示され、すべてのバックアップの情報が表示されるまで処理が続行されます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+'*SMSAP backup list -profile_name_[-delimiter_character_][data|-archivelogs][-quiet |-verbose *'
+
+

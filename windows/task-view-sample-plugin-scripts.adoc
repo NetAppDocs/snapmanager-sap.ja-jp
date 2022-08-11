@@ -1,0 +1,212 @@
+---
+permalink: windows/task-view-sample-plugin-scripts.html 
+sidebar: sidebar 
+keywords: snapmanager, include, script, example, basis, custom, view, sample, plug-in 
+summary: SnapManager には、独自のスクリプトを作成する方法、またはカスタムスクリプトのベースとして使用できるスクリプトが用意されています。 
+---
+= サンプルのプラグインスクリプトを表示する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager には、独自のスクリプトを作成する方法、またはカスタムスクリプトのベースとして使用できるスクリプトが用意されています。
+
+
+
+== このタスクについて
+
+サンプルプラグインスクリプトは、次の場所にあります。
+
+* `<default_install_directory>\plugins\examples\backup\create'
+* `<default_install_directory>\plugins\examples\clone\create'
+* `<default_install_directory>\plugins\Windows\examples\backup\create\post`
+
+
+サンプルのプラグインスクリプトを含むディレクトリには、次のサブディレクトリがあります。
+
+* ’policy’:設定されている場合は常にクローン処理で実行されるスクリプトを格納します。
+* pre：クローン・オペレーションの前に実行されるスクリプトを設定した場合に格納します
+* post`:クローン操作の後に実行されるスクリプトを、構成されたときに含んでいます。
+
+
+次の表に、サンプルスクリプトを示します。
+
+|===
+| スクリプト名 | 説明 | スクリプトのタイプ 
+
+
+ a| 
+「VALIDATE_sid.sh」を参照してください
+ a| 
+ターゲットシステムで使用されている SID に対する追加のチェックが含まれます。スクリプトは、 SID に次の特性があるかどうかを確認します。
+
+* 3 つの英数字で構成されます
+* 先頭の文字はアルファベットにします
+* リザーブされているSAP SIDは含まれません
+
+ a| 
+ポリシー
+
+
+
+ a| 
+「cleanup.sh」を参照してください
+ a| 
+ターゲットシステムをクリーンアップして、新しく作成したクローンを格納できるようにします。必要に応じて、ファイルとディレクトリを保持または削除します。
+ a| 
+事前課題
+
+
+
+ a| 
+sap_follow up_activities .sh
+ a| 
+UNIXおよびNFSとNetAppストレージ上のOracleを使用するSAPで、_ SAPシステムコピーガイド_およびTR-3442に記載されたフォローアップアクティビティタスクを実行します。たとえば、次のスクリプトはSAPスキーマのテーブルエントリを削除または変更します。
+ a| 
+タスク後
+
+
+
+ a| 
+os_db_authentication.sh
+ a| 
+SAP Note 316641で推奨されているように、OPS$ユーザーのオペレーティングシステム認証を適用します。これは、外部SQLファイルを処理する方法の例です。
+ a| 
+タスク後
+
+
+
+ a| 
+「Mirror_The _backup.cmd」と入力します
+ a| 
+Data ONTAP 7-Mode を使用している場合、 Windows 環境でバックアップ処理が実行されたあとにボリュームがミラーリングされます。
+ a| 
+タスク後
+
+
+
+ a| 
+「Vault_The _backup.cmd」
+ a| 
+Data ONTAP 7-Mode のいずれかを使用している Windows 環境で、バックアップ処理後に qtree をバックアップします。
+ a| 
+タスク後
+
+
+
+ a| 
+「Mirror_The _backup_cDOT .cmd」と入力します
+ a| 
+clustered Data ONTAP を使用している Windows 環境では、バックアップ処理後にボリュームがミラーリングされます。
+ a| 
+タスク後
+
+
+
+ a| 
+'Vault_The _backup_cDOT .cmd
+ a| 
+clustered Data ONTAP を使用している Windows 環境では、バックアップ処理後に qtree をバックアップします。
+ a| 
+タスク後
+
+|===
+SnapManager で提供されるスクリプトは、デフォルトで bash シェルを使用します。サンプルスクリプトを実行する前に、オペレーティングシステムに bash シェルのサポートがインストールされていることを確認する必要があります。
+
+.手順
+. bashシェルを使用していることを確認するには、コマンドプロンプトで次のコマンドを入力します。
++
+*bash *`
+
++
+エラーが表示されない場合は、 bash シェルは正常に動作しています。
+
++
+または、コマンドプロンプトで「which -bash」コマンドを入力することもできます。
+
+. 次のディレクトリでスクリプトを探します。
++
+'<installdir>\plugins\examples\clone\create'
+
+. vi のようなスクリプトエディタでスクリプトを開きます。
+
+
+
+
+== サンプルスクリプト
+
+次のサンプルのカスタムスクリプトでは、データベースの SID 名を検証し、クローンデータベースで無効な名前が使用されないようにしています。このスクリプトには、スクリプトの実行後に呼び出される 3 つの操作（チェック、説明、実行）が含まれています。このスクリプトには、コード 0 、 4 、 4 のエラーメッセージ処理も含まれています。
+
+[listing]
+----
+@echo off
+REM $Id: //depot/prod/capstan/Rcapstan_ganges/src/plugins/windows/examples/clone/create/policy/validate_sid.cmd#1 $
+REM $Revision: #1 $ $Date: 2011/12/06 $
+REM
+REM
+
+set /a EXIT=0
+
+set name="Validate SID"
+set description="Validate SID used on the target system"
+set parameter=()
+
+rem reserved system IDs
+set INVALID_SIDS=("ADD" "ALL" "AND" "ANY" "ASC" "COM" "DBA" "END" "EPS" "FOR" "GID" "IBM" "INT" "KEY" "LOG" "MON" "NIX" "NOT" "OFF" "OMS" "RAW" "ROW" "SAP" "SET" "SGA" "SHG" "SID" "SQL" "SYS" "TMP" "UID" "USR" "VAR")
+
+if /i "%1" == "-check" goto :check
+if /i "%1" == "-execute" goto :execute
+if /i "%1" == "-describe" goto :describe
+
+:usage:
+	echo usage: %0 "{ -check | -describe | -execute }"
+	set /a EXIT=99
+	goto :exit
+
+:check
+	set /a EXIT=0
+	goto :exit
+
+:describe
+	echo SM_PI_NAME:%name%
+	echo SM_PI_DESCRIPTION:%description%
+	set /a EXIT=0
+	goto :exit
+
+:execute
+	set /a EXIT=0
+
+	rem SM_TARGET_SID must be set
+	if "%SM_TARGET_SID%" == "" (
+		set /a EXIT=4
+		echo SM_TARGET_SID not set
+		goto :exit
+	)
+
+	rem exactly three alphanumeric characters, with starting with a letter
+	echo %SM_TARGET_SID% | findstr "\<[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9]\>" >nul
+	if %ERRORLEVEL% == 1 (
+		set /a EXIT=4
+		echo SID is defined as a 3 digit value starting with a letter. [%SM_TARGET_SID%] is not valid.
+		goto :exit
+	)
+
+	rem not a SAP reserved SID
+	echo %INVALID_SIDS% | findstr /i \"%SM_TARGET_SID%\" >nul
+	if %ERRORLEVEL% == 0 (
+		set /a EXIT=4
+		echo SID [%SM_TARGET_SID%] is reserved by SAP
+		goto :exit
+	)
+
+	goto :exit
+
+
+
+:exit
+	echo Command complete.
+	exit /b %EXIT%
+----
+http://media.netapp.com/documents/tr-3442.pdf["UNIXおよびNFS上で稼働するSAPとネットアップストレージ：TR-3442"^]

@@ -1,0 +1,56 @@
+---
+permalink: unix-administration/reference-the-smosmsap-clone-splitestimate-command.html 
+sidebar: sidebar 
+keywords: command, enable, view, clone, split, storage, consume, estimate, smsap, split-estimate 
+summary: このコマンドを使用すると、クローンスプリットの概算ストレージ消費量を表示できます。 
+---
+= SMSAPのclone split -estimateコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドを使用すると、クローンスプリットの概算ストレージ消費量を表示できます。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap clone split-estimate
+-profile _profile_
+[-host _hostname_\]
+[-label _clone-label_ | -id _clone-id_\]
+[-quiet | -verbose\]]
+----
+
+
+== パラメータ
+
+* `*-profile_profile_*`
++
+クローンのプロファイル名を指定します。
+
+* `*-host_hostname_*`
++
+クローンが存在するホスト名を指定します。
+
+* `*-label_clone -label_*`
++
+クローニングプロセスで生成されるラベル名を示します。
+
+* '*__ id clone -id_*
++
+クローンプロセスによって生成される一意の ID です。
+
+* '*_-quiet _*'と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*_- verbose_*`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+

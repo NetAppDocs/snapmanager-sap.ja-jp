@@ -1,0 +1,108 @@
+---
+permalink: unix-installation-cmode/task-smsap-isg-integrate-with-sap-br-tools.html 
+sidebar: sidebar 
+keywords: sap, br, contain, tool, oracle, database, administration, brarchive, brbackup, brconnect, brrecover, brrestore, brspace, brtools, backint, file, integrate 
+summary: Oracleデータベース管理用のSAPツールであるBRARCHIVE、BRBACKUP、BRCONNECTなどのSAP BR * Tools BRRECOVER、BRRESTORE、BRSPACE、およびBRToolsは、SnapManager for SAPが提供するBACKINTインターフェイスを使用します。SAP BR * Toolsを統合するには、BR * Toolsディレクトリからbackintファイルがインストールされている/opt/NetApp/smsap/bin/へのリンクを作成する必要があります。 
+---
+= SAP BR * Toolsと統合
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Oracleデータベース管理用のSAPツールであるBRARCHIVE、BRBACKUP、BRCONNECTなどのSAP BR * Tools BRRECOVER、BRRESTORE、BRSPACE、およびBRToolsは、SnapManager for SAPが提供するBACKINTインターフェイスを使用します。SAP BR*Toolsを統合するには'BR*Toolsディレクトリからbackintファイルがインストールされている/opt/NetApp/smsap/bin/へのリンクを作成する必要があります
+
+
+
+== 必要なもの
+
+* SAP BR * Toolsがインストールされていることを確認してください。
+
+
+.手順
+. BR * Toolsディレクトリから各SAPインスタンスの「/opt/NetApp/smsap/bin/backint」ファイルへのリンクを作成します。
++
+
+NOTE: ファイルをコピーする代わりにリンクを使用する必要があります。これにより、新しいバージョンのSnapManager をインストールするときに、リンク先が新しいバージョンのBACKINTインターフェイスを参照するようになります。
+
+. BR * Toolsコマンドを実行するユーザのクレデンシャルを設定します。
++
+SAPインスタンスのバックアップとリストアをサポートするには、オペレーティングシステムユーザがSnapManager for SAPのリポジトリ、プロファイル、およびサーバのクレデンシャルを必要とします。
+
+. 別のプロファイル名を指定してください。
++
+SnapManager では、BR * Toolsからのコマンドの処理時に、SAPシステムIDと同じ名前のプロファイルがデフォルトで使用されます。このシステム識別子が環境内で一意でない場合は'initSID.utl'SAP初期化ファイルを変更し'パラメータを作成して正しいプロファイルを指定しますinitSID.utl`ファイルは'%ORACLE_HOME%\database.にあります
+
++
+* 例 *
+
++
+initSID.utl`ファイルのサンプルは次のとおりです
+
++
+[listing]
+----
+# Backup Retention policy.
+# Specifies the retention / lifecycle of backups on the filer.
+#
+----------------------------------------------------------------------
+----------
+# Default Value: daily
+# Valid Values: unlimited/hourly/daily/weekly/monthly
+# retain = daily
+# Enabling Fast Restore.
+#
+----------------------------------------------------------------------
+----------
+# Default Value: fallback
+# Valid Values: require/fallback/off
+#
+# fast = fallback
+# Data Protection.
+#
+----------------------------------------------------------------------
+----------
+# Default Value: empty
+# Valid Values: empty/yes/no
+# protect =
+# profile_name = SID_BRTOOLS
+----
++
+
+NOTE: パラメータ名は常に小文字で、コメントには数字記号（#）を付ける必要があります。
+
+. 次の手順を実行して'initSID.sap`BR*Tools構成ファイルを編集します
++
+.. initSID.sapファイルを開きます
+.. バックアップユーティリティのパラメータファイル情報を含むセクションを探します。
++
+* 例 *
+
++
+[listing]
+----
+# backup utility parameter file
+# default: no parameter file
+# util_par_file =
+----
+.. 最後の行を編集して'initSID.utl`ファイルを含めます
++
+* 例 *
+
++
+[listing]
+----
+# backup utility parameter file
+# default: no parameter file
+# util_par_file = initSID.utl
+----
+
+
+
+
+
+
+== 完了後
+
+backint register-sld'コマンドを実行して'System Landscape Directory（SLD）にbackintインタフェースを登録します

@@ -1,0 +1,29 @@
+---
+permalink: windows/task-mounting-backups.html 
+sidebar: sidebar 
+keywords: snapmanager, automatic, handle, mount, backup, host, available, scenario, tools, oracle, recovery, manager, rman, file 
+summary: SnapManager は、バックアップのマウントを自動的に処理して、ホストで使用できるようにします。また、 Oracle Recovery Manager\ （ RMAN \ ）などの外部ツールを使用してバックアップ内のファイルにアクセスする場合にも、バックアップをマウントできます。 
+---
+= バックアップのマウント
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager は、バックアップのマウントを自動的に処理して、ホストで使用できるようにします。また、 Oracle Recovery Manager （ RMAN ）などの外部ツールを使用してバックアップ内のファイルにアクセスする場合にも、バックアップをマウントできます。
+
+SMSAPのbackup mountコマンドを使用して、バックアップを構成するSnapshotコピーをマウントしているパスのリストを表示します。
+
+
+NOTE: バックアップのマウント処理が成功した場合や失敗した場合に、ダンプファイルを収集することもできます。
+
+. バックアップをマウントするには、次のコマンドを入力します。
++
+「SMSAP backup mount -profile profile_name label [data|-archivelogs]|-id id｝[-host-host][-dump][-quiet |-verbose」という形式です
+
+
+
+* 関連情報 *
+
+xref:reference-the-smosmsapbackup-mount-command.adoc[SMSAPのbackup mountコマンドを使用します]

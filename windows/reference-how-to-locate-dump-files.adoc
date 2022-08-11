@@ -1,0 +1,73 @@
+---
+permalink: windows/reference-how-to-locate-dump-files.html 
+sidebar: sidebar 
+keywords: dump, file, locate, client, system, access, troubleshoot, problem, profile, operation 
+summary: ダンプ・ファイルは、容易にアクセスできるようにクライアント・システムに配置されています。これらのファイルは、プロファイル、システム、または処理に関する問題のトラブルシューティングを行う場合に役立ちます。 
+---
+= ダンプ・ファイルの検索方法
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ダンプ・ファイルは、容易にアクセスできるようにクライアント・システムに配置されています。これらのファイルは、プロファイル、システム、または処理に関する問題のトラブルシューティングを行う場合に役立ちます。
+
+ダンプ・ファイルは、クライアント・システム上のユーザのホーム・ディレクトリに格納されます。
+
+* グラフィカルユーザインターフェイス（ GUI ）を使用している場合、ダンプファイルは次の場所にあります。
++
+[listing]
+----
+user_home\Application Data\NetApp\smsap\3.3.0\smsap_dump dump_file_type_name
+server_host.jar
+----
+* コマンドラインインターフェイス（ CLI ）を使用している場合、ダンプファイルは次の場所にあります。
++
+[listing]
+----
+user_home\.netapp\smsap\3.3.0\smsap_dump_dump_file_type_name server_host.jar
+----
+
+
+ダンプファイルには、 dump コマンドの出力が格納されています。ファイル名は、指定された情報によって異なります。次の表に、ダンプ処理のタイプとそのファイル名を示します。
+
+|===
+| ダンプ処理のタイプ | 作成されたファイル名 
+
+
+ a| 
+処理 ID を指定した operation dump コマンド
+ a| 
+「smsap_dump_operation-id.jar」です
+
+
+
+ a| 
+operation dump コマンドに処理 ID は指定しません
+ a| 
+「SMSAP operation dump -profile VH1 -verbose」次の出力が表示されます。
+
+[listing]
+----
+smsap operation dump -profile VH1 -verbose
+[ INFO] SMSAP-13048: Dump Operation Status: SUCCESS
+[ INFO] SMSAP-13049: Elapsed Time: 0:00:01.404
+Dump file created.
+Path: user_home\Application Data\ontap\smsap\3.3.0\smsap_dump_VH1_kaw.rtp.foo.com.jar
+----
+
+
+ a| 
+system dump コマンド
+ a| 
+smsap_dump_host-name.jar
+
+
+
+ a| 
+profile dump コマンド profile dump コマンド
+ a| 
+'smsap_dump_profile-name_host-name.jar
+
+|===

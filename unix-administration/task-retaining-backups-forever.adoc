@@ -1,0 +1,21 @@
+---
+permalink: unix-administration/task-retain-backups-forever.html 
+sidebar: sidebar 
+keywords: specify, backup, ineligible, deletion, retention, policy, indefinitely, retain, forever 
+summary: バックアップを無期限に保持するには、保持ポリシーの削除対象外にするように指定します。 
+---
+= バックアップを無期限に保持します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップを無期限に保持するには、保持ポリシーの削除対象外にするように指定します。
+
+.ステップ
+. バックアップを無制限に保持するように指定するには、次のコマンドを入力します。
++
+'*SMSAP backup update -profile_name_{-label_[data|-archivelogs ]|-id_id_}-retain-unlimited *
+
+

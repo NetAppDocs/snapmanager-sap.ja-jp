@@ -1,0 +1,97 @@
+---
+permalink: unix-administration/task-configure-snapdrive-when-rbac-is-enabled.html 
+sidebar: sidebar 
+keywords: role-based, access, control, rbac, enable, configure, datafabric, manager, server, capability, capabilities, snapdrive, create, storage, system, regiser, configure, configuring 
+summary: Role-Based Access Control （ RBAC ；ロールベースアクセス制御）を有効にした場合は、 RBAC 機能を含めるように DataFabric Manager サーバを設定する必要があります。また、 DataFabric Manager サーバで作成した SnapDrive ユーザおよびストレージシステムの root ユーザも SnapDrive に登録する必要があります。 
+---
+= RBACが有効な場合は、DataFabric ManagerサーバおよびSnapDrive を設定します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Role-Based Access Control （ RBAC ；ロールベースアクセス制御）を有効にした場合は、 RBAC 機能を含めるように DataFabric Manager サーバを設定する必要があります。また、 DataFabric Manager サーバで作成した SnapDrive ユーザおよびストレージシステムの root ユーザも SnapDrive に登録する必要があります。
+
+.手順
+. DataFabric Manager サーバを設定します。
++
+.. DataFabric Manager サーバを更新して、ターゲットデータベースによってストレージシステム上で直接行われた変更を更新するには、次のコマンドを入力します。
++
+'*dfm host discover _storage_system_*'のように指定します
+
+.. DataFabric Manager サーバで新しいユーザを作成し、パスワードを設定します。
+.. DataFabric Managerサーバ管理リストにオペレーティングシステムユーザを追加するには、次のコマンドを入力します。
++
+'*dfm user add_sd -admin_*'と入力します
+
+.. DataFabric Managerサーバに新しいロールを作成するには、次のコマンドを入力します。
++
+'*dfm role create-sd-admin role_*
+
+.. DFMの.Corf.AccessCheck Global機能をロールに追加するには、次のコマンドを入力します。
++
+'*dfm role add_sd -admin-role dfm_Core.AccessCheck Global *
+
+.. オペレーティング・システム・ユーザに「sd-admin-role」を追加するには、次のコマンドを入力します。
++
+'*dfm user role set_sd-adminsd-admin role_*
+
+.. DataFabric ManagerサーバでSnapDrive rootユーザ用の別のロールを作成するには、次のコマンドを入力します。
++
+'*dfm role create-sd-protion_*
+
+.. SnapDrive のrootユーザまたは管理者用に作成されたロールにRBAC機能を追加するには、次のコマンドを入力します。
++
+'*dfm role add_sd -protion_sd.Config.Read Global *
+
++
+'*dfm role add_sd -protion_sd.Config.Write Global *
+
++
+'*dfm role add_sd -protion_sd.Config.Delete Global *
+
++
+'*dfm role add_sd -protion_sd.Storage.Read Global *
+
++
+'*dfm role add_sd -protion_dfm_Database.Write Global *'と入力します
+
++
+'*dfm role add_sd -protion_GlobalDataProtection*
+
+.. ターゲットデータベースのOracleユーザをDataFabric Managerサーバの管理者リストに追加し、SD保護ロールを割り当てるには、次のコマンドを入力します。
++
+'*dfm user add -r _sd protectardb_host1_\oracle *
+
+.. DataFabric Managerサーバでターゲットデータベースで使用するストレージシステムを追加するには、次のコマンドを入力します。
++
+`*dfm host set_storage_system_hostLogin=Oracle hostPassword=_password_*`
+
+.. DataFabric Managerサーバのターゲットデータベースで使用されるストレージシステムに新しいロールを作成するには、次のコマンドを入力します。
++
+'*dfm host role create -h storage_system-c_"api-**, login-*"_storage-rbc-role_**`
+
+.. ストレージシステムに新しいグループを作成し、DataFabric Managerサーバで作成した新しいロールを割り当てるには、次のコマンドを入力します。
++
+'*dfm host usergroup create -h _storage_system_-r_sstorage -rbac - rolestorage -rbac - group_*
+
+.. ストレージシステムに新しいユーザを作成し、DataFabric Managerサーバで作成した新しいロールおよびグループを割り当てるには、次のコマンドを入力します。
++
+'*dfm host user create -h storage_system_-r_storage -rb-role-p_password_-g_storage -rb-groupptardb_host1_*
+
+
+
+. SnapDrive を設定します。
++
+.. SnapDrive に'_sd-admin_'ユーザーの資格情報を登録するには'次のコマンドを入力します
++
+SnapDrive config set -dfm_sd-admindfm_host_*
+
+.. SnapDrive にrootユーザまたはストレージ・システムの管理者を登録するには、次のコマンドを入力します。
++
+SnapDrive config set_tardb_host 1stません
+
+
+
+

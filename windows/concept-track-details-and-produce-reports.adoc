@@ -1,0 +1,16 @@
+---
+permalink: windows/concept-track-details-and-produce-reports.html 
+sidebar: sidebar 
+keywords: snapmanager, reduce, level, detail, database, administrator, track, status, operation, monitor, interface, produce, report 
+summary: SnapManager では、単一のインターフェイスから処理を監視する方法を提供することで、さまざまな処理のステータスを追跡するために必要な詳細レベルをデータベース管理者が軽減できます。 
+---
+= 詳細を追跡し、レポートを作成します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、単一のインターフェイスから処理を監視する方法を提供することで、さまざまな処理のステータスを追跡するために必要な詳細レベルをデータベース管理者が軽減できます。
+
+管理者がバックアップするデータベースを指定すると、 SnapManager はバックアップ対象のデータベースファイルを自動的に識別します。SnapManager には、リポジトリ、ホスト、プロファイル、バックアップ、およびクローンに関する情報が表示されます。特定のホストまたはデータベースの処理を監視できます。

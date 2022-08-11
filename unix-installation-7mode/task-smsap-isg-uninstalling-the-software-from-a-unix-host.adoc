@@ -1,0 +1,27 @@
+---
+permalink: unix-installation-7mode/task-smsap-isg-uninstall-the-software-from-a-unix-host.html 
+sidebar: sidebar 
+keywords: snapmanager, software, uninstall, host, server, unix 
+summary: SnapManager ソフトウェアが不要になった場合は、ホストサーバからアンインストールできます。 
+---
+= UNIXホストからソフトウェアをアンインストールします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager ソフトウェアが不要になった場合は、ホストサーバからアンインストールできます。
+
+.手順
+. root としてログインします。
+. サーバを停止するには、「* smsap_server stop *」コマンドを入力します
+. SnapManager ソフトウェアを削除するには、次のコマンドを入力します。
++
+*UninstallSmssap *`
+
+. 導入テキストの後、 *Enter* キーを押して続行します。
++
+アンインストールが完了します。
+
+

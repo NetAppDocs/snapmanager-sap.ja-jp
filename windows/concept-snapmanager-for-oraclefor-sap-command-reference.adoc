@@ -1,0 +1,39 @@
+---
+permalink: windows/concept-snapmanager-for-oraclefor-sap-command-reference.html 
+sidebar: sidebar 
+keywords: snapmanager, command, reference, valid, syntax, parameter, argument, example, sap 
+summary: SnapManager コマンドリファレンスには、コマンドとともに指定する有効な使用構文、オプション、パラメータ、および引数と例が記載されています。 
+---
+= SnapManager for SAPのコマンドリファレンスを参照してください
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager コマンドリファレンスには、コマンドとともに指定する有効な使用構文、オプション、パラメータ、および引数と例が記載されています。
+
+コマンドの使用に関しては、次の問題があります。
+
+* コマンドでは大文字と小文字が区別されます。
+* SnapManager で使用できる文字数は最大 200 文字で、ラベルの文字数は最大 80 文字です。
+* ホスト上のシェルでコマンド・ラインに表示できる文字数が制限されている場合は'cmdfileコマンドを使用してください
+* プロファイル名またはラベル名にはスペースを使用しないでください。
+* クローン仕様では、クローンの場所にスペースを使用しないでください。
+
+
+SnapManager では、次の 3 つのレベルのメッセージをコンソールに表示できます。
+
+* エラーメッセージ
+* 警告メッセージ
+* 情報メッセージ
+
+
+メッセージの表示方法を指定できます。何も指定しない場合、 SnapManager はエラーメッセージと警告のみをコンソールに表示します。SnapManager がコンソールに表示する出力量を制御するには、次のいずれかのコマンドラインオプションを使用します。
+
+* -quiet：コンソールにエラーメッセージのみを表示します。
+* `-verbose :エラー、警告、および情報メッセージをコンソールに表示します。
+
+
+
+NOTE: デフォルトの動作や、表示用に指定した詳細レベルに関係なく、 SnapManager は常にすべてのメッセージタイプをログファイルに書き込みます。

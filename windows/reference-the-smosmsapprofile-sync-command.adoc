@@ -1,0 +1,81 @@
+---
+permalink: windows/reference-the-smosmsapprofile-sync-command.html 
+sidebar: sidebar 
+keywords: command, profile-to-repository, map, repository, file, home, directory, local, host, smsap 
+summary: このコマンドは、リポジトリのプロファイル / リポジトリのマッピングを、ローカルホストのホームディレクトリ内のファイルにロードします。 
+---
+= SMSAP profile syncコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、リポジトリのプロファイル / リポジトリのマッピングを、ローカルホストのホームディレクトリ内のファイルにロードします。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap profile sync
+-repository
+-dbname repo_service_name
+-host repo_host
+-port repo_port
+-login
+-username repo_username
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-repository`*
++
+-repositoryのあとに続くオプションは'リポジトリのデータベースの詳細を指定します
+
+* *`-dbname_repo_service_name *
++
+プロファイルを同期するリポジトリ・データベースを指定します。
+
+* *`-host`*
++
+データベース・ホストを指定します。
+
+* *`-port *
++
+ホストのポートを指定します。
+
+* *`-login`*
++
+ホスト・ユーザのログイン・プロセスを指定します。
+
+* *`-username`*
++
+ホストのユーザ名を指定します。
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== コマンドの例
+
+次に、データベースのプロファイル / リポジトリ・マッピングを同期するコマンドの実行例を示します。
+
+[listing]
+----
+smsap profile sync -repository -dbname smrepo -host Host2 -port 1521 -login -username user2
+SMSAP-12345 [INFO ]: Loading profile mappings for repository "user2@Host2:smrepo" into cache for OS User "admin".
+Operation Id [Nff8080810da9018f010da901a0170001] succeeded.
+----

@@ -1,0 +1,322 @@
+---
+permalink: unix-administration/reference-snapmanager-configuration-parameters.html 
+sidebar: sidebar 
+keywords: snapmanager, provide, list, configuration, parameter, edit, depend, requirement, smsap, config, file, requirement 
+summary: SnapManager には、要件に応じて編集可能な設定パラメータのリストが用意されています。設定パラメータはSMSap.configファイルに保存されます。ただし、SMSAP_CONFIGファイルに、サポートされているすべての設定パラメータが含まれているとはかぎりません。要件に応じて構成パラメータを追加できます。 
+---
+= SnapManager の設定パラメータ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager には、要件に応じて編集可能な設定パラメータのリストが用意されています。設定パラメータはSMSap.configファイルに保存されます。ただし、SMSAP_CONFIGファイルに、サポートされているすべての設定パラメータが含まれているとはかぎりません。要件に応じて構成パラメータを追加できます。
+
+次の表に、サポートされるすべての SnapManager 構成パラメータと、それらのパラメータを使用する状況を示します。
+
+[cols="1a,3a"]
+|===
+| パラメータ | 説明 
+
+
+ a| 
+* 「retain.hourly.count」のようになります
+* 「retain.hourly.duration」
+* 「retain.monthly」を指定できます
+* 「retain.month.duration」のように指定します
+
+ a| 
+これらのパラメータは、プロファイルの作成時に保持ポリシーを設定します。たとえば、次の値を割り当てることができます。
+
+`retain.hourly.count=*12*`
+
+retain.hourly.duration =* 2 *`
+
+retae.month.count=* 2 *`
+
+「retain.monthly_schedule.duration =* 6 *」
+
+
+
+ a| 
+restore.secondaryAccessPolicy`
+ a| 
+このパラメータは、 Protection Manager を使用して直接リストアできない場合に、 SnapManager がセカンダリストレージ上のデータにアクセスする方法を定義します。セカンダリストレージ上のデータにアクセスするためのさまざまな方法は次のとおりです。
+
+* Direct （デフォルト）
++
+restore.secondaryAccessPolicy`が*direct*に設定されている場合、SnapManager はセカンダリ・ストレージ上のデータのクローンを作成し、複製されたデータをセカンダリ・ストレージからホストにマウントし、クローンからデータをアクティブな環境にコピーします。
+
+* 間接
++
+「* Indirect *」をrestore.secondaryAccessPolicy`に割り当てると、SnapManager はプライマリ・ストレージ上の一時ボリュームにデータをコピーし、一時ボリュームからホストにデータをマウントしてから、一時ボリュームからアクティブな環境にデータをコピーします。
+
++
+間接方式を使用する必要があるのは、ホストからセカンダリストレージシステムに直接アクセスできない場合だけです。データのコピーが 2 つ作成されるため、この方法では直接方式の 2 倍の時間がかかります。
+
+
+
+
+NOTE: NFS （ネットワークファイルシステム）をプロトコルとして使用するストレージエリアネットワーク（ SAN ）では、 SnapManager をリストアのためにセカンダリストレージに直接接続する必要はありません。
+
+
+
+ a| 
+'restore.temporaryVolumeName
+ a| 
+このパラメータは、一時ボリュームに名前を割り当てます。SnapManager でセカンダリストレージからデータをリストアする間接的な方法を使用する場合、プライマリストレージには、データベースファイルにコピーされてデータベースがリカバリされるまでの間、一時的なデータのコピーを保持するボリュームが必要になります。デフォルト値はありません。値を指定しない場合は、リストアコマンドで間接方式を使用する名前を入力する必要があります。たとえば、次の値を割り当てることができます。
+
+'restore.temporaryVolumeName=* SMSAP_temp_volume*
+
+
+
+ a| 
+retain.alwaysFreeExpiredBackups
+ a| 
+このパラメータを指定すると、データ保護が設定されていない場合でも、 SnapManager はバックアップの期限が切れた時点および高速リストアが実行された時点でバックアップを解放します。このパラメータを指定すると、有効期限が切れた保護バックアップが解放され、有効期限が切れた保護されていないバックアップが削除割り当てることができる値は次のとおりです。
+
+* 正しいです
++
+'*true*'をretain.alwaysFreeExpiredBackups'に割り当てると'バックアップが保護されているかどうかに関係なくSnapManager は期限切れのバックアップを解放します
+
++
+バックアップは、保護されていない場合、またはセカンダリストレージの保護コピーの期限が切れた場合に削除されます。
+
+* いいえ
++
+'*false*'をretain.alwaysFreeExpiredBackups'に割り当てると、SnapManager は保護されている期限切れのバックアップを解放します。
+
+
+
+
+
+ a| 
+「host.credentials.persist`」
+ a| 
+このパラメータは、 SnapManager にホストクレデンシャルを格納するかどうかを指定しデフォルトでは、ホストクレデンシャルは格納されません。ただし'リモート・クローン上で実行され'リモート・サーバへのアクセスを必要とするカスタム・スクリプトがある場合は'ホストの認証情報を保存する必要がありますホストの認証情報の保存を有効にするには'host.credentials.persist.'にtrueを割り当てます SnapManager は、ホストクレデンシャルを暗号化して保存します。
+
+
+
+ a| 
+'restorePlanMaxFilesDisplayed
+ a| 
+このパラメータを使用すると、リストアプレビューに表示するファイルの最大数を定義できます。デフォルトでは、 SnapManager のリストアプレビューに表示されるファイルの最大数は 20 です。ただし、 0 より大きい値に変更することはできます。たとえば、次の値を割り当てることができます。
+
+* 'restorePlanMaxFilesDisplayed=*30*
+
+
+
+NOTE: 無効な値を指定すると、デフォルトのファイル数が表示されます。
+
+
+
+ a| 
+'snapshot.list.timeout.min`
+ a| 
+このパラメータを使用すると、SnapManager 操作の実行時にSnapManager が「snap list」コマンドの実行を待機する時間を分単位で定義できます。デフォルトでは、SnapManager は30分間待機します。ただし、 0 より大きい値に変更することはできます。たとえば、次の値を割り当てることができます。
+
+* 'snapshot.list.timeout.min=*40*`
+
+
+
+NOTE: 無効な値を指定した場合は、デフォルト値が使用されます。
+
+SnapManager 操作では、snap listコマンドの実行時間が'snapshot.list.timeout.min'に割り当てられた値を超えると、タイムアウト・エラー・メッセージが表示されて操作が失敗します。
+
+
+
+ a| 
+pruneIfFileExistsInOtherDestination
+ a| 
+このプルーニングパラメータを使用すると、アーカイブログファイルの宛先を定義できます。アーカイブログファイルは、複数の保存先に保存されます。アーカイブ・ログ・ファイルを削除する場合、 SnapManager はアーカイブ・ログ・ファイルのデスティネーションを認識している必要があります。割り当てることができる値は次のとおりです。
+
+* 指定した宛先からアーカイブ・ログ・ファイルをプルーニングする場合'*false*'をpruneIfFileExistsInOtherDestination'に割り当てる必要があります
+* アーカイブ・ログ・ファイルを外部デスティネーションからプルーニングする場合は'*true*'をpruneIfFileExistsInOtherDestination'に割り当てる必要があります
+
+
+
+
+ a| 
+prune.archivelogs.backedup.from.otherdestination`
+ a| 
+このプルーニングパラメータを使用すると、指定したアーカイブログ送信先からバックアップされるアーカイブログファイル、または外部アーカイブログ送信先からバックアップされるアーカイブログファイルをプルーニングできます。割り当てることができる値は次のとおりです。
+
+* 指定された宛先からアーカイブ・ログ・ファイルをプルーニングする場合、アーカイブ・ログ・ファイルが-prune dest`を使用して指定された宛先からバックアップされている場合は、「* false *」をに割り当てる必要があります
++
+prune.archivelogs.backedup.from.otherdestination`
+
+* 指定した宛先からアーカイブ・ログ・ファイルをプルーニングする場合、およびアーカイブ・ログ・ファイルが他のいずれかの宛先から少なくとも1回バックアップされている場合は、「* true *」をに割り当てる必要があります
++
+prune.archivelogs.backedup.from.otherdestination`
+
+
+
+
+
+ a| 
+最大アーカイブログファイル.toprun.atATime`
+ a| 
+このプルーニングパラメータを使用すると、指定した時間にプルーニングできるアーカイブログファイルの最大数を定義できます。たとえば、次の値を割り当てることができます。
+
+最大アーカイブ・ログ・ファイル.toprun.atATime=*998*`
+
+
+NOTE: 最大アーカイブログ.files.toprune.atATime'に割り当てることができる値は'1000未満でなければなりません
+
+
+
+ a| 
+'archivelogs.Consolid`
+ a| 
+このパラメータを使用すると'*true*'をarchivelos.Consolidate'に割り当てた場合にSnapManager は'重複するアーカイブ・ログ・バックアップを解放できます
+
+
+
+ a| 
+suffix.backup.label.with .logs'
+ a| 
+このパラメータでは、データバックアップとアーカイブログバックアップのラベル名を区別するために、追加するサフィックスを指定できます。
+
+たとえば'*logs*'をsuffix.backup.label.with .logs'に割り当てると'_logsはアーカイブ・ログ・バックアップ・ラベルのサフィックスとして追加されますアーカイブ・ログのバックアップ・ラベルは「arch_logs」になります。
+
+
+
+ a| 
+backup.archivelogs.beyond.missingfiles`
+ a| 
+このパラメータを使用すると、 SnapManager で不足しているアーカイブログファイルをバックアップに含めることができます。
+
+アクティブファイルシステムに存在しないアーカイブログファイルは、バックアップに含まれません。アクティブ・ファイル・システムに存在しないアーカイブ・ログ・ファイルも含め'すべてのアーカイブ・ログ・ファイルを含める場合は'*true*'をbackup.archivelogs.beyond.missingfiles`に割り当てる必要があります
+
+欠落しているアーカイブ・ログ・ファイルを無視するには'*false*'を割り当てます
+
+
+
+ a| 
+srvctl.timeoutのように指定します
+ a| 
+このパラメータでは'srvctlコマンドのタイムアウト値を定義できます
+
+
+NOTE: Server Control（srvctl）は、RACインスタンスを管理するためのユーティリティです。
+
+SnapManager がタイムアウト値よりも「srvctl」コマンドの実行に時間がかかると、「Error：Timeout occurred while executing command：srvctl status」というエラーメッセージが表示されて、SnapManager 処理が失敗します。
+
+
+
+ a| 
+'snapshot.restore.storageNameCheck
+ a| 
+このパラメータは、SnapManager で、Data ONTAP 7-Modeからclustered Data ONTAPに移行する前に作成されたSnapshotコピーを使用してリストア処理を実行できるようにします。パラメータに割り当てられるデフォルト値は「* false *」です。Data ONTAP 7-Modeからclustered Data ONTAP に移行したあとに、移行前に作成されたSnapshotコピーを使用する場合は、「snapshot. restore.storageNameCheck=* true *」を設定します。
+
+
+
+ a| 
+services.common.disableAbort`
+ a| 
+このパラメータは、長時間実行されている処理が失敗した場合にクリーンアップを無効にします。Oracleのエラーが原因で長時間実行されているクローン操作が失敗した場合'クローンをクリーンアップしたくない場合があるので'services.common.disableAbort=*true*`.Forの例を設定できますservices.common.disableAbort=*true*`を設定した場合'クローンは削除されませんOracle 問題を修正して、障害が発生したポイントからクローニング処理を再開できます。
+
+
+
+ a| 
+* 「backup.sleep.DNFSレイアウト」
+* backup.sleep.dnfs.secs`
+
+ a| 
+これらのパラメータは、 Direct NFS （ dNFS ）レイアウトでスリープメカニズムをアクティブにします。dNFSまたはNetwork File System（NFS）を使用して制御ファイルのバックアップを作成すると、SnapManager は制御ファイルの読み取りを試みますが、ファイルが見つからない可能性があります。
+
+スリープ・メカニズムを有効にするには'backup.sleep.DNFS .layout=*true*`を確認しますデフォルト値は「* TRUE *」です。
+
+スリープ機能を有効にする場合は、スリープ時間をbackup.sleep.dnfs.secs`に割り当てる必要があります。割り当てられたスリープ時間は秒単位で、値は環境によって異なります。デフォルト値は 5 秒です。
+
+例：
+
+* `backup.sleep.DNFS .layout=*true*`
+* backup.sleep.dnfs.secs=2`
+
+
+
+
+ a| 
+* override.default.backup.pattern`
+* new.default.backup.pattern`
+
+ a| 
+バックアップラベルを指定しない場合、 SnapManager はデフォルトのバックアップラベルを作成します。これらのSnapManager パラメータを使用して、デフォルトのバックアップ・ラベルをカスタマイズできます。
+
+バックアップ・ラベルのカスタマイズを有効にするには'override.default.backup.pattern`の値が*true*'に設定されていることを確認しますデフォルト値は '*false*' です
+
+バックアップ・ラベルの新しいパターンを割り当てるには'データベース名'プロファイル名'スコープ'モード'ホスト名などのキーワードをnew.default.backup.pattern`に割り当てることができますキーワードはアンダースコアで区切る必要があります。たとえば、「new.default.backup.pattern=*dbname_profile_hostname_scope_mode*`」と入力します。
+
+
+NOTE: タイムスタンプは、生成されたラベルの末尾に自動的に追加されます。
+
+
+
+ a| 
+allow.underscore.in.clone.sid`
+ a| 
+Oracle では、 Oracle 11gR2 のクローン SID でアンダースコアを使用できます。このSnapManager パラメータでは、クローンのSID名にアンダースコアを含めることができます。
+
+クローンのSID名にアンダースコアを含めるには、「allow.underscore.in.clone.sid`」の値が「* true *」に設定されていることを確認します。デフォルト値は true です。
+
+Oracle 11gR2より前のバージョンのOracleを使用している場合、またはクローンのSID名にアンダースコアを含めない場合は、値を「* false *」に設定します。
+
+
+
+ a| 
+oracle.parameters.with.comma`
+ a| 
+このパラメータを使用すると、カンマ（,）を含むすべてのOracleパラメータを値として指定できます。任意の操作を実行している間、SnapManager は「oracle.parameters.with.comma`」を使用してすべてのOracleパラメータをチェックし、値の分割をスキップします。
+
+たとえば'`_NLS_NUMERTH_characters ='_`の値を指定する場合は'oracle.parameters.with.comma=_nls_numeric_characters_`を指定します複数のOracleパラメータがあり'値にカンマが含まれている場合は'oracle.parameters.with.comma`ですべてのパラメータを指定する必要があります
+
+
+
+ a| 
+* 「archivedLogs.exclude`」
+* 'archivedLogs.exclude.fileslike `
+* `<db-unique-name>.archiveLogs.exclude.fileslike `
+
+ a| 
+これらのパラメータを使用すると、Snapshotコピー対応のストレージ・システム上にないデータベースで、そのストレージ・システム上でSnapManager 処理を実行する場合に、SnapManager がプロファイルおよびバックアップからアーカイブ・ログ・ファイルを除外できます。
+
+
+NOTE: プロファイルを作成する前に、構成ファイルに除外パラメータを含める必要があります。
+
+これらのパラメータには、最上位のディレクトリまたはアーカイブログファイルが存在するマウントポイント、あるいはサブディレクトリの値を割り当てることができます。最上位のディレクトリまたはマウントポイントを指定し、ホストのプロファイルでデータ保護が有効になっている場合、そのマウントポイントまたはディレクトリは Protection Manager で作成されたデータセットに含まれません。ホストから除外するアーカイブログファイルが複数ある場合は、アーカイブログファイルのパスをカンマで区切る必要があります。
+
+アーカイブ・ログ・ファイルをプロファイルに含めてバックアップ対象から除外するには、次のいずれかのパラメータを指定する必要があります。
+
+* すべてのプロファイルまたはバックアップからアーカイブ・ログ・ファイルを除外するための正規表現を指定するには'archivedLogs.exclude'を使用します
++
+正規表現に一致するアーカイブログファイルは、すべてのプロファイルおよびバックアップから除外されます。
+
++
+たとえば'archiveLogs.exclude=`/arch/logs/on/local/disk1/.****'arch/logs/on/local/disk2/.****を設定できますASMデータベースの場合は'archivedLogs.exclude=\\+KHDB_arch_dest /khdb/archivelog /.******を設定できます 、\\+KHDB_NONNAARCHTWO/khdb/archivelog/。***** 。
+
+* すべてのプロファイルまたはバックアップからアーカイブ・ログ・ファイルを除外するためのSQL式を指定するには'archivedLogs.exclude.fileslikeを指定します
++
+SQL 式に一致するアーカイブログファイルは、すべてのプロファイルとバックアップから除外されます。
+
++
+たとえば'archivedLogs.exclude.fileslike =/arch/logs/on/local/disk1/%'arch/logs/on/local/disk2/%'を設定できます
+
+* `<db-unique-name>.archiveLogs.exclude.fileslikeアーカイブ・ログ・ファイルをプロファイルからのみ除外するためのSQL式'または指定された`_db-unique-name_`を持つデータベース用に作成されたバックアップを指定するために使用します
++
+SQL 式に一致するアーカイブ・ログ・ファイルは、プロファイルおよびバックアップから除外されます。
+
++
+たとえば'mydb.archivedLogs.exclude.fileslike =/arch/logs/on/local/disk1/%'arch/logs/on/local/disk2/%'mydb.archive.exclude.fileslike =/arch/logs/on/local/disk2/%'.arch/logs/on/local/disk2/%`
+
+
+
+
+NOTE: BR * Toolsでは、アーカイブ・ログ・ファイルを除外するように設定されている場合でも、次のパラメータはサポートされません。
+
+* 'archivedLogs.exclude.fileslike `
+* `<db-unique-name>.archiveLogs.exclude.fileslike `
+
+
+|===

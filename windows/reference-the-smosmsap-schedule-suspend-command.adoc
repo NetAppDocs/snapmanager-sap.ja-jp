@@ -1,0 +1,40 @@
+---
+permalink: windows/reference-the-smosmsap-schedule-suspend-command.html 
+sidebar: sidebar 
+keywords: command, suspend, backup, schedule, resume, smsap 
+summary: このコマンドは、バックアップスケジュールが再開されるまでバックアップスケジュールを一時停止します。 
+---
+= SMSAPのschedule suspendコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、バックアップスケジュールが再開されるまでバックアップスケジュールを一時停止します。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap schedule suspend
+-profile profile_name
+-schedule-name schedule_name
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+バックアップスケジュールを一時停止するデータベースに関連するプロファイルの名前を指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* *`-schedule -名前schedule_name`*
++
+バックアップスケジュールの作成時に指定したスケジュール名を指定します。
+
+

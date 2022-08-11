@@ -1,0 +1,42 @@
+---
+permalink: unix-installation-cmode/task-smsap-isg-verify-database-backups.html 
+sidebar: sidebar 
+keywords: verify, backup, database, ensure, backed-up, file, corrupt 
+summary: データベースのバックアップを検証して、バックアップファイルが破損していないことを確認できます。 
+---
+= データベースのバックアップを検証する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データベースのバックアップを検証して、バックアップファイルが破損していないことを確認できます。
+
+
+
+== このタスクについて
+
+バックアップの作成時に [Oracle DBVERIFY ユーティリティ * を使用してバックアップを検証する *] チェックボックスを選択しなかった場合は、これらの手順を手動で実行してバックアップを検証する必要があります。ただし、このチェックボックスを選択すると、 SnapManager によってバックアップが自動的に検証されます。
+
+.手順
+. [ リポジトリ（ Repositories ） ] ツリーから、プロファイルを選択します。
+. 検証するバックアップを右クリックし、 * Verify * を選択します。
+. [ 完了 ] をクリックします。
++
+処理が失敗した場合は、 * Operation Details * をクリックして、処理が失敗した原因を確認します。
+
++
+* リポジトリ * ツリーで、バックアップを右クリックし、 * プロパティ * をクリックして、検証操作の結果を表示します。
+
+
+
+
+
+== 完了後
+
+バックアップファイルを使用してリストア処理を実行できます。SnapManager のユーザインターフェイス（ UI ）を使用してリストア処理を実行する方法については、 _ オンラインヘルプ _ を参照してください。コマンドラインインターフェイス（CLI）を使用してリストア処理を実行する場合は、UNIXのSnapManager for SAPアドミニストレーションガイドを参照してください。
+
+* 関連情報 *
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP12481453["『SnapManager 3.4.1 for SAP Administration Guide for UNIX』を参照してください"^]

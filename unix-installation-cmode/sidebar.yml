@@ -1,0 +1,111 @@
+---
+section: unix-installation-cmode
+title: UNIX for clustered Data ONTAP のインストールとセットアップ
+entries:
+- title: 製品の概要
+  url: "/unix-installation-cmode/reference-smsap-isg-product-overview.html"
+  entries:
+  - title: SnapManager アーキテクチャ
+    url: "/unix-installation-cmode/reference-smsap-isg-snapmanager-architecture.html"
+- title: 導入のワークフロー
+  url: "/unix-installation-cmode/reference-smsap-isg-deployment-workflow.html"
+- title: 導入を準備
+  url: "/unix-installation-cmode/task-smsap-isg-prepare-for-deployment.html"
+  entries:
+  - title: SnapManager ライセンス
+    url: "/unix-installation-cmode/reference-smsap-isg-snapmanager-licensing.html"
+  - title: サポートされている構成
+    url: "/unix-installation-cmode/reference-supported-configurations.html"
+  - title: サポートされているストレージタイプ
+    url: "/unix-installation-cmode/reference-supported-storage-types.html"
+  - title: UNIX ホストの要件
+    url: "/unix-installation-cmode/reference-smsap-isg-host-requirements.html"
+- title: データベースを設定する
+  url: "/unix-installation-cmode/task-smsap-isg-configure-databases.html"
+  entries:
+  - title: ターゲットデータベースを設定します
+    url: "/unix-installation-cmode/task-smsap-isg-configure-the-target-database.html"
+  - title: ターゲットデータベースのOracleデータベースユーザを作成します
+    url: "/unix-installation-cmode/task-create-an-oracle-user-for-the-target-database.html"
+  - title: リポジトリデータベースインスタンスを作成します
+    url: "/unix-installation-cmode/task-create-the-repository-database-instance.html"
+  - title: リポジトリデータベースインスタンスのOracleユーザを作成します
+    url: "/unix-installation-cmode/task-create-an-oracle-user-for-the-repository-database-instance.html"
+  - title: Oracleリスナーの設定を確認します
+    url: "/unix-installation-cmode/task-verify-the-oracle-listener-configuration.html"
+- title: SnapManager をインストールします
+  url: "/unix-installation-cmode/task-smsap-isg-install-snapmanager.html"
+  entries:
+  - title: SAP BR * Toolsと統合
+    url: "/unix-installation-cmode/task-smsap-isg-integrate-with-sap-br-tools.html"
+- title: SnapManager をセットアップする
+  url: "/unix-installation-cmode/task-set-up-snapmanager.html"
+  entries:
+  - title: SnapManager サーバを起動します
+    url: "/unix-installation-cmode/task-smsap-isg-start-the-snapmanager-server.html"
+  - title: SnapManager のユーザインターフェイスにアクセスします
+    url: "/unix-installation-cmode/task-smsap-isg-access-the-snapmanager-user-interface.html"
+  - title: SnapManager リポジトリを設定します
+    url: "/unix-installation-cmode/task-smsap-isg-configure-the-snapmanager-repository.html"
+- title: SnapMirror レプリケーションと SnapVault レプリケーションのためのストレージシステムの準備
+  url: "/unix-installation-cmode/reference-prepare-storage-systems-for-snapmirror-and-snapvault-replication.html"
+  entries:
+  - title: SnapMirror と SnapVault の違いを理解する
+    url: "/unix-installation-cmode/concept-understanding-the-differences-between-snapmirror-and-snapvault.html"
+  - title: SnapMirrorレプリケーションのストレージシステムを準備
+    url: "/unix-installation-cmode/task-prepare-storage-systems-for-snapmirror-replication.html"
+  - title: SnapVault レプリケーションのストレージシステムを準備
+    url: "/unix-installation-cmode/task-prepare-storage-systems-for-snapvault-replication.html"
+- title: データベースのバックアップと検証
+  url: "/unix-installation-cmode/concept-backing-up-and-verifying-your-databases.html"
+  entries:
+  - title: SnapManager バックアップの概要
+    url: "/unix-installation-cmode/concept-smsap-isg-snapmanager-backup-overview.html"
+  - title: バックアップ戦略の定義
+    url: "/unix-installation-cmode/concept-smsap-isg-defining-a-backup-strategy.html"
+  - title: データベースのプロファイルを作成します
+    url: "/unix-installation-cmode/task-smsap-isg-create-a-profile-for-your-database.html"
+  - title: データベースをバックアップします
+    url: "/unix-installation-cmode/task-smsap-isg-back-up-your-database.html"
+  - title: データベースのバックアップを検証する
+    url: "/unix-installation-cmode/task-smsap-isg-verify-database-backups.html"
+  - title: 定期的なバックアップをスケジュールする
+    url: "/unix-installation-cmode/task-smsap-isg-schedule-recurring-backups.html"
+- title: UNIXホストからソフトウェアをアンインストールします
+  url: "/unix-installation-cmode/task-smsap-isg-uninstall-the-software-from-a-unix-host.html"
+- title: SnapManager のアップグレード
+  url: "/unix-installation-cmode/concept-upgrading-snapmanager-for-oracle-snapmanager-for-sap.html"
+  entries:
+  - title: SnapManager のアップグレード準備をしています
+    url: "/unix-installation-cmode/concept-preparing-to-upgrade-snapmanager-for-oracle-snapmanager-for-sap.html"
+  - title: SnapManager ホストをアップグレードします
+    url: "/unix-installation-cmode/task-upgrade-snapmanager-for-oracle-snapmanager-for-sap-hosts.html"
+  - title: アップグレード後の手順
+    url: "/unix-installation-cmode/concept-post-upgrade-tasks.html"
+    entries:
+    - title: 既存のリポジトリを更新します
+      url: "/unix-installation-cmode/task-update-the-existing-repository.html"
+    - title: バックアップ保持クラスを変更します
+      url: "/unix-installation-cmode/task-modify-the-backup-retention-class.html"
+    - title: リストアプロセスのタイプ
+      url: "/unix-installation-cmode/concept-restore-process-identification.html"
+  - title: ローリングアップグレードを使用した SnapManager ホストのアップグレード
+    url: "/unix-installation-cmode/concept-upgrading-snapmanager-hosts-by-using-rolling-upgrade.html"
+    entries:
+    - title: ローリングアップグレードを実行するための前提条件
+      url: "/unix-installation-cmode/concept-prerequisites-for-performing-rolling-upgrade.html"
+    - title: 単一のホストまたは複数のホストでローリングアップグレードを実行する
+      url: "/unix-installation-cmode/task-perform-rolling-upgrade-on-a-single-host-or-multiple-hosts.html"
+    - title: ロールバックとは
+      url: "/unix-installation-cmode/concept-what-a-rollback-is.html"
+      entries:
+      - title: ロールバックの実行に関する制限事項
+        url: "/unix-installation-cmode/concept-limitations-for-performing-a-rollback.html"
+      - title: ロールバックを実行するための前提条件
+        url: "/unix-installation-cmode/concept-prerequisites-for-performing-a-rollback.html"
+      - title: 単一のホストまたは複数のホストでロールバックを実行する
+        url: "/unix-installation-cmode/task-perform-a-rollback-on-a-single-host-or-multiple-hosts.html"
+      - title: ロールバック後のタスク
+        url: "/unix-installation-cmode/task-post-rollback-tasks.html"
+- title: 次の手順
+  url: "/unix-installation-cmode/reference-smsap-isg-where-to-go-next.html"

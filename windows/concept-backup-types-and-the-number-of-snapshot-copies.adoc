@@ -1,0 +1,61 @@
+---
+permalink: windows/concept-backup-types-and-the-number-of-snapshot-copies.html 
+sidebar: sidebar 
+keywords: backup, full, partial, snapshot, copy, copies, snapmanager, create, volume, tablespace, file 
+summary: バックアップのタイプ（フルまたはパーシャル）によって、 SnapManager で作成される Snapshot コピーの数が異なります。フル・バックアップで SnapManager は、 SnapManager は各ボリュームの Snapshot コピーを作成し、パーシャル・バックアップでは各表領域ファイルの Snapshot コピーを作成します。 
+---
+= バックアップのタイプおよび Snapshot コピーの数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップのタイプ（フルまたはパーシャル）によって、 SnapManager で作成される Snapshot コピーの数が異なります。フル・バックアップで SnapManager は、 SnapManager は各ボリュームの Snapshot コピーを作成し、パーシャル・バックアップでは各表領域ファイルの Snapshot コピーを作成します。
+
+
+NOTE: Data ONTAP では、 Snapshot コピーの最大数がボリュームあたり 255 に制限されています。この最大値に到達するのは、各バックアップが多数の Snapshot コピーで構成されている多数のバックアップを保持するように SnapManager を設定した場合だけです。
+
+ボリュームあたりの Snapshot コピー数が上限に達しないようにしながら、バックアッププールを適切に利用できるようにするには、不要になったバックアップを削除する必要があります。SnapManager の保持ポリシーを設定して、特定のバックアップ頻度のしきい値に達したときに正常に作成されたバックアップを削除することができます。たとえば、 SnapManager で日次バックアップが 4 つ作成されると、前日に作成された日次バックアップが SnapManager によって削除されます。
+
+以下の表に、 SnapManager でバックアップタイプに基づいて Snapshot コピーを作成する方法を示します。この表の例では'データベースZに2つのボリュームが含まれ'各ボリュームに2つのテーブルスペース(TS1とTS2)が含まれ'各テーブルスペースに2つのデータベース・ファイル(TS1.data1'TS1.data2'TS2.data1'TS2.data'TS2.data2)が含まれていると想定しています
+
+以下の表に、 2 種類のバックアップで作成される Snapshot コピー数がどう異なるかを示します。
+
+SnapManager は表領域単位ではなくボリューム単位で Snapshot コピーを作成するため、作成が必要な Snapshot コピー数は、通常少なくなります。
+
+
+NOTE: どちらのバックアップでも、ログファイルの Snapshot コピーが作成されます。
+
+|===
+| データベース内のボリューム | 表領域 TS1 （データベース・ファイル 2 個を含む） | 表領域 TS2 （データベース・ファイル 2 個を含む） | Snapshot コピーが作成されました | Snapshot コピーの総数 
+
+
+ a| 
+E ：データ
+ a| 
+TS1.data1
+ a| 
+TS2.data1
+ a| 
+ボリュームごとに 1 つ
+ a| 
+2.
+
+|===
+|===
+| データベース内のボリューム | 表領域 TS1 （データベース・ファイル 2 個を含む） | 表領域 TS2 （データベース・ファイル 2 個を含む） | Snapshot コピーが作成されました | Snapshot コピーの総数 
+
+
+ a| 
+E ：データ
+ a| 
+TS1.data1
+ a| 
+TS2.data1
+ a| 
+ファイルごとに 2 つ
+ a| 
+4.
+
+|===

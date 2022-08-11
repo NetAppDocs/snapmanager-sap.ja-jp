@@ -1,0 +1,33 @@
+---
+permalink: unix-administration/concept-restoring-a-backup-to-a-different-host.html 
+sidebar: sidebar 
+keywords: brrestore, smsap, restore, command, backup, brbackup, different, host, snapmanager, restoring 
+summary: BRRESTOREまたはSMSAPのリストアコマンドを使用して、BRBACKUPで作成したバックアップを別のホストにリストアできます。新しいホストでSnapManager for SAPも実行されている必要があります。 
+---
+= 別のホストへのバックアップのリストア
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+BRRESTOREまたはSMSAPのリストアコマンドを使用して、BRBACKUPで作成したバックアップを別のホストにリストアできます。新しいホストでSnapManager for SAPも実行されている必要があります。
+
+
+
+== SnapManager プロファイルを使用できるようにします
+
+BRRESTOREを実行する前に、元のホストのSnapManager プロファイルを新しいホストで使用できるようにする必要があります。次の手順を実行します。
+
+* リポジトリのクレデンシャルの設定：「SMSAP credential set」コマンドを使用して、新しいホストが元のバックアップに使用するSnapManager リポジトリにアクセスできるようにします。
+* Set credential for profile：「smsapscredential set」コマンドを使用して、新しいホストが元のバックアップに使用するSnapManager プロファイルにアクセスできるようにします。
+* 新しいホストにプロファイルをロードします。「smsapprofile sync」コマンドを使用して、SnapManager プロファイル情報を新しいホストにロードします。
+
+
+
+
+== BRRESTOREを実行します
+
+新しいホストで、元のホストの元のストレージと同じパスを使用して新しいストレージを設定します。
+
+「BRRESTORE」コマンドを使用して、バックアップを新しいホストにリストアします。デフォルトでは、ファイルは元のパスにリストアされます。リストアされたファイルの代替パスを指定するには'brRESTORE'コマンドの-mオプションを使用します「BRRESTORE」の詳細については、SAPのマニュアルを参照してください。

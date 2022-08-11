@@ -1,0 +1,25 @@
+---
+permalink: windows/task-retaining-backups-forever.html 
+sidebar: sidebar 
+keywords: specify, backup, ineligible, deletion, retention, policy, indefinite, retain, forever 
+summary: バックアップを無期限に保持するには、保持ポリシーの削除対象外にするように指定します。 
+---
+= バックアップを無期限に保持
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップを無期限に保持するには、保持ポリシーの削除対象外にするように指定します。
+
+.ステップ
+. バックアップを無制限に保持するように指定するには、次のコマンドを入力します。
++
+'smsapbackup update-profileprofile_name{-labellabel[data|-archivelogs|-idID}-retain-unlimited`
+
+
+
+* 関連情報 *
+
+xref:reference-the-smosmsapbackup-update-command.adoc[SMSAPのbackup updateコマンドを使用します]

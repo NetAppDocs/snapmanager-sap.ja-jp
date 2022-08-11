@@ -1,0 +1,27 @@
+---
+permalink: unix-administration/concept-database-restore-by-using-brrestore-and-brrecover.html 
+sidebar: sidebar 
+keywords: brrestore, brrecover, backup, brbackup, database, restore 
+summary: BRRESTOREコマンドとBRRECOVERコマンドは、BRBACKUPで作成したバックアップでのみ使用できます。 
+---
+= BRRESTOREまたはBRRECOVERを使用したデータベースのリストア
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+BRRESTOREコマンドとBRRECOVERコマンドは、BRBACKUPで作成したバックアップでのみ使用できます。
+
+BRRESTOREコマンドとBRRECOVERコマンドの具体的な手順と構文については、SAPのドキュメントを参照してください。
+
+SnapManager プロファイル名がSAPデータベースのシステムIDと異なる場合は、SnapManager プロファイル名を含むパラメータファイルの名前を指定する必要があります。これは、次のいずれかの方法で実行できます。
+
+* BRBACKUP'コマンドの-rオプションを使用して'バックアップ・ユーティリティのパラメータ・ファイル(initSID.utl`)を指定します
+* BR * Tools初期化ファイル(initSID.sap')にパラメータ・ファイルを指定します
+
+
+
+NOTE: BRBACKUPで作成したバックアップ（データ・ファイル'制御ファイル'オンラインREDOログ・ファイル）は'SMSAP restoreコマンドを使用してセカンダリ・ストレージ・システムまたはターシャリ・ストレージ・システムからリストアできますただし'SAPログ・ファイル'カーネル・ファイル'トランスポート・リクエストなどのその他のSAP構成ファイルは'BRBACKUP'と'SAP_DIR'を使用してバックアップし'BRRESTOREを使用してリストアすることをお勧めします
+
+'.utl'ファイルで'_fast=override_'を指定することにより'BRRESTOREを使用して'ボリューム・ベースの高速リストアのチェックを無効にできます（データベース・システム識別子と異なる場合は'プロファイル名を指定するファイルと同じ）

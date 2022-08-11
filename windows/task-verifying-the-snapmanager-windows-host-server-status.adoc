@@ -1,0 +1,18 @@
+---
+permalink: windows/task-verifying-the-snapmanager-windows-host-server-status.html 
+sidebar: sidebar 
+keywords: server, run, execute, command, initiate, snapmanager, operation, verify, status, host 
+summary: コマンドを実行したり、 SnapManager 処理を開始したりするには、サーバが実行されている必要があります。処理を実行する前に、サーバのステータスを確認する必要があります。 
+---
+= SnapManager ホストサーバのステータスの確認
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+コマンドを実行したり、 SnapManager 処理を開始したりするには、サーバが実行されている必要があります。処理を実行する前に、サーバのステータスを確認する必要があります。
+
+. [サービス]ウィンドウで'SAP用のSnapManager 3.3を選択します
+. ステータス列でステータスを確認します。
+

@@ -1,0 +1,82 @@
+---
+permalink: unix-administration/reference-the-smosmsapbackup-free-command.html 
+sidebar: sidebar 
+keywords: run, backup, free, command, snapshot, copies, copy, removing, remove, metadata, repository, smsap 
+summary: バックアップメタデータをリポジトリから削除せずにバックアップの Snapshot コピーを解放するには、 backup free コマンドを実行します。 
+---
+= SMSAPのbackup freeコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+backup freeコマンドを実行すると'リポジトリからバックアップ・メタデータを削除せずに'バックアップのSnapshotコピーを解放できます
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap backup free
+-profile profile_name
+[-label _label_ [-data | -archivelogs\] | [-id _guid_ | -all\]
+-force
+[-dump\] [-quiet | -verbose\]]
+----
+
+
+== パラメータ
+
+* `*-profile_name_*`
++
+解放するバックアップに関連付けられたプロファイルを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* '*-id_GUID_*'
++
+指定した GUID を持つバックアップのリソースを指定します。GUID はバックアップを作成するときに SnapManager によって生成されます。「SMSAP backup list」コマンドを使用して、各バックアップのGUIDを表示できます。バックアップIDを表示するには'-verboseオプションを含めます
+
+* '*-label_label_*
++
+指定したラベルを持つバックアップを指定します。
+
+* 「*-data*」
++
+データファイルを指定します。
+
+* `*-archivelogs*`
++
+アーカイブログファイルを指定します。
+
+* '*-all *'
++
+すべてのバックアップを指定します。指定されたバックアップを削除するには'-id'または-label'オプションを使用します
+
+* 「*-force *」を使用します
++
+Snapshot コピーを強制的に削除します。
+
+* 「*- quiet *」と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+'''
+
+
+== 例
+
+次に、バックアップを解放する例を示します。
+
+[listing]
+----
+smsap backup free -profile SALES1 -label full_backup_sales_May
+Operation Id [8abc01ec0e79004b010e79006da60001] succeeded.
+----
+'''

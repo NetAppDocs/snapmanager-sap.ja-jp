@@ -1,0 +1,38 @@
+---
+permalink: windows/concept-cloning-methods.html 
+sidebar: sidebar 
+keywords: clone, method, database, create, operation 
+summary: データベースのクローニングは、次の 2 つの方法のいずれかを使用して実行できます。選択する方法はクローン作成処理に影響します。 
+---
+= クローニングの方法
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データベースのクローニングは、次の 2 つの方法のいずれかを使用して実行できます。選択する方法はクローン作成処理に影響します。
+
+次の表は'クローン作成オペレーションとその-reserveオプションに対するクローン作成方法とその影響を説明していますLUN は、どちらの方法でもクローニングできます。
+
+|===
+| クローニング方法 | 説明 | クローンの create リザーブ 
+
+
+ a| 
+LUN のクローニング
+ a| 
+同じボリューム内に新しいクローン LUN が作成されます。
+ a| 
+LUNの-reserveを'yes'に設定すると'ボリューム内のLUNのフル・サイズ用のスペースが予約されます
+
+
+
+ a| 
+ボリュームクローニング
+ a| 
+新しい FlexClone が作成され、クローン LUN が新しいクローンボリューム内に存在するようになります。FlexClone テクノロジを使用します。
+ a| 
+ボリュームの-reserveが'yes'に設定されている場合'スペースはアグリゲート内のフル・ボリューム・サイズ用に予約されます
+
+|===

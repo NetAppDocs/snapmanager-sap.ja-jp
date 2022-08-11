@@ -1,0 +1,56 @@
+---
+permalink: unix-administration/reference-the-smosmsap-clone-splitstatus-command.html 
+sidebar: sidebar 
+keywords: command, run, split, process, smsap, split-status, clone 
+summary: このコマンドを使用すると、スプリットプロセスの実行の進捗状況を確認できます。 
+---
+= SMSAPのclone split -statusコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドを使用すると、スプリットプロセスの実行の進捗状況を確認できます。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap clone split-status
+-profile _profile_
+[-host _hostname_\]
+[-label _split-label_ | -id _split-id_\]
+[-quiet | -verbose\]]
+----
+
+
+== パラメータ
+
+* '*__プロファイルprofile_*
++
+クローンのプロファイル名を指定します。
+
+* `*-host_hostname_*`
++
+クローンが存在するホスト名を指定します。
+
+* '*-label_split-label_*
++
+クローニングプロセスで生成されるラベル名を示します。
+
+* `*-id_split-id_*`
++
+クローンプロセスによって生成される一意の ID です。
+
+* 「*- quiet *」と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+

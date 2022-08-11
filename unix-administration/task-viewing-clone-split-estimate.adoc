@@ -1,0 +1,36 @@
+---
+permalink: unix-administration/task-view-clone-split-estimate.html 
+sidebar: sidebar 
+keywords: clone, split, estimate, help, total, free, space, available, aggregate, database, view 
+summary: クローンスプリットの見積もりから、アグリゲートの使用可能な合計空きスペース、クローンと元のデータベースで共有しているスペース、およびクローン専用のスペースを確認できます。また、クローンが作成された日時と、クローンの作成日時も表示できます。この概算値に基づいて、クローンをスプリットするかどうかを決定します。 
+---
+= クローンスプリットの見積もりを表示します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+クローンスプリットの見積もりから、アグリゲートの使用可能な合計空きスペース、クローンと元のデータベースで共有しているスペース、およびクローン専用のスペースを確認できます。また、クローンが作成された日時と、クローンの作成日時も表示できます。この概算値に基づいて、クローンをスプリットするかどうかを決定します。
+
+* このタスクについて *
+
+クローンスプリットの見積もりを表示するには、元のクローンのプロファイル名、およびクローン処理のラベルまたは GUID を入力する必要があります。クローンが別のホストにある場合は、ホスト名を指定できます。
+
+.ステップ
+. クローンスプリットの見積もりを表示するには、次のコマンドを入力します。
++
+`* SMSAP clone split -estimate -profile_[-host_hostname_][-label_clone -label_|-id_clone -id_][-dquiet |-verbose *`
+
+
+
+'''
+次に、クローンスプリットストレージの推定値を計算するコマンドの例を示します。
+
+[listing]
+----
+
+					smsap clone split-estimate
+-profile p1 -label clone_test_label
+----
+'''

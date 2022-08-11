@@ -1,0 +1,27 @@
+---
+permalink: unix-installation-cmode/concept-what-a-rollback-is.html 
+sidebar: sidebar 
+keywords: rollback, operation, enable, revert, earlier, version, snapmanager, perform, roll, upgrade, what, is 
+summary: ロールバック処理を使用すると、ローリングアップグレードの実行後に SnapManager を以前のバージョンにリバートできます。 
+---
+= ロールバックとは
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ロールバック処理を使用すると、ローリングアップグレードの実行後に SnapManager を以前のバージョンにリバートできます。
+
+
+NOTE: ロールバックを実行する前に、リポジトリデータベース内のすべてのホストを解決できることを確認する必要があります。
+
+ロールバックを実行すると、次の項目がロールバックされます。
+
+* ロールバック元の SnapManager バージョンを使用して作成、解放、および削除されたバックアップ
+* ロールバック元の SnapManager バージョンを使用して作成されたバックアップから作成されたクローン
+* ロールバック元の SnapManager バージョンを使用して変更されたプロファイルのクレデンシャル
+* ロールバック元の SnapManager バージョンを使用して、バックアップの保護ステータスを変更した
+
+
+使用していた SnapManager バージョンで使用可能だった機能のうち、ロールバック先のバージョンでは使用できない機能はサポートされていません。たとえば、 SnapManager 3.3 以降から SnapManager 3.1 へのロールバックを実行した場合、 SnapManager 3.3 以降でプロファイルに設定された履歴設定は、 SnapManager 3.1 ではプロファイルにロールバックされません。これは、履歴設定機能が SnapManager 3.1 で使用できなかったためです。

@@ -1,0 +1,226 @@
+---
+permalink: windows/concept-variables-available-in-custom-script-for-restore-operation.html 
+sidebar: sidebar 
+keywords: snapmanager, context, information, form, environment, variable, restore, operation, perform, script, original, host, backup, restore 
+summary: SnapManager には、実行中のリストア処理に関連する環境変数の形式でコンテキスト情報が表示されます。たとえば、元のホストの名前とリストアされるバックアップのラベルを取得できます。 
+---
+= リストア処理のタスクスクリプトで使用できる変数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager には、実行中のリストア処理に関連する環境変数の形式でコンテキスト情報が表示されます。たとえば、元のホストの名前とリストアされるバックアップのラベルを取得できます。
+
+次の表に、スクリプトで使用できる環境変数を示します。
+
+|===
+| 変数（ variables ） | 説明 | の形式で入力し 
+
+
+ a| 
+'_SM_OPERATION_ID_'
+ a| 
+現在の処理の ID を指定します
+ a| 
+文字列
+
+
+
+ a| 
+`_SM_PROFILE_NAME_`
+ a| 
+使用するプロファイルの名前を指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_HOST_`」
+ a| 
+データベースのホスト名を指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_OS_USER_」
+ a| 
+データベースのオペレーティングシステム（ OS ）の所有者を指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_OS_GRON_`」
+ a| 
+データベースの OS グループを指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_BACKUP _TYPE_`」
+ a| 
+バックアップのタイプを指定します（ online 、 offline 、 auto ）。
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_BACKUP _LABEL_`」
+ a| 
+バックアップのラベルを指定します
+ a| 
+文字列
+
+
+
+ a| 
+'_sm_backup_ID_`
+ a| 
+バックアップ ID を指定します
+ a| 
+文字列
+
+
+
+ a| 
+'_sm_backup_profile_
+ a| 
+バックアップに使用するプロファイルを指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_RECOVERY_TYPE_`」
+ a| 
+リカバリ設定情報を指定します
+ a| 
+文字列
+
+
+
+ a| 
+`_SM_volume_restore_mode_`
+ a| 
+ボリュームリストア設定を指定します
+ a| 
+文字列
+
+
+
+ a| 
+「_SM_TARY_filer _name_」
+ a| 
+ターゲット・ストレージ・システム名を指定します
+
+[NOTE]
+====
+複数のストレージシステムを使用する場合は、ストレージシステム名をカンマで区切る必要があります。
+
+==== a| 
+文字列
+
+
+
+ a| 
+'_SM_TARGET_volume_name_`
+ a| 
+ターゲットボリューム名を指定します
+
+[NOTE]
+====
+ターゲットボリューム名には、ストレージデバイス名の先頭にsm_createdというプレフィックスを付ける必要があります。
+
+==== a| 
+文字列
+
+
+
+ a| 
+「_SM_HOST_FILE_SYSTEM_`」
+ a| 
+ホスト・ファイルシステムを指定します
+ a| 
+文字列
+
+
+
+ a| 
+`_SM_SNAPSHOT_NAMES _`
+ a| 
+Snapshotリストを指定します
+
+[NOTE]
+====
+Snapshotコピー名には、ストレージシステム名およびボリューム名のプレフィックスを付ける必要があります。Snapshot コピーの名前はカンマで区切って指定します。
+
+==== a| 
+文字列の配列
+
+
+
+ a| 
+'_SM_ARCHIVE _logs_director_'
+ a| 
+アーカイブログディレクトリを指定します
+
+[NOTE]
+====
+アーカイブログが複数のディレクトリに格納されている場合は、ディレクトリの名前をカンマで区切って指定します。
+
+==== a| 
+文字列の配列
+
+
+
+ a| 
+`_SM_REDOログ_DIRECTION_DIRECTION_`
+ a| 
+redo logsディレクトリを指定します
+
+[NOTE]
+====
+REDOログが複数のディレクトリに格納されている場合は、それらのディレクトリの名前をカンマで区切って指定します。
+
+==== a| 
+文字列の配列
+
+
+
+ a| 
+`_SM_control_files_director_`
+ a| 
+制御ファイルのディレクトリを指定します
+
+[NOTE]
+====
+制御ファイルが複数のディレクトリにある場合は、ディレクトリの名前をカンマで区切って指定します。
+
+==== a| 
+文字列の配列
+
+
+
+ a| 
+'_SM_data_files_director_'
+ a| 
+データファイルディレクトリを指定します
+
+[NOTE]
+====
+データファイルが複数のディレクトリにある場合は、それらのディレクトリの名前をカンマで区切って指定します。
+
+==== a| 
+文字列の配列
+
+|===

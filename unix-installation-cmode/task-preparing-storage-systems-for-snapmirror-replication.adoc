@@ -1,0 +1,103 @@
+---
+permalink: unix-installation-cmode/task-prepare-storage-systems-for-snapmirror-replication.html 
+sidebar: sidebar 
+keywords: snapmanager, mirror, snapshot, copies, copy, configure, data-protection, relationship, source, destination, volume, initialize, snapmirror, transfer, replication 
+summary: SnapManager を使用してSnapshotコピーをミラーリングするには、ソースボリュームとデスティネーションボリューム間のデータ保護関係を設定して初期化する必要があります。初期化の際に、 SnapMirror はソースボリュームの Snapshot コピーを作成して、そのコピーおよびコピーが参照するすべてのデータブロックをデスティネーションボリュームに転送します。また、ソースボリューム上の最新ではない Snapshot コピーもすべてデスティネーションボリュームに転送します。 
+---
+= SnapMirrorレプリケーションのストレージシステムを準備
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を使用してSnapshotコピーをミラーリングするには、ソースボリュームとデスティネーションボリュームの間に_data-protection relationship _を設定してから、関係を初期化する必要があります。初期化の際に、 SnapMirror はソースボリュームの Snapshot コピーを作成して、そのコピーおよびコピーが参照するすべてのデータブロックをデスティネーションボリュームに転送します。また、ソースボリューム上の最新ではない Snapshot コピーもすべてデスティネーションボリュームに転送します。
+
+
+
+== 必要なもの
+
+* クラスタ管理者である必要があります。
+* デスティネーションボリュームで Snapshot コピーを検証する場合は、ソースとデスティネーションの Storage Virtual Machine （ SVM ）に管理 LIF とデータ LIF が必要です。
++
+管理 LIF の DNS 名は SVM と同じにする必要があります。管理LIFのロールをdata、プロトコルをnone、ファイアウォールポリシーを* mgmt *に設定してください。
+
+
+
+
+
+== このタスクについて
+
+SnapMirror関係は、ONTAP コマンドラインインターフェイス（CLI）またはOnCommand のSystem Managerを使用して作成できます。次の手順ドキュメントでは、 CLI を使用しています。
+
+
+IMPORTANT: データベースファイルとトランザクションログを別々のボリュームに格納する場合は、データベースファイルのソースボリュームとデスティネーションボリュームの間、およびトランザクションログのソースボリュームとデスティネーションボリュームの間に関係を作成する必要があります。
+
+次の図は、 SnapMirror 関係を初期化するための手順を示しています。
+
+image::../media/snapmirror_steps_clustered.gif[この図は、 SnapMirror 関係を初期化するための手順を示しています。デスティネーションクラスタを特定しています,creating a destination volume,creating a SnapMirror relationship between the volumes]
+
+.手順
+. デスティネーションクラスタを特定します。
+. デスティネーション・クラスタで、「-type」DPオプションを指定してvolume createコマンドを実行し、ソース・ボリュームと同じサイズ以上のSnapMirrorデスティネーション・ボリュームを作成します。
++
+
+IMPORTANT: デスティネーションボリュームの言語設定とソースボリュームの言語設定が一致している必要があります。
+
++
+* 例 *
+
++
+次のコマンドでは、アグリゲート node01_aggr の SVM2 に、 dstvolB という名前の 2GB のデスティネーションボリュームを作成します。
+
++
+[listing]
+----
+cluster2::> volume create -vserver SVM2 -volume dstvolB -aggregate node01_aggr -type DP
+-size 2GB
+----
+. デスティネーションSVMで、「-type DP」パラメータを指定してsnapmirror createコマンドを実行し、SnapMirror関係を作成します。
++
+DP タイプは、 SnapMirror 関係として関係を定義します。
+
++
+* 例 *
+
++
+次のコマンドでは、 SVM1 のソースボリューム srcvolA と SVM2 のデスティネーションボリューム dstvolB との SnapMirror 関係を作成し、デフォルトの SnapMirror ポリシー DPDefault を割り当てます。
+
++
+[listing]
+----
+SVM2::> snapmirror create -source-path SVM1:srcvolA -destination-path SVM2:dstvolB
+-type DP
+----
++
+
+NOTE: SnapMirror 関係用のミラースケジュールを定義しないでください。バックアップスケジュールの作成時に自動的に定義されます。
+
++
+デフォルトのSnapMirrorポリシーを使用しない場合は、snapmirror policy createコマンドを呼び出してSnapMirrorポリシーを定義できます。
+
+. 関係を初期化するには'snapmirror initialize'コマンドを使用します
++
+初期化プロセスでは、デスティネーションボリュームへの _ ベースライン転送 _ が実行されます。SnapMirror はソースボリュームの Snapshot コピーを作成して、そのコピーおよびコピーが参照するすべてのデータブロックをデスティネーションボリュームに転送します。また、ソースボリューム上の他の Snapshot コピーもすべてデスティネーションボリュームに転送します。
+
++
+* 例 *
+
++
+次のコマンドでは、 SVM1 のソースボリューム srcvolA と SVM2 のデスティネーションボリューム dstvolB との関係を初期化します。
+
++
+[listing]
+----
+SVM2::> snapmirror initialize -destination-path SVM2:dstvolB
+----
+
+
+* 関連情報 *
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["ONTAP 9 クラスタピアリングエクスプレスガイド"^]
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-cg/home.html["ONTAP 9 ボリュームディザスタリカバリ設定エクスプレスガイド"^]

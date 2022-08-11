@@ -1,0 +1,36 @@
+---
+permalink: unix-administration/task-configure-history-for-backup-operation.html 
+sidebar: sidebar 
+keywords: snapmanager, sap, enable, maintain, history, cli, gui, history, configuring, configure, operation, report 
+summary: SnapManager for SAPでは、SnapManager のCLIまたはGUIから、SnapManager 処理の履歴を管理できます。SnapManager 処理の履歴はレポートとして表示できます。 
+---
+= SnapManager 処理の履歴を設定します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPでは、SnapManager のCLIまたはGUIから、SnapManager 処理の履歴を管理できます。SnapManager 処理の履歴はレポートとして表示できます。
+
+.ステップ
+. SnapManager 処理の履歴を設定するには、次のコマンドを入力します。
++
+`* SMSAP history set -profile_name、profile_name_[_profile_name1、profile_name2_]|_all_repository -login [-password_repo_repo_username_-dbname_host_dbdbname_-host_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_repo_port_}-operation {-reta個_ daily_name|-reta個 の-daily_name|daily_name|-reta個 の操作{-name|daily_name1_e|daily_name}-name|-reta個
+
+
+
+'''
+[listing]
+----
+
+smsap
+history set -profile -name PROFILE1 -operation -operations backup -retain -daily 6 -verbose
+----
+[listing]
+----
+
+smsap
+history set -profile -name PROFILE1 -operation -all -retain -weekly 3 -verbose
+----
+'''

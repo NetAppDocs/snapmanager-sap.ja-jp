@@ -1,0 +1,85 @@
+---
+permalink: unix-installation-cmode/task-smsap-isg-install-snapmanager.html 
+sidebar: sidebar 
+keywords: install, snapmanager, host, database, backup, run 
+summary: バックアップするデータベースが実行されている各ホストに SnapManager をインストールする必要があります。 
+---
+= SnapManager をインストールします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップするデータベースが実行されている各ホストに SnapManager をインストールする必要があります。
+
+
+
+== 必要なもの
+
+データベースホストに SnapDrive for UNIX がインストールされ、ストレージシステムへの接続が確立されている必要があります。
+
+SnapDrive をインストールしてストレージ・システムへの接続を確立する方法については、 SnapDrive for UNIX のマニュアルを参照してください。
+
+
+
+== このタスクについて
+
+データベースホストごとに 1 つの SnapManager インスタンスをインストールする必要があります。Real Application Cluster （ RAC ）データベースを使用している状況で RAC データベースをバックアップする場合は、 RAC データベースのすべてのホストに SnapManager をインストールする必要があります。
+
+.手順
+. UNIX用SnapManager for SAPインストールパッケージをネットアップサポートサイトからダウンロードし、ホストシステムにコピーします。
++
+http://mysupport.netapp.com/NOW/cgi-bin/software["ネットアップのダウンロード：ソフトウェア"^]
+
+. root ユーザとしてデータベースホストにログインします。
+. コマンドプロンプトで、インストールパッケージをコピーしたディレクトリに移動します。
+. インストール・パッケージを実行可能にします:chmod 755install_package.bin
+. SnapManager をインストールします:./install_package.bin
+. Enterキーを押して続行します。
+. 次の手順を実行します。
++
+.. オペレーティング・システム・ユーザーのデフォルト値を*ora *sid'に変更しますここで'sidはデータベースのシステムIDです
+.. オペレーティング・システム・グループのデフォルト値を受け入れるには、Enterキーを押します。
++
+グループのデフォルト値は、_dba__です。
+
+.. Enterキーを押して'スタートアップ・タイプのデフォルト値を受け入れます
+
+
++
+設定の概要が表示されます。
+
+. 構成の概要を確認し、Enterキーを押して続行します。
++
+SnapManager for SAPおよび必要なJava Runtime Environment (JRE)がインストールされ'SMSAP_setup'スクリプトが自動的に実行されます
+
++
+SnapManager for SAPは'/opt/NetApp/smsap.'にインストールされます
+
+
+
+
+
+== 完了後
+
+インストールが正常に完了したかどうかを確認するには、次の手順を実行します。
+
+. 次のコマンドを実行して、for SnapManager サーバを起動します：「smsap_server start」
++
+for SnapManager サーバが実行中であることを示すメッセージが表示されます。
+
+. 次のコマンドを入力して、SAP forシステムのSnapManager が正しく動作していることを確認します。「SMSAP system verify」
++
+「操作ID番号は成功しました。」というメッセージが表示されます
+
++
+「number」は、オペレーションID番号です。
+
+
+
+* 関連情報 *
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30050["ネットアップのマニュアル： SnapDrive for UNIX"^]
+
+http://mysupport.netapp.com/["ネットアップサポートサイトのドキュメント： mysupport.netapp.com"^]

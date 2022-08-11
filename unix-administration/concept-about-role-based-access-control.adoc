@@ -1,0 +1,65 @@
+---
+permalink: unix-administration/concept-about-role-based-access-control.html 
+sidebar: sidebar 
+keywords: role-based, access, control, rbac, control, access, snapmanager, operation, administrator, environment, role 
+summary: Role-Based Access Control （ RBAC ；ロールベースアクセス制御）を使用すると、 SnapManager 処理へのアクセス権を持つユーザを制御できます。RBAC では、管理者がロールを定義してそれらのロールにユーザを割り当てることで、ユーザのグループを管理できます。RBAC がすでに設定されている環境では、 SnapManager RBAC を使用できます。 
+---
+= ロールベースアクセス制御について
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Role-Based Access Control （ RBAC ；ロールベースアクセス制御）を使用すると、 SnapManager 処理へのアクセス権を持つユーザを制御できます。RBAC では、管理者がロールを定義してそれらのロールにユーザを割り当てることで、ユーザのグループを管理できます。RBAC がすでに設定されている環境では、 SnapManager RBAC を使用できます。
+
+RBAC には次のコンポーネントが含まれています。
+
+* リソース：データベースを構成するデータファイルを格納するボリュームと LUN 。
+* 機能：リソースに対して実行できる操作のタイプ。
+* [ ユーザー ]: 機能を付与するユーザー
+* ロール：リソースに許可されるリソースと機能のセットです。この機能を実行するユーザに特定のロールを割り当てます。
+
+
+RBAC は SnapDrive で有効にします。その後、 Operations Manager Web のグラフィカルユーザインターフェイスまたはコマンドラインインターフェイスで、ロールごとに特定の機能を設定できます。DataFabric Manager サーバで RBAC のチェックが実行されます。
+
+次の表に、 Operations Manager に設定されたロールとその一般的なタスクを示します。
+
+[cols="1a,3a"]
+|===
+| ロール | 一般的なタスク 
+
+
+ a| 
+SAP Basis管理者
+ a| 
+* ホスト上にある Oracle データベースを作成、管理、および監視する
+* データベースバックアップのスケジュール設定と作成
+* バックアップが有効であり、リストア可能であることを確認してください
+* データベースのクローニング
+
+
+
+
+ a| 
+サーバ管理者
+ a| 
+* ストレージシステムおよびアグリゲートのセットアップ
+* 空きスペースのボリュームを監視しています
+* ユーザからの要求に応じたストレージのプロビジョニング
+* ディザスタリカバリのミラーリングの設定と監視
+
+
+
+
+ a| 
+ストレージアーキテクト
+ a| 
+* ストレージに関するアーキテクチャの決定
+* ストレージ容量の増加を計画する
+* ディザスタリカバリ戦略の計画
+* チームのメンバーに能力を委譲する
+
+
+|===
+RBAC が使用されている場合（ Operations Manager がインストールされ、 SnapDrive で RBAC が有効になっている場合）は、ストレージ管理者がデータベースファイル用のすべてのボリュームおよびストレージシステムに RBAC 権限を割り当てる必要があります。

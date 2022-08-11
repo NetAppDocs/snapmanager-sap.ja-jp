@@ -1,0 +1,20 @@
+---
+permalink: windows/concept-full-or-partial-restoration-of-the-database.html 
+sidebar: sidebar 
+keywords: snapmanager, flexibility, restore, full, database, tablespace, file, control, combination, entities, entity, file-based, process, full, partial, restoration 
+summary: SnapManager では、フルデータベース、特定の表領域、ファイル、制御ファイル、またはこれらのエンティティの組み合わせを柔軟にリストアできます。SnapManager では、ファイルベースのリストアプロセスを使用してデータをリストアできます。 
+---
+= データベースの完全リストアまたは部分リストア
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、フルデータベース、特定の表領域、ファイル、制御ファイル、またはこれらのエンティティの組み合わせを柔軟にリストアできます。SnapManager では、ファイルベースのリストアプロセスを使用してデータをリストアできます。
+
+SnapManager を使用すると、データベース管理者（ DBA ）はリストア処理をプレビューできます。プレビュー機能を使用すると、 DBA は各リストア処理をファイル単位で表示できます。
+
+DBA は、リストア処理を実行する際に、 SnapManager が情報をリストアおよびリカバリするレベルを指定できます。たとえば、 DBA は特定の時点にデータをリストアおよびリカバリできます。リストアポイントには、日時または Oracle System Change Number （ SCN ）を指定できます。
+
+SnapManager （ 3.2 以降）を使用すると、 DBA の介入なしで、データベースのバックアップを自動的にリストアおよびリカバリできます。SnapManager を使用してアーカイブログバックアップを作成し、そのアーカイブログバックアップを使用してデータベースバックアップをリストアおよびリカバリできます。バックアップのアーカイブログファイルが外部アーカイブログの場所で管理されている場合でも、それらのアーカイブログをリストアしたデータベースのリカバリに利用できるように外部の場所を指定できます。

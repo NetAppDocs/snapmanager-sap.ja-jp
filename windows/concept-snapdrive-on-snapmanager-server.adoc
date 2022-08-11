@@ -1,0 +1,14 @@
+---
+permalink: windows/concept-snapdrive-on-snapmanager-server.html 
+sidebar: sidebar 
+keywords: snapmanager, snapdrive, windows, snapshot, copies, copy, storage, system, server 
+summary: SnapManager では、 SnapDrive for Windows を使用してストレージ・システムの Snapshot コピーを作成します。SnapDrive は、 SnapManager と同じサーバに配置されます。 
+---
+= SnapManager サーバの SnapDrive
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、 SnapDrive for Windows を使用してストレージ・システムの Snapshot コピーを作成します。SnapDrive は、 SnapManager と同じサーバに配置されます。

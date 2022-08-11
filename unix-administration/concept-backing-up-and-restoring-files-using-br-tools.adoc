@@ -1,0 +1,20 @@
+---
+permalink: unix-administration/concept-backing-up-and-restoring-files-using-br-tools.html 
+sidebar: sidebar 
+keywords: addition, backing, up, database, file, br, tools, back, restore, sap, system, storage 
+summary: データベース・ファイルのバックアップに加え、BR * Toolsを使用して、ストレージ・システムに保管されているSAPシステム・ファイルなどのファイルをバックアップおよびリストアできます 
+---
+= BR * Toolsを使用したファイルのバックアップとリストア
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データベース・ファイルのバックアップに加え、BR * Toolsを使用して、ストレージ・システムに保管されているSAPシステム・ファイルなどのファイルをバックアップおよびリストアできます。
+
+SAP BR * Toolsのドキュメントに従って、BRBACKUPコマンドとBRRESTOREコマンドを実行します。SnapManager for SAPを使用している場合は、次の追加情報 が適用されます。
+
+* ファイルがストレージシステムに保存されている必要があります。
+* バックアップするファイルの権限があることを確認してください。たとえば'SAPシステム・ファイル（BRBACKUP BACKUP_MODE=SAP_dir'）またはOracleシステム・ファイル（BRBACKUP BACKUP_MODE=ora_dir）をバックアップするには'ホスト上でroot権限が必要ですBRBACKUPを実行する前にsu rootコマンドを使用します
+

@@ -1,0 +1,35 @@
+---
+permalink: windows/task-configuring-e-mail-notification-for-an-existing-profile.html 
+sidebar: sidebar 
+keywords: updating, update, profile, configure, receive, email, notification, completion, database, operation, configuring, exist 
+summary: プロファイルを更新する場合は、データベース処理が完了したときに E メール通知を受け取るようにを設定できます。 
+---
+= 既存のプロファイルの E メール通知を設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルを更新する場合は、データベース処理が完了したときに E メール通知を受け取るようにを設定できます。
+
+* アラートの送信元 E メールアドレスを設定する必要があります。
+* アラートの送信先となる E メールアドレスは 1 つまたは複数入力する必要があります。
++
+複数のアドレスをカンマで区切って指定できます。カンマと次の E メールアドレスの間にスペースを入れないようにしてください。必要に応じて、 E メールに件名を追加することもできます。
+
++
+
+NOTE: 一連の複数の E メールアドレスを二重引用符で囲む必要があります。
+
+
+
+.ステップ
+. 次のコマンドを入力します。
++
+SMSAP profile update-profileprofile[-profile-passwordprofileprofileprofileprofile_password][-datab_dbname -host[jectiddb_host[-jectidb_host][-login_usernamedb_username -password] db_password-port db_port]][{-RMAN {-RMAN {-login-controlfile | user-name-usernamedb_addressernader-password]-duration[-drman [-drman [--email-password][--password]-email[-drane-password][-drman [-drman [-drman [-drman]-password]-email[-drman]-password]-email[-drman [-drman]-password]-password]-email[-drman[週次のパターン[--password][--password]-count[-drman]-password][-drman [-drman [-drman [-drman]-password][--password][--password]-password][--password][--password][--password]-password][-drman[電子メール[-drman[週次パターン[-drman[週
+
++
+success オプションを使用すると、成功したデータベース処理についてのみ通知が受信され、失敗したデータベース処理についてのみ通知が受信されます。
+
+

@@ -1,0 +1,18 @@
+---
+permalink: unix-installation-cmode/concept-restore-process-identification.html 
+sidebar: sidebar 
+keywords: restore, process, support, snapmanager, sap, version, upgrade, types 
+summary: すべてのSnapManager for SAPバージョンで、すべてのリストアプロセスがサポートされているわけではありません。SnapManager をアップグレードしたら、バックアップのリストアに使用できるリストアプロセスを理解しておく必要があります。 
+---
+= リストアプロセスのタイプ
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+すべてのSnapManager for SAPバージョンで、すべてのリストアプロセスがサポートされているわけではありません。SnapManager をアップグレードしたら、バックアップのリストアに使用できるリストアプロセスを理解しておく必要があります。
+
+SnapManager 3.0 以降を使用して作成されたバックアップは、高速リストアとファイルベースのリストアの両方のプロセスを使用してリストアできます。ただし、 SnapManager 3.0 より前のバージョンを使用して作成されたバックアップは、ファイルベースのリストアプロセスだけを使用してリストアできます。
+
+バックアップの作成に使用するSnapManager のバージョンは'-backup showコマンドを実行して確認できます

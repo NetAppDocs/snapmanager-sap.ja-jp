@@ -1,0 +1,26 @@
+---
+permalink: unix-installation-cmode/task-create-an-oracle-user-for-the-repository-database-instance.html 
+sidebar: sidebar 
+keywords: oracle, user, require, log, access, repository, database, instance, create, user, connect, resource, privilege, create 
+summary: 'Oracle ユーザは、にログインしてリポジトリデータベースインスタンスにアクセスする必要があります。このユーザーは " 接続およびリソースの権限を持つユーザーを作成する必要があります' 
+---
+= リポジトリデータベースインスタンスのOracleユーザを作成します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Oracle ユーザは、にログインしてリポジトリデータベースインスタンスにアクセスする必要があります。このユーザは、 _CONNECT_AND _RESOURLE_Privileges で作成する必要があります。
+
+.手順
+. SQL*Plus:sqlplus '/as sysdba'にログインします
+. 新しいユーザを作成し、そのユーザに管理者パスワードを割り当てます。「*create user_name identified by admin_password default tablespace tablespace tablespace _name quota unlimited on tablespace_name;*`」
++
+** 「user_name」は'リポジトリ・データベース用に作成するユーザの名前です
+** 「admin_password」は、ユーザに割り当てるパスワードです。
+** 'tablespace_name'は'リポジトリ・データベース用に作成されたテーブルスペースの名前です
+
+
+. 新しいOracleユーザーに_connect_or_resource_privilegesを代入します:'*grant connect'resource to user_name ;*
+

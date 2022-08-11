@@ -1,0 +1,76 @@
+---
+permalink: unix-administration/task-schedule-archive-log-file-pruning.html 
+sidebar: sidebar 
+keywords: create, backup, schedule, pruning, prune, archive, log, file, scheduling 
+summary: バックアップを作成する場合、指定した時間にアーカイブ・ログ・ファイルが削除されるようにスケジュールを設定できます。 
+---
+= アーカイブ・ログ・ファイルの削除をスケジュールします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+バックアップを作成する場合、指定した時間にアーカイブ・ログ・ファイルが削除されるようにスケジュールを設定できます。
+
+* このタスクについて *
+
+SnapManager を使用すると、アクティブファイルシステムからアーカイブログファイルを定期的に削除できます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+`* SMSAP schedule create -profile profile_profile_name_{[-full｛-online |-offline-offline |-auto｝[-retain [-hourly |-daily |-weekly |-unlimited ][-verify]|[-data [-files_[_[_files_]|[-unについて は、毎月のコメント|-retaes]|-retain-log]-one-comment [毎日|アーカイブ[--unlimited |アーカイブ |-proectnow |-noprotect][-backup-dest_path1_[,[_path2_]][-exclude-dest_path1_[_,path2_]][-prunelogs {all|-ilscnsc_untilscn_untilsc_|-forest_seconds]|-dest_comprune -weekly-yyyy_days_schedule|-weekly-yyyy_s|-yyyy_days_unce_unce|-weekly-yyyy_days_es|-weekly-yyyy_s|-weekly-fore_s|-weekly-yyyy_s|-weekly-fore_comment_unce|-weekly-fore_s|-date_s|-weekly-fore_comment_yyyy_s|-date_s|-weekly-fore_s|-weekly-fore_s|-weekly-fore_s|-date_comment_yyyy_s|-date_date_s|-weekly-ford start_time <yyyy-mm-dd HH：MM>_｝-runAsUser_runAsUser_[-force ][-quiet |-verbose *
+
++
+[cols="2a,4a"]
+|===
+| 状況 | 作業 
+
+
+ a| 
+* アーカイブ・ログ・ファイルの削除をスケジュール *
+ a| 
+次のオプションを指定します。
+
+** アーカイブ・ログ・ファイルのプルーニングをスケジュールするには'-logprunsを使用します
+** アーカイブ・ログ・デスティネーションからアーカイブ・ログ・ファイルをプルーニングするには'-prune-dest'を指定します
+
+
+
+
+ a| 
+* スケジュール名を入力 *
+ a| 
+--schedule-nameオプションを指定します
+
+
+
+ a| 
+* 特定の時間間隔でアーカイブ・ログ・ファイルを削除するようにスケジュールします *
+ a| 
+'interval'オプションを指定して'次のインターバルクラスに基づいてアーカイブ・ログ・ファイルをプルーニングするかどうかを指定します
+
+** `-時間単位」
+** 「-daily`」
+** 「-weekly」と入力します
+** 「-monthly」を指定できます
+** 「-onetimeonly」と入力します
+
+
+
+
+ a| 
+* スケジュール操作に関するコメントを追加します。 *
+ a| 
+オプションの後ろに概要 文字列を付けて'-schedule-comment'を指定します
+
+
+
+ a| 
+* スケジュール操作の開始時刻 * を指定します
+ a| 
+yyyy-mm-dd hh:mm形式で「-start-time」オプションを指定します。
+
+|===
+

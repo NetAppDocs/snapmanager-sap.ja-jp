@@ -1,0 +1,30 @@
+---
+permalink: unix-administration/task-enable-role-based-access-control.html 
+sidebar: sidebar 
+keywords: snapmanager, role-based, access, control, rbac, enable, snapdrive, installation, disable, default, operation 
+summary: SnapManager の RBAC は、 SnapDrive を使用して有効にします。SnapDrive のインストール時、 RBAC はデフォルトで無効になっています。SnapDrive で RBAC を有効にすると、 SnapManager で RBAC を有効にした状態で処理が実行されるようになります。 
+---
+= ロールベースアクセス制御を有効にします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager の RBAC は、 SnapDrive を使用して有効にします。SnapDrive のインストール時、 RBAC はデフォルトで無効になっています。SnapDrive で RBAC を有効にすると、 SnapManager で RBAC を有効にした状態で処理が実行されるようになります。
+
+* このタスクについて *
+
+SnapDrive の「snapDrive.config」ファイルには、RBACを有効にするオプションが多数設定されています。
+
+SnapDrive の詳細については、 SnapDrive のドキュメントを参照してください。
+
+.手順
+. エディタで'snapdrive.confファイルを開きます
+. RBACメソッドパラメータの値を「* native *」から「* dfm *」に変更して、RBACを有効にします。
++
+このパラメータのデフォルト値は'*native*'で'RBACを無効にします
+
+
+
+http://mysupport.netapp.com/["のドキュメントについては、ネットアップサポートサイトを参照してください"^]

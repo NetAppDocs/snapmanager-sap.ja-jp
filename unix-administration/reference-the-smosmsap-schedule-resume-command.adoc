@@ -1,0 +1,37 @@
+---
+permalink: unix-administration/reference-the-smosmsap-schedule-resume-command.html 
+sidebar: sidebar 
+keywords: command, resume, suspend, backup, schedule, smsap 
+summary: このコマンドは、中断したバックアップスケジュールを再開します。 
+---
+= SMSAPのschedule resumeコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、中断したバックアップスケジュールを再開します。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap schedule resume -profile _profile_name_
+-schedule-name _schedule_name_[-quiet | -verbose]]
+----
+
+
+== パラメータ
+
+* `*-profile_name_*`
++
+中断したバックアップのスケジュールを再開するデータベースに関連するプロファイルの名前を指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* `*-schedule - name_schedule_name_name_*`
++
+バックアップスケジュールの作成時に指定したスケジュール名を指定します。
+
+

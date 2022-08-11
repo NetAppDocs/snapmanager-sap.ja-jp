@@ -1,0 +1,29 @@
+---
+permalink: windows/concept-protecting-database-backups-by-using-post-scripts.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, protect, database, backup, postscript, snapmirror, snapvault, establish, primary, secondary, storage, system, default, post-process, activity, cli, gui 
+summary: SnapManager では、プライマリストレージシステムとセカンダリストレージシステムの間に SnapMirror 関係または SnapVault 関係が確立されたときに、ポストスクリプトを使用してデータベースバックアップを保護できます。SnapManager の CLI と GUI の両方から、バックアップ処理後のアクティビティのデフォルトのポストスクリプトを使用できます。 
+---
+= ポストスクリプトを使用したデータベースバックアップの保護
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、プライマリストレージシステムとセカンダリストレージシステムの間に SnapMirror 関係または SnapVault 関係が確立されたときに、ポストスクリプトを使用してデータベースバックアップを保護できます。SnapManager の CLI と GUI の両方から、バックアップ処理後のアクティビティのデフォルトのポストスクリプトを使用できます。
+
+default_install_directory\plugins\backup\create\postで使用できる次のデフォルトのポストスクリプトを使用できます。
+
+* Data ONTAP 7-Modeを使用している場合は'SnapMirror PostScriptのMirror_The _backup.cmd
+* Data ONTAP 7-Modeを使用している場合は、SnapVault PostScript「Vault_The _backup.cmd」が必要です
+* clustered Data ONTAP を使用している場合は、SnapMirrorポストスクリプト「Mirror_The _backup_cDOT .cmd」が必要です
+* clustered Data ONTAP を使用している場合は、SnapVault ポストスクリプト「Vault_The _backup_cDOT」を使用します
+
+
+詳細については'default_install_directory\pluginsで入手できる'readme.txt'を参照してください
+
+SnapManager 3.1 以前では、クローン処理専用に前処理スクリプトまたは後処理スクリプトを提供しています。SnapManager 3.2 以降には、バックアップ処理およびリストア処理用の前処理スクリプトと後処理スクリプトが用意されています。これらのスクリプトは、バックアップ処理またはリストア処理の前後に実行することができます。
+
+
+NOTE: スクリプトは参照用としてのみ提供されています。SnapDrive 7.0 for Windows 以降でテスト済みですが、環境によっては動作しないことがあります。このスクリプトは、セカンダリの保護要件に基づいてカスタマイズする必要があります。これらのスクリプトは、 6.2 より前のバージョンの SnapDrive では機能しません。

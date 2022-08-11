@@ -1,0 +1,36 @@
+---
+permalink: windows/task-view-operation-details.html 
+sidebar: sidebar 
+keywords: view, detail, information, particular, profile, verify, success, failure, operation, resource, operation 
+summary: 特定のプロファイルに関する詳細情報を表示して、処理の成功または失敗を確認できます。また、特定の処理に使用されているストレージリソースを確認することもできます。 
+---
+= 処理の詳細を表示します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+特定のプロファイルに関する詳細情報を表示して、処理の成功または失敗を確認できます。また、特定の処理に使用されているストレージリソースを確認することもできます。
+
+
+
+== このタスクについて
+
+特定の処理に関する次の詳細を表示できます。
+
+* 処理 ID
+* 処理のタイプ
+* 処理が強制実行されたかどうか
+* 実行時情報（ステータス、開始日、終了日など）
+* 処理を実行したホスト。プロセス ID と SnapManager のバージョンも含まれます
+* リポジトリ情報
+* 使用中のストレージリソース
+
+
+.ステップ
+. 特定の処理IDについて詳細情報を表示するには、次のコマンドを入力します。
++
+`* SMSAP operation show -profile_name_[-label_label_|-id_id_][-quiet |-verbose *`
+
+

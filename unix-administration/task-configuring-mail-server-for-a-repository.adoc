@@ -1,0 +1,75 @@
+---
+permalink: unix-administration/task-configure-mail-server-for-a-repository.html 
+sidebar: sidebar 
+keywords: snapmanager, enable, specify, mail, server, details, email, alert, sent, repository, configuring, configure 
+summary: SnapManager を使用すると、 E メールアラートの送信元のメールサーバの詳細を指定できます。 
+---
+= リポジトリのメールサーバを設定します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager を使用すると、 E メールアラートの送信元のメールサーバの詳細を指定できます。
+
+* このタスクについて *
+
+SnapManager を使用すると、送信元の E メールサーバのホスト名または IP アドレスと、 E メール通知を必要とするリポジトリデータベース名の E メールサーバのポート番号を指定できます。メールサーバのポート番号は、 0~65535 の範囲で設定できます。デフォルト値は 25 です。E メールアドレスの認証が必要な場合は、ユーザ名とパスワードを指定できます。
+
+E メール通知を処理するホストサーバの名前または IP アドレスを指定する必要があります。
+
+.ステップ
+. メールアラートを送信するようにメールサーバを設定するには、次のコマンドを入力します。SMSAP notification set -sender-emailemail_address -mailhostmailport [-authentication -usernameusername -password]-repository -portrepo_port -dbnamerepo_service_name -hostrepo_host -login -usernamerepo_username -usernamerepo _username
++
+このコマンドの他のオプションは、次のとおりです。
+
++
+「[-force]``」
+
++
+「[-quiet |-verbose ]」
+
++
+[cols="2a,4a"]
+|===
+| 実行する作業 | 作業 
+
+
+ a| 
+* 送信者の電子メールアドレスを指定します。 *
+ a| 
+「-sender -email」オプションを指定します。SnapManager 3.2 for SAPでは、Eメールアドレスのドメイン名を指定する際にハイフン（-）を使用できます。たとえば、送信者の電子メールアドレスを「-sender -email _user@org-corp.com_」として指定できます
+
+
+
+ a| 
+* 送信者の電子メールサーバのホスト名または IP アドレスを指定します。 *
+ a| 
+メール・ホスト・オプションを指定します
+
+
+
+ a| 
+* 電子メール通知を必要とするリポジトリ・データベース名の電子メール・サーバのポート番号を指定しますメールサーバのポート番号は、ゼロから 65535 までの範囲で設定できます。デフォルト値は 25. * です
+ a| 
+-mailportオプションを指定します
+
+
+
+ a| 
+* 電子メールアドレスの認証が必要な場合は、ユーザー名とパスワードを指定します。 *
+ a| 
+-authenticationオプションの後に'ユーザ名とパスワードを指定します
+
+|===
+
+
+'''
+次の例は、メールサーバを設定します。
+
+[listing]
+----
+smsap notification set -sender-email admin1@org.com -mailhost hostname.org.com -mailport 25 authentication -username admin1 -password admin1 -repository -port 1521 -dbname SMSAPREPO -host hotspur -login -username grabal21 -verbose
+----
+'''

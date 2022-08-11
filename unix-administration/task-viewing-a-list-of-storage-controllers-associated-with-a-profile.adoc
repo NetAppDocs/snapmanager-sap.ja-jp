@@ -1,0 +1,46 @@
+---
+permalink: unix-administration/task-view-a-list-of-storage-controllers-associated-with-a-profile.html 
+sidebar: sidebar 
+keywords: view, list, storage, system, associate, particular, profile 
+summary: 特定のプロファイルに関連付けられているストレージシステムのリストを表示できます。 
+---
+= プロファイルに関連付けられているストレージシステムのリストを表示する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+特定のプロファイルに関連付けられているストレージシステムのリストを表示できます。
+
+* このタスクについて *
+
+リストには、特定のプロファイルに関連付けられているストレージ・システム名が表示されます。
+
+
+NOTE: プロファイルに使用できるバックアップがない場合、プロファイルに関連付けられているストレージ・システム名は表示できません。
+
+.ステップ
+. 特定のプロファイルに関連付けられているストレージ・システムに関する情報を表示するには、次のコマンドを入力します。
++
+`* SMSAP storage list -profile profile_[-dquiet |-verbose *`
+
+
+
+'''
+
+
+== 例
+
+[listing]
+----
+smsap storage list -profile mjubllian
+----
+[listing]
+----
+Sample Output:
+Storage Controllers
+--------------------
+STCO1110-RTP07OLD
+----
+'''

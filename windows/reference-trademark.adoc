@@ -1,0 +1,15 @@
+---
+permalink: windows/reference-trademark.html 
+sidebar: sidebar 
+keywords: trademark, information 
+summary: 商標に関する情報 
+---
+= 商標に関する情報
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+Active IQ 、 AltaVault 、 Arch Design 、 ASUP 、 AutoSupport 、 キャンペーンエクスプレス、 clustered Data ONTAP 、カスタマーフィットネス、 Data ONTAP 、 DataMotion 、 Element 、フィットネス、 Flash Accel 、 Flash Cache 、 Flash Pool 、 FlexArray 、 FlexCache 、 FlexClone 、 FlexPod 、 FlexScale 、 FlexShare 、 FlexVol 、 FPolicy 、 Fueled by SolidFire 、 GetSuccessful 、 らせんデザイン、 LockVault 、 ONTAP の管理、 MetroCluster 、 MultiStore 、 netapp 、 NetApp Insight 、 OnCommand 、 ONTAP 、 ontapi 、 RAID DP 、 RAID-TEC 、 SANscreen 、 SANshare 、 SANtricity 、 SecureShare 、簡易性、 Simulate ONTAP 、 Snap Creator 、 SnapCenter 、 SnapCopy 、 SnapDrive 、 SnapIntegrator 、 SnapLock 、 SnapManager 、 SnapMirror 、 SnapMover 、 SnapProtect 、 SnapRestore 、 Snapshot 、 SnapValidator 、 SnapVault 、 SolidFire 、 SolidFire Helix 、 StorageGRID 、 SyncMirror 、 Tech OnTap 、 Unbound Cloud 、および WAFL およびその他の名称は、米国およびその他の国における NetApp 、 Inc. の商標または登録商標です。その他のすべてのブランドおよび製品は、それを所有する各社の商標または登録商標であり、相応の取り扱いが必要です。ネットアップの商標の最新のリストは、以下でご覧いただけます。
+
+http://www.netapp.com/us/legal/netapptmlist.aspx[]

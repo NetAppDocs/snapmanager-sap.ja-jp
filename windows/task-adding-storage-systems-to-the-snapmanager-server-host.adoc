@@ -1,0 +1,24 @@
+---
+permalink: windows/task-adding-storage-systems-to-the-snapmanager-server-host.html 
+sidebar: sidebar 
+keywords: add, storage, operate, operating, cluster, data, ontap, snapmanager, server, host, autosupport, system 
+summary: AutoSupport を有効にするには、 clustered Data ONTAP で動作するストレージシステムを SnapManager サーバホストに追加する必要があります。SnapManager 3.3 以前では、 AutoSupport は 7-Mode のストレージシステムでのみサポートされていました。 
+---
+= clustered Data ONTAP で動作しているストレージシステムを SnapManager サーバホストに追加する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AutoSupport を有効にするには、 clustered Data ONTAP で動作するストレージシステムを SnapManager サーバホストに追加する必要があります。SnapManager 3.3 以前では、 AutoSupport は 7-Mode のストレージシステムでのみサポートされていました。
+
+. clustered Data ONTAP で動作している管理用Storage Virtual Machine（SVM、旧Vserver）とSVMをSnapManager サーバホストに追加します。sdcli transport -protocol set -f AdminVserver_name or Vserver_name -type HTTP -user admin’
++
+次のコマンドを入力します。 message 。
+
+. SVM の作成時に指定したパスワードを入力します。
++
+コマンドが正常に実行されると、新しい転送プロトコルが設定されます。メッセージが表示されます。
+
+

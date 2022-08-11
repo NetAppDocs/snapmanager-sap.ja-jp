@@ -1,0 +1,34 @@
+---
+permalink: unix-installation-cmode/task-smsap-isg-start-the-snapmanager-server.html 
+sidebar: sidebar 
+keywords: start, snapmanager, server, target, database, host 
+summary: ターゲットデータベースホストから SnapManager サーバを起動する必要があります。 
+---
+= SnapManager サーバを起動します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ターゲットデータベースホストから SnapManager サーバを起動する必要があります。
+
+.ステップ
+. ターゲットデータベースホストにログインし、 SnapManager サーバを起動します。
++
+「* smsap_server start *」と入力します
+
++
+「SnapManager Server started on secure port port_number with PID PID_NUMBER」というメッセージが表示されます
+
++
+
+NOTE: デフォルトポートは 27214 です。
+
+
+
+SnapManager が正しく実行されていることを確認できます。
+
+'*smsap_server verify *
+
+「Operation ID_OPERATION_ID_NUMBER_Succeeded」というメッセージが表示されます

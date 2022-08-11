@@ -1,0 +1,66 @@
+---
+permalink: windows/reference-where-to-go-for-more-information.html 
+sidebar: sidebar 
+keywords: information, task, install, snapmanager 
+summary: ここでは、 SnapManager のインストールと使用に関連する基本タスクについて説明します。 
+---
+= 詳細については、こちらを参照してください
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ここでは、 SnapManager のインストールと使用に関連する基本タスクについて説明します。
+
+|===
+| 文書化 | 説明 
+
+
+ a| 
+SnapManager 概要ページ
+ a| 
+このページには、 SnapManager に関する情報、オンラインドキュメントへのポインタ、およびソフトウェアのダウンロードに使用できる SnapManager ダウンロードページへのリンクが表示されます。
+
+
+
+ a| 
+_ 『 Data ONTAP 7-Mode SAN 構成ガイド』 _
+ a| 
+このドキュメントは、から入手できます http://mysupport.netapp.com/["ネットアップサポート"^]。
+
+SAN 環境でシステムをセットアップするための要件に関する最新情報が記載された、動的なオンライン・マニュアルです。ストレージシステムとホストプラットフォーム、ケーブル接続の問題、スイッチの問題、および構成に関する最新の情報が記載されています。
+
+
+
+ a| 
+SnapManager と SnapDrive の互換性マトリックス
+ a| 
+このドキュメントは、 Interoperability セクションに記載されています http://mysupport.netapp.com/matrix["Interoperability Matrix Tool で確認してください"^]。
+
+SnapManager 固有の最新情報とプラットフォーム要件が記載された、動的なオンラインドキュメントです。
+
+
+
+ a| 
+SnapManager リリースノート
+ a| 
+このドキュメントは SnapManager に付属しています。からコピーをダウンロードすることもできます http://mysupport.netapp.com/["ネットアップサポート"^]。
+
+設定をスムーズに稼働させるために必要な最新の情報が含まれています。
+
+
+
+ a| 
+ネットアップのホスト接続およびサポートキットのドキュメント
+ a| 
+http://mysupport.netapp.com/["ネットアップサポート"^]。
+
+
+
+ a| 
+ホストオペレーティングシステムとデータベースの情報
+ a| 
+これらのドキュメントには、ホストオペレーティングシステムとデータベースソフトウェアに関する情報が記載されています。
+
+|===

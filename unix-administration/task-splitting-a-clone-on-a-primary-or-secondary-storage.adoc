@@ -1,0 +1,47 @@
+---
+permalink: unix-administration/task-split-a-clone-on-a-primary-or-secondary-storage.html 
+sidebar: sidebar 
+keywords: clone, split, complete, metadata, remove, repository, primary, secondary, storage, delete, free 
+summary: clone split コマンドを使用すると、クローンをスプリットできます。クローンスプリットが完了すると、クローンメタデータはリポジトリデータベースから削除され、クローンに関連付けられているバックアップは削除または解放できます。 
+---
+= プライマリストレージまたはセカンダリストレージでクローンをスプリットします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+クローンをスプリットするには'clone splitコマンドを使用しますクローンスプリットが完了すると、クローンメタデータはリポジトリデータベースから削除され、クローンに関連付けられているバックアップは削除または解放できます。
+
+* このタスクについて *
+
+スプリット処理の成功後に作成された新しいプロファイルを使用して、スプリットクローンが管理されます。新しいプロファイルは、 SnapManager 内の他の既存のプロファイルと同様に作成されます。このプロファイルを使用して、バックアップ、リストア、およびクローニングの処理を実行できます。
+
+また、新しいプロファイルに E メール通知を設定することもできます。これにより、データベース管理者に、プロファイルを使用して実行されたデータベース処理のステータスを通知できます。
+
+
+NOTE: SnapManager でスプリット処理がサポートされるのは、 FlexClone で実行した場合のみです。
+
+スプリット処理が失敗した場合は、エラーの理由を示す適切なエラーメッセージが表示されます。複数の処理のステータスは、処理ログにも表示されます。例：
+
+[listing]
+----
+--[ INFO] The following operations were completed:
+Clone Split : Success
+Profile Create : Failed
+Clone Detach : Success
+----
+クローンスプリット処理の成功または失敗後にダンプファイルを収集することもできます。
+
+
+NOTE: clone splitコマンドを入力した後は'クローン・スプリット処理が開始されるまでSnapManager サーバを停止しないでください
+
+
+NOTE: SnapManager アカウント（ osaccount および osgroup ）に値を指定しなくても、プロファイルが生成されます。
+
+.ステップ
+. 次のコマンドを入力します。
++
+nsSMSAP clone split -profile split -profile_clone -profile _hostname_[-label_clone_label_|-id_clone-id_]-split-label_label_splitoperation-label_comment_new-profile-profile_name_[-profile-password_profile_password_password_repo_repo_repo_repo_repo_hostname_hostname_hostdb hostName RMANパスワード-hostname_host_name1_host_name1_host_db1_host_username_host_db1_host_username_host_username_host_username_host_username_host_username_host_username_RMANパスワード-username_host_username_host_db1_host_username_hostName {login_username_host_name}rman_username_rman_username_host_db1_host_name}rman_username_rman_username_host_name}rman_username_host_username_host_username_host_username_rman_username_host_username_rman_username_host_username_host_name}-username_host_name}-username_ [-osaccount_osaccount_-osgroup_[-retain [-houra-count_n_][-duration _ m_]][-duration_count_n_]][-weekly_schedule_m_]][-duration _ m_n][-duration _ subject]-email-address_address[-durbe_address_email]-email-address[-durbe_address_email]-email-address[-durbe_address[-durbe_address[-d][-drum][-durbe_subject][-durbe_address[-d]-email]-email][-durbe_address[-drum]-email]-email-email_address[-durbe_subject]-email]-email][-durbe_address[-de-subject][-dryn][-dryn]-email][-de-subject][-de-subject][-dryn][-dryn][-durbe_address[-dryn_address[-dryn][-d
+
+

@@ -1,0 +1,89 @@
+---
+permalink: windows/reference-the-smosmsapclone-show-command.html 
+sidebar: sidebar 
+keywords: run, clone, show, command, display, information, database, profile, smsap 
+summary: 指定したプロファイルのデータベース・クローンに関する情報を表示するには、 clone show コマンドを実行します。 
+---
+= SMSAPのclone showコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+clone showコマンドを実行すると、指定されたプロファイルのデータベース・クローンに関する情報を表示できます。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap clone show
+-profile profile_name
+[-id  guid | -label clone_name]
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+プロファイルに関連付けられたクローンのリストを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* *`-id_GUID_`*
++
+指定した GUID を持つクローンの情報を表示します。GUID はクローンを作成するときに SnapManager によって生成されます。各クローンのGUIDを表示するには、「SMSAP clone show」コマンドを使用します。
+
+* *`-label_label_name_`*
++
+指定したラベルを持つクローンに関する情報を表示します。
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== 例
+
+次の例は、クローンに関する情報を表示します。
+
+[listing]
+----
+smsap clone show -profile SALES1 -label full_backup_sales_May -verbose
+----
+次の出力は、プライマリストレージ上のバックアップのクローンに関する情報を示しています。
+
+[listing]
+----
+Clone id: 8abc013111b916e30111b916ffb40001
+Clone status: SUCCESS
+Clone SID: hsdbc
+Clone label: hsdbc
+Clone comment: null
+Clone start time: 2007-04-03 16:15:50
+Clone end time: 2007-04-03 16:18:17
+Clone host: Host1
+Filesystem: E:\ssys1\data_clone\
+File: E:\ssys1\data_clone\hsdb\sysaux01.dbf
+File: E:\ssys1\data_clone\hsdb\undotbs01.dbf
+File: E:\ssys1\data_clone\hsdb\users01.dbf
+File: E:\ssys1\data_clone\hsdb\system01.dbf
+File: E:\ssys1\data_clone\hsdb\undotbs02.dbf
+Backup id: 8abc013111a450480111a45066210001
+Backup label: full_backup_sales_May
+Backup SID: hsdb1
+Backup comment:
+Backup start time: 2007-03-30 15:26:30
+Backup end time: 2007-03-30 15:34:13
+Backup host: server1
+----

@@ -1,0 +1,98 @@
+---
+permalink: unix-administration/reference-the-smosmsapprofile-list-command.html 
+sidebar: sidebar 
+keywords: command, display, list, current, profile, smsap 
+summary: このコマンドは、現在のプロファイルのリストを表示します。 
+---
+= SMSAPのprofile listコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、現在のプロファイルのリストを表示します。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap profile list
+[-quiet | -verbose]]
+----
+
+
+== パラメータ
+
+* `*-quiet *``
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+'''
+
+
+== コマンドの例
+
+次の例は、既存のプロファイルとその詳細情報を表示します。
+
+[listing]
+----
+smsap profile list -verbose
+Profile name: FGTER
+Repository:
+  Database name: SMSAPREPO
+  SID: SMSAPREPO
+  Host: hotspur
+  Port: 1521
+  Username: swagrahn
+  Password: ********
+Profile name: TEST_RBAC
+Repository:
+  Database name: smsaprep
+  SID: smsaprep
+  Host: elbe.rtp.org.com
+  Port: 1521
+  Username: smsapsaal
+  Password: ********
+Profile name: TEST_RBAC_DP_PROTECT
+Repository:
+  Database name: smsaprep
+  SID: smsaprep
+  Host: elbe.rtp.org.com
+  Port: 1521
+  Username: smsapsaal
+  Password: ********
+Profile name: TEST_HOSTCREDEN_OFF
+Repository:
+  Database name: smsaprep
+  SID: smsaprep
+  Host: elbe.rtp.org.com
+  Port: 1521
+  Username: smsapsaal
+  Password: ********
+Profile name: SMK_PRF
+Repository:
+  Database name: smsaprep
+  SID: smsaprep
+  Host: elbe.rtp.org.com
+  Port: 1521
+  Username: smsapsaal
+  Password: ********
+Profile name: FGLEX
+Repository:
+  Database name: SMSAPREPO
+  SID: SMSAPREPO
+  Host: hotspur
+  Port: 1521
+  Username: swagrahn
+  Password: ********
+----
+'''

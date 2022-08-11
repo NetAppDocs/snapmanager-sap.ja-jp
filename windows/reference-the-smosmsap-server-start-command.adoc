@@ -1,0 +1,50 @@
+---
+permalink: windows/reference-the-smosmsap-server-start-command.html 
+sidebar: sidebar 
+keywords: command, start, host, server, run, snapmanager, sap, software, smsap_server, smsap 
+summary: このコマンドは、SnapManager for SAPソフトウェアが稼働しているホストサーバを起動します。 
+---
+= smsap_server startコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、SnapManager for SAPソフトウェアが稼働しているホストサーバを起動します。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap_server start
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-quiet `*
++
+エラー・メッセージのみがコンソールに表示されるように指定します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されるように指定します。
+
+
+
+
+
+== コマンドの例
+
+次に、ホスト・サーバを起動する例を示します。
+
+[listing]
+----
+smsap_server start
+SMSAP-17100: SnapManager Server started on secure port 25204 with PID 11250
+----

@@ -1,0 +1,77 @@
+---
+permalink: unix-administration/task-restore-backups-from-secondary-storage.html 
+sidebar: sidebar 
+keywords: restore, protect, backup, secondary, storage, copy, data, back, primary, storage, restoring 
+summary: 保護されたバックアップをセカンダリストレージからリストアして、データをプライマリストレージにコピーする方法を選択できます。 
+---
+= セカンダリストレージからバックアップをリストアする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+保護されたバックアップをセカンダリストレージからリストアして、データをプライマリストレージにコピーする方法を選択できます。
+
+* このタスクについて *
+
+「backup restore」コマンドに「-from-ssecondary」オプションを指定すると、セカンダリ・ストレージからデータをリストアできます。from -ssecondaryオプションを指定しない場合、SnapManager はプライマリ・ストレージ上のSnapshotコピーからデータをリストアします。
+
+プライマリ・ストレージにバックアップが存在する場合'セカンダリ・ストレージからのバックアップをリストアする前に'プライマリ・バックアップを解放する必要があります一時ボリュームを使用する場合は'-dtemp-volume'オプションを使用してボリュームを指定する必要があります
+
+--from-secondaryオプションを指定する場合は、必ず-copy-idオプションを指定する必要があります。セカンダリ・ストレージ・システムに複数のバックアップが存在する場合は'-copy-idオプションを使用して'リストア処理に使用するセカンダリ・ストレージ上のバックアップ・コピーを指定します
+
+
+NOTE: Data ONTAP 7-Modeを使用している場合は、「-copy-id」オプションに有効な値を指定する必要があります。ただし、clustered Data ONTAP を使用している場合、-copy-id`オプションは不要です。
+
+SnapManager は、セカンダリストレージからデータをリストアする際、最初に（ホストを介さずに）セカンダリストレージシステムからプライマリストレージシステムへの直接データのリストアを試みます。SnapManager がこのタイプのリストアを実行できない場合（ファイルがファイルシステムの一部でない場合など）、 SnapManager はホスト側のファイルコピーのリストアにフォールバックします。SnapManager では、ホスト側のファイルコピーのリストアをセカンダリストレージから実行する方法が 2 つあります。SnapManager で選択される方法は'SMSAP_CONFIG'ファイルで設定されています
+
+* 「_restore.secondaryAccessPolicy_=* direct *」の場合、SnapManager はセカンダリ・ストレージ上のデータのクローンを作成し、複製されたデータをセカンダリ・ストレージ・システムからホストにマウントし、クローンからアクティブな環境にデータをコピーします。
++
+これはデフォルトのセカンダリアクセスポリシーです。
+
+* 「_restore.secondaryAccessPolicy_=* Indirect *」の場合、SnapManager は最初にプライマリ・ストレージ上の一時ボリュームにデータをコピーし、一時ボリュームからホストにデータをマウントしてから、一時ボリュームからアクティブな環境にデータをコピーします。
++
+このポリシーは、ホストがセカンダリストレージシステムに直接アクセスできない場合にのみ使用してください。間接方式を使用したリストアでは、データのコピーが 2 つ作成されるため、直接方式の場合は 2 倍の時間がかかります。
+
+
+
+.ステップ
+. 次のいずれかを実行します。
++
+[cols="1a,3a"]
+|===
+| 状況 | 作業 
+
+
+ a| 
+選択したバックアップがプライマリストレージに存在する場合は、データベース全体をリストアします
+ a| 
+次のコマンドを入力します。
+
+'*SMSAP backup restore -profile profile_name __ label_label_-complete-recover-alllogs [-copy-id_id_]*`
+
+
+
+ a| 
+選択したバックアップがプライマリストレージに存在しない場合は、データベース全体をリストアします
+ a| 
+次のコマンドを入力します。'*SMSAP backup restore -profile profile_name_-label_-complete-recover-alllogs-from-secondary [-temp-volume_<temp_volume>_][-copy-id_id_]*`
+
+|===
+
+
+'''
+
+
+== 例
+
+次のコマンドは、保護されているバックアップをセカンダリストレージシステムからリストアします。
+
+[listing]
+----
+smsap backup restore -profile PAYDB -label daily_monday -complete
+-recover alllogs -from-secondary -copy-id 3042 -temp-volume smsap_scratch_restore_volume
+Operation Id [8abc011215d385920115d38599470001] succeeded.
+----
+'''

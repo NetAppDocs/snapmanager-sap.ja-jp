@@ -1,0 +1,17 @@
+---
+permalink: unix-administration/concept-configuring-and-enabling-policy-driven-data-protection.html 
+sidebar: sidebar 
+keywords: snapdrive, datafabric, manager, server, protect, backup, configure, configuring, policy-driven, policy, driven, data, protection 
+summary: プロファイルでデータ保護を有効にしてセカンダリストレージシステム上のバックアップを保護できるように、 SnapDrive と DataFabric Manager サーバを設定する必要があります。Protection Manager のコンソールで保護ポリシーを選択して、データベースバックアップの保護方法を指定できます。 
+---
+= ポリシーベースのデータ保護の設定と有効化
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルでデータ保護を有効にしてセカンダリストレージシステム上のバックアップを保護できるように、 SnapDrive と DataFabric Manager サーバを設定する必要があります。Protection Manager のコンソールで保護ポリシーを選択して、データベースバックアップの保護方法を指定することができます。
+
+
+NOTE: データ保護を有効にするには、 OnCommand Unified Manager が別のサーバにインストールされている必要があります。

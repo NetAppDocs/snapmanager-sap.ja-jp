@@ -1,0 +1,16 @@
+---
+permalink: windows/concept-verify-backup-status.html 
+sidebar: sidebar 
+keywords: snapmanager, integrity, backup, standard, oracle, verification, operation, verify, status 
+summary: SnapManager では、 Oracle の標準バックアップ検証処理を使用して、バックアップの整合性を確認できます。 
+---
+= バックアップのステータスを確認
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager では、 Oracle の標準バックアップ検証処理を使用して、バックアップの整合性を確認できます。
+
+データベース管理者（ DBA ）は、バックアップ処理の一環として、または別のタイミングで検証を実行できます。データベース管理者は、ホスト・サーバの負荷が少ないオフピークの時間帯や、スケジュールされた保守期間中に検証処理を実行するよう設定できます。

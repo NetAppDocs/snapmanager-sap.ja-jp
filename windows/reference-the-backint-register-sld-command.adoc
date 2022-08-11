@@ -1,0 +1,70 @@
+---
+permalink: windows/reference-the-backint-register-sld-command.html 
+sidebar: sidebar 
+keywords: sap, br, tools, backint, register-sld, command, snapmanager, interface, landscape, system, directory, sld, vendor 
+summary: SAP BR * Toolsを使用する場合は、SnapManager for SAPでbackint register-sldコマンドを実行して、System Landscape Directory（SLD）でbackintインターフェイスを登録できます。backintインターフェイスは、ストレージシステムをBR * Toolsコマンドと連携させるためにストレージベンダーが提供します。SnapManager for SAPでは、C：\Program Files\NetApp\SnapManager for sap\bin\にbackintインターフェイスファイルがインストールされます。 
+---
+= backint register-sldコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SAP BR * Toolsを使用する場合は、SnapManager for SAPで「backint register-sld」コマンドを実行して、backintインターフェイスをSystem Landscape Directory（SLD）で登録できます。backintインターフェイスは、ストレージシステムをBR * Toolsコマンドと連携させるためにストレージベンダーが提供します。SnapManager for SAPでは、backintインターフェイスファイルがC:\Program Files\NetApp\SnapManager for SAP\bin\`にインストールされます。
+
+
+
+== 構文
+
+[listing]
+----
+
+backint register-sld
+-host  host_name
+-port  port_id
+-username username
+-password password
+-template template_ID
+----
+
+
+== パラメータ
+
+* *`-host_host_name_`*
++
+SAP SLDが実行されているホストの名前を指定します。
+
+* *`-port_id_id_`*
++
+SAP SLDがHTTP要求を受け入れるポートのIDを指定します。IDは数字で、9桁以下である必要があります。
+
+* *`-username_`*
++
+有効で許可されたSAP SLDユーザ名を指定します。
+
+* *`-password_password_`*
++
+有効で許可されたSAP SLDユーザパスワードを指定します。これはオプションです。「-password」を使用してパスワードを設定しなかった場合は、「+username@http://host:port+`」の形式でパスワードを入力するように求められます
+
++
+正しいパスワードを入力しなかった場合は、3回入力してもコマンドは失敗し、終了します。
+
+* *`-template_template_id_`*
++
+カスタムファイルのベースとして使用できるマスターテンプレートXMLファイルの名前を指定します。
+
+
+
+
+
+== コマンドの例
+
+次の例は、コマンドが正常に完了したことを示しています。
+
+[listing]
+----
+backint register-sld -host jack12 -port 50100
+-username j2ee_admin -password user123 -template E:\template.xml
+Operation Id [N96f4142a1442b31ee4636841babbc1d7] succeeded.
+----

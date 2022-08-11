@@ -1,0 +1,124 @@
+---
+permalink: unix-administration/reference-the-smosmsapbackup-mount-command.html 
+sidebar: sidebar 
+keywords: run, backup, mount, command, backup, recover, operation, external, tool, smsap 
+summary: 外部ツールを使用してリカバリ処理を実行するには、 backup mount コマンドを実行してバックアップをマウントします。 
+---
+= SMSAPのbackup mountコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+外部ツールを使用してリカバリ操作を実行するために'バックアップをマウントする場合はbackup mountコマンドを実行できます
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap backup mount
+-profile _profile_name_
+[-label _label_ [-data | -archivelogs\] | [-id _id_\]
+[-host  _host_]
+[-from-secondary {-copy-id _id_}]
+[-dump]
+[-quiet | -verbose]]
+----
+
+
+== パラメータ
+
+* `*-profile_name_*`
++
+マウントするバックアップに関連付けられたプロファイルを指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* '*-id GUID*'
++
+指定した GUID を持つバックアップをマウントします。GUID はバックアップを作成するときに SnapManager によって生成されます。「SMSAP backup list」コマンドを使用して、各バックアップのGUIDを表示できます。
+
+* '*-label_label_*
++
+指定したラベルを持つバックアップをマウントします。
+
+* 「*-data*」
++
+データファイルを指定します。
+
+* `*-archivelogs*`
++
+アーカイブログファイルを指定します。
+
+* `*-from-ssecond-copy-id_id_*`
++
+セカンダリストレージからバックアップをマウントします。このオプションを指定しない場合、 SnapManager はプライマリストレージからバックアップをマウントします。このオプションは、バックアップが解放されている場合に使用できます。
+
++
+--from-secondaryオプションを指定する場合は、必ず-copy-idオプションを指定する必要があります。セカンダリ・ストレージ・システムに複数のバックアップが存在する場合は'-copy-idオプションを使用して'セカンダリ・ストレージ上のどのバックアップ・コピーをバックアップのマウントに使用するかを指定します
+
++
+
+NOTE: Data ONTAP 7-Modeを使用している場合は、「-copy-id」オプションに有効な値を指定する必要があります。ただし、clustered Data ONTAP を使用している場合、-copy-id`オプションは不要です。
+
+* `*-host_host_*`
++
+バックアップをマウントするホストを指定します。
+
+* `*-dump*`
++
+マウント処理が成功したか失敗したあとにダンプファイルを収集します。
+
+* 「*- quiet *」と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルト設定では、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+NOTE: このコマンドは、 Oracle Recovery Manager （ RMAN ）などの外部ツールを使用する場合にのみ使用する必要があります。「smsapbackup restore」コマンドを使用してバックアップをリストアすると、SnapManager によってバックアップのマウントが自動的に処理されます。このコマンドを実行すると、 Snapshot コピーがマウントされているパスのリストが表示されます。このリストは'-verboseオプションが指定されている場合にのみ表示されます
+
+'''
+
+
+== 例
+
+次に、バックアップをマウントする例を示します。
+
+[listing]
+----
+smsap backup mount -profile S10_BACKUP -label full_monthly_10 -verbose
+SMSAP-13046 [INFO ]: Operation GUID 8abc013111b9088e0111b908a7560001
+starting on Profile S10_BACKUP
+SMSAP-08052 [INFO ]: Beginning to connect mount(s)
+[/oracle/S10_mirrlogs, /oracle/S10_sapdata] from logical snapshot
+SMSAP_S10_BACKUP_S10_F_C_1_8abc013111a450480111a45066210001.
+SMSAP-08025 [INFO ]: Beginning to connect mount
+/oracle/S10_mirrlogs from snapshot
+SMSAP_S10_BACKUP_S10_F_C_1_8abc013111a450480111a45066210001_0 of
+volume saplog_S10.
+SMSAP-08027 [INFO ]: Finished connecting mount /oracle/S10_mirrlogs from snapshot
+SMSAP_S10_BACKUP_S10_F_C_1_8abc013111a450480111a45066210001_0 of
+volume saplog_S10.
+SMSAP-08025 [INFO ]: Beginning to connect mount /oracle/S10_sapdata
+from snapshot
+SMSAP_S10_BACKUP_S10_F_C_1_8abc013111a450480111a45066210001_0 of
+volume sapdata_S10.
+SMSAP-08027 [INFO ]: Finished connecting mount /oracle/S10_sapdata
+from snapshot
+SMSAP_S10_BACKUP_S10_F_C_1_8abc013111a450480111a45066210001_0 of
+volume sapdata_S10.
+SMSAP-08053 [INFO ]: Finished connecting mount(s)
+[/oracle/S10_mirrlogs, /oracle/S10_sapdata] from logical snapshot
+SMSAP_S10_BACKUP_S10_F_C_1_8abc013111a450480111a45066210001.
+SMSAP-13037 [INFO ]: Successfully completed operation: Backup Mount
+SMSAP-13048 [INFO ]: Operation Status: SUCCESS
+SMSAP-13049 [INFO ]: Elapsed Time: 0:01:00.981
+Operation Id [8abc013111b9088e0111b908a7560001] succeeded.
+----
+'''

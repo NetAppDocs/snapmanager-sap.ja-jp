@@ -1,0 +1,37 @@
+---
+permalink: unix-administration/task-mount-backups.html 
+sidebar: sidebar 
+keywords: snapmanager, automatic, handle, mount, backup, available, host, scenario, external, tool, oracle, recovery, manager, rman, access, file 
+summary: SnapManager は、バックアップのマウントを自動的に処理して、ホストで使用できるようにします。また、 Oracle Recovery Manager （ RMAN ）などの外部ツールを使用してバックアップ内のファイルにアクセスする場合にも、バックアップをマウントできます。 
+---
+= バックアップをマウントします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager は、バックアップのマウントを自動的に処理して、ホストで使用できるようにします。また、 Oracle Recovery Manager （ RMAN ）などの外部ツールを使用してバックアップ内のファイルにアクセスする場合にも、バックアップをマウントできます。
+
+* このタスクについて *
+
+「SMSAP backup mount」コマンドを実行すると、バックアップで構成されるSnapshotコピーがマウントされているパスのリストが表示されます。
+
+セカンダリ・ストレージからバックアップをマウントするには'-sotory-secondaryオプションを使用しますこのオプションを使用しない場合、 SnapManager はプライマリストレージからバックアップをマウントします。
+
+--from-secondaryオプションを指定する場合は、必ず-copy-idオプションを指定する必要があります。セカンダリ・ストレージ・システムに複数のバックアップがある場合は'-copy-idオプションを使用して'セカンダリ・ストレージ上のどのバックアップ・コピーをバックアップのマウントに使用するかを指定します6.
+
+
+NOTE: Data ONTAP 7-Modeを使用している場合は、「-copy-id」オプションに有効な値を指定する必要があります。ただし、clustered Data ONTAP を使用している場合、-copy-id`オプションは不要です。
+
+データベースバックアップをリモートホストにマウントする場合は、 Automatic Storage Management （ ASM ）クレデンシャルが両方のホストで同じであることを確認する必要があります。
+
+
+NOTE: バックアップのマウント処理が成功した場合や失敗した場合に、ダンプファイルを収集することもできます。
+
+.ステップ
+. バックアップをマウントするには、次のコマンドを入力します。
++
+'*SMSAP backup mount -profile _profile_name label_[data|-archivelogs ]|-id_id_}[-host_host_][-from-ssecondary [-copy-id_id_]][-dump][-quiet |-verbose ]*
+
+

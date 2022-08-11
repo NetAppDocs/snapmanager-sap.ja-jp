@@ -1,0 +1,27 @@
+---
+permalink: windows/task-disabling-email-notification-for-multiple-profiles.html 
+sidebar: sidebar 
+keywords: enable, summary, email, notification, multiple, profile, disable, alert, disabling 
+summary: 複数のプロファイルについての概要 E メール通知を有効にしたあとに、それらのプロファイルを無効にして E メールアラートを受信しないようにすることができます。 
+---
+= 複数のプロファイルの E メール通知を無効にする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+複数のプロファイルについての概要 E メール通知を有効にしたあとに、それらのプロファイルを無効にして E メールアラートを受信しないようにすることができます。
+
+SnapManager を使用すると、プロファイルで実行されたデータベース処理について、サマリー E メール通知を無効にすることができます。SnapManager CLI で、 notification remove-summary-notification コマンドを入力して、複数のプロファイルのサマリー E メール通知と、 E メール通知を必要としないリポジトリデータベースの名前をディセーブルにします。
+
+. リポジトリデータベース上の複数のプロファイルに関するサマリー通知を無効にするには、次のコマンドを入力します。SMSAP notification remove-summary-notification-repository-portrepo_port-dbnamerepo_service_name -hostrepo_host-login -usernamerepo_username
+
+
+次に、リポジトリデータベースの複数のプロファイルでサマリー通知を無効にする例を示します。
+
+[listing]
+----
+
+smsap notification remove-summary-notification –repository –port 1521 –dbname repo2 –host 10.72.197.133 –login –username oba5
+----

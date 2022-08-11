@@ -1,0 +1,56 @@
+---
+permalink: unix-administration/reference-the-smosmsap-history-operation-show-command.html 
+sidebar: sidebar 
+keywords: command, enable, history, snapmanager, operation, associated, profile, smsap, operation-show 
+summary: このコマンドを使用すると、プロファイルに関連付けられた特定の SnapManager 処理の履歴を表示できます。 
+---
+= SMSAPのhistory operation-showコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドを使用すると、プロファイルに関連付けられた特定の SnapManager 処理の履歴を表示できます。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap history operation-show
+-profile _profile_ {-label _label_ | -id _id_} [-quiet | -verbose\]]
+----
+
+
+== パラメータ
+
+* `*-profile_profile_*`
++
+プロファイルの名前を指定します。この名前には 30 文字まで使用でき、ホスト内で一意である必要があります。
+
+* '*-label_label_|-id_id_*
++
+履歴を表示する SnapManager 処理の ID またはラベルを指定します。
+
+* 「*- quiet *」と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+'''
+
+
+== コマンドの例
+
+[listing]
+----
+ smsap history operation-show -profile PROFILE1 -label backup1 -verbose
+----
+'''

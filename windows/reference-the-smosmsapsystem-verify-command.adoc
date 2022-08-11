@@ -1,0 +1,53 @@
+---
+permalink: windows/reference-the-smosmsapsystem-verify-command.html 
+sidebar: sidebar 
+keywords: command, component, environment, snapmanager, set, up, smsap, system, verify 
+summary: このコマンドを使用すると、 SnapManager の実行に必要な環境のすべてのコンポーネントが正しく設定されているかどうかを確認できます。 
+---
+= SMSAPのsystem verifyコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドを使用すると、 SnapManager の実行に必要な環境のすべてのコンポーネントが正しく設定されているかどうかを確認できます。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap system verify
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-quiet `*
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* *`-verbose *
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+
+
+
+
+== system verify コマンドの例
+
+次の例では、SMSAPのsystem verifyコマンドを使用します。
+
+[listing]
+----
+smsap system verify
+SMSAP-13505 [INFO ]: Snapdrive verify passed.
+SMSAP-13037 [INFO ]: Successfully completed operation: System Verify
+SMSAP-13049 [INFO ]: Elapsed Time: 0:00:00.559
+Operation Id [N4f4e910004b36cfecee74c710de02e44] succeeded.
+----

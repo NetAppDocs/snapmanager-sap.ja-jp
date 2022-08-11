@@ -1,0 +1,16 @@
+---
+permalink: windows/concept-preparing-to-install-snapmanager-for-oraclesnapmanager-for-sap.html 
+sidebar: sidebar 
+keywords: environment, install, snapmanager, sap, software, hardware, browser, database, operate, system, requirement, information, interoperability, matrix, prepare 
+summary: SnapManager for SAPをインストールする環境は、ソフトウェア、ハードウェア、ブラウザ、データベース、オペレーティングシステムの特定の要件を満たしている必要があります。要件の最新情報については、 Interoperability Matrix を参照してください。 
+---
+= SnapManager for SAPのインストールの準備をしています
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapManager for SAPをインストールする環境は、ソフトウェア、ハードウェア、ブラウザ、データベース、オペレーティングシステムの特定の要件を満たしている必要があります。要件の最新情報については、 Interoperability Matrix を参照してください。
+
+http://support.netapp.com/NOW/products/interoperability/["互換性マトリックス"^]

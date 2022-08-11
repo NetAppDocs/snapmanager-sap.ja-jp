@@ -1,0 +1,21 @@
+---
+permalink: unix-administration/task-restart-the-snapmanager-unix-host-server.html 
+sidebar: sidebar 
+keywords: restart, server, unix, host, cli, snapmanager 
+summary: CLI を使用して UNIX ホストでサーバを再起動できます。 
+---
+= SnapManager UNIXホスト・サーバを再起動します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+CLI を使用して UNIX ホストでサーバを再起動できます。
+
+.ステップ
+. サーバを再起動するには、次のコマンドを入力します。
++
+「* smsap_server restart *」のように指定します
+
+

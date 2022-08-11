@@ -1,0 +1,28 @@
+---
+permalink: unix-administration/task-delete-a-clone-split-operation-cycle-from-a-repository-database.html 
+sidebar: sidebar 
+keywords: delete, clone, split, operation, cycle, entry, repository, database, deleting 
+summary: リポジトリデータベースから、クローンスプリット処理サイクルエントリを削除できます。 
+---
+= リポジトリデータベースからクローンスプリット処理サイクルを削除します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+リポジトリデータベースから、クローンスプリット処理サイクルエントリを削除できます。
+
+.ステップ
+. リポジトリデータベースからクローンスプリット処理サイクルエントリを削除するには、次のコマンドを入力します。
++
+`* SMSAP clone split -delete -profile _profile_[-host_hostname_][-label_split-label_|-id_split-id_][-dquiet |-verbose *`
+
+
+
+'''
+[listing]
+----
+smsap clone split-delete -profile p1 -id 8abc01ec0e78f3e2010e78f3fdd00001
+----
+'''

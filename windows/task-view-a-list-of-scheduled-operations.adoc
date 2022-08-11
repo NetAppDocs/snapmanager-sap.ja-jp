@@ -1,0 +1,21 @@
+---
+permalink: windows/task-view-a-list-of-scheduled-operations.html 
+sidebar: sidebar 
+keywords: view, list, schedule, operation, profile 
+summary: プロファイルに対してスケジュールされている処理のリストを表示できます。 
+---
+= スケジュールされた処理のリストを表示します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルに対してスケジュールされている処理のリストを表示できます。
+
+.ステップ
+. スケジュールされた処理に関する情報を表示するには、次のコマンドを入力します。
++
+`* SMSAP schedule list -profile_name_[-quiet |-verbose *`
+
+

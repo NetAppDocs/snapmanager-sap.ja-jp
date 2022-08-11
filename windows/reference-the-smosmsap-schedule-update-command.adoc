@@ -1,0 +1,81 @@
+---
+permalink: windows/reference-the-smosmsap-schedule-update-command.html 
+sidebar: sidebar 
+keywords: command, update, schedule, backup, smsap 
+summary: このコマンドは、バックアップのスケジュールを更新します。 
+---
+= SMSAPのschedule updateコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このコマンドは、バックアップのスケジュールを更新します。
+
+
+
+== 構文
+
+[listing]
+----
+
+smsap schedule update
+-profile profile_name
+-schedule-name schedule_name
+[-schedule-comment schedule_comment]
+-interval {-hourly | -daily | -weekly | -monthly | -onetimeonly}
+-cronstring cron_string
+-start-time {start_time <yyyy-MM-dd HH:mm>}
+-runasuser runasuser
+[-taskspec taskspec]
+-force
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* *`-profile_name_`*
++
+バックアップをスケジュールするデータベースに関連するプロファイルの名前を指定します。プロファイルには、データベースの識別子およびその他のデータベース情報が含まれています。
+
+* *`-schedule - name_schedule_name_`*
++
+スケジュールに指定する名前を指定します。
+
+* *`-schedule - COMMENT_schedule_comment_`*
++
+バックアップのスケジュール設定に関するコメントを指定します。
+
+* *`-interval {-hourly|-daily|-weekly|-monthly|-onetimeonly}`*
++
+バックアップを作成する間隔を示します。バックアップのスケジュールは、毎時、毎日、毎週、毎月、または 1 回だけ設定できます。
+
+* *`cronstring_cron_string_`*
++
+cronstring を使用してバックアップをスケジュールするように指定します。CronTrigger のインスタンスの構成には cron 式が使用されます。cron 式は、実際には 7 つのサブ式で構成される文字列です。
+
++
+** 1 は秒を表します
+** 2 は分を表します
+** 3 は時間を表します
+** 4 は 1 か月の 1 日を表します
+** 5 は月を表します
+** 6 は 1 週間のうちの 1 日を表します
+** 7 は年を表します（オプション）。
+
+
+* *`-start-time_yyyy-mm-dd HH:mm_`*
++
+スケジュール処理の開始時刻を指定します。スケジュールの開始時刻は、 yyyy-mm-dd HH ： MM の形式で指定します。
+
+* *`-runAsUser_runAsUser_`*
++
+バックアップのスケジュール設定時にスケジュールされたバックアップ処理のユーザを変更するように指定します。
+
+* *`taskspec_taskspec_`*
++
+バックアップ処理の前処理または後処理に使用できるタスク仕様 XML ファイルを指定します。XMLファイルの完全なパスを指定する必要がありますこのパスには'-taskspec'オプションがあります
+
+

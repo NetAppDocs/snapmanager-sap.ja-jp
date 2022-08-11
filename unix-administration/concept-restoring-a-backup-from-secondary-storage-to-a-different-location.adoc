@@ -1,0 +1,32 @@
+---
+permalink: unix-administration/concept-restoring-a-backup-from-secondary-storage-to-a-different-location.html 
+sidebar: sidebar 
+keywords: brrestore, smsap, restore, command, secondary, backup, location, host, snapmanager, restoring 
+summary: BRRESTOREまたはSMSAPのrestoreコマンドを使用して、セカンダリバックアップを別の場所にリストアできます。新しいホストでSnapManager も実行されている必要があります。 
+---
+= セカンダリストレージから別の場所へのバックアップのリストア
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「BRRESTORE」コマンドまたは「SMSAP RESTORE」コマンドを使用して、セカンダリ・バックアップを別の場所にリストアできます。新しいホストでSnapManager も実行されている必要があります。
+
+セカンダリ・バックアップを目的の場所にリストアするには'initSID.utl`ファイルで'preferred_backup_location'パラメータと'restore_from_nearest_backup_location'パラメータを設定する必要があります
+
+. initSID.utl`ファイルを編集します
+. ファイルに'preferred_backup_location'および'restore_from_nearest_backup_location'を追加します
++
+
+NOTE: 「preferred_backup_locations」環境変数は、initSID.utlファイルの「preferred_backup_locations」パラメータに設定された値を上書きします。
+
+
+
+[NOTE]
+====
+* 「preferred_backup_locations」の値がどの保護ポリシー・ノード名とも一致しない場合'「restore_from_nearest_backup_location」が「* No *」に設定されていると'操作は失敗します
+* 「preferred_backup_locations」の値が設定されていない場合'または「restore_from_nearest_backup_location」が「* Yes *」に設定されている場合'リストア・オペレーションは最も近いバックアップ・ロケーションから実行できます
+
+
+====

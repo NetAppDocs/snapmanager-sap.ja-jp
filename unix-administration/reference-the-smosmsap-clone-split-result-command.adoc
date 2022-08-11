@@ -1,0 +1,55 @@
+---
+permalink: unix-administration/reference-the-smosmsap-clone-split-result-command.html 
+sidebar: sidebar 
+keywords: smsap, clone, split-result, command, process 
+summary: このコマンドを使用すると、クローンスプリットプロセスの結果を表示できます。 
+---
+= SMSAPのclone split -resultコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+
+
+== 構文
+
+このコマンドを使用すると、クローンスプリットプロセスの結果を表示できます。
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap clone split-result
+-profile _profile_
+[-host _hostname_\]
+[-label _split-label_ | -id _split-id_\]
+[-quiet | -verbose\]]
+----
+
+
+== パラメータ
+
+* `*-profile_profile_*`
++
+クローンのプロファイル名を指定します。
+
+* `*-host_hostname_*`
++
+クローンが存在するホスト名を指定します。
+
+* '*-label_split-label_*
++
+クローンスプリットの開始プロセスで生成されるラベル名を指定します。
+
+* `*-id_split-id_*`
++
+クローンスプリットの開始プロセスで生成される一意の ID を示します。
+
+* 「*- quiet *」と入力します
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+エラー、警告、および情報メッセージがコンソールに表示されます。
+
+

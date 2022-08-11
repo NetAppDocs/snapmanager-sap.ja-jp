@@ -1,0 +1,157 @@
+---
+permalink: unix-administration/task-update-profiles.html 
+sidebar: sidebar 
+keywords: update, profile, modify, password, database, operating, system, os, authentication, updating, information, host, database, oracle, updating 
+summary: プロファイルを更新して、プロファイルのパスワード、保持するバックアップの数、データベースへのアクセス、データベース認証に対するオペレーティングシステム（ OS ）認証、およびホストに関する情報を変更できます。Oracle データベースのパスワード情報が変更された場合は、プロファイル内のパスワード情報も変更する必要があります。 
+---
+= プロファイルを更新します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+プロファイルを更新して、プロファイルのパスワード、保持するバックアップの数、データベースへのアクセス、データベース認証に対するオペレーティングシステム（ OS ）認証、およびホストに関する情報を変更できます。Oracle データベースのパスワード情報が変更された場合は、プロファイル内のパスワード情報も変更する必要があります。
+
+* このタスクについて *
+
+プロファイルで保護ポリシーが有効になっている場合、 SnapManager を使用してポリシーを変更することはできません。ストレージ管理者は、 Protection Manager のコンソールを使用してポリシーを変更する必要があります。
+
+SnapManager （3.2以降）では、「Separate archivelog -bbackups」オプションを使用して、アーカイブ・ログ・バックアップをデータファイル・バックアップから分離するようにプロファイルを更新できます。アーカイブログバックアップには、別の保持期間および保護ポリシーを指定できます。SnapManager を使用すると、オンラインデータベースバックアップに加えてアーカイブログバックアップも含めることができます。また、オンラインのデータファイルバックアップとアーカイブログバックアップを一緒に作成してクローニングすることもできます。オンラインデータファイルバックアップを作成すると、アーカイブログバックアップがデータファイルとともにすぐに作成されます。
+
+.手順
+. 次のコマンドを入力します。
++
+`* SMSAPプロファイルupdate -profile update_profile_[-new-profile_profile_name_][-profile-password_][-database-db_dbname_host_][-sid_db1_host_host_][-login_username_db_username _db_username [-drman_password_account]-rman_CLI [-drman_password_duration }rman_CLI [RMANパスワード[RMANインスタンス[RMANインスタンス]-出力 データベース{username_CLIデータベース{username_CLIデータベース{username_CLIデータベース{username_CLIデータベース{userName }] [-weekly [-count_n_][-duration _m_]][-monthly [-count_n_m_][-duration_m_comment_]][-snapname=come_address_email_email_email_email-months|-email-weeks|-email-email-email-weeks|-email-email-subject]-subject_address-backups|-subject_backups|-subjecteds|-subject-subject_address-subjects|-subject_backups|-subject[--day-subject]|-subject_backups|-subject_backups|-subjects|-subject_backups|-subject_backups-subject_address-subject_address-subject|-subject|-subject_backups|-subject_backups|-subject_address-subject|-subject_dates][--bs-backups|-subject|-subject_backups|-subject_backups|-subject_dates][-day|-subject_backups|-subject|-sub
+
++
+このコマンドの他のオプションは、次のとおりです。
+
++
+`[-force][-noprompt]``
+
++
+「[-quiet | verbose]」
+
++
+[cols="2a,4a"]
+|===
+| 状況 | 作業 
+
+
+ a| 
+* オペレーティング・システム認証を使用するようにプロファイルを変更します *
+ a| 
+ユーザ名、パスワード、およびポートを追加する代わりに、次の項目を指定します。
+
+** `-osaccount_account_name_は'オペレーティング・システム・アカウントの名前です
+** 「-osgroup_osgroup_」は、オペレーティング・システム・アカウントに関連づけられたグループで、通常はOracleのインストールに使用されるアカウントです
+
+
+
+
+ a| 
+* 自動ストレージ管理（ ASM ）インスタンス認証を使用してプロファイルを作成します *
+ a| 
+ASM インスタンス認証のクレデンシャルを指定します。
+
+** `-asmusername_asminstance_username_`は、ASMインスタンスへのログインに使用するユーザ名です。
+** `-asmpassword_asminstance_password_`は、ASMインスタンスへのログインに使用するパスワードです。
+
+
+
+
+ a| 
+* カタログを Oracle Recovery Manager （ RMAN ）リポジトリとして使用するか、 RMAN * を削除します
+ a| 
+次のオプションと変数を指定します。
+
+** tnsnames.oraファイルで定義されているtnsnameとして'-tnsname_tnsname_`を指定します
+** `-login-username USERNAME_`。RMANカタログへの接続に必要なユーザ名です。
++
+指定しない場合、 SnapManager はオペレーティングシステムの認証情報を使用します。Real Application Clusters （ RAC ）データベースでは、オペレーティングシステム認証を使用できません。
+
+** RMANカタログへの接続に必要なRMANパスワードとして'-password_password_を使用します
+** 制御ファイルをRMANリポジトリとして使用している場合'-controlfile
+** RMANを削除するには'-remove-rman'を入力します
+
+
+
+
+ a| 
+* プロファイル * で、データベースのバックアップのバックアップ保持ポリシーを変更します
+ a| 
+保持ポリシーを変更するには、保持クラスの保持数または保持期間、あるいはその両方を指定します。期間はクラスの単位で指定します（たとえば、時間単位の場合は時間単位、日単位の場合は日単位）。
+
+** `-hourly`は時間単位の保存クラスであり'[-count_n_][-duration _m_]]は'それぞれ保存期間です
+** `-daily`は毎日保持クラスであり'[-count_n_][-duration _m_]]はそれぞれ保持数と保持期間です
+** 「-weekly」は'週単位の保存クラスですこのクラスでは'[-count_n_][-duration _m_]'は'それぞれ保存期間と保存期間です
+** 「-monthly」は'月単位の保存クラスですこのクラスでは'[-count_n_][-duration _m_]]は'それぞれ保存期間と保存期間です
+
+
+
+
+ a| 
+* プロファイルのバックアップ保護を無効にします *
+ a| 
+「-noprotect」を指定すると、プロファイルを使用して作成されたデータベース・バックアップが保護されません。「-protect」が有効になっているプロファイルの場合、保護を無効にすると、この操作によってデータセットが削除され、このプロファイルのバックアップをリストアまたはクローニングできないことを示す警告メッセージが表示されます。
+
+
+
+ a| 
+* データベース操作の完了ステータスの電子メール通知を有効にします *
+ a| 
+次のオプションと変数を指定します。
+
+** --summary-notification`を使用すると'リポジトリ・データベースの下にある複数のプロファイルのサマリー・メール通知を構成できます
+** --notification'プロファイルのデータベース操作の完了ステータスに関する電子メール通知を受け取ることができます
+** --success -email_address2_`新しいプロファイルまたは既存のプロファイルを使用して正常に実行されたデータベース操作の完了後に、電子メール通知を受け取ることができます。
+** `-failure-email_email_address2_`新しい プロファイルまたは既存のプロファイルを使用して実行されたデータベース操作に失敗した場合に、電子メール通知を受け取ることができます。
+** --subject_subject_text_'新しいプロファイルまたは既存のプロファイルを作成するときの電子メール通知の件名テキストを指定しますリポジトリに対して通知設定が設定されておらず、コマンドラインインターフェイス（CLI）を使用してプロファイル通知または要約通知を設定しようとしている場合、「SMSAP-14577：Notification Settings not configured」というメッセージがコンソールログに記録されます。
++
+通知設定を構成したあとに、リポジトリのサマリー通知を有効にせずにCLIを使用してサマリー通知を設定しようとすると、コンソールログに「SMSAP-14575：Summary notification configuration not available for this repository」というメッセージが記録されます
+
+
+
+
+
+ a| 
+* プロファイルを更新して、アーカイブ・ログ・ファイルのバックアップを個別に作成します。 *
+ a| 
+次のオプションと変数を指定します。
+
+** --separate-archivelog-backups：アーカイブ・ログ・ファイルのバックアップを'データベース・ファイルとは別に作成できます
++
+このオプションを指定すると、データファイルのみのバックアップまたはアーカイブログのみのバックアップを作成できます。フルバックアップは作成できません。また、バックアップを分離してプロファイル設定を元に戻すこともできません。SnapManager では、アーカイブログのみのバックアップを作成する前に作成されたバックアップの保持ポリシーに基づいてバックアップが保持されます。
+
+** 「-retain-archivelog -bbackups」は、アーカイブ・ログ・バックアップの保存期間を設定します。
++
+
+NOTE: 初めてプロファイルを更新する場合は、「-separate archivedlog-backups」オプションを使用して、アーカイブログのバックアップをデータファイルのバックアップから分離できます。アーカイブログのバックアップの保持期間は、「-retain-archivelog -backup」オプションを使用して指定する必要があります。プロファイルをあとで更新する場合、保持期間の設定は任意です。
+
+** -protectは'DFM（Data Fabric Manager）サーバにアプリケーション・データセットを作成し'データベース'データ・ファイル'制御ファイル'およびアーカイブ・ログに関連するメンバーを追加します
++
+データセットが存在する場合は、プロファイルの作成時にデータセットが再利用されます。
+
+** 「-protection-policy」は、保護ポリシーをアーカイブ・ログ・バックアップに設定します。
+** --incluse-with -one-backup'は、アーカイブ・ログ・バックアップがデータベース・バックアップとともに含まれることを指定します。
+** 「-no-incluse-with -online-backups」は、アーカイブ・ログ・ファイルのバックアップがデータベース・バックアップに含まれないことを指定します。
+
+
+
+
+ a| 
+* ターゲット・データベースのホスト名を変更します *
+ a| 
+プロファイルのホスト名を変更するには'-host_new_db_host_を指定します
+
+
+
+ a| 
+* プロファイルの更新処理後にダンプ・ファイルを収集 *
+ a| 
+-dump'オプションを指定します
+
+|===
+. 更新されたプロファイルを表示するには、「smsapprofile show」コマンドを入力します
+

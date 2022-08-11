@@ -1,0 +1,21 @@
+---
+permalink: windows/task-viewing-a-list-of-snapmanager-history-operation-as-a-report.html 
+sidebar: sidebar 
+keywords: view, history, snapmanager, operation, report, base, retention, setting, list 
+summary: 保持設定に基づいて、特定またはすべての SnapManager 処理の履歴をレポートとして表示できます。 
+---
+= SnapManager 処理の履歴のリストを表示する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+保持設定に基づいて、特定またはすべての SnapManager 処理の履歴をレポートとして表示できます。
+
+.ステップ
+. SnapManager の履歴処理のリストを表示するには、次のコマンドを入力します。
++
+SMSAP history list -profile｛-name、profile_name [profile_name1、profile_name2 ]|-all -repository -login [-passworpreg_password]-usernamerepo_username -dbname -hostrepo_host -portrepo_port｝-operation｛-operationalsoperation_name [operation_name2 | verbose]-delimitername [-delimiter]-delimitername [すべての操作
+
+

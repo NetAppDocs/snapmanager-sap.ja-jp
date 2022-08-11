@@ -1,0 +1,49 @@
+---
+permalink: unix-administration/reference-the-smosmsapversion-command.html 
+sidebar: sidebar 
+keywords: run, version, command, snapmanager, run, local, host, smsap 
+summary: version コマンドを実行すると、ローカル・ホストで稼働している SnapManager のバージョンを確認できます。 
+---
+= SMSAPのバージョンコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+versionコマンドを実行して'ローカル・ホストで実行しているSnapManager のバージョンを確認できます
+
+
+
+== 構文
+
+[listing]
+----
+smsap version
+[-quiet | -verbose]
+----
+
+
+== パラメータ
+
+* `*-quiet *``
++
+コンソールにエラーメッセージのみを表示します。デフォルトでは、エラーおよび警告メッセージが表示されます。
+
+* `*-verbose *`
++
+各プロファイルのビルドの日付と内容を表示します。エラー、警告、および情報メッセージもコンソールに表示されます。
+
+
+
+
+
+== version コマンドの例
+
+次の例は、 SnapManager のバージョンを表示します。
+
+[listing]
+----
+smsap version
+SnapManager for SAP Version: 3.3.1
+----

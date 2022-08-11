@@ -1,0 +1,48 @@
+---
+settings:
+  name: SnapManager for SAP
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+    langs: ja-jp,us-en,zh-cn
+  langs: ja-jp,us-en,zh-cn
+sidebar:
+  entries:
+  - title: SnapManager for SAPのドキュメント
+    url: "/index.html"
+  - title: リリースノート
+    url: "/reference-releasenotes.html"
+  - section: unix-installation-cmode
+  - section: unix-installation-7mode
+  - section: unix-administration
+  - section: windows
+  - title: 法的通知
+    url: "/legal-notices.html"
+homepage:
+  tiles:
+  - title: はじめに
+    links:
+    - title: 製品の概要
+      url: "/unix-installation-cmode/reference-smsap-isg-product-overview.html"
+    - title: リリースノート
+      url: reference-releasenotes.html
+  - title: 管理
+    links:
+    - title: SnapManager for UNIXを設定しています
+      url: "/unix-administration/concept-configuring-snapmanager-for-oraclesap.html"
+    - title: SnapManager for Windowsを構成しています
+      url: "/windows/concept-configuring-snapmanager-for-oraclesap.html"
+  - title: 設置とセットアップ
+    links:
+    - title: 導入ワークフロー（7-Mode）
+      url: "/unix-installation-7mode/reference-smsap-isg-deployment-workflow.html"
+    - title: 導入ワークフロー（clustered Data ONTAP）
+      url: "/unix-installation-cmode/reference-smsap-isg-deployment-workflow.html"
+  - title: リソースの追加
+    links:
+    - title: ネットアップサポート
+      url: https://mysupport.netapp.com/site/global/dashboard
+    - title: ネットアップコミュニティ
+      url: https://community.netapp.com/

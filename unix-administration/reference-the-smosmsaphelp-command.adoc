@@ -1,0 +1,50 @@
+---
+permalink: unix-administration/reference-the-smosmsaphelp-command.html 
+sidebar: sidebar 
+keywords: run, help, command, display, information, snapmanager, command, option, supply, valid, command, name, syntax, smsap 
+summary: help コマンドを実行すると、 SnapManager コマンドとそのオプションに関する情報を表示できます。コマンド名を指定しない場合は、有効なコマンドのリストが表示されます。コマンド名を指定すると、そのコマンドの構文が表示されます。 
+---
+= SMSAPのヘルプコマンドを使用します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+「help」コマンドを実行すると、SnapManager コマンドとそのオプションに関する情報を表示できます。コマンド名を指定しない場合は、有効なコマンドのリストが表示されます。コマンド名を指定すると、そのコマンドの構文が表示されます。
+
+
+
+== 構文
+
+[listing, subs="+macros"]
+----
+pass:quotes[smsap help
+[_backup_|_cmdfile_|_clone_|_credential_|_help_|_operation_|_profile_|_protection-policy_|_repository_|_system_|_version_|_plugin_|_diag_|_history_|_schedule_|_notification_|_storage_|_get_]]
+[-quiet | -verbose]]
+----
+
+
+== パラメータ
+
+このコマンドで使用できるコマンド名の一部を次に示します。
+
+* 「バックアップ」
+* 「clone」と入力します
+* 「cmdfile」
+* クレデンシャル
+* 「diag」
+* 「GET」
+* 「通知」
+* 「help」と入力します
+* 「歴史」
+* 「オペレーション」
+* 「plugin」
+* 「プロファイル」
+* 「保護ポリシー」
+* 「repository」のようになります
+* 「スケジュール」
+* 「ストレージ」
+* 「システム」
+* 「バージョン」
+

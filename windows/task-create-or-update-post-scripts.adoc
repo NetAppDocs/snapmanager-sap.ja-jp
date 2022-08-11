@@ -1,0 +1,31 @@
+---
+permalink: windows/task-create-or-update-post-scripts.html 
+sidebar: sidebar 
+keywords: create, post, script, default, install, directory, plugin, update 
+summary: '新しいポストスクリプトを作成するか "default_install_directory\plugins\backup\create\post で使用できるスクリプトを使用できます' 
+---
+= ポストスクリプトを作成または更新します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+新しいポストスクリプトを作成するか'default_install_directory>\plugins\backup\create\postで使用できるスクリプトを使用します
+
+
+
+== このタスクについて
+
+スクリプトを SnapManager 処理のコンテキスト内で実行できるように、特定の方法で構造化する必要があります。想定される操作、使用可能な入力パラメータ、および戻りコードの表記規則に基づいてスクリプトを作成します。
+
+.手順
+. 新しいスクリプトを作成するか、使用可能なサンプルスクリプトを使用します。
+. 必要に応じて、関数、変数、およびパラメータを変更または含める。
+. カスタムスクリプトを保存します。
+. ポストプロセスタスク仕様 XML ファイルにスクリプト名と必要な入力を追加するか、適切なスクリプトと入力パラメータを選択して GUI からの入力を指定します。
++
+
+NOTE: タスク仕様 XML ファイルにセカンダリストレージの詳細を指定する必要はありません。
+
+
