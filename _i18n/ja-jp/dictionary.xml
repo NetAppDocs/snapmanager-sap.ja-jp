@@ -239,7 +239,6 @@
   <block id="d5bc6247e1a3201223733b61419e92b5" category="summary">Oracleデータベース管理用のSAPツールであるBRARCHIVE、BRBACKUP、BRCONNECTなどのSAP BR * Tools BRRECOVER、BRRESTORE、BRSPACE、およびBRToolsは、SnapManager for SAPが提供するBACKINTインターフェイスを使用します。SAP BR * Toolsを統合するSnapManager には、BR * Toolsディレクトリから&lt;SAP for SAPインストールディレクトリ&gt;\NetApp\SnapManager for SAP\binにリンクを作成する必要があります。これには、BACKINTファイルがインストールされています。</block>
   <block id="eb59420435d341b187711dd23d6f754a" category="doc">SAP BR * Toolsと統合</block>
   <block id="06af7cf94460a597328a23c17a6cb1f2" category="paragraph">Oracleデータベース管理用のSAPツールであるBRARCHIVE、BRBACKUP、BRCONNECTなどのSAP BR * Tools BRRECOVER、BRRESTORE、BRSPACE、およびBRToolsは、SnapManager for SAPが提供するBACKINTインターフェイスを使用します。SAP BR * Toolsを統合SnapManager するには、BR * Toolsディレクトリから「&lt;SAP for SAP installation directory&gt;\NetApp\SnapManager for SAP\bin\」へのリンクを作成する必要があります。これらのリンク先にbackintファイルがインストールされています。</block>
-  <block id="eed5ddc8f738970611f01ee16f2a17e5" category="section-title">必要なもの</block>
   <block id="60cf915a4e1190072abaa04bb9ff9b09" category="list-text">SAP BR * Toolsがインストールされていることを確認してください。</block>
   <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">手順</block>
   <block id="b15a5e4bea8ef7f2d4d7a8823146271e" category="list-text">BR * Toolsディレクトリから各SAPインスタンスの「C：\Program Files\NetApp\SnapManager for SAP\bin\backint」ファイルへのリンクを作成します。</block>
@@ -8253,4 +8252,5 @@
   <block id="d23d52eb082db2b040f7a1483c79d790" category="sidebar">UNIX の管理</block>
   <block id="7e5a244ed934853124d9aebb1b86928e" category="sidebar">UNIX for clustered Data ONTAP のインストールとセットアップ</block>
   <block id="c03b7f290aff6f050d870f85741bbec1" category="sidebar">UNIX用の7-Modeのインストールとセットアップ</block>
+  <block id="d59db7846bd10b6d60d21543df9faa9e" category="section-title">必要なもの</block>
 </blocks>
