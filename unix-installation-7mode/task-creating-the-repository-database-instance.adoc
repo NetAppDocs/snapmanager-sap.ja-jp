@@ -25,7 +25,3 @@ tablespace _name は、テーブルスペースの名前です。
 SnapManager では、表領域用に 4 、 000 以上のブロックサイズが必要です。
 
 
-
-* 関連情報 *
-
-http://www.netapp.com/us/media/tr-3761.pdf["ネットアップテクニカルレポート 3761 ：『 SnapManager for Oracle ： Best Practices 』"]

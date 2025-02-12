@@ -29,12 +29,9 @@ SnapManager ユーザインターフェイス（ UI ）には、 SnapManager が
 
 +
 ** `_server_name_`は、SnapManager がインストールされているターゲット・データベース・ホストの名前です。
-
-
 +
 ターゲットデータベースホストの IP アドレスを入力することもできます。
 
-+
 ** `_port_number_`は、SnapManager が実行されているポートです。
 +
 デフォルト値は 27214 です。
